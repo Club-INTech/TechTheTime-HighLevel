@@ -1,3 +1,24 @@
 [submodule "ros_workspace/src/communication/TechTheTime-Shared"]
 	path = ros_workspace/src/communication/TechTheTime-Shared
 	url = git@github.com:Club-INTech/TechTheTime-Shared.git
+[submodule "ros_workspace/src/communication/include/communication/Key-To-Order"]
+	path = ros_workspace/src/communication/include/communication/Key-To-Order
+	url = git@github.com:StarQTius/Key-To-Order.git
+[submodule "ros_workspace/src/communication/lib/Key-To-Order"]
+	path = ros_workspace/src/communication/lib/Key-To-Order
+	url = git@github.com:StarQTius/Key-To-Order.git
+[submodule "ros_workspace/src/communication/lib/Unpadded"]
+	path = ros_workspace/src/communication/lib/Unpadded
+	url = git@github.com:StarQTius/Unpadded.git
+[submodule "ros_workspace/src/communication/lib/config"]
+	path = ros_workspace/src/communication/lib/config
+	url = git@github.com:boostorg/config.git
+[submodule "ros_workspace/src/communication/lib/mp11"]
+	path = ros_workspace/src/communication/lib/mp11
+	url = git@github.com:boostorg/mp11.git
+[submodule "ros_workspace/src/communication/lib/static_assert"]
+	path = ros_workspace/src/communication/lib/static_assert
+	url = git@github.com:boostorg/static_assert.git
+[submodule "ros_workspace/src/communication/lib/type_traits"]
+	path = ros_workspace/src/communication/lib/type_traits
+	url = git@github.com:boostorg/type_traits.git
