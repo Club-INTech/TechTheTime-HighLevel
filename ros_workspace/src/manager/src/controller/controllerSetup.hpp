@@ -1,7 +1,7 @@
 #ifndef __CONTROLLERSETUP_HH__
 #define __CONTROLLERSETUP_HH__
 
-#include "joystick.hh"
+#include "joystick/joystick.hpp"
 #include <array>
 #include <functional>
 #include <unistd.h>

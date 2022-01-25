@@ -1,4 +1,4 @@
-#include "joystick.hh"
+#include "joystick/joystick.hpp"
 #include "controllerSetup.hpp"
 
 ControllerSetup::ControllerSetup(Binder binder) {
