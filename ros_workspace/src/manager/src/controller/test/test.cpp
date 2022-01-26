@@ -1,5 +1,5 @@
-#include "joystick.hh"
-#include "controllerSetup.hpp"
+#include "../joystick/joystick.hpp"
+#include "../controllerSetup.hpp"
 #include <unistd.h>
 #include <iostream>
 
