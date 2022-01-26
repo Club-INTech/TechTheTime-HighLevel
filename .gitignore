@@ -2,6 +2,7 @@ devel/
 logs/
 build/
 bin/
+.idea/
 msg_gen/
 srv_gen/
 msg/*Action.msg
