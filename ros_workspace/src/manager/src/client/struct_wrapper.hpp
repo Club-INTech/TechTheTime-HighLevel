@@ -7,17 +7,10 @@ struct struct_wrapper{
 
     std::shared_ptr<T> value;
 
-    struct_wrapper(std::shared_ptr<T>&& v_ptr) {
-        value = std::move(v_ptr);
-    }
-
     void set_values(Ts... args) {
         T tmp = {args...};
-        *value = t;
+        *value = tmp;
     }
-
-
-
 };
 
 #endif
