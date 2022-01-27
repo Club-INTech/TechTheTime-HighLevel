@@ -9,7 +9,8 @@ if __name__ == "__main__":
     })
     while True:
         try:
-            c.look("show")
+            _, res = c.look("detect")
+            print(res)
         except EyesException as e:
             print(e)
             continue

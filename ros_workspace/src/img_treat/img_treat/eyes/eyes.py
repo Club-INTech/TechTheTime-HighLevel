@@ -5,6 +5,7 @@ from img_treat.eyes.exception.cannot_receive_frame_exception import CannotReceiv
 from img_treat.eyes.exception.cannot_open_camera_exception import CannotOpenCameraException
 from img_treat.eyes.exception.parameter_is_not_set_exception import ParameterIsNotSetException
 from img_treat.eyes.image_utils.image_transforms import *
+from img_treat.eyes.image_utils.detection import *
 
 
 class Eyes:
@@ -31,3 +32,10 @@ class Eyes:
         dst = rotate(color_transform(frame, self.color_transform), self.rotation)
         cv.imshow('frame', dst)
         return True
+
+    def __detect(self, frame) -> list:
+        self.__check_attr_list(list(["color_transform", "rotation"]))
+        res = detect(frame)
+        self.__show(frame)
+        return res
+
