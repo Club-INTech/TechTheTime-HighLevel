@@ -16,7 +16,7 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(action_msg_srv REQUIRED PATH /home/tsimafei/intech/TechTheTime-HighLevel/ros_workspace/src/srvs_msgs/action_msg_srv)
+find_package(action_msg_srv REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
