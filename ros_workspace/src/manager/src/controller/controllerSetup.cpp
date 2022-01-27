@@ -8,9 +8,6 @@ ControllerSetup::ControllerSetup(Binder binder) {
         printf("joystick not found.\n");
         exit(1);
     }
-
-    bool isRunning = false;
-
     this->binder = binder;
 }
 
@@ -22,14 +19,11 @@ ControllerSetup::ControllerSetup(std::string path, Binder binder)
         printf("joystick not found.\n");
         exit(1);
     }
-
-    bool isRunning = false;
-
     this->binder = binder;
 }
 
 void ControllerSetup::run(bool debug) {
-    while (isRunning) {
+    while (true) {
         usleep(1000);
 
         JoystickEvent event;
@@ -42,8 +36,8 @@ void ControllerSetup::run(bool debug) {
 
                 if (debug) {
                     printf("Button %u is %s\n",
-                           event.number,
-                           state ? "up" : "down");
+                        event.number,
+                        state ? "up" : "down");
                 }
             }
             else if (event.isAxis())

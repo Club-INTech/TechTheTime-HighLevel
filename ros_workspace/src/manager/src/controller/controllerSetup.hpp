@@ -10,12 +10,12 @@ class Binder
 {
 private:
     std::array<std::function<void(int, bool)>, 11> buttonsCallback;
-    std::array<std::function<void(int, float)>, 8> axisCallback;
+    std::array<std::function<void(int, int)>, 8> axisCallback;
 
 public:
     Binder() {
         buttonsCallback.fill([](int, bool) {});
-        axisCallback.fill([](int, float) {});
+        axisCallback.fill([](int, int) {});
     }
 
     /**
@@ -34,7 +34,7 @@ public:
      * @param axis The axis that will be bound
      * @param func The function that will be bound
      */
-    void BindAxis(int axis, std::function<void(int, float)> func) {
+    void BindAxis(int axis, std::function<void(int, int)> func) {
         axisCallback[axis] = func;
     }
 
@@ -55,7 +55,7 @@ public:
      * @param axis The axis index
      * @param value The value of the axis
      */
-    void CallAxisCallback(int axis, float value) {
+    void CallAxisCallback(int axis, int value) {
         (axisCallback.at(axis))(axis, value);
     }
 };
@@ -66,7 +66,6 @@ class ControllerSetup
 public:
     Joystick joystick;
     Binder binder;
-    bool isRunning;
 
     /**
      * @brief Cannot create empty controller
