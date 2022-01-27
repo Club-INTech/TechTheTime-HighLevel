@@ -7,12 +7,17 @@
 //#include "client/ActionClient.hpp"
 #include "controller/controllerSetup.hpp"
 #include "order/order.hpp"
+#include "client/ActionClient.hpp"
+#include <iostream>
+#include <string>
+#include <cstddef>
+#include "action_msg_srv/srv/order.hpp"
 
 using namespace order;
 
 int main(void) {
     Binder binder;
-
+    auto c = new ActionClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("client_node");
     binder.BindButton(0, [](int button, bool state) {
         if (state) {
             goTo(0, 0);
@@ -23,4 +28,5 @@ int main(void) {
 
     ControllerSetup controller = ControllerSetup(binder);
     controller.run(false);
+    return 0;
 }
