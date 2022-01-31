@@ -3,6 +3,8 @@
 log/
 install/
 
+.vscode
+
 devel/
 logs/
 build/
