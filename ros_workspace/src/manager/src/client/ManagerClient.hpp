@@ -9,27 +9,29 @@
 #include <memory>
 #include <string>
 #include "struct_wrapper.hpp"
+#include <stdexcept>
+
 
 using namespace std::chrono_literals;
 
-template<typename T, typename Tr, typename... Rs>
-class ActionClientNode : public rclcpp::Node {
+
+template<class T, class Tr, class... Rs>
+class ManagerClientNode : public rclcpp::Node {
 
   using shared_ptr_T = typename rclcpp::Client<T>::SharedPtr;
 
 public:
-  ActionClientNode(const std::string& client_name) : Node(client_name), client(this->create_client<T>(client_name)) {
+  ManagerClientNode(const std::string& client_name) : Node(client_name), client(this->create_client<T>(client_name)), client_name(client_name) {
   }
 
-  bool wait_for_connection() {
+  void wait_for_connection() {
     while (!client->wait_for_service(1s)) {
       if (!rclcpp::ok()) {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
-        return false;
+        exit(1);
       }
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), this->client_name + " is waiting for service...");
     }
-    return true;
   }
 
   auto send(Rs... args) {
@@ -39,14 +41,14 @@ public:
     if (rclcpp::spin_until_future_complete(this, result) ==
       rclcpp::FutureReturnCode::SUCCESS)
     {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sum: %ld", result.get()->success);
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: %d", result.get()->success);
     } else {
       RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service");
     }
   }
 
 private:
-  // std::shared_ptr<rclcpp::Node> node;
+  std::string client_name;
   shared_ptr_T client;
   struct_wrapper<Tr, Rs...> request;
 
