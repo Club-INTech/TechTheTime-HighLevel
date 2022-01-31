@@ -1,13 +1,19 @@
-#include "client/ActionClient.hpp"
+#include "client/ManagerClient.hpp"
 #include <iostream>
 #include <string>
 #include <cstddef>
+#include <stdexcept>
+#include "rclcpp/rclcpp.hpp"
 #include "action_msg_srv/srv/order.hpp"
 
-int main() {
-    auto c = new ActionClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("client_node");
-    while(! c->wait_for_connection()) {
-        std::cout << "Waiting" << std::endl;
-    }
+int main(int argc, char **argv) {
+
+    rclcpp::init(argc, argv);
+    
+    auto c = new ManagerClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("action_client");
+    c->wait_for_connection();
+
+    rclcpp::shutdown();
+
     return 0;
 }
