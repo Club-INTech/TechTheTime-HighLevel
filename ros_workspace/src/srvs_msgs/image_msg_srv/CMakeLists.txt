@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(action_msg_srv)
+project(image_msg_srv)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -22,8 +22,9 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "srv/Order.srv"
+  "srv/Image.srv"
 )
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

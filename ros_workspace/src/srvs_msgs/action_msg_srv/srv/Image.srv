@@ -1,4 +1,0 @@
-string order
-int16 id
----
-int64 res

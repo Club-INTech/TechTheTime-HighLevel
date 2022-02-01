@@ -1,13 +1,13 @@
 #include "controller/controllerSetup.hpp"
 #include "order/order.hpp"
-#include "client/Client.hpp"
+#include "client/managerClient.hpp"
 #include <iostream>
 #include <string>
 #include <cstddef>
 #include <stdexcept>
 #include "rclcpp/rclcpp.hpp"
 #include "action_msg_srv/srv/order.hpp"
-#include "action_msg_srv/srv/image.hpp"
+
 
 
 int main(int argc, char **argv) {
@@ -16,9 +16,6 @@ int main(int argc, char **argv) {
     
     auto commClient = new ClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("action_client");
     commClient->wait_for_connection();
-
-    auto imgClient = new ClientNode<action_msg_srv::srv::Image, image_msg_srv::srv::Image::Request, std::string>("image_client");
-    imgClient->wait_for_connection();
 
     rclcpp::shutdown();
 

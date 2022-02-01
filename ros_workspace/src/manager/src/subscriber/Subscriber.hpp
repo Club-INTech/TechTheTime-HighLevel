@@ -1,6 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
+//T : type de service / message /// (Pas besoin pour sub :: Tr : T::Request / T::Msg? /// Rs... : arguments de msg)
+
 template<class T>
 class Subscriber : public rclcpp::Node
 {
@@ -8,8 +10,7 @@ public:
     Subscriber()
         : Node("subscriber")
     {
-        subscription_ = this->create_subscription<std_msgs::msg::String>(
-            "topic", 10, std::bind(&Subscriber::topic_callback, this, _1));
+        subscription_ = this->create_subscription<T>("topic", 10, std::bind(&Subscriber::topic_callback, this, _1)); //?????
     }
 
 private:

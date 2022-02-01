@@ -1,0 +1,6 @@
+string command
+int16 id
+---
+int64 x
+int64 y
+int16 count
