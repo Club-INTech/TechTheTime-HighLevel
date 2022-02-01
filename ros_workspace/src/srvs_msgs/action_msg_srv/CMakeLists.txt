@@ -23,6 +23,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/Order.srv"
+  "srv/Image.srv"
 )
 
 if(BUILD_TESTING)

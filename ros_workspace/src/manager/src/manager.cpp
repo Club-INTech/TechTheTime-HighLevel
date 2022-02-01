@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include "rclcpp/rclcpp.hpp"
 #include "action_msg_srv/srv/order.hpp"
-#include "image_msg_srv/srv/imageRequest.hpp"
+#include "action_msg_srv/srv/image.hpp"
 
 
 int main(int argc, char **argv) {
@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     auto commClient = new ClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("action_client");
     commClient->wait_for_connection();
 
-    auto imgClient = new ClientNode<image_msg_srv::srv::ImageRequest, image_msg_srv::srv::ImageRequest::Request, std::string, int64_t>("image_client");
+    auto imgClient = new ClientNode<action_msg_srv::srv::Image, image_msg_srv::srv::Image::Request, std::string>("image_client");
     imgClient->wait_for_connection();
 
     rclcpp::shutdown();
