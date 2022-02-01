@@ -1,6 +1,7 @@
 #ifndef ACTION_CLIENT_HPP
 #define ACTION_CLIENT_HPP
 
+
 #include "rclcpp/rclcpp.hpp"
 #include "action_msg_srv/srv/order.hpp"
 
@@ -16,12 +17,12 @@ using namespace std::chrono_literals;
 
 
 template<class T, class Tr, class... Rs>
-class ManagerClientNode : public rclcpp::Node {
+class ClientNode : public rclcpp::Node {
 
   using shared_ptr_T = typename rclcpp::Client<T>::SharedPtr;
 
 public:
-  ManagerClientNode(const std::string& client_name) : Node(client_name), client(this->create_client<T>(client_name)), client_name(client_name) {
+  ClientNode(const std::string& client_name) : Node(client_name), client(this->create_client<T>(client_name)), client_name(client_name) {
   }
 
   void wait_for_connection() {
