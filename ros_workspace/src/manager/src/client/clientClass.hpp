@@ -1,5 +1,5 @@
-#ifndef MANAGER_CLIENT_HPP
-#define MANAGER_CLIENT_HPP
+#ifndef CLIENT_CLASS_HPP
+#define CLIENT_CLASS_HPP
 
 
 #include "rclcpp/rclcpp.hpp"
@@ -25,7 +25,7 @@ public:
   }
 
   void wait_for_connection() {
-    while (!client->wait_for_service(1s)) {
+    while (!client->wait_for_service(1)) {
       if (!rclcpp::ok()) {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
         exit(1);
