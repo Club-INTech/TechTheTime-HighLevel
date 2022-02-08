@@ -14,8 +14,8 @@ int main(int argc, char **argv) {
 
     rclcpp::init(argc, argv);
     
-    auto commClient = new ClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("action_client");
-    commClient->wait_for_connection();
+    auto actionClient = ActionClient();
+    std::cout << actionClient.send("a", 0, 0, 0, 0) << std::endl;
 
     rclcpp::shutdown();
 

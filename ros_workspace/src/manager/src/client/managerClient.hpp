@@ -1,9 +1,8 @@
-#ifndef ACTION_CLIENT_HPP
-#define ACTION_CLIENT_HPP
+#ifndef MANAGER_CLIENT_HPP
+#define MANAGER_CLIENT_HPP
 
 
 #include "rclcpp/rclcpp.hpp"
-#include "action_msg_srv/srv/order.hpp"
 
 #include <chrono>
 #include <cstdlib>
@@ -13,7 +12,7 @@
 #include <stdexcept>
 
 
-using namespace std::chrono_literals;
+//using namespace std::chrono_literals;
 
 
 template<class T, class Tr, class... Rs>
