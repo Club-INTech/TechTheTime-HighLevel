@@ -8,8 +8,11 @@
 #include <errno.h> 
 #include <termios.h> 
 #include <unistd.h>
+#include <iostream>
 
-#include <cinttypes>
+#include <initializer_list>
+
+#include <cstddef>
 namespace scom {
 
     enum class BlockingModes {
@@ -19,52 +22,50 @@ namespace scom {
         TIMEOUT_WITH_FIXED_BYTES
     };
 
-    enum class BaudRate {
+    extern unsigned int control_mode_bytes[];
+    extern unsigned int local_modes_bytes[];
+    extern unsigned int input_modes_bytes[];
+    extern unsigned int output_modes_bytes[];
 
-    };
 
     class SerialPort {
 
     public:
-        SerialPort() = default;
         SerialPort(const char*);
         ~SerialPort() = default;
 
-        SerialPort(const SerialPort&) = delete;
-        SerialPort(const SerialPort&&) = delete;
 
-        void open_serial(bool);
+        void open_serial();
         void set_config();
         void get_config();
 
         void set_input_speed(speed_t);
         void set_output_speed(speed_t);
 
-        speed_t get_input_speed(speed_t);
-        speed_t get_output_speed(speed_t);
+        void define_blocking_mode(BlockingModes, std::initializer_list<int>);
 
-        void define_blocking_mode(BlockingModes, u_int8_t...);
+        void configure_control_modes(tcflag_t, std::initializer_list<bool>);
+        void configure_local_modes(std::initializer_list<bool>);
+        void configure_input_modes(std::initializer_list<bool>);
+        void configure_output_modes(std::initializer_list<bool>);
 
-        void configure_control_modes(bool, bool, tcflag_t, bool);
-        void configure_local_modes(bool, bool, bool);
-        void configure_input_modes(bool, bool);
-        void configure_output_modes(bool, bool);
+        ssize_t write_byte(uint8_t);
+        ssize_t read_word(uint8_t*, int);
 
-        template<typename T>
-        void write(T data);
-
-        template<typename T>
-        void read(T* buf);
+        ssize_t read_byte(uint8_t*);
 
         void close_port();
         void set_exclusive_access();
 
+        void set_default_config();
+
     private:
         int serial_port = -1;
         const char* port_name = nullptr;
-        struct termios2* serial_port_config;  
+        struct termios serial_port_config;  
 
     };
+
 }
 
 #endif
