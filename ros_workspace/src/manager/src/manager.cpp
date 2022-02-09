@@ -1,6 +1,6 @@
 #include "controller/controllerSetup.hpp"
 #include "order/order.hpp"
-#include "client/managerClient.hpp"
+#include "client/ClientT.hpp"
 #include <iostream>
 #include <string>
 #include <cstddef>
@@ -14,8 +14,14 @@ int main(int argc, char **argv) {
 
     rclcpp::init(argc, argv);
     
-    auto commClient = new ClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t>("action_client");
+    auto commClient = std::make_shared<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request,
+                std::string, int64_t, int64_t, int64_t, int64_t>>("action");
+    commClient->set_shared(commClient);
     commClient->wait_for_connection();
+
+    commClient->send("get_left_ticks", 0, 0, 0, 0);
+    commClient->send("get_right_ticks", 0, 0, 0, 0);
+    commClient->send("move", 0, 0, 0, 0);
 
     rclcpp::shutdown();
 
