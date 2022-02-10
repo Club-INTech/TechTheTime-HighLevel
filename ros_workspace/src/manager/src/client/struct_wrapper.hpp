@@ -7,8 +7,12 @@ struct struct_wrapper{
 
     std::shared_ptr<T> value;
 
+    struct_wrapper() {
+        this->value = std::make_shared<T>();
+    }
+
     void set_values(Ts... args) {
-        T tmp = {args...};
+        T tmp = T(args...);
         *value = tmp;
     }
 };
