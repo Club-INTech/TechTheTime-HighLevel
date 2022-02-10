@@ -14,7 +14,7 @@ public:
     }
 
 private:
-    void topic_callback(const T::SharedPtr msg) const
+    virtual void topic_callback(const T::SharedPtr msg) const
     {
         RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.get());
     }

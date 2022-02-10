@@ -11,31 +11,15 @@
 #include <string>
 #include "struct_wrapper.hpp"
 #include <stdexcept>
+#include <iostream>
 
 class ActionClient : public ClientNode<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, std::string, int64_t, int64_t, int64_t, int64_t> {
 public:
     ActionClient() : ClientNode("action_client") {};
 
-    // bool send(std::string order, int64_t x, int64_t y, int64_t id, int64_t angle) {
-
-    //     auto request = std::make_shared<action_msg_srv::srv::Order::Request>();
-    //     request->set_values(order, x, y, id, angle);
-
-    //     auto result = client->async_send_request(request->value);
-
-    //     //Waiting for result
-    //     if (rclcpp::spin_until_future_complete(this, result) ==
-    //         rclcpp::FutureReturnCode::SUCCESS)
-    //     {
-    //         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: %d", result.get()->success);
-    //         return result.get()->success;
-    //     }
-    //     else
-    //     {
-    //         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service");
-    //         return false;
-    //     }
-    // }
+    void treat() {
+        std::cout << "aa"
+    }
 };
 
 #endif
