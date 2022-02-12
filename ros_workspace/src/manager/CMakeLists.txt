@@ -21,9 +21,15 @@ find_package(action_msg_srv REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(manager src/manager.cpp)
+set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
+
+set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
+
+add_executable(manager src/manager.cpp ${ActionOrderDirectory})
 ament_target_dependencies(manager
   rclcpp action_msg_srv)
+
+target_include_directories(manager PUBLIC ${ActionOrderDirectory})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
