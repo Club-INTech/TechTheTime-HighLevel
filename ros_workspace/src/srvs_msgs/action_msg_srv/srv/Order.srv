@@ -1,6 +1,5 @@
-string order
-int64 x
-int64 y
+int64 order_code
+int64 distance
 int64 id
 int64 angle
 ---
