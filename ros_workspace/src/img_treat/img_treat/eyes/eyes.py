@@ -6,6 +6,8 @@ from img_treat.eyes.exception.cannot_open_camera_exception import CannotOpenCame
 from img_treat.eyes.exception.parameter_is_not_set_exception import ParameterIsNotSetException
 from img_treat.eyes.image_utils.image_transforms import *
 from img_treat.eyes.image_utils.detection import *
+from img_treat.eyes.image_utils.distance import *
+from img_treat.eyes.image_utils.calibrate import focal_length
 
 
 class Eyes:
@@ -39,3 +41,14 @@ class Eyes:
         self.__show(frame)
         return res
 
+    def __distance(self, frame) -> float:
+        self.__check_attr_list(list(["color_transform", "rotation"]))
+        res = distance_to_camera(frame)
+        return res
+
+    def __calibrate(self, frame) -> float:
+        self.__check_attr_list(list(["known_distance", "known_width", 'focal_measure', 'focal_length']))
+        if self.focal_measure:
+            return distance_to_camera(frame, self.known_width, self.focal_length)
+        else:
+            return focal_length(frame, self.known_distance, self.known_width)
