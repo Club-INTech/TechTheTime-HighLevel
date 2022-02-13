@@ -5,6 +5,8 @@ install/
 
 .vscode
 
+.idea/
+
 devel/
 logs/
 build/
