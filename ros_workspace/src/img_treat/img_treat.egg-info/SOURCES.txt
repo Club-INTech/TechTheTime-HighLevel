@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+img_treat/__init__.py
+img_treat.egg-info/PKG-INFO
+img_treat.egg-info/SOURCES.txt
+img_treat.egg-info/dependency_links.txt
+img_treat.egg-info/entry_points.txt
+img_treat.egg-info/requires.txt
+img_treat.egg-info/top_level.txt
+img_treat.egg-info/zip-safe
+resource/img_treat
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
