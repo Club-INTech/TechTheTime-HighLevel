@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(communication)
+project(manager)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -21,16 +21,15 @@ find_package(action_msg_srv REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-
 set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(communication src/service/ActionService.cpp src/communication.cpp ${ActionOrderHeaders})
-target_include_directories(communication PUBLIC ${ActionOrderDirectory})
-
-ament_target_dependencies(communication
+add_executable(manager src/manager.cpp ${ActionOrderDirectory})
+ament_target_dependencies(manager
   rclcpp action_msg_srv)
+
+target_include_directories(manager PUBLIC ${ActionOrderDirectory})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -44,7 +43,7 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  communication
+  manager
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

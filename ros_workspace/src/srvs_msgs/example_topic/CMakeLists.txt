@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(communication)
+project(action_msg_srv)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -15,22 +15,15 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(action_msg_srv REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
+find_package(rosidl_default_generators REQUIRED)
 
-set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
-
-set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
-
-add_executable(communication src/service/ActionService.cpp src/communication.cpp ${ActionOrderHeaders})
-target_include_directories(communication PUBLIC ${ActionOrderDirectory})
-
-ament_target_dependencies(communication
-  rclcpp action_msg_srv)
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/Example.msg"
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -42,9 +35,5 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-install(TARGETS
-  communication
-  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
