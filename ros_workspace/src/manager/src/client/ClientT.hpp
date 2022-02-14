@@ -12,8 +12,6 @@
 
 using namespace std::chrono_literals;
 
-
-
 template<class T, class Treq, class... Rs>
 class ClientT : public rclcpp::Node {
 

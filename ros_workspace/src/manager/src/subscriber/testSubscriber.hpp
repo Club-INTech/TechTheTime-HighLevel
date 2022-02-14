@@ -1,5 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include "example_topic/msg/example.hpp"
 #include "subscriberClass.hpp"
 #include <iostream>
 
@@ -9,6 +9,6 @@ public:
 
 private:
     void topic_callback(const std::string::Shared_ptr msg) {
-        std::cout << msg << std::endl;
+        std::cout << "Message recieved" << msg << std::endl;
     }
 };
