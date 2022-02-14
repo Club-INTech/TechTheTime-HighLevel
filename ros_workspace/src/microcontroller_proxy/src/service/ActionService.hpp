@@ -8,6 +8,11 @@
 #include <memory>
 #include <string>
 
+/**
+ * ActionService class. 
+ * 
+ * @author sudogauss
+*/ 
 class ActionService : public rclcpp::Node {
 
     using request_T = typename action_msg_srv::srv::Order::Request;

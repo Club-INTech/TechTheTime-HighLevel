@@ -26,10 +26,10 @@ set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(communication src/service/ActionService.cpp src/communication.cpp ${ActionOrderHeaders})
-target_include_directories(communication PUBLIC ${ActionOrderDirectory})
+add_executable(${PROJECT_NAME} src/service/ActionService.cpp src/microcontroller_proxy.cpp ${ActionOrderHeaders})
+target_include_directories(${PROJECT_NAME} PUBLIC ${ActionOrderDirectory})
 
-ament_target_dependencies(communication
+ament_target_dependencies(${PROJECT_NAME}
   rclcpp action_msg_srv)
 
 if(BUILD_TESTING)

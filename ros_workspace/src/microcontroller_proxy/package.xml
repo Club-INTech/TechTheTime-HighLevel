@@ -2,9 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>communication</name>
-  <version>0.0.0</version>
-  <description>C++ ROS2 server for communication node.</description>
-  <maintainer email="tsimafei.liashkevich@telecom-sudparis.eu">tsimafei</maintainer>
+  <version>0.0.1</version>
+  <description>C++ ROS2 proxy used to send orders to microcontroller. It receives the orders from manager and motion_control
+   and transforms them</description>
+  <maintainer email="tsimafei.liashkevich@telecom-sudparis.eu">sudogauss</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
