@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'path_finding'
+package_name = 'motion_control'
 
 setup(
     name=package_name,
@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='tsimafei',
     maintainer_email='tsimafei.liashkevich@telecom-sudparis.eu',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='ROS2 python node, which interacts with lidar and outputs the optimal trajectory using Dstar algorithm.',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
