@@ -1,5 +1,7 @@
 #include "../client/ClientT.hpp"
 #include "../controller/controllerSetup.hpp"
+#include "action_msg_srv/srv/order.hpp"
+#include "order_codes.hpp"
 
 namespace order {
 #define MONTHLERY
@@ -19,7 +21,7 @@ namespace order {
         const int releaseButton = 2;
 
     public:
-        ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t> client;
+        std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr;
 
         int64_t armId = 0;
         std::array<int, 6> armsAngle = {0, 0, 0, 0, 0, 0}; //Angles par défauts
@@ -32,12 +34,7 @@ namespace order {
         // bool isTurningRighthand = false;
         // bool isTurningLefthand = false;
 
-        Controlls(ClientT *client) {
-            this.client = client;
-            for (int i = 0; i < 6; i++) {
-                client->send(OrderCodes::MOVE_ARM, -1, i, armsAngle[i])
-            }
-        }
+        Controlls(std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr);
 
         void move(int axis, int value);
 
@@ -48,45 +45,45 @@ namespace order {
         void changePump(int button, int state);
 
         void moveForward() {
-            client->send(OrderCodes::START_MOVE_FORWARD, -1, -1, -1);
+            client_ptr->send(OrderCodes::START_MOVE_FORWARD, 0, 0, 0);
         }
 
         void moveBackward() {
-            client->send(OrderCodes::START_MOVE_BACKWARD, -1, -1, -1);
+            client_ptr->send(OrderCodes::START_MOVE_BACKWARD, 0, 0, 0);
         }
 
         void rotateLeft() {
-            client->send(OrderCodes::START_ROTATE_LEFT, -1, -1, -1);
+            client_ptr->send(OrderCodes::START_ROTATE_LEFT, 0, 0, 0);
         }
 
         void rotateRight() {
-            client->send(OrderCodes::START_ROTATE_RIGHT, -1, -1, -1);
+            client_ptr->send(OrderCodes::START_ROTATE_RIGHT, 0, 0, 0);
         }
 
         void stop() {
-            client->send(OrderCodes::STOP, -1, -1, -1);
+            client_ptr->send(OrderCodes::STOP, 0, 0, 0);
         }
 
         void moveArmUp() {
             armsAngle[armId] += step;
-            client->send(OrderCodes::MOVE_ARM, -1, armId, armsAngle[armId]);
+            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
         }
 
         void moveArmDown() {
             armsAngle[armId] -= step;
-            client->send(OrderCodes::MOVE_ARM, -1, armId, armsAngle[armId]);
+            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
         }
 
         void changeArmUp() {
             armsAngle[armId] += step;
-            client->send(OrderCodes::MOVE_ARM, -1, armId, armsAngle[armId]);
+            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
         }
 
         void activatePump() {
-            client->send(OrderCodes::ACTIVATE_PUMP, -1, armId, -1);
+            client_ptr->send(OrderCodes::ACTIVATE_PUMP, 0, armId, 0);
         }
         void releasePump() {
-            client->send(OrderCodes::RELEASE_PUMP, -1, armId, -1);
+            client_ptr->send(OrderCodes::RELEASE_PUMP, 0, armId, 0);
         }
 
         void bindAll(Binder binder);

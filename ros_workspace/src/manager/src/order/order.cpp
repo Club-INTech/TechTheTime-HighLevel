@@ -3,6 +3,15 @@
 #define MONTHLERY
 #ifdef MONTHLERY
 
+order::Controlls(std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr)
+{
+    this.client_ptr = client_ptr;
+    for (int i = 0; i < 6; i++)
+    {
+        client->send(OrderCodes::MOVE_ARM, -1, i, armsAngle[i])
+    }
+}
+
 order::Controlls::move(int axis, int value) {
     if (value > 1000 && axis == 1) {
         moveBackward();
