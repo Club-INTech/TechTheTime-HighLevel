@@ -62,6 +62,12 @@ It is coming
 
 # Documentation
 
+## Doxygen
+
+You must install [doxygen](https://www.doxygen.nl/manual/install.html) in order to generate the documentation.
+
+***Note:*** You must install flex and bison to build doxygen from source.
+
 ## Generate doc
 
 Run the following command in **ros_workspace** folder to generate documentation:
