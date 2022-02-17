@@ -44,7 +44,7 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  communication
+  ${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

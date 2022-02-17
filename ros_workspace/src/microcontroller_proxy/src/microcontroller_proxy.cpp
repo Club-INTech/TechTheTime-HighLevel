@@ -5,6 +5,8 @@
  * microcontroller_proxy.cpp is an entry point of the microcontroller_proxy node.
  * 
  * It initializes rclcpp, creates an actionService {@link service/ActionService.hpp} and listens for the requests.
+ * Take a look to the <a>rclcpp, the ros2 client library</a>
+ * 
  * @author sudogauss
 */
 

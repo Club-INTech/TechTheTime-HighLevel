@@ -8,6 +8,10 @@
 #include <memory>
 #include <string>
 
+/** @defgroup microcontroller_proxy Microcontroller node.
+ * @{
+*/ 
+
 /**
  * ActionService class. 
  * 
@@ -32,5 +36,7 @@ private:
     std::string service_name;
     rclcpp::Service<action_msg_srv::srv::Order>::SharedPtr service;
 };
+
+/** @} */
 
 #endif

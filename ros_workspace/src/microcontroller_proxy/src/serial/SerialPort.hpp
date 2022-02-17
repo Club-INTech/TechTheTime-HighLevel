@@ -13,6 +13,8 @@
 #include <initializer_list>
 
 #include <cstddef>
+
+
 namespace scom {
 
     enum class BlockingModes {
@@ -28,6 +30,11 @@ namespace scom {
     extern unsigned int output_modes_bytes[];
 
 
+    /**
+     * @ingroup microcontroller_proxy
+     * SerialPort class
+     * @author sudogauss 
+    */
     class SerialPort {
 
     public:
@@ -67,5 +74,7 @@ namespace scom {
     };
 
 }
+
+/** @} */
 
 #endif
