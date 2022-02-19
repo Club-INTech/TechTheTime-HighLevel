@@ -27,13 +27,7 @@ namespace order {
         std::array<int, 6> armsAngle = {0, 0, 0, 0, 0, 0}; //Angles par défauts
 
         const int step = 10;
-
-        // bool isMovingForward = false;
-        // bool isMovingBackward = false;
-
-        // bool isTurningRighthand = false;
-        // bool isTurningLefthand = false;
-
+        
         Controlls(std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr);
 
         void move(int axis, int value);
