@@ -12,6 +12,13 @@
 
 using namespace std::chrono_literals;
 
+/** @defgroup manager Manager node.
+ * @{
+*/
+
+/**
+ * ClientT class. 
+*/ 
 template<class T, class Treq, class... Rs>
 class ClientT : public rclcpp::Node {
 
@@ -60,5 +67,7 @@ private:
   shared_ptr_T client;
   struct_wrapper<Treq, Rs...> request;
 };
+
+/** @} */
 
 #endif
