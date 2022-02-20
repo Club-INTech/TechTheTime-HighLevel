@@ -3,17 +3,23 @@
 
 log/
 install/
-
-.vscode
-
-.idea/
-
+foxy/
 devel/
-logs/
 build/
+logs/
 bin/
+
+# ide
+
+.vscode/
+
 .idea/
 
+# doc
+
+doc/
+doxygen/
+#
 
 msg_gen/
 srv_gen/
