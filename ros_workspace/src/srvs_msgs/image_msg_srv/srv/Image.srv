@@ -1,4 +1,4 @@
-string command
+int16 command
 int16 id
 ---
 int64 x
