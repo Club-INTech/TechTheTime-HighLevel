@@ -1,4 +1,4 @@
-from img_treat.eyes.exception.eyes_exception import EyesException
+from robot_vision.eyes.exception.eyes_exception import EyesException
 
 
 class ParameterIsNotSetException(EyesException):

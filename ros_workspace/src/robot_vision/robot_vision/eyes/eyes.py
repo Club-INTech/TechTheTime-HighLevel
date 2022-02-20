@@ -1,13 +1,13 @@
 import time
 import cv2 as cv
 from typing import Tuple, Any
-from img_treat.eyes.exception.cannot_receive_frame_exception import CannotReceiveFrameException
-from img_treat.eyes.exception.cannot_open_camera_exception import CannotOpenCameraException
-from img_treat.eyes.exception.parameter_is_not_set_exception import ParameterIsNotSetException
-from img_treat.eyes.image_utils.image_transforms import *
-from img_treat.eyes.image_utils.detection import *
-from img_treat.eyes.image_utils.distance import *
-from img_treat.eyes.image_utils.calibrate import focal_length
+from robot_vision.eyes.exception.cannot_receive_frame_exception import CannotReceiveFrameException
+from robot_vision.eyes.exception.cannot_open_camera_exception import CannotOpenCameraException
+from robot_vision.eyes.exception.parameter_is_not_set_exception import ParameterIsNotSetException
+from robot_vision.eyes.image_utils.image_transforms import *
+from robot_vision.eyes.image_utils.detection import *
+from robot_vision.eyes.image_utils.distance import *
+from robot_vision.eyes.image_utils.calibrate import focal_length
 
 
 class Eyes:

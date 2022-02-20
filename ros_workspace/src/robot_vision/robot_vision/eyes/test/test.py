@@ -1,8 +1,6 @@
-import time
-
 import numpy as np
 import cv2 as cv
-import glob
+
 cap = cv.VideoCapture(2)
 
 def para_distort():

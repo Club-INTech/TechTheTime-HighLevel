@@ -1,7 +1,4 @@
-import numpy as np
-import imutils
-import cv2
-from img_treat.eyes.image_utils.detection import *
+from robot_vision.eyes.image_utils.detection import *
 import math
 
 
