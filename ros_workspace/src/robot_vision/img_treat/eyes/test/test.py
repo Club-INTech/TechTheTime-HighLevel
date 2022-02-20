@@ -5,7 +5,7 @@ import cv2 as cv
 import glob
 cap = cv.VideoCapture(2)
 
-def f():
+def para_distort():
     
     # termination criteria
     criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
@@ -64,46 +64,46 @@ def f():
 #dist =[[ 8.80556993e+00 -1.53231444e+02,  3.76651317e-02,  8.10566465e-02
   #-6.86844098e+02]]
 
-L= f()
 
-mtx = L[0]
-dist = L[1]
-# print(mtx)
-# print(dist)
+def calibrated(frame):
 
-cap = cv.VideoCapture(2)
+    L= para_distort()
 
-if not cap.isOpened():
-    print("Cannot open camera")
-    exit()
-while True:
-    # for fname in images:
-    ret, frame = cap.read()
-    # if frame is read correctly ret is True
-    if not ret:
-        print("Can't receive frame (stream end?). Exiting ...")
-        break
-    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-    rows, cols = gray.shape
-    M = cv.getRotationMatrix2D(((cols - 1) / 2.0, (rows - 1) / 2.0), 180, 1)
-    dst = cv.warpAffine(gray, M, (cols, rows))
-    h, w = frame.shape[:2]
-    newcameramtx, roi = cv.getOptimalNewCameraMatrix(mtx, dist, (w, h), 1, (w, h))
+    mtx = L[0]
+    dist = L[1]
+    # print(mtx)
+    # print(dist)
 
-    # undistort
-    dst = cv.undistort(frame, mtx, dist, None, newcameramtx)
-    # crop the image
-    x, y, w, h = roi
-    #print(x)
-    #print(x+h)
-    dst = dst[y:y + h, x:x + w]
-    #cv.imwrite('calibresult.png', dst)
-    cv.imshow('la', dst)
-    #cv.imshow('img', frame)
-    if cv.waitKey(1) == ord('q'):
-         break
+    cap = cv.VideoCapture(2)
 
-cap.release()
-cv.destroyAllWindows()
+    if not cap.isOpened():
+        print("Cannot open camera")
+        exit()
+    while True:
+        # for fname in images:
+        ret, frame = cap.read()
+        # if frame is read correctly ret is True
+        if not ret:
+            print("Can't receive frame (stream end?). Exiting ...")
+            break
+        gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+        rows, cols = gray.shape
+        M = cv.getRotationMatrix2D(((cols - 1) / 2.0, (rows - 1) / 2.0), 180, 1)
+        dst = cv.warpAffine(gray, M, (cols, rows))
+        h, w = frame.shape[:2]
+        newcameramtx, roi = cv.getOptimalNewCameraMatrix(mtx, dist, (w, h), 1, (w, h))
+
+        # undistort
+        dst = cv.undistort(frame, mtx, dist, None, newcameramtx)
+        # crop the image
+        x, y, w, h = roi
+        dst = dst[y:y + h, x:x + w]
+        cv.imshow('la', dst)
+        #cv.imshow('img', frame)
+        if cv.waitKey(1) == ord('q'):
+            break
+
+    cap.release()
+    cv.destroyAllWindows()
 
 
