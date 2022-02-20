@@ -1,16 +1,16 @@
-//#include "controller/controllerSetup.hpp"
-//#include "order/order.hpp"
-//#include "client/ClientT.hpp"
-#include "subscriber/testPublisher.hpp"
-#include "subscriber/subscriberClass.hpp"
+#include "controller/controllerSetup.hpp"
+#include "order/order.hpp"
+#include "client/ClientT.hpp"
+//#include "subscriber/testPublisher.hpp"
+//#include "subscriber/subscriberClass.hpp"
 //#include "subscriber/testSubscriber.hpp"
 #include <iostream>
 #include <string>
 #include <cstddef>
 #include <stdexcept>
 #include "rclcpp/rclcpp.hpp"
-//#include "action_msg_srv/srv/order.hpp"
-#include "example_topic/msg/example.hpp"
+#include "action_msg_srv/srv/order.hpp"
+//#include "example_topic/msg/example.hpp"
 #include "order_codes.hpp"
 #include <array>
 
