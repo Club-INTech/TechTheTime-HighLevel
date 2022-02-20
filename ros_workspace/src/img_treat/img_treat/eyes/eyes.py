@@ -46,6 +46,13 @@ class Eyes:
         res = distance_to_camera(frame)
         return res
 
+    # def __calibrate(self, frame) -> float:
+    #     self.__check_attr_list(list(["known_distance", "known_width", 'focal_measure', 'focal_length']))
+    #     if self.focal_measure:
+    #         return distance_to_camera(frame, self.known_width, self.focal_length)
+    #     else:
+    #         return focal_length(frame, self.known_distance, self.known_width)
+
     def __calibrate(self, frame) -> float:
         self.__check_attr_list(list(["known_distance", "known_width", 'focal_measure', 'focal_length']))
         if self.focal_measure:
