@@ -1,13 +1,13 @@
 import time
 import cv2 as cv
-from typing import Tuple, Any
+import numpy as np
+from typing import Tuple, Any, Dict
 from robot_vision.eyes.exception.cannot_receive_frame_exception import CannotReceiveFrameException
 from robot_vision.eyes.exception.cannot_open_camera_exception import CannotOpenCameraException
 from robot_vision.eyes.exception.parameter_is_not_set_exception import ParameterIsNotSetException
-from robot_vision.eyes.image_utils.image_transforms import *
-from robot_vision.eyes.image_utils.detection import *
+from robot_vision.eyes.exception.cannot_make_full_simultaneous_calibration_exception import *
 from robot_vision.eyes.image_utils.distance import *
-from robot_vision.eyes.image_utils.calibrate import focal_length
+from robot_vision.eyes.image_utils.calibrate import *
 
 
 class Eyes:
@@ -38,7 +38,6 @@ class Eyes:
     def __detect(self, frame) -> list:
         self.__check_attr_list(list(["color_transform", "rotation"]))
         res = detect(frame)
-        self.__show(frame)
         return res
 
     def __distance(self, frame) -> float:
@@ -46,16 +45,15 @@ class Eyes:
         res = distance_to_camera(frame)
         return res
 
-    # def __calibrate(self, frame) -> float:
-    #     self.__check_attr_list(list(["known_distance", "known_width", 'focal_measure', 'focal_length']))
-    #     if self.focal_measure:
-    #         return distance_to_camera(frame, self.known_width, self.focal_length)
-    #     else:
-    #         return focal_length(frame, self.known_distance, self.known_width)
+    def __calibrate(self, frame) -> np.ndarray or float:
+        self.__check_attr_list(list(['known_distance', 'known_width', 'focal_calibration',
+                                     'distortion_calibration', 'color_transform', 'rotation',
+                                     'chessboard_form', 'search_window', 'zero_zone']))
+        if self.focal_calibration and self.distortion_calibration:
+            raise CannotMakeFullSimultaneousCalibrationException("focal_calibration and distortion_calibration are"
+                                                                 "both set to true")
 
-    def __calibrate(self, frame) -> float:
-        self.__check_attr_list(list(["known_distance", "known_width", 'focal_measure', 'focal_length']))
-        if self.focal_measure:
-            return distance_to_camera(frame, self.known_width, self.focal_length)
-        else:
-            return focal_length(frame, self.known_distance, self.known_width)
+        if self.focal_calibration:
+            return focal_calibration(frame, self.known_distance, self.known_width)
+        elif self.distortion_calibration:
+            return distortion_calibration(frame, self.color_transform, self.rotation, self.chessboard_form)
