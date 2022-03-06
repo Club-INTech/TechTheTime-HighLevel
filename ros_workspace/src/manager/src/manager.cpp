@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     commClient->set_shared(commClient);
     commClient->wait_for_connection();
 
-    commClient->send(OrderCodes::MOVE, 25, 0, 0);
+    commClient->send(OrderCodes::MOVE, 100, 0, 0);
     
 
     rclcpp::shutdown();
