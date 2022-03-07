@@ -14,8 +14,15 @@
 
 #include <cstddef>
 
+#include <upd/format.hpp>
+#include <rpc/def.hpp>
+#include <rpc/master.hpp>
+#include <k2o/dispatcher.hpp>
 
 namespace scom {
+
+    extern uint8_t stuffing_byte;
+    // extern k2o::dispatcher dispatcher;
 
     enum class BlockingModes {
         NO_BLOCK,
@@ -56,21 +63,32 @@ namespace scom {
         void configure_input_modes(std::initializer_list<bool>);
         void configure_output_modes(std::initializer_list<bool>);
 
-        ssize_t write_byte(uint8_t);
-        ssize_t read_word(uint8_t*, int);
+        void write_byte(uint8_t*);
+        void write_word(uint8_t*, int);
 
-        ssize_t read_byte(uint8_t*);
+        void read_byte(uint8_t*);
+        void read_word(uint8_t*, int);
 
         void close_port();
         void set_exclusive_access();
 
         void set_default_config();
 
+        template<auto& Ftor, typename... Args>
+        void call_remote_function(Args&&... args) {
+            auto key = rpc::master::keyring.get<Ftor>();
+            this->com_start_frame_transmission(rpc::Frame_Type::REQUEST);
+            key(std::forward<Args>(args)...) >> [&](upd::byte_t byte){this->com_write_byte(byte);};
+        }
+
     private:
         int serial_port = -1;
         const char* port_name = nullptr;
-        struct termios serial_port_config;  
+        struct termios serial_port_config;
+        size_t write_stuff_counter;
 
+        void com_write_byte(upd::byte_t byte);
+        void com_start_frame_transmission(rpc::Frame_Type);
     };
 
 }
