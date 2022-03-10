@@ -1,87 +1,82 @@
+#pragma once
+
 #include "../client/ClientT.hpp"
 #include "../controller/controllerSetup.hpp"
 #include "action_msg_srv/srv/order.hpp"
 #include "order_codes.hpp"
 
 namespace order {
-#define MONTHLERY
 #ifdef MONTHLERY
 
-    class Controlls
-    {
-    private:
-        const int vertAxis = 0;
-        const int horAxis = 1;
+    using ClientT_action = ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>;
+    const int vertAxis = 0;
+    const int horAxis = 1;
 
-        const int upButton = 4;
-        const int downButton = 5;
-        const int leftArmButton = 1;
-        const int rightArmButton = 3;
-        const int activateButton = 0;
-        const int releaseButton = 2;
+    const int upButton = 4;
+    const int downButton = 5;
+    const int leftArmButton = 1;
+    const int rightArmButton = 3;
+    const int activateButton = 0;
+    const int releaseButton = 2;
 
-    public:
-        std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr;
+    extern std::shared_ptr<ClientT_action> client_ptr;
 
-        int64_t armId = 0;
-        std::array<int, 6> armsAngle = {0, 0, 0, 0, 0, 0}; //Angles par défauts
+    int64_t armId = 0;
+    std::array<int, 6> armsAngle = {0, 0, 0, 0, 0, 0}; //Angles par défauts
 
-        const int step = 10;
-        
-        Controlls(std::shared_ptr<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>> client_ptr);
+    const int step = 10;
 
-        void move(int axis, int value);
+    // void move(int axis, int value);
 
-        void moveArm(int axis, int value);
+    // void moveArm(int axis, bool state);
 
-        void changeArm(int button, int state);
+    // void changeArm(int button, bool state);
 
-        void changePump(int button, int state);
+    // void changePump(int button, bool state);
 
-        void moveForward() {
-            client_ptr->send(OrderCodes::START_MOVE_FORWARD, 0, 0, 0);
-        }
+    void moveForward() {
+        client_ptr->send(OrderCodes::START_MOVE_FORWARD, 0, 0, 0);
+    }
 
-        void moveBackward() {
-            client_ptr->send(OrderCodes::START_MOVE_BACKWARD, 0, 0, 0);
-        }
+    void moveBackward() {
+        client_ptr->send(OrderCodes::START_MOVE_BACKWARD, 0, 0, 0);
+    }
 
-        void rotateLeft() {
-            client_ptr->send(OrderCodes::START_ROTATE_LEFT, 0, 0, 0);
-        }
+    void rotateLeft() {
+        client_ptr->send(OrderCodes::START_ROTATE_LEFT, 0, 0, 0);
+    }
 
-        void rotateRight() {
-            client_ptr->send(OrderCodes::START_ROTATE_RIGHT, 0, 0, 0);
-        }
+    void rotateRight() {
+        client_ptr->send(OrderCodes::START_ROTATE_RIGHT, 0, 0, 0);
+    }
 
-        void stop() {
-            client_ptr->send(OrderCodes::STOP, 0, 0, 0);
-        }
+    void stop() {
+        client_ptr->send(OrderCodes::STOP, 0, 0, 0);
+    }
 
-        void moveArmUp() {
-            armsAngle[armId] += step;
-            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
-        }
+    void moveArmUp() {
+        armsAngle[armId] += step;
+        client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
+    }
 
-        void moveArmDown() {
-            armsAngle[armId] -= step;
-            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
-        }
+    void moveArmDown() {
+        armsAngle[armId] -= step;
+        client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
+    }
 
-        void changeArmUp() {
-            armsAngle[armId] += step;
-            client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
-        }
+    void changeArmUp() {
+        armsAngle[armId] += step;
+        client_ptr->send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);
+    }
 
-        void activatePump() {
-            client_ptr->send(OrderCodes::ACTIVATE_PUMP, 0, armId, 0);
-        }
-        void releasePump() {
-            client_ptr->send(OrderCodes::RELEASE_PUMP, 0, armId, 0);
-        }
+    void activatePump() {
+        client_ptr->send(OrderCodes::ACTIVATE_PUMP, 0, armId, 0);
+    }
+    void releasePump() {
+        client_ptr->send(OrderCodes::RELEASE_PUMP, 0, armId, 0);
+    }
 
-        void bindAll(Binder binder);
-    };
+    //void bindAll(Binder binder);
 
 
 #else

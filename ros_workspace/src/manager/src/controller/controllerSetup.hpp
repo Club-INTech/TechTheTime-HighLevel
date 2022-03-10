@@ -1,5 +1,5 @@
-#ifndef __CONTROLLERSETUP_HH__
-#define __CONTROLLERSETUP_HH__
+#ifndef __CONTROLLERSETUP_HPP_
+#define __CONTROLLERSETUP_HPP_
 
 #include "joystick/joystick.hpp"
 #include <array>
@@ -24,6 +24,7 @@ public:
      * @param button The button that will be bound
      * @param func The function that will be bound
      */
+    //UTILISER STD::BIND !!!!!
     void BindButton(int button, std::function<void(int, bool)> func) {
         buttonsCallback[button] = func;
     }

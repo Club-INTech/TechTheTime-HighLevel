@@ -27,7 +27,10 @@ set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(manager src/manager.cpp ${ActionOrderDirectory})
+add_definitions(-DMONTHLERY)
+add_executable(manager src/manager.cpp ${ActionOrderDirectory} 
+#src/order/order.cpp
+)
 ament_target_dependencies(manager
   rclcpp 
   action_msg_srv
