@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>img_treat</name>
-  <version>0.0.0</version>
-  <description>This is the package for image treatement of the INTech robots for AgeOfBots competition</description>
+  <name>robot_vision</name>
+  <version>0.0.1</version>
+  <description>robot_vision node aims to provide distance measurement and aruco tag scanning possibilities
+    to the robot</description>
   <maintainer email="tsimafei.liashkevich@telecom-sudparis.eu">tsimafei</maintainer>
   <license>Apache license 2.0</license>
 

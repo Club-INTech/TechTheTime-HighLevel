@@ -8,6 +8,8 @@
 #include <memory>
 #include <string>
 
+#include "../serial/SerialPort.hpp"
+
 /** @defgroup microcontroller_proxy Microcontroller node.
  * @{
 */ 
@@ -30,6 +32,7 @@ public:
 
     void treat_orders(const shared_request_T, shared_response_T);
     
+    std::unique_ptr<scom::SerialPort> proxy;
 
 private:
     OrderBinder<shared_request_T, shared_response_T> order_binder;

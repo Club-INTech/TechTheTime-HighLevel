@@ -1,5 +1,5 @@
 import cv2 as cv
-from img_treat.eyes.image_utils.image_transforms import *
+from robot_vision.eyes.image_utils.image_transforms import *
 
 
 def detect(frame):

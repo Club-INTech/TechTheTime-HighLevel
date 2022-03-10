@@ -7,6 +7,13 @@
 #include <sys/file.h>
 #include <stdexcept>
 
+#include <upd/format.hpp>
+#include <rpc/def.hpp>
+#include <rpc/master.hpp>
+#include <k2o/dispatcher.hpp>
+
+#include "rclcpp/rclcpp.hpp"
+
 using namespace scom;
 
 namespace scom {
@@ -15,10 +22,14 @@ namespace scom {
     unsigned int local_modes_bytes[] = {ICANON, ECHO, ECHOE, ECHONL, ISIG};
     unsigned int input_modes_bytes[] = {IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL};
     unsigned int output_modes_bytes[] = {OPOST, ONLCR};
+
+    uint8_t stuffing_byte = ~rpc::header[0];
+    // k2o::dispatcher dispatcher{rpc::master::keyring};
 }
 
 SerialPort::SerialPort(const char* port_name) {
     this->port_name = port_name;
+    this->write_stuff_counter = 0;
 }
 
 void SerialPort::open_serial() {
@@ -131,16 +142,60 @@ void SerialPort::configure_output_modes(std::initializer_list<bool> output_bits_
     }
 }
 
-ssize_t SerialPort::write_byte(uint8_t byte) {
-    return write(this->serial_port, &byte, 1);
+void SerialPort::write_byte(uint8_t* byte) {
+    if(write(this->serial_port, byte, 1) == -1) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Write byte failure.");
+        rclcpp::shutdown();
+        exit(1);
+    }
 }
 
-ssize_t SerialPort::read_byte(uint8_t* byte) {
-    return read(this->serial_port, byte, 1);
+void SerialPort::write_word(uint8_t* word, int size) {
+    if(write(this->serial_port, word, size) == -1) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Write word failure.");
+        rclcpp::shutdown();
+        exit(1);
+    }
 }
 
-ssize_t SerialPort::read_word(uint8_t* word, int size) {
-    return read(this->serial_port, word, size);
+void SerialPort::read_byte(uint8_t* byte) {
+    if(read(this->serial_port, byte, 1) == -1) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read byte failure.");
+        rclcpp::shutdown();
+        exit(1);
+    }
+}
+
+void SerialPort::read_word(uint8_t* word, int size) {
+    if(read(this->serial_port, word, size) == -1) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read word failure.");
+        rclcpp::shutdown();
+        exit(1);
+    }
+}
+
+void SerialPort::com_write_byte(upd::byte_t byte) {
+    if(byte == rpc::header[0]) {
+        this->write_stuff_counter++;
+    } else {
+        this->write_stuff_counter = 0;
+    }
+
+    this->write_byte(&byte);
+
+    if(this->write_stuff_counter == sizeof(rpc::header) - 1) {
+        this->write_stuff_counter = 0;
+        this->write_byte(&stuffing_byte);
+    }
+}
+
+void SerialPort::com_start_frame_transmission(rpc::Frame_Type frame_type) {
+    auto t_byte = static_cast<uint8_t>(frame_type);
+
+    this->write_stuff_counter = 0;
+    this->write_byte(&stuffing_byte);
+    this->write_word(rpc::header, sizeof(rpc::header));
+    this->write_byte(&t_byte);
 }
 
 void SerialPort::close_port() {
@@ -191,7 +246,7 @@ void SerialPort::set_default_config() {
         false
     });
 
-    this->define_blocking_mode(scom::BlockingModes::TIMEOUT_WITH_FIXED_BYTES, {1000, 6});
+    this->define_blocking_mode(scom::BlockingModes::TIMEOUT, {1000});
     this->set_input_speed(115200);
     this->set_output_speed(115200);
 

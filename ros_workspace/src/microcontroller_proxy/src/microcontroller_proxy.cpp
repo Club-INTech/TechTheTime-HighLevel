@@ -17,6 +17,7 @@ int main(int argc, char** argv) {
     auto actionService = std::make_shared<ActionService>("action");
     
     rclcpp::spin(actionService);
+    actionService->proxy->close_port();
     rclcpp::shutdown();
 
     return 0;
