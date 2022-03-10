@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
 
     rclcpp::spin(std::make_shared<MinimalPublisher>());
     rclcpp::spin(std::make_shared<Subscriber<example_topic::msg::Example>>("aa"));
-  
+
     commClient->send(OrderCodes::MOVE, 100, 0, 0);
 
     rclcpp::shutdown();

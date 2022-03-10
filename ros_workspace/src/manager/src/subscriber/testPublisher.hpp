@@ -34,4 +34,3 @@ private:
     rclcpp::Publisher<example_topic::msg::Example>::SharedPtr publisher_;
     size_t count_;
 };
-
