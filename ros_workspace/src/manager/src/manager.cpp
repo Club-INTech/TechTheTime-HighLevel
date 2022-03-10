@@ -1,15 +1,6 @@
-#include "controller/controllerSetup.hpp"
-#include "order/order.hpp"
-#include "client/ClientT.hpp"
-#include <iostream>
-#include <string>
-#include <cstddef>
-#include <stdexcept>
-#include "rclcpp/rclcpp.hpp"
-#include "action_msg_srv/srv/order.hpp"
-#include "order_codes.hpp"
 
-// #include "subscriber/testSubscriber.hpp"
+
+using namespace std;
 
 /*! \mainpage 
  *
@@ -86,17 +77,18 @@
  * @author sudogauss
 */
 
-int main(int argc, char **argv) {
+
+int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto commClient = std::make_shared<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request,
-                int64_t, int64_t, int64_t, int64_t>>("action");
-
+    auto commClient = std::make_shared<ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t>>("action");
     commClient->set_shared(commClient);
     commClient->wait_for_connection();
 
+    rclcpp::spin(std::make_shared<MinimalPublisher>());
+    rclcpp::spin(std::make_shared<Subscriber<example_topic::msg::Example>>("aa"));
+  
     commClient->send(OrderCodes::MOVE, 100, 0, 0);
-    
 
     rclcpp::shutdown();
 

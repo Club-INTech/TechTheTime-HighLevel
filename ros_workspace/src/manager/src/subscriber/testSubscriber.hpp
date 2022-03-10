@@ -1,14 +1,14 @@
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include "example_topic/msg/example.hpp"
 #include "subscriberClass.hpp"
 #include <iostream>
 
-class TestSubscriber : public Subscriber<std::string> {
+class TestSubscriber : public Subscriber<example_topic::msg::Example> {
 public:
     TestSubscriber() : Subscriber("test") {};
 
 private:
-    void topic_callback(const std::string::Shared_ptr msg) {
-        std::cout << msg << std::endl;
+    void topic_callback(const example_topic::msg::Example::SharedPtr msg) {
+        std::cout << "Message recieved" << msg << std::endl;
     }
 };

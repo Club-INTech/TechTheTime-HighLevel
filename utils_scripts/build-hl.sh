@@ -22,9 +22,9 @@ echo "===== Finished ====="
 
 echo "===== Building nodes ====="
 
-cd ../..
+cd ../ros_workspace
 colcon build --packages-select manager
-source install/setup.bash
+. install/setup.bash
 
 echo "===== Finished ====="
 

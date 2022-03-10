@@ -17,6 +17,8 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(action_msg_srv REQUIRED)
+# find_package(example_topic REQUIRED)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -25,11 +27,18 @@ set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(manager src/manager.cpp ${ActionOrderDirectory})
+add_definitions(-DMONTHLERY)
+add_executable(manager src/manager.cpp ${ActionOrderDirectory} 
+#src/order/order.cpp
+)
 ament_target_dependencies(manager
-  rclcpp action_msg_srv)
+  rclcpp 
+  action_msg_srv
+  #example_topic
+)
 
 target_include_directories(manager PUBLIC ${ActionOrderDirectory})
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
