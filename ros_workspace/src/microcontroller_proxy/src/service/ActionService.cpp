@@ -35,7 +35,6 @@ ActionService::ActionService(const std::string& service_name) : Node(service_nam
 
         }
 
-void ActionService::treat_orders(const std::shared_ptr<action_msg_srv::srv::Order::Request> req,
-        std::shared_ptr<action_msg_srv::srv::Order::Response> res) {
+void ActionService::treat_orders(const shared_request_t req, shared_response_T res) {
         this->order_binder.execute_order(req->order_code, req, res);
 }
