@@ -1,13 +1,29 @@
 # TechTheTime-HighLevel
 
-The code of the high level of the robot for the Erobot2022 session.
+The high level of the robot for the Erobot2022 session.
+
+***Note:*** The install, build and launch have been tested only for Debian and derivatives [Raspbian, Ubuntu and Lubuntu]. 
 
 # Requirements
 
-- ros:foxy (you can use the **install_ros.sh** script in **utils_scripts** folder with sudo permission).
-- gcc (the default installation is sufficient)
+- ros:foxy.
+- gcc/g++ (the default installation is sufficient)
+- cmake
 - colcon (follow [this tutorial](https://docs.ros.org/en/foxy/Tutorials/Colcon-Tutorial.html#install-colcon))
 - python3.7+
+- rosdep
+
+# Install
+
+You can install all dependencies manually or you can use bash script in **build_tool** directory.
+
+After clonning the repo do:
+
+```bash
+    $ cd build_tool
+    $ sudo chmod u+x init-hl.sh
+    $ sudo ./init-hl.sh
+```
 
 # Build and launch
 
@@ -16,13 +32,16 @@ The code of the high level of the robot for the Erobot2022 session.
 ### With the script
 
 Run the next command to build 
-```bash 
-$ ./utils_scripts/build-hl.sh
+```bash
+    $ cd build_tool
+    $ ./build-hl.sh [-hv] [-p <nodes_name>]
 ```
+
+***Note:*** Use **-h** options for help.
 
 This command will build all interfaces which are located in **ros_workspace/src/srvs_msgs**, needed for nodes communication.
 
-Then, it will build all nodes which are located in **ros_workspace/src**
+Then, it will build all available or all provided in command nodes which are located in **ros_workspace/src**
 
 ### From source
 

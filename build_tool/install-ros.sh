@@ -50,6 +50,14 @@ if [ "${answer,,}" = "y" ] || [ -z $answer ]; then
    source ~/.bashrc
 fi
 
+echo "Do you want to install rosdep [Y/n]? :  "
+
+read answer
+
+if [ "${answer,,}" = "y" ] || [ -z $answer ]; then
+   sudo apt-get install python3-rosdep
+fi
+
 echo "Setting your ros domain id to 120  "
 
 echo "export ROS_DOMAIN_ID=120" >> ~/.bashrc
