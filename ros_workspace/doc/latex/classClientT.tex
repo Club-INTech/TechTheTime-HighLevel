@@ -1,0 +1,147 @@
+\hypertarget{classClientT}{}\doxysection{ClientT\texorpdfstring{$<$}{<} T, Treq, Rs \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classClientT}\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+
+
+\mbox{\hyperlink{classClientT}{ClientT}} class.  
+
+
+
+
+{\ttfamily \#include $<$Client\+T.\+hpp$>$}
+
+Inheritance diagram for ClientT\texorpdfstring{$<$}{<} T, Treq, Rs \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classClientT}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classClientT_a4559bb39d1d5170b950629bfbfe76c5d}{ClientT}} (const std\+::string \&\mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\+\_\+name}})
+\item 
+void \mbox{\hyperlink{classClientT_a5652e544df0a717cf97a6bc5c5df04c5}{set\+\_\+shared}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs... $>$ $>$ ptr)
+\item 
+void \mbox{\hyperlink{classClientT_aed77067671c316fe4e750278193dc90c}{wait\+\_\+for\+\_\+connection}} ()
+\item 
+auto \mbox{\hyperlink{classClientT_a722f4ae9c93fd8ad61756155bb1e79be}{send}} (Rs... args)
+\item 
+virtual void \mbox{\hyperlink{classClientT_ad9dab3eaf7f22db0477713ff4fafc6d9}{treat\+\_\+response}} (\mbox{\hyperlink{classClientT_a28ed54ec609f016d48b36b94b003f215}{shared\+\_\+future\+\_\+T}} res)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}{shared\+\_\+ptr\+\_\+T}} = typename rclcpp\+::\+Client$<$ T $>$\+::\+Shared\+Ptr
+\item 
+using \mbox{\hyperlink{classClientT_a28ed54ec609f016d48b36b94b003f215}{shared\+\_\+future\+\_\+T}} = typename rclcpp\+::\+Client$<$ T $>$\+::\+Shared\+Future
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs... $>$ $>$ \mbox{\hyperlink{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}{self\+\_\+ptr}}
+\item 
+std\+::string \mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\+\_\+name}}
+\item 
+\mbox{\hyperlink{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}{shared\+\_\+ptr\+\_\+T}} \mbox{\hyperlink{classClientT_af6599bbab26be561dcbc3a5c24802257}{client}}
+\item 
+\mbox{\hyperlink{structstruct__wrapper}{struct\+\_\+wrapper}}$<$ Treq, Rs... $>$ \mbox{\hyperlink{classClientT_a0458a94ee82905a63726afac76d9dedf}{request}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T, class Treq, class... Rs$>$\newline
+class Client\+T$<$ T, Treq, Rs $>$}
+\mbox{\hyperlink{classClientT}{ClientT}} class. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classClientT_a28ed54ec609f016d48b36b94b003f215}\label{classClientT_a28ed54ec609f016d48b36b94b003f215}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!shared\_future\_T@{shared\_future\_T}}
+\index{shared\_future\_T@{shared\_future\_T}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{shared\_future\_T}{shared\_future\_T}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+using \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::shared\+\_\+future\+\_\+T =  typename rclcpp\+::\+Client$<$T$>$\+::\+Shared\+Future\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}\label{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!shared\_ptr\_T@{shared\_ptr\_T}}
+\index{shared\_ptr\_T@{shared\_ptr\_T}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{shared\_ptr\_T}{shared\_ptr\_T}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+using \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::shared\+\_\+ptr\+\_\+T =  typename rclcpp\+::\+Client$<$T$>$\+::\+Shared\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClientT_a4559bb39d1d5170b950629bfbfe76c5d}\label{classClientT_a4559bb39d1d5170b950629bfbfe76c5d}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!ClientT@{ClientT}}
+\index{ClientT@{ClientT}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{ClientT()}{ClientT()}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+\mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\mbox{\hyperlink{classClientT}{\+::\+ClientT}} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{client\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classClientT_a722f4ae9c93fd8ad61756155bb1e79be}\label{classClientT_a722f4ae9c93fd8ad61756155bb1e79be}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!send@{send}}
+\index{send@{send}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+auto \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::send (\begin{DoxyParamCaption}\item[{Rs...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classClientT_a5652e544df0a717cf97a6bc5c5df04c5}\label{classClientT_a5652e544df0a717cf97a6bc5c5df04c5}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!set\_shared@{set\_shared}}
+\index{set\_shared@{set\_shared}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{set\_shared()}{set\_shared()}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+void \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::set\+\_\+shared (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs... $>$ $>$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classClientT_ad9dab3eaf7f22db0477713ff4fafc6d9}\label{classClientT_ad9dab3eaf7f22db0477713ff4fafc6d9}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!treat\_response@{treat\_response}}
+\index{treat\_response@{treat\_response}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{treat\_response()}{treat\_response()}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+virtual void \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::treat\+\_\+response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classClientT_a28ed54ec609f016d48b36b94b003f215}{shared\+\_\+future\+\_\+T}}}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classClientT_aed77067671c316fe4e750278193dc90c}\label{classClientT_aed77067671c316fe4e750278193dc90c}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!wait\_for\_connection@{wait\_for\_connection}}
+\index{wait\_for\_connection@{wait\_for\_connection}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_connection()}{wait\_for\_connection()}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+void \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::wait\+\_\+for\+\_\+connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classClientT_af6599bbab26be561dcbc3a5c24802257}\label{classClientT_af6599bbab26be561dcbc3a5c24802257}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!client@{client}}
+\index{client@{client}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+\mbox{\hyperlink{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}{shared\+\_\+ptr\+\_\+T}} \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classClientT_a4e9fab308a9351013a32984def0dba90}\label{classClientT_a4e9fab308a9351013a32984def0dba90}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!client\_name@{client\_name}}
+\index{client\_name@{client\_name}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{client\_name}{client\_name}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+std\+::string \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::client\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classClientT_a0458a94ee82905a63726afac76d9dedf}\label{classClientT_a0458a94ee82905a63726afac76d9dedf}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!request@{request}}
+\index{request@{request}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{request}{request}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+\mbox{\hyperlink{structstruct__wrapper}{struct\+\_\+wrapper}}$<$Treq, Rs...$>$ \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::request\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}\label{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}} 
+\index{ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}!self\_ptr@{self\_ptr}}
+\index{self\_ptr@{self\_ptr}!ClientT$<$ T, Treq, Rs $>$@{ClientT$<$ T, Treq, Rs $>$}}
+\doxysubsubsection{\texorpdfstring{self\_ptr}{self\_ptr}}
+{\footnotesize\ttfamily template$<$class T , class Treq , class... Rs$>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classClientT}{ClientT}}$<$T, Treq, Rs...$>$ $>$ \mbox{\hyperlink{classClientT}{ClientT}}$<$ T, Treq, Rs $>$\+::self\+\_\+ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/manager/src/client/\mbox{\hyperlink{ClientT_8hpp}{Client\+T.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\hypertarget{ClientT_8hpp_source}{}\doxysection{Client\+T.\+hpp}
+\label{ClientT_8hpp_source}\index{src/manager/src/client/ClientT.hpp@{src/manager/src/client/ClientT.hpp}}
+\mbox{\hyperlink{ClientT_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CLIENT\_CLASS\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CLIENT\_CLASS\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}rclcpp/rclcpp.hpp"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{struct__wrapper_8hpp}{struct\_wrapper.hpp}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{using namespace }std::chrono\_literals;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{22 \textcolor{keyword}{template}<\textcolor{keyword}{class }T, \textcolor{keyword}{class }Treq, \textcolor{keyword}{class}... Rs>}
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{classClientT}{ClientT}} : \textcolor{keyword}{public} rclcpp::Node \{}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keyword}{using} \mbox{\hyperlink{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}{shared\_ptr\_T}} = \textcolor{keyword}{typename} rclcpp::Client<T>::SharedPtr;}
+\DoxyCodeLine{26   \textcolor{keyword}{using} \mbox{\hyperlink{classClientT_a28ed54ec609f016d48b36b94b003f215}{shared\_future\_T}} = \textcolor{keyword}{typename} rclcpp::Client<T>::SharedFuture;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{29   \mbox{\hyperlink{classClientT_a4559bb39d1d5170b950629bfbfe76c5d}{ClientT}}(\textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}}) : Node(\mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}}) \{}
+\DoxyCodeLine{30     this-\/>client\_name = \mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}};}
+\DoxyCodeLine{31     this-\/>\mbox{\hyperlink{classClientT_af6599bbab26be561dcbc3a5c24802257}{client}} = this-\/>create\_client<T>(\mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}});}
+\DoxyCodeLine{32   \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientT_a5652e544df0a717cf97a6bc5c5df04c5}{set\_shared}}(std::shared\_ptr<\mbox{\hyperlink{classClientT}{ClientT<T, Treq, Rs...>}}> ptr) \{}
+\DoxyCodeLine{35     this-\/>\mbox{\hyperlink{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}{self\_ptr}} = ptr;}
+\DoxyCodeLine{36   \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientT_aed77067671c316fe4e750278193dc90c}{wait\_for\_connection}}() \{}
+\DoxyCodeLine{39     \textcolor{keywordflow}{while} (!\mbox{\hyperlink{classClientT_af6599bbab26be561dcbc3a5c24802257}{client}}-\/>wait\_for\_service(1s)) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{if} (!rclcpp::ok()) \{}
+\DoxyCodeLine{41         RCLCPP\_ERROR(rclcpp::get\_logger(\textcolor{stringliteral}{"{}rclcpp"{}}), \textcolor{stringliteral}{"{}Interrupted while waiting for the service. Exiting..."{}});}
+\DoxyCodeLine{42         exit(1);}
+\DoxyCodeLine{43       \}}
+\DoxyCodeLine{44       RCLCPP\_INFO(rclcpp::get\_logger(\textcolor{stringliteral}{"{}rclcpp"{}}), this-\/>\mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}} + \textcolor{stringliteral}{"{} client is waiting for service..."{}});}
+\DoxyCodeLine{45     \}}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{auto} \mbox{\hyperlink{classClientT_a722f4ae9c93fd8ad61756155bb1e79be}{send}}(Rs... args) \{}
+\DoxyCodeLine{49     \mbox{\hyperlink{classClientT_a0458a94ee82905a63726afac76d9dedf}{request}}.\mbox{\hyperlink{structstruct__wrapper_a402e75dafe59de2d658f6d8ef932aa3c}{set\_values}}(args...);}
+\DoxyCodeLine{50     \textcolor{keyword}{auto} result = \mbox{\hyperlink{classClientT_af6599bbab26be561dcbc3a5c24802257}{client}}-\/>async\_send\_request(\mbox{\hyperlink{classClientT_a0458a94ee82905a63726afac76d9dedf}{request}}.\mbox{\hyperlink{structstruct__wrapper_a5f71cf15aa043964546434b40697800f}{value}});}
+\DoxyCodeLine{51     \textcolor{keywordflow}{if} (rclcpp::spin\_until\_future\_complete(this-\/>\mbox{\hyperlink{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}{self\_ptr}}, result) ==}
+\DoxyCodeLine{52       rclcpp::FutureReturnCode::SUCCESS)}
+\DoxyCodeLine{53     \{}
+\DoxyCodeLine{54       this-\/>\mbox{\hyperlink{classClientT_ad9dab3eaf7f22db0477713ff4fafc6d9}{treat\_response}}(result);}
+\DoxyCodeLine{55     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{56       RCLCPP\_ERROR(rclcpp::get\_logger(\textcolor{stringliteral}{"{}rclcpp"{}}), \textcolor{stringliteral}{"{}Failed to call service"{}});}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58   \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientT_ad9dab3eaf7f22db0477713ff4fafc6d9}{treat\_response}}(\mbox{\hyperlink{classClientT_a28ed54ec609f016d48b36b94b003f215}{shared\_future\_T}} res) \{}
+\DoxyCodeLine{61       RCLCPP\_INFO(rclcpp::get\_logger(\textcolor{stringliteral}{"{}rclcpp"{}}), \textcolor{stringliteral}{"{}Result: \%d"{}}, res.get()-\/>success);}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{private}:}
+\DoxyCodeLine{65   std::shared\_ptr<\mbox{\hyperlink{classClientT}{ClientT}}<T, Treq, Rs...>> \mbox{\hyperlink{classClientT_a3e9abc5077552dfbf84cbc5e354af19a}{self\_ptr}};}
+\DoxyCodeLine{66   std::string \mbox{\hyperlink{classClientT_a4e9fab308a9351013a32984def0dba90}{client\_name}};}
+\DoxyCodeLine{67   \mbox{\hyperlink{classClientT_ab3469c7e628ba930d3fc07a9511aca8a}{shared\_ptr\_T}} \mbox{\hyperlink{classClientT_af6599bbab26be561dcbc3a5c24802257}{client}};}
+\DoxyCodeLine{68   \mbox{\hyperlink{structstruct__wrapper}{struct\_wrapper}}<Treq, Rs...> \mbox{\hyperlink{classClientT_a0458a94ee82905a63726afac76d9dedf}{request}};}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

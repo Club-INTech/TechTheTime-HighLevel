@@ -1,0 +1,192 @@
+\hypertarget{classActionService}{}\doxysection{Action\+Service Class Reference}
+\label{classActionService}\index{ActionService@{ActionService}}
+
+
+\mbox{\hyperlink{classActionService}{Action\+Service}} is a \href{https://docs.ros.org/en/foxy/Tutorials/Services/Understanding-ROS2-Services.html}{\texttt{ ROS2 service node}}, which accepts a request(defined by action\+\_\+msg\+\_\+srv) from \mbox{\hyperlink{classClientT}{ClientT}} and executes a corresponding function.  
+
+
+
+
+{\ttfamily \#include $<$Action\+Service.\+hpp$>$}
+
+Inheritance diagram for Action\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classActionService}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classActionService_afae57934b79d4b0a9337e42eb5f8931d}{Action\+Service}} (const std\+::string \&\mbox{\hyperlink{classActionService_a08e7b909eb248563345c4aba57841160}{service\+\_\+name}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classActionService}{Action\+Service}} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classActionService_a01a8bf947e78ee956ee390a32b0375af}{treat\+\_\+orders}} (const \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\+\_\+request\+\_\+T}} req, \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\+\_\+response\+\_\+T}} res)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classscom_1_1SerialPort}{scom\+::\+Serial\+Port}} $>$ \mbox{\hyperlink{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}{microcontroller\+\_\+gateway}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}{Action\+Service\+::microcontroller\+\_\+gateway}} is a unique pointer to the Serial\+Port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classActionService_a503783681d711af7bcd83bb878820302}{request\+\_\+T}} = typename action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Request
+\begin{DoxyCompactList}\small\item\em An alias to the request type defined in action\+\_\+msg\+\_\+srv. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classActionService_ac60fc06682e9c9c85f3a1e6f2f4e6382}{response\+\_\+T}} = typename action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Response
+\begin{DoxyCompactList}\small\item\em An alias to the response type defined in action\+\_\+msg\+\_\+srv. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\+\_\+request\+\_\+T}} = typename std\+::shared\+\_\+ptr$<$ action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Request $>$
+\begin{DoxyCompactList}\small\item\em An alias to the shared pointer of request type defined in action\+\_\+msg\+\_\+srv. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\+\_\+response\+\_\+T}} = typename std\+::shared\+\_\+ptr$<$ action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Response $>$
+\begin{DoxyCompactList}\small\item\em An alias to the shared pointer of response type defined in action\+\_\+msg\+\_\+srv. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\+\_\+request\+\_\+T}}, \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\+\_\+response\+\_\+T}} $>$ \mbox{\hyperlink{classActionService_a3e5e29cc58434873a47b2a4f53310e76}{order\+\_\+binder}}
+\begin{DoxyCompactList}\small\item\em order\+\_\+binder is used to redirect received requests by calling a function binded to an order code. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classActionService_a08e7b909eb248563345c4aba57841160}{service\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em name of the service \end{DoxyCompactList}\item 
+rclcpp\+::\+Service$<$ action\+\_\+msg\+\_\+srv\+::srv\+::\+Order $>$\+::\+Shared\+Ptr \mbox{\hyperlink{classActionService_a1999b2bed67d423c0c273c117bff86de}{service}}
+\begin{DoxyCompactList}\small\item\em A shared pointer to ROS2 service, which is responsable to receive requests and send responses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classActionService}{Action\+Service}} is a \href{https://docs.ros.org/en/foxy/Tutorials/Services/Understanding-ROS2-Services.html}{\texttt{ ROS2 service node}}, which accepts a request(defined by action\+\_\+msg\+\_\+srv) from \mbox{\hyperlink{classClientT}{ClientT}} and executes a corresponding function. 
+
+It can be considered as a node that wraps a ROS2 service and pre-\/treat incoming requests from manager or motion control. That\textquotesingle{}s why it is a part of {\ttfamily \mbox{\hyperlink{}{../microcontroller\+\_\+proxy.\+cpp}}}
+
+It inherits from \href{https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1Node.html}{\texttt{ rclcpp\+::\+Node}}
+
+\begin{DoxyAuthor}{Author}
+sudogauss 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classActionService_a503783681d711af7bcd83bb878820302}\label{classActionService_a503783681d711af7bcd83bb878820302}} 
+\index{ActionService@{ActionService}!request\_T@{request\_T}}
+\index{request\_T@{request\_T}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{request\_T}{request\_T}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classActionService_a503783681d711af7bcd83bb878820302}{Action\+Service\+::request\+\_\+T}} =  typename action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Request\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An alias to the request type defined in action\+\_\+msg\+\_\+srv. 
+
+\mbox{\Hypertarget{classActionService_ac60fc06682e9c9c85f3a1e6f2f4e6382}\label{classActionService_ac60fc06682e9c9c85f3a1e6f2f4e6382}} 
+\index{ActionService@{ActionService}!response\_T@{response\_T}}
+\index{response\_T@{response\_T}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{response\_T}{response\_T}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classActionService_ac60fc06682e9c9c85f3a1e6f2f4e6382}{Action\+Service\+::response\+\_\+T}} =  typename action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Response\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An alias to the response type defined in action\+\_\+msg\+\_\+srv. 
+
+\mbox{\Hypertarget{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}\label{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}} 
+\index{ActionService@{ActionService}!shared\_request\_T@{shared\_request\_T}}
+\index{shared\_request\_T@{shared\_request\_T}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{shared\_request\_T}{shared\_request\_T}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{Action\+Service\+::shared\+\_\+request\+\_\+T}} =  typename std\+::shared\+\_\+ptr$<$action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Request$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An alias to the shared pointer of request type defined in action\+\_\+msg\+\_\+srv. 
+
+\mbox{\Hypertarget{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}\label{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}} 
+\index{ActionService@{ActionService}!shared\_response\_T@{shared\_response\_T}}
+\index{shared\_response\_T@{shared\_response\_T}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{shared\_response\_T}{shared\_response\_T}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{Action\+Service\+::shared\+\_\+response\+\_\+T}} =  typename std\+::shared\+\_\+ptr$<$action\+\_\+msg\+\_\+srv\+::srv\+::\+Order\+::\+Response$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An alias to the shared pointer of response type defined in action\+\_\+msg\+\_\+srv. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classActionService_afae57934b79d4b0a9337e42eb5f8931d}\label{classActionService_afae57934b79d4b0a9337e42eb5f8931d}} 
+\index{ActionService@{ActionService}!ActionService@{ActionService}}
+\index{ActionService@{ActionService}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{ActionService()}{ActionService()}}
+{\footnotesize\ttfamily Action\+Service\+::\+Action\+Service (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{service\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classActionService}{Action\+Service}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+name} & is a name of ROS2 service, which serves for identifier(it must be unique)\\
+\hline
+\end{DoxyParams}
+\mbox{\hyperlink{classActionService_afae57934b79d4b0a9337e42eb5f8931d}{Action\+Service\+::\+Action\+Service}} calls a super constructor of rclcpp\+::\+Node with a service\+\_\+name parameter, initializes \mbox{\hyperlink{classActionService_a08e7b909eb248563345c4aba57841160}{Action\+Service\+::service\+\_\+name}}, creates new \mbox{\hyperlink{classActionService_a3e5e29cc58434873a47b2a4f53310e76}{Action\+Service\+::order\+\_\+binder}} and new \mbox{\hyperlink{classActionService_a1999b2bed67d423c0c273c117bff86de}{Action\+Service\+::service}}.
+
+It uses a {\bfseries{create\+\_\+service}} method of \mbox{\hyperlink{classActionService}{Action\+Service}} inherited from {\bfseries{rclcpp\+::\+Node}}, which allows to create a ROS2 service that uses a particular service message interface ({\bfseries{action\+\_\+msg\+\_\+srv\+::srv\+::\+Order}} in this case, see {\itshape ros\+\_\+workspace/src/srvs\+\_\+msgs/action\+\_\+msg\+\_\+srv/srv/\+Order.\+srv for more information}). This method take a service\+\_\+name and a function to be executed on request received. As a function to treat requests we use \mbox{\hyperlink{classActionService_a01a8bf947e78ee956ee390a32b0375af}{Action\+Service\+::treat\+\_\+orders}}.
+
+Then we initialize \mbox{\hyperlink{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}{Action\+Service\+::microcontroller\+\_\+gateway}} (is used to send data to microcontroller over serial).
+
+Finally, with the help of \mbox{\hyperlink{classActionService_a3e5e29cc58434873a47b2a4f53310e76}{Action\+Service\+::order\+\_\+binder}} we bind a function to execute on order code recieved from request. Basically you can use the following code snippet to bind to an order\+:
+
+order\+\_\+binder.\+bind\+\_\+order($<$your\+\_\+order\+\_\+code\+\_\+here$>$, \mbox{[}\&\mbox{]}(shared\+\_\+request\+\_\+T req, shared\+\_\+response\+\_\+T res) \{ ... $<$treat req and send res there$>$ ... \});
+
+All order codes are defined there \mbox{\hyperlink{order__codes_8hpp}{order\+\_\+codes.\+hpp}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classActionService_a01a8bf947e78ee956ee390a32b0375af}\label{classActionService_a01a8bf947e78ee956ee390a32b0375af}} 
+\index{ActionService@{ActionService}!treat\_orders@{treat\_orders}}
+\index{treat\_orders@{treat\_orders}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{treat\_orders()}{treat\_orders()}}
+{\footnotesize\ttfamily void Action\+Service\+::treat\+\_\+orders (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\+\_\+request\+\_\+T}}}]{req,  }\item[{\mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\+\_\+response\+\_\+T}}}]{res }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}\label{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}} 
+\index{ActionService@{ActionService}!microcontroller\_gateway@{microcontroller\_gateway}}
+\index{microcontroller\_gateway@{microcontroller\_gateway}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{microcontroller\_gateway}{microcontroller\_gateway}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classscom_1_1SerialPort}{scom\+::\+Serial\+Port}}$>$ Action\+Service\+::microcontroller\+\_\+gateway}
+
+
+
+\mbox{\hyperlink{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}{Action\+Service\+::microcontroller\+\_\+gateway}} is a unique pointer to the Serial\+Port. 
+
+It is used to send data to the microcontroller. You can fully customize serial communication(over UART). You can send data with \mbox{\hyperlink{classscom_1_1SerialPort_aaaaf5c43ef28d9c6d9afa743f2039879}{scom\+::\+Serial\+Port\+::write\+\_\+byte}} or Serial\+Port\+::write\+\_\+word and read data with Serial\+Port\+::read\+\_\+byte or Serial\+Port\+::read\+\_\+word.
+
+You can also use Serial\+Port\+::call\+\_\+remote\+\_\+function to call an order on the lowlevel side(microcontroller). \mbox{\Hypertarget{classActionService_a3e5e29cc58434873a47b2a4f53310e76}\label{classActionService_a3e5e29cc58434873a47b2a4f53310e76}} 
+\index{ActionService@{ActionService}!order\_binder@{order\_binder}}
+\index{order\_binder@{order\_binder}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{order\_binder}{order\_binder}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$\mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\+\_\+request\+\_\+T}}, \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\+\_\+response\+\_\+T}}$>$ Action\+Service\+::order\+\_\+binder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+order\+\_\+binder is used to redirect received requests by calling a function binded to an order code. 
+
+Take a look at \mbox{\hyperlink{structOrderBinder}{Order\+Binder}} documentation to better understand it functionning. \mbox{\Hypertarget{classActionService_a1999b2bed67d423c0c273c117bff86de}\label{classActionService_a1999b2bed67d423c0c273c117bff86de}} 
+\index{ActionService@{ActionService}!service@{service}}
+\index{service@{service}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{service}{service}}
+{\footnotesize\ttfamily rclcpp\+::\+Service$<$action\+\_\+msg\+\_\+srv\+::srv\+::\+Order$>$\+::\+Shared\+Ptr Action\+Service\+::service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A shared pointer to ROS2 service, which is responsable to receive requests and send responses. 
+
+\mbox{\Hypertarget{classActionService_a08e7b909eb248563345c4aba57841160}\label{classActionService_a08e7b909eb248563345c4aba57841160}} 
+\index{ActionService@{ActionService}!service\_name@{service\_name}}
+\index{service\_name@{service\_name}!ActionService@{ActionService}}
+\doxysubsubsection{\texorpdfstring{service\_name}{service\_name}}
+{\footnotesize\ttfamily std\+::string Action\+Service\+::service\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+name of the service 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/microcontroller\+\_\+proxy/src/service/\mbox{\hyperlink{ActionService_8hpp}{Action\+Service.\+hpp}}\item 
+src/microcontroller\+\_\+proxy/src/service/\mbox{\hyperlink{ActionService_8cpp}{Action\+Service.\+cpp}}\end{DoxyCompactItemize}

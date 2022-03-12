@@ -1,0 +1,28 @@
+\hypertarget{subscriberClass_8hpp_source}{}\doxysection{subscriber\+Class.\+hpp}
+\label{subscriberClass_8hpp_source}\index{src/manager/src/subscriber/subscriberClass.hpp@{src/manager/src/subscriber/subscriberClass.hpp}}
+\mbox{\hyperlink{subscriberClass_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include "{}rclcpp/rclcpp.hpp"{}}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}std\_msgs/msg/string.hpp"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{//T : type de service / message /// (Pas besoin pour sub :: Tr : T::Request / T::Msg? /// Rs... : arguments de msg)}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{classSubscriber}{Subscriber}} : \textcolor{keyword}{public} rclcpp::Node}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{10     \mbox{\hyperlink{classSubscriber_ae137ca3b17d465180ac602dc360849cf}{Subscriber}}(std::string name)}
+\DoxyCodeLine{11         : Node(\textcolor{stringliteral}{"{}subscriber"{}})}
+\DoxyCodeLine{12     \{}
+\DoxyCodeLine{13         \mbox{\hyperlink{classSubscriber_a1e44ef699fbe18711bad2345f9df18e3}{subscription\_}} = this-\/>create\_subscription<T>(name, 10, std::bind(\&\mbox{\hyperlink{classSubscriber_a3497d4acdb5afefcf27c56e18822b153}{Subscriber::topic\_callback}}, \textcolor{keyword}{this}, \_1));}
+\DoxyCodeLine{14     \}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classSubscriber_a3497d4acdb5afefcf27c56e18822b153}{topic\_callback}}(\textcolor{keyword}{const} T::SharedPtr msg)\textcolor{keyword}{ const}}
+\DoxyCodeLine{18 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{19         RCLCPP\_INFO(this-\/>get\_logger(), \textcolor{stringliteral}{"{}I heard: '\%s'"{}}, msg.get());}
+\DoxyCodeLine{20     \}}
+\DoxyCodeLine{21     rclcpp::Subscription<T>::SharedPtr \mbox{\hyperlink{classSubscriber_a1e44ef699fbe18711bad2345f9df18e3}{subscription\_}};}
+\DoxyCodeLine{22 \};}
+
+\end{DoxyCode}

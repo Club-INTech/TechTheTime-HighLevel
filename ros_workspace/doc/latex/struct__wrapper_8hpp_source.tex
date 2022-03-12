@@ -1,0 +1,26 @@
+\hypertarget{struct__wrapper_8hpp_source}{}\doxysection{struct\+\_\+wrapper.\+hpp}
+\label{struct__wrapper_8hpp_source}\index{src/manager/src/client/struct\_wrapper.hpp@{src/manager/src/client/struct\_wrapper.hpp}}
+\mbox{\hyperlink{struct__wrapper_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef STRUCT\_INIT\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define STRUCT\_INIT\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{5 \textcolor{keyword}{struct }\mbox{\hyperlink{structstruct__wrapper}{struct\_wrapper}}\{}
+\DoxyCodeLine{6     \textcolor{keyword}{using} \mbox{\hyperlink{structstruct__wrapper_af6095c90297d2b1497fb66934990660d}{type}} = T;}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8     std::shared\_ptr<T> \mbox{\hyperlink{structstruct__wrapper_a5f71cf15aa043964546434b40697800f}{value}};}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \mbox{\hyperlink{structstruct__wrapper_a4d3e6bd27ed56bb16ac0c2f67f432c62}{struct\_wrapper}}() \{}
+\DoxyCodeLine{11         this-\/>value = std::make\_shared<T>();}
+\DoxyCodeLine{12     \}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{structstruct__wrapper_a402e75dafe59de2d658f6d8ef932aa3c}{set\_values}}(Ts... args) \{}
+\DoxyCodeLine{15         T tmp = T(args...);}
+\DoxyCodeLine{16         *\mbox{\hyperlink{structstruct__wrapper_a5f71cf15aa043964546434b40697800f}{value}} = tmp;}
+\DoxyCodeLine{17     \}}
+\DoxyCodeLine{18 \};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

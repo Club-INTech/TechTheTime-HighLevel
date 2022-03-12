@@ -1,0 +1,77 @@
+\hypertarget{structOrderBinder}{}\doxysection{Order\+Binder\texorpdfstring{$<$}{<} Treq, Tres \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structOrderBinder}\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+
+
+{\ttfamily \#include $<$order\+\_\+binder.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}{wrapped\+\_\+func\+\_\+T}} = typename std\+::function$<$ void(Treq, Tres)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structOrderBinder_af26f9be9ed43f8aec60a37df49ace131}{Order\+Binder}} ()
+\item 
+constexpr void \mbox{\hyperlink{structOrderBinder_a92d8fcce7ab7448d080ce9f9e48c2ef0}{bind\+\_\+order}} (int64\+\_\+t order\+\_\+code, \mbox{\hyperlink{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}{wrapped\+\_\+func\+\_\+T}} order)
+\item 
+void \mbox{\hyperlink{structOrderBinder_aff5361391d10e6a0d6fc641913204a60}{execute\+\_\+order}} (int64\+\_\+t order\+\_\+code, Treq req, Tres res)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ int64\+\_\+t, \mbox{\hyperlink{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}{wrapped\+\_\+func\+\_\+T}} $>$ \mbox{\hyperlink{structOrderBinder_aee0fdd0b3e07eeb91313347a9c81d6d7}{orders}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}\label{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}} 
+\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}!wrapped\_func\_T@{wrapped\_func\_T}}
+\index{wrapped\_func\_T@{wrapped\_func\_T}!OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+\doxysubsubsection{\texorpdfstring{wrapped\_func\_T}{wrapped\_func\_T}}
+{\footnotesize\ttfamily template$<$typename Treq , typename Tres $>$ \\
+using \mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ Treq, Tres $>$\+::wrapped\+\_\+func\+\_\+T =  typename std\+::function$<$void(Treq, Tres)$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structOrderBinder_af26f9be9ed43f8aec60a37df49ace131}\label{structOrderBinder_af26f9be9ed43f8aec60a37df49ace131}} 
+\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}!OrderBinder@{OrderBinder}}
+\index{OrderBinder@{OrderBinder}!OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+\doxysubsubsection{\texorpdfstring{OrderBinder()}{OrderBinder()}}
+{\footnotesize\ttfamily template$<$typename Treq , typename Tres $>$ \\
+\mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ Treq, Tres $>$\mbox{\hyperlink{structOrderBinder}{\+::\+Order\+Binder}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structOrderBinder_a92d8fcce7ab7448d080ce9f9e48c2ef0}\label{structOrderBinder_a92d8fcce7ab7448d080ce9f9e48c2ef0}} 
+\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}!bind\_order@{bind\_order}}
+\index{bind\_order@{bind\_order}!OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+\doxysubsubsection{\texorpdfstring{bind\_order()}{bind\_order()}}
+{\footnotesize\ttfamily template$<$typename Treq , typename Tres $>$ \\
+constexpr void \mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ Treq, Tres $>$\+::bind\+\_\+order (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{order\+\_\+code,  }\item[{\mbox{\hyperlink{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}{wrapped\+\_\+func\+\_\+T}}}]{order }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{structOrderBinder_aff5361391d10e6a0d6fc641913204a60}\label{structOrderBinder_aff5361391d10e6a0d6fc641913204a60}} 
+\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}!execute\_order@{execute\_order}}
+\index{execute\_order@{execute\_order}!OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+\doxysubsubsection{\texorpdfstring{execute\_order()}{execute\_order()}}
+{\footnotesize\ttfamily template$<$typename Treq , typename Tres $>$ \\
+void \mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ Treq, Tres $>$\+::execute\+\_\+order (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{order\+\_\+code,  }\item[{Treq}]{req,  }\item[{Tres}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structOrderBinder_aee0fdd0b3e07eeb91313347a9c81d6d7}\label{structOrderBinder_aee0fdd0b3e07eeb91313347a9c81d6d7}} 
+\index{OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}!orders@{orders}}
+\index{orders@{orders}!OrderBinder$<$ Treq, Tres $>$@{OrderBinder$<$ Treq, Tres $>$}}
+\doxysubsubsection{\texorpdfstring{orders}{orders}}
+{\footnotesize\ttfamily template$<$typename Treq , typename Tres $>$ \\
+std\+::unordered\+\_\+map$<$int64\+\_\+t, \mbox{\hyperlink{structOrderBinder_a37a6fe703e92df67fbb8ffa8d339571c}{wrapped\+\_\+func\+\_\+T}}$>$ \mbox{\hyperlink{structOrderBinder}{Order\+Binder}}$<$ Treq, Tres $>$\+::orders}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/srvs\+\_\+msgs/action\+\_\+msg\+\_\+srv\+\_\+shared/\mbox{\hyperlink{order__binder_8hpp}{order\+\_\+binder.\+hpp}}\end{DoxyCompactItemize}

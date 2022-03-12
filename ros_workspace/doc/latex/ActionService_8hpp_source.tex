@@ -1,0 +1,46 @@
+\hypertarget{ActionService_8hpp_source}{}\doxysection{Action\+Service.\+hpp}
+\label{ActionService_8hpp_source}\index{src/microcontroller\_proxy/src/service/ActionService.hpp@{src/microcontroller\_proxy/src/service/ActionService.hpp}}
+\mbox{\hyperlink{ActionService_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ACTION\_SERVER\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ACTION\_SERVER\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}rclcpp/rclcpp.hpp"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}action\_msg\_srv/srv/order.hpp"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{order__binder_8hpp}{order\_binder.hpp}}"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../serial/SerialPort.hpp"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }\mbox{\hyperlink{classActionService}{ActionService}} : \textcolor{keyword}{public} rclcpp::Node \{}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{34     \textcolor{keyword}{using} \mbox{\hyperlink{classActionService_a503783681d711af7bcd83bb878820302}{request\_T}} = \textcolor{keyword}{typename} action\_msg\_srv::srv::Order::Request;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{39     \textcolor{keyword}{using} \mbox{\hyperlink{classActionService_ac60fc06682e9c9c85f3a1e6f2f4e6382}{response\_T}} = \textcolor{keyword}{typename} action\_msg\_srv::srv::Order::Response;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{44     \textcolor{keyword}{using} \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\_request\_T}} = \textcolor{keyword}{typename} std::shared\_ptr<action\_msg\_srv::srv::Order::Request>;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{49     \textcolor{keyword}{using} \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\_response\_T}} = \textcolor{keyword}{typename} std::shared\_ptr<action\_msg\_srv::srv::Order::Response>;}
+\DoxyCodeLine{50     }
+\DoxyCodeLine{51 \textcolor{keyword}{public}:}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{80     \mbox{\hyperlink{classActionService_afae57934b79d4b0a9337e42eb5f8931d}{ActionService}}(\textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classActionService_a08e7b909eb248563345c4aba57841160}{service\_name}});}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} \mbox{\hyperlink{classActionService_a01a8bf947e78ee956ee390a32b0375af}{treat\_orders}}(\textcolor{keyword}{const} \mbox{\hyperlink{classActionService_a76f933c4150df4bc5bf3b07b1ee7910c}{shared\_request\_T}} req, \mbox{\hyperlink{classActionService_aaa5fab4dbf542e91c2cd1b5fec6b6303}{shared\_response\_T}} res);}
+\DoxyCodeLine{86     }
+\DoxyCodeLine{96     std::unique\_ptr<scom::SerialPort> \mbox{\hyperlink{classActionService_ab8296cb6ae798994ca8f29abc2ba86ea}{microcontroller\_gateway}};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{keyword}{private}:}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105     \mbox{\hyperlink{structOrderBinder}{OrderBinder<shared\_request\_T, shared\_response\_T>}} \mbox{\hyperlink{classActionService_a3e5e29cc58434873a47b2a4f53310e76}{order\_binder}};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{110     std::string \mbox{\hyperlink{classActionService_a08e7b909eb248563345c4aba57841160}{service\_name}};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{115     rclcpp::Service<action\_msg\_srv::srv::Order>::SharedPtr \mbox{\hyperlink{classActionService_a1999b2bed67d423c0c273c117bff86de}{service}};}
+\DoxyCodeLine{116 \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

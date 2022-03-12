@@ -1,0 +1,33 @@
+\hypertarget{SerialPort_8cpp}{}\doxysection{src/microcontroller\+\_\+proxy/src/serial/\+Serial\+Port.cpp File Reference}
+\label{SerialPort_8cpp}\index{src/microcontroller\_proxy/src/serial/SerialPort.cpp@{src/microcontroller\_proxy/src/serial/SerialPort.cpp}}
+{\ttfamily \#include \char`\"{}Serial\+Port.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$cerrno$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/file.\+h$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$upd/format.\+hpp$>$}\newline
+{\ttfamily \#include $<$rpc/def.\+hpp$>$}\newline
+{\ttfamily \#include $<$rpc/master.\+hpp$>$}\newline
+{\ttfamily \#include $<$k2o/dispatcher.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}rclcpp/rclcpp.\+hpp\char`\"{}}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacescom}{scom}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{namespacescom_a76fdb3799d49c97e26f5a07894b94509}{scom\+::control\+\_\+mode\+\_\+bytes}} \mbox{[}$\,$\mbox{]} = \{PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD\}
+\item 
+unsigned int \mbox{\hyperlink{namespacescom_aa634905dff5990ae520fa706c84bdefc}{scom\+::local\+\_\+modes\+\_\+bytes}} \mbox{[}$\,$\mbox{]} = \{ICANON, ECHO, ECHOE, ECHONL, ISIG\}
+\item 
+unsigned int \mbox{\hyperlink{namespacescom_a2fd8adf1eef72a9af2ab67b8d0457eb7}{scom\+::input\+\_\+modes\+\_\+bytes}} \mbox{[}$\,$\mbox{]} = \{IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL\}
+\item 
+unsigned int \mbox{\hyperlink{namespacescom_a8355fef72e1272a586eeabc698df5461}{scom\+::output\+\_\+modes\+\_\+bytes}} \mbox{[}$\,$\mbox{]} = \{OPOST, ONLCR\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespacescom_a72fdcd659d7ad96096280f70fb698cf9}{scom\+::stuffing\+\_\+byte}} = $\sim$rpc\+::header\mbox{[}0\mbox{]}
+\end{DoxyCompactItemize}

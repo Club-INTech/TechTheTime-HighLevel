@@ -1,0 +1,126 @@
+\hypertarget{classBinder}{}\doxysection{Binder Class Reference}
+\label{classBinder}\index{Binder@{Binder}}
+
+
+{\ttfamily \#include $<$controller\+Setup.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBinder_a192e6e3575ee87d3e842c7318c217af3}{Binder}} ()
+\item 
+void \mbox{\hyperlink{classBinder_a753534fb21a0414031c8f31856671895}{Bind\+Button}} (int button, std\+::function$<$ void(int, bool)$>$ func)
+\begin{DoxyCompactList}\small\item\em Binds the button index with the callback function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBinder_a0975cc0b68cc27295c201d259747377f}{Bind\+Axis}} (int axis, std\+::function$<$ void(int, int)$>$ func)
+\begin{DoxyCompactList}\small\item\em Binds the axis index with the callback function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBinder_ad66c5d5e2552922a6cbd3e26247ea1a6}{Call\+Button\+Callback}} (int button, bool state)
+\begin{DoxyCompactList}\small\item\em Calls the callback assiociated with the button index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBinder_a582ec72efe49cda054b28d4d15667b3c}{Call\+Axis\+Callback}} (int axis, int value)
+\begin{DoxyCompactList}\small\item\em Calls the callback assiociated with the axis index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::array$<$ std\+::function$<$ void(int, bool)$>$, 11 $>$ \mbox{\hyperlink{classBinder_ad145f9f173d167055851fb6e50eaf0be}{buttons\+Callback}}
+\item 
+std\+::array$<$ std\+::function$<$ void(int, int)$>$, 8 $>$ \mbox{\hyperlink{classBinder_aafc105ff61e8ef4c907c388a7cc52a93}{axis\+Callback}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBinder_a192e6e3575ee87d3e842c7318c217af3}\label{classBinder_a192e6e3575ee87d3e842c7318c217af3}} 
+\index{Binder@{Binder}!Binder@{Binder}}
+\index{Binder@{Binder}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{Binder()}{Binder()}}
+{\footnotesize\ttfamily Binder\+::\+Binder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBinder_a0975cc0b68cc27295c201d259747377f}\label{classBinder_a0975cc0b68cc27295c201d259747377f}} 
+\index{Binder@{Binder}!BindAxis@{BindAxis}}
+\index{BindAxis@{BindAxis}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{BindAxis()}{BindAxis()}}
+{\footnotesize\ttfamily void Binder\+::\+Bind\+Axis (\begin{DoxyParamCaption}\item[{int}]{axis,  }\item[{std\+::function$<$ void(int, int)$>$}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds the axis index with the callback function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & The axis that will be bound \\
+\hline
+{\em func} & The function that will be bound \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBinder_a753534fb21a0414031c8f31856671895}\label{classBinder_a753534fb21a0414031c8f31856671895}} 
+\index{Binder@{Binder}!BindButton@{BindButton}}
+\index{BindButton@{BindButton}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{BindButton()}{BindButton()}}
+{\footnotesize\ttfamily void Binder\+::\+Bind\+Button (\begin{DoxyParamCaption}\item[{int}]{button,  }\item[{std\+::function$<$ void(int, bool)$>$}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds the button index with the callback function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button that will be bound \\
+\hline
+{\em func} & The function that will be bound \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBinder_a582ec72efe49cda054b28d4d15667b3c}\label{classBinder_a582ec72efe49cda054b28d4d15667b3c}} 
+\index{Binder@{Binder}!CallAxisCallback@{CallAxisCallback}}
+\index{CallAxisCallback@{CallAxisCallback}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{CallAxisCallback()}{CallAxisCallback()}}
+{\footnotesize\ttfamily void Binder\+::\+Call\+Axis\+Callback (\begin{DoxyParamCaption}\item[{int}]{axis,  }\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the callback assiociated with the axis index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & The axis index \\
+\hline
+{\em value} & The value of the axis \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBinder_ad66c5d5e2552922a6cbd3e26247ea1a6}\label{classBinder_ad66c5d5e2552922a6cbd3e26247ea1a6}} 
+\index{Binder@{Binder}!CallButtonCallback@{CallButtonCallback}}
+\index{CallButtonCallback@{CallButtonCallback}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{CallButtonCallback()}{CallButtonCallback()}}
+{\footnotesize\ttfamily void Binder\+::\+Call\+Button\+Callback (\begin{DoxyParamCaption}\item[{int}]{button,  }\item[{bool}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calls the callback assiociated with the button index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button \\
+\hline
+{\em state} & The state of the button \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classBinder_aafc105ff61e8ef4c907c388a7cc52a93}\label{classBinder_aafc105ff61e8ef4c907c388a7cc52a93}} 
+\index{Binder@{Binder}!axisCallback@{axisCallback}}
+\index{axisCallback@{axisCallback}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{axisCallback}{axisCallback}}
+{\footnotesize\ttfamily std\+::array$<$std\+::function$<$void(int, int)$>$, 8$>$ Binder\+::axis\+Callback\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classBinder_ad145f9f173d167055851fb6e50eaf0be}\label{classBinder_ad145f9f173d167055851fb6e50eaf0be}} 
+\index{Binder@{Binder}!buttonsCallback@{buttonsCallback}}
+\index{buttonsCallback@{buttonsCallback}!Binder@{Binder}}
+\doxysubsubsection{\texorpdfstring{buttonsCallback}{buttonsCallback}}
+{\footnotesize\ttfamily std\+::array$<$std\+::function$<$void(int, bool)$>$, 11$>$ Binder\+::buttons\+Callback\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/manager/src/controller/\mbox{\hyperlink{controllerSetup_8hpp}{controller\+Setup.\+hpp}}\end{DoxyCompactItemize}

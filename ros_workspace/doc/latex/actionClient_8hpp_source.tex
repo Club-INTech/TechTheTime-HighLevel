@@ -1,0 +1,31 @@
+\hypertarget{actionClient_8hpp_source}{}\doxysection{action\+Client.\+hpp}
+\label{actionClient_8hpp_source}\index{src/manager/src/client/actionClient.hpp@{src/manager/src/client/actionClient.hpp}}
+\mbox{\hyperlink{actionClient_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ACTION\_CLIENT\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ACTION\_CLIENT\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}rclcpp/rclcpp.hpp"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}clientClass.hpp"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}action\_msg\_srv/srv/order.hpp"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{struct__wrapper_8hpp}{struct\_wrapper.hpp}}"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{classActionClient}{ActionClient}} : \textcolor{keyword}{public} ClientNode<action\_msg\_srv::srv::Order, action\_msg\_srv::srv::Order::Request, std::string, int64\_t, int64\_t, int64\_t, int64\_t> \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{classActionClient_ae63df64cf308fec328805a2efdbf395d}{ActionClient}}() : ClientNode(\textcolor{stringliteral}{"{}action\_client"{}}) \{\};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{classActionClient_ad059948540bea251d2fc8540067755e0}{treat}}() \{}
+\DoxyCodeLine{21         std::cout << \textcolor{stringliteral}{"{}aa"{}}}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
