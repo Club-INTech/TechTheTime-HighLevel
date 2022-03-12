@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['binder_0',['binder',['../classControllerSetup.html#a056c48acdac99309bdcc377a9683d07c',1,'ControllerSetup']]],
-  ['buttonscallback_1',['buttonsCallback',['../classBinder.html#ad145f9f173d167055851fb6e50eaf0be',1,'Binder']]]
+  ['axiscallback_0',['axisCallback',['../classBinder.html#aafc105ff61e8ef4c907c388a7cc52a93',1,'Binder']]]
 ];

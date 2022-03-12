@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['execute_5forder_0',['execute_order',['../structOrderBinder.html#aff5361391d10e6a0d6fc641913204a60',1,'OrderBinder']]]
+  ['define_5fblocking_5fmode_0',['define_blocking_mode',['../classscom_1_1SerialPort.html#ae332f496b770f32edbaec05eb38102b9',1,'scom::SerialPort']]]
 ];

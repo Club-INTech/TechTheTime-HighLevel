@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['takeaa_0',['takeAA',['../namespaceorder.html#a431414121beafc877ab6330d8ae35065',1,'order']]],
-  ['testsubscriber_1',['TestSubscriber',['../classTestSubscriber.html#ab69b79be5a04fd2f6913ebd5a034f9e4',1,'TestSubscriber']]],
-  ['topic_5fcallback_2',['topic_callback',['../classSubscriber.html#a3497d4acdb5afefcf27c56e18822b153',1,'Subscriber::topic_callback()'],['../classTestSubscriber.html#a0fc2ba81efa9c8709b4a85d162865f7e',1,'TestSubscriber::topic_callback()']]],
-  ['treat_3',['treat',['../classActionClient.html#ad059948540bea251d2fc8540067755e0',1,'ActionClient']]],
-  ['treat_5forders_4',['treat_orders',['../classActionService.html#a01a8bf947e78ee956ee390a32b0375af',1,'ActionService']]],
-  ['treat_5fresponse_5',['treat_response',['../classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9',1,'ClientT']]]
+  ['sample_0',['sample',['../classJoystick.html#a13d48d8d9a32a788394f69472b6b3d9d',1,'Joystick']]],
+  ['send_1',['send',['../classClientT.html#a722f4ae9c93fd8ad61756155bb1e79be',1,'ClientT']]],
+  ['serialport_2',['SerialPort',['../classscom_1_1SerialPort.html#af47dc896cd7ead140472b654336c00e9',1,'scom::SerialPort']]],
+  ['set_5fconfig_3',['set_config',['../classscom_1_1SerialPort.html#a2d55254350a6dab689af1cc0b7b84dd6',1,'scom::SerialPort']]],
+  ['set_5fdefault_5fconfig_4',['set_default_config',['../classscom_1_1SerialPort.html#ac4458010bd7e641756ffcaec965cb6df',1,'scom::SerialPort']]],
+  ['set_5fexclusive_5faccess_5',['set_exclusive_access',['../classscom_1_1SerialPort.html#a29604f09572b270405c7f27065ab593a',1,'scom::SerialPort']]],
+  ['set_5finput_5fspeed_6',['set_input_speed',['../classscom_1_1SerialPort.html#a8bd9905bb763c730590eef6b4e8f8d2e',1,'scom::SerialPort']]],
+  ['set_5foutput_5fspeed_7',['set_output_speed',['../classscom_1_1SerialPort.html#a3fe8b479d55aac52892dfe61921f3529',1,'scom::SerialPort']]],
+  ['set_5fshared_8',['set_shared',['../classClientT.html#a5652e544df0a717cf97a6bc5c5df04c5',1,'ClientT']]],
+  ['set_5fvalues_9',['set_values',['../structstruct__wrapper.html#a402e75dafe59de2d658f6d8ef932aa3c',1,'struct_wrapper']]],
+  ['struct_5fwrapper_10',['struct_wrapper',['../structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62',1,'struct_wrapper']]],
+  ['subscriber_11',['Subscriber',['../classSubscriber.html#ae137ca3b17d465180ac602dc360849cf',1,'Subscriber']]]
 ];

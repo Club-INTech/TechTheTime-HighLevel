@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['no_5fblock_0',['NO_BLOCK',['../namespacescom.html#a6b62e2aa725ea6f1e3659baf40c782f0a424aa3a69b1e6521fff2b1ced225c793',1,'scom']]]
+  ['move_0',['MOVE',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62',1,'order_codes.hpp']]],
+  ['move_5farm_1',['MOVE_ARM',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4',1,'order_codes.hpp']]]
 ];

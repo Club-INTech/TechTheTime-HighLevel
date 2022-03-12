@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../microcontroller__proxy_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;microcontroller_proxy.cpp'],['../group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;manager.cpp']]],
-  ['movebackward_1',['moveBackward',['../namespaceorder.html#a84d4f628bd33806f1f9a4ba3061d7fd5',1,'order']]],
-  ['moveforward_2',['moveForward',['../namespaceorder.html#a16278394b591517b4e0b03c96dc68b36',1,'order']]],
-  ['moveleft_3',['moveLeft',['../namespaceorder.html#a14f3e7a1992a71d5985c157bd8ed51c0',1,'order']]],
-  ['moveright_4',['moveRight',['../namespaceorder.html#a4c3a6ee553a5993a6a66b36697db421e',1,'order']]]
+  ['joystick_0',['Joystick',['../classJoystick.html#a158b1f77b78717efbf1b8fac43b1fcef',1,'Joystick::Joystick()'],['../classJoystick.html#a0bd88249a8e103fe326d5345019a3de2',1,'Joystick::Joystick(int joystickNumber)'],['../classJoystick.html#ac0cd7f0cb955fd62850589e1f0660285',1,'Joystick::Joystick(std::string devicePath)'],['../classJoystick.html#acfd22601c2d98af935a95fcf8308d726',1,'Joystick::Joystick(Joystick const &amp;)=delete'],['../classJoystick.html#a4f988a0c2cf6f3d3f58dc840e2f686c4',1,'Joystick::Joystick(Joystick &amp;&amp;)=default'],['../classJoystick.html#aab7720fce11483b0f35b82726fc8f2db',1,'Joystick::Joystick(std::string devicePath, bool blocking)']]],
+  ['joystickmove_1',['joystickMove',['../namespaceorder.html#a12a0095bb79a5dcd9b07ed566cc42b42',1,'order']]]
 ];

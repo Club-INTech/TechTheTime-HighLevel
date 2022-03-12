@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['input_5fmodes_5fbytes_0',['input_modes_bytes',['../namespacescom.html#a2fd8adf1eef72a9af2ab67b8d0457eb7',1,'scom']]],
-  ['ismovingbackward_1',['isMovingBackward',['../namespaceorder.html#ac7c8db5577b174b9e4506e1b54b48fa9',1,'order']]],
-  ['ismovingforward_2',['isMovingForward',['../namespaceorder.html#a82ad33507050cb68e8370dcd37332dce',1,'order']]],
-  ['isturninglefthand_3',['isTurningLefthand',['../namespaceorder.html#a988d927effc0e02741f418e5a9eee53d',1,'order']]],
-  ['isturningrighthand_4',['isTurningRighthand',['../namespaceorder.html#a52da88e658d86db9b69a9cd27c9e872a',1,'order']]]
+  ['client_0',['client',['../classClientT.html#af6599bbab26be561dcbc3a5c24802257',1,'ClientT']]],
+  ['client_5fname_1',['client_name',['../classClientT.html#a4e9fab308a9351013a32984def0dba90',1,'ClientT']]],
+  ['control_5fmode_5fbytes_2',['control_mode_bytes',['../namespacescom.html#a76fdb3799d49c97e26f5a07894b94509',1,'scom']]],
+  ['count_5f_3',['count_',['../classMinimalPublisher.html#a896abc7d57397667e774d4db7ae44ffe',1,'MinimalPublisher']]]
 ];
