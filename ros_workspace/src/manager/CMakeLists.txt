@@ -27,7 +27,7 @@ set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(${PROJECT_NAME} src/manager.cpp ${ActionOrderDirectory})
+add_executable(${PROJECT_NAME} src/manager.cpp ${ActionOrderDirectory} src/publisher/MotionPublisher.cpp)
 ament_target_dependencies(manager
   rclcpp 
   action_msg_srv
