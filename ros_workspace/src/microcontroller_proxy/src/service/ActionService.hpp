@@ -9,6 +9,7 @@
 #include <string>
 
 #include "../serial/SerialPort.hpp"
+#include "../publisher/MotionPublisher.hpp"
 
 /** @defgroup microcontroller_proxy Microcontroller node.
  * @{
@@ -113,6 +114,8 @@ private:
      * A shared pointer to ROS2 service, which is responsable to receive requests and send responses 
     */ 
     rclcpp::Service<action_msg_srv::srv::Order>::SharedPtr service;
+    MotionPublisher motion_publisher;
+    
 };
 
 /** @} */

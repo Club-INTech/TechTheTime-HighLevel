@@ -13,8 +13,10 @@
 #include <order/type.h>
 
 #include "../serial/SerialPort.hpp"
+#include "../defines/TimeConst.hpp"
 
 using namespace scom;
+using namespace std::chrono_literals;
 
 ActionService::ActionService(const std::string& service_name) : Node(service_name), order_binder(), service_name(service_name),
     service(this->create_service<action_msg_srv::srv::Order>(service_name, [&](
@@ -25,10 +27,12 @@ ActionService::ActionService(const std::string& service_name) : Node(service_nam
                 this->microcontroller_gateway->get_config();
                 this->microcontroller_gateway->set_default_config();
 
+                this->motion_publisher = MotionPublisher(MOTION_BROADCAST_PERIOD, this->microcontroller_gateway);
+
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %d\n",req->distance);
                         this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(3*req->distance);
-                        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                        this->motion_publisher->broadcast_motion(3*req_distance, 3*req_distance);
                         res->success = true;
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", (bool)res->success);                
                 });
