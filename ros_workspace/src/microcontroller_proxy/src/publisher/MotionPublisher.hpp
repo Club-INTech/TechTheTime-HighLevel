@@ -10,12 +10,11 @@ using namespace std::chrono_literals;
 class MotionPublisher : public rclcpp::Node {
 public:
 
-    MotionPublisher(std::chrono::nanoseconds period, std::unique_ptr<SerialPort> gateaway);
-    void broadcast_motion(int32_t expected_left_ticks, int32_t expected_right_ticks, int timeout);
+    MotionPublisher(std::unique_ptr<scom::SerialPort> gateway);
+    void broadcast_motion(int32_t expected_left_ticks, int32_t expected_right_ticks);
 
 private:
 
     rclcpp::Publisher<motion_msg_srv::msg::Motion>::SharedPtr publisher_;
-    std::unique_ptr<SerialPort> microcontroller_gateaway;
-    std::chrono::nanoseconds period
-}
+    std::unique_ptr<scom::SerialPort> microcontroller_gateway;
+};
