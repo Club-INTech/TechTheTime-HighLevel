@@ -23,22 +23,22 @@ ActionService::ActionService(const std::string& service_name) : Node(service_nam
         const shared_request_T req, shared_response_T res){ this->treat_orders(req, res);})) {
 
                 this->microcontroller_gateway = std::make_unique<SerialPort>("/dummy");
-                this->microcontroller_gateway->open_serial();
-                this->microcontroller_gateway->get_config();
-                this->microcontroller_gateway->set_default_config();
+                // this->microcontroller_gateway->open_serial();
+                // this->microcontroller_gateway->get_config();
+                // this->microcontroller_gateway->set_default_config();
 
-                this->motion_publisher = MotionPublisher(MOTION_BROADCAST_PERIOD, this->microcontroller_gateway);
+                this->motion_publisher = MotionPublisher(this->microcontroller_proxy);
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %d\n",req->distance);
-                        this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(3*req->distance);
-                        this->motion_publisher->broadcast_motion(3*req_distance, 3*req_distance);
+                        // this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(3*req->distance);
+                        this->motion_publisher.broadcast_motion(3*req->distance, 3*req->distance);
                         res->success = true;
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", (bool)res->success);                
                 });
 
         }
 
-void ActionService::treat_orders(const shared_request_t req, shared_response_T res) {
+void ActionService::treat_orders(const shared_request_T req, shared_response_T res) {
         this->order_binder.execute_order(req->order_code, req, res);
 }

@@ -29,6 +29,9 @@
 */ 
 class ActionService : public rclcpp::Node {
 
+    
+public:
+
     /**
      * An alias to the request type defined in action_msg_srv 
     */ 
@@ -48,8 +51,7 @@ class ActionService : public rclcpp::Node {
      * An alias to the shared pointer of response type defined in action_msg_srv
     */
     using shared_response_T = typename std::shared_ptr<action_msg_srv::srv::Order::Response>;
-    
-public:
+
 
     /**
      * ActionService constructor
