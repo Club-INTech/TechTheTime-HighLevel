@@ -17,6 +17,7 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(action_msg_srv REQUIRED)
+find_package(motion_msg_srv REQUIRED)
 # find_package(example_topic REQUIRED)
 
 # uncomment the following section in order to fill in
@@ -27,10 +28,11 @@ set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
 
 set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
 
-add_executable(${PROJECT_NAME} src/manager.cpp ${ActionOrderDirectory} src/publisher/MotionPublisher.cpp)
+add_executable(${PROJECT_NAME} src/manager.cpp ${ActionOrderDirectory} src/subscriber/MotionSubscriber.cpp)
 ament_target_dependencies(manager
   rclcpp 
   action_msg_srv
+  motion_msg_srv
 )
 
 target_include_directories(manager PUBLIC ${ActionOrderDirectory})
