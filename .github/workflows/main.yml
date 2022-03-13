@@ -12,11 +12,11 @@ jobs:
                 - name: Doxygen Documentation Deploy
                   uses: mattnotmitt/doxygen-action@v1.1.0
                   with:
-                          doxyfile-path: "./ros_workspace/Doxyfile"
+                          doxyfile-path: "./Doxyfile"
                           working-directory: "."
                 - name: Deploy
                   uses: peaceiris/actions-gh-pages@v3
                   with:
                           github_token: ${{ secrets.GITHUB_TOKEN }}
-                          publish_dir: ./ros_workspace/doc/html
+                          publish_dir: ./html
 
