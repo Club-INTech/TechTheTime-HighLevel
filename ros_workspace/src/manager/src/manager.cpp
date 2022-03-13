@@ -2,6 +2,7 @@
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
 #include <order_codes.hpp>
+#include "subscriber/MotionSubscriber.hpp"
 
 
 using namespace std;
@@ -86,10 +87,11 @@ int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
     auto commClient = std::make_shared<ActionClient>();
+    auto motionSubscriber = std::make_shared<MotionSubscriber>();
     commClient->set_shared(commClient);
     commClient->wait_for_connection(); 
   
-    commClient->send(OrderCodes::MOVE, 100, 0, 0);
+    commClient->send(motionSubscriber, (int64_t) OrderCodes::MOVE, 100, 0, 0);
 
     rclcpp::shutdown();
 

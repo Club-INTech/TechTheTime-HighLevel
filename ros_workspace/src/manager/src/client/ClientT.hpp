@@ -22,10 +22,11 @@ using namespace std::chrono_literals;
 template<class T, class Treq, class... Rs>
 class ClientT : public rclcpp::Node {
 
+public:
+
   using shared_ptr_T = typename rclcpp::Client<T>::SharedPtr;
   using shared_future_T = typename rclcpp::Client<T>::SharedFuture;
 
-public:
   ClientT(const std::string& client_name) : Node(client_name) {
     this->client_name = client_name;
     this->client = this->create_client<T>(client_name);
@@ -45,10 +46,11 @@ public:
     }
   }
 
-  auto send(Rs... args) {
+  auto send(std::shared_ptr<rclcpp::Node> node, Rs... args) {
     request.set_values(args...);
     auto result = client->async_send_request(request.value);
-    if (rclcpp::spin_until_future_complete(this->self_ptr, result) ==
+    if(node == nullptr) { node = this->self_ptr; }
+    if (rclcpp::spin_until_future_complete(node, result) ==
       rclcpp::FutureReturnCode::SUCCESS)
     {
       this->treat_response(result);
