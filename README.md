@@ -81,17 +81,21 @@ It is coming
 
 # Documentation
 
-## Doxygen
+## GitHub pages
 
-You must install [doxygen](https://www.doxygen.nl/manual/install.html) in order to generate the documentation.
+A github action was added, so the documentation is generated and published automatically.
 
-***Note:*** You must install flex and bison to build doxygen from source.
+Check documentation there https://club-intech.github.io/TechTheTime-HighLevel/
 
 ## Generate doc
 
-Run the following command in **ros_workspace** folder to generate documentation:
+You must install [doxygen](https://www.doxygen.nl/manual/install.html) in order to generate the documentation locally.
+
+***Note:*** You must install flex and bison to build doxygen from source.
+
+Run the following command in root folder to generate documentation:
 
 ```bash
 $ doxygen
 ```
-The generated documentation is accessible by opening **ros_workspace/doc/index.html** in your browser.
+The generated documentation is accessible by opening **html/index.html** in your browser.
