@@ -74,6 +74,7 @@ if [ $p_flag = 'true' ]; then
         if [ $? -ne 0 ]; then
             echo "Node $node does not exist"
             print_help
+            exit 1
         fi
     done
 fi
@@ -125,8 +126,6 @@ for node in "${nodes[@]}"; do
 done
 
 echo "${green}===== Finished nodes=====${reset}"
-
-. install/setup.bash
 
 echo "${green}===== Finished build =====${reset}"
 
