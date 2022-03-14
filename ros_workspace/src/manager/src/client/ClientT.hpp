@@ -46,11 +46,10 @@ public:
     }
   }
 
-  auto send(std::shared_ptr<rclcpp::Node> node, Rs... args) {
+  auto send(Rs... args) {
     request.set_values(args...);
     auto result = client->async_send_request(request.value);
-    if(node == nullptr) { node = this->self_ptr; }
-    if (rclcpp::spin_until_future_complete(node, result) ==
+    if (rclcpp::spin_until_future_complete(this->self_ptr, result) ==
       rclcpp::FutureReturnCode::SUCCESS)
     {
       this->treat_response(result);
