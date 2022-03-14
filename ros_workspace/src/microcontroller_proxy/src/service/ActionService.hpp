@@ -96,7 +96,7 @@ public:
      * 
      * You can also use scom::SerialPort::call_remote_function to call an order on the lowlevel side(microcontroller).
     */ 
-    std::unique_ptr<scom::SerialPort> microcontroller_gateway;
+    std::shared_ptr<scom::SerialPort> microcontroller_gateway;
 
 private:
 
@@ -116,7 +116,7 @@ private:
      * A shared pointer to ROS2 service, which is responsable to receive requests and send responses 
     */ 
     rclcpp::Service<action_msg_srv::srv::Order>::SharedPtr service;
-    MotionPublisher motion_publisher;
+    std::shared_ptr<MotionPublisher> motion_publisher;
     
 };
 

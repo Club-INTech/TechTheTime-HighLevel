@@ -15,7 +15,7 @@
 
 class ActionClient : public ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t> {
 public:
-    ActionClient() : ClientT("action_client") {};
+    ActionClient() : ClientT("action") {};
 
     void treat_response(shared_future_T res) {
         if(res.get()->success) {

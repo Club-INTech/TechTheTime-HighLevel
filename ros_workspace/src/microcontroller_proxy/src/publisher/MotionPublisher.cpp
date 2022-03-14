@@ -6,9 +6,9 @@
 #include "../defines/TimeConst.hpp"
 #include <cmath>
 
-MotionPublisher::MotionPublisher(std::unique_ptr<scom::SerialPort> gateway) : Node("motion_publisher") {
+MotionPublisher::MotionPublisher(std::shared_ptr<scom::SerialPort> gateway) : 
+    microcontroller_gateway(gateway), Node("motion_publisher") {
         publisher_ = this->create_publisher<motion_msg_srv::msg::Motion>("motion_topic", 10);
-        microcontroller_gateway
     }
 
 
