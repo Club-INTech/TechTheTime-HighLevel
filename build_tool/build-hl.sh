@@ -30,7 +30,7 @@ fail_on_build () {
 
 print_help () {
     echo ""
-    echo "Usage: ./build-hl.sh [options] [-p <nodes_name>]"
+    echo "Usage: ./build-hl.sh [options] [-p \"<nodes_name>\"]"
     echo ""
     echo "options are:"
     echo ""
@@ -56,7 +56,7 @@ while getopts 'hvp:' flag; do
   case "${flag}" in
     h) h_flag='true' ;;
     v) v_flag='true' ;;
-    p) nodes="${OPTARG}"
+    p) nodes=(${OPTARG})
         p_flag='true' ;;
     *) print_help
        exit 1 ;;
