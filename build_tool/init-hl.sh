@@ -5,6 +5,8 @@ reset="$(tput sgr0)"
 
 cd ..
 
+git submodule deinit --force --all
+
 echo "===== Initializing submodules ====="
 
 git submodule init
@@ -12,10 +14,10 @@ git submodule update --remote
 
 echo "===== Finished ====="
 
-cd utils_scripts
+cd build_tool
 
 sudo chmod u+x build-hl.sh
-sudo chmod u+x install_ros.sh
+sudo chmod u+x install-ros.sh
 
 echo "Do you want proceed to the essentials installation (ros2-foxy, rosdep, colcon, build_essentials[curl, locales, etc...]) [Y/n]? : "
 

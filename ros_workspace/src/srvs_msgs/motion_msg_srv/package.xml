@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>action_msg_srv</name>
+  <name>motion_msg_srv</name>
   <version>1.0.0</version>
-  <description>Action client-service message definition</description>
-  <maintainer email="tsimafei.liashkevich@telecom-sudparis.eu">sudogauss</maintainer>
+  <description>Motion topic message definition</description>
+  <maintainer email="tsimafei.liashkevich@telecom-sudparis.eu">tsimafei</maintainer>
   <license>Apache license 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

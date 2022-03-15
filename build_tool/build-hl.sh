@@ -25,11 +25,12 @@ check_node_exists () {
 
 fail_on_build () {
     echo -e "${red}Failed to build $1 ${reset}"
+    exit 1
 }
 
 print_help () {
     echo ""
-    echo "Usage: ./build-hl.sh [options] [-p <nodes_name>]"
+    echo "Usage: ./build-hl.sh [options] [-p \"<nodes_name>\"]"
     echo ""
     echo "options are:"
     echo ""
@@ -49,37 +50,38 @@ print_help () {
 p_flag='false' # package flag
 v_flag='false' # verbose flag
 h_flag='false' # help flag
-nodes=''
+nodes=(${available_nodes[@]})
 
-while getopts 'hp:v' flag; do
+while getopts 'hvp:' flag; do
   case "${flag}" in
     h) h_flag='true' ;;
     v) v_flag='true' ;;
-    p) nodes="${OPTARG}"
+    p) nodes=(${OPTARG})
         p_flag='true' ;;
     *) print_help
        exit 1 ;;
   esac
 done
 
-
-if [ h_flag ]; then
+if [ $h_flag = 'true' ]; then
     print_help
     exit 0
 fi
 
-if [ p_flag ]; then
-    for node in "${nodes[@]}"; do
+if [ $p_flag = 'true' ]; then
+    for node in "${nodes[@]}"; do 
         check_node_exists $node
         if [ $? -ne 0 ]; then
             echo "Node $node does not exist"
             print_help
+            exit 1
+        fi
     done
 fi
 
 ostream=/dev/null
 
-if [ v_flag ]; then
+if [ $v_flag = 'true' ]; then
     ostream=1
 fi
 
@@ -89,6 +91,7 @@ echo "${yellow}===== Building action_msg_srv =====${reset}"
 
 cd ../ros_workspace/src/srvs_msgs
 colcon build --packages-select action_msg_srv >&$ostream
+colcon build --packages-select motion_msg_srv >&$ostream
 
 if [ $? -ne 0 ]; then
     fail_on_build "action_msg_srv"
@@ -103,7 +106,7 @@ echo "${yellow}===== Generating request constructor =====${reset}"
 
 python3 request_constructor_generator.py $path_to_order_header $path_to_order_srv $order_regex
 
-echo "${green}===== Finished constructor generator ====={$reset}"
+echo "${green}===== Finished constructor generator =====${reset}"
 
 echo "${green}===== Finished interfaces build =====${reset}"
 
@@ -123,8 +126,6 @@ for node in "${nodes[@]}"; do
 done
 
 echo "${green}===== Finished nodes=====${reset}"
-
-. install/setup.bash
 
 echo "${green}===== Finished build =====${reset}"
 

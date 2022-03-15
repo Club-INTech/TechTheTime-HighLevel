@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(example_topic)
+project(motion_msg_srv)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -8,7 +8,7 @@ endif()
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 add_compile_options(-Wall -Wextra -Wpedantic)
@@ -22,7 +22,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Example.msg"
+  "msg/Motion.msg"
 )
 
 if(BUILD_TESTING)
