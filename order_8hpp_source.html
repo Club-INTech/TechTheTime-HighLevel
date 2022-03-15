@@ -107,45 +107,45 @@ $(function() {
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// void changePump(int button, bool state);</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceorder.html#a16278394b591517b4e0b03c96dc68b36">moveForward</a>() {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a9b2cfe7abf2e05e29be5980ee5aa0ec2">OrderCodes::START_MOVE_FORWARD</a>, 0, 0, 0);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        client_ptr-&gt;send(OrderCodes::START_MOVE_FORWARD, 0, 0, 0);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceorder.html#a84d4f628bd33806f1f9a4ba3061d7fd5">moveBackward</a>() {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060ad23b4bf4aa90248405d165424352376f">OrderCodes::START_MOVE_BACKWARD</a>, 0, 0, 0);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        client_ptr-&gt;send(OrderCodes::START_MOVE_BACKWARD, 0, 0, 0);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> rotateLeft() {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060ae8a5342a69c0ae9fac8ac8d523b1dd5d">OrderCodes::START_ROTATE_LEFT</a>, 0, 0, 0);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        client_ptr-&gt;send(OrderCodes::START_ROTATE_LEFT, 0, 0, 0);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> rotateRight() {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a40fe8ca522b3e72112ac33a1320ba924">OrderCodes::START_ROTATE_RIGHT</a>, 0, 0, 0);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        client_ptr-&gt;send(OrderCodes::START_ROTATE_RIGHT, 0, 0, 0);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> stop() {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a679ee5320d66c8322e310daeb2ee99b8">OrderCodes::STOP</a>, 0, 0, 0);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        client_ptr-&gt;send(OrderCodes::STOP, 0, 0, 0);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> moveArmUp() {</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        armsAngle[armId] += step;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4">OrderCodes::MOVE_ARM</a>, 0, armId, armsAngle[armId]);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        client_ptr-&gt;send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> moveArmDown() {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        armsAngle[armId] -= step;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4">OrderCodes::MOVE_ARM</a>, 0, armId, armsAngle[armId]);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        client_ptr-&gt;send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> changeArmUp() {</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        armsAngle[armId] += step;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4">OrderCodes::MOVE_ARM</a>, 0, armId, armsAngle[armId]);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        client_ptr-&gt;send(OrderCodes::MOVE_ARM, 0, armId, armsAngle[armId]);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> activatePump() {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a1e189f1598f27514336e71a5f1cc8fba">OrderCodes::ACTIVATE_PUMP</a>, 0, armId, 0);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        client_ptr-&gt;send(OrderCodes::ACTIVATE_PUMP, 0, armId, 0);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> releasePump() {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        client_ptr-&gt;send(<a class="code hl_enumvalue" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a554d857d27b093e0161814e8ba8246e2">OrderCodes::RELEASE_PUMP</a>, 0, armId, 0);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        client_ptr-&gt;send(OrderCodes::RELEASE_PUMP, 0, armId, 0);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">//void bindAll(Binder binder);</span></div>
@@ -199,7 +199,7 @@ $(function() {
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
-<div class="ttc" id="aclassClientT_html"><div class="ttname"><a href="classClientT.html">ClientT</a></div><div class="ttdoc">ClientT class.</div><div class="ttdef"><b>Definition:</b> ClientT.hpp:23</div></div>
+<div class="ttc" id="aclassClientT_html"><div class="ttname"><a href="classClientT.html">ClientT&lt; action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t &gt;</a></div></div>
 <div class="ttc" id="anamespaceorder_html"><div class="ttname"><a href="namespaceorder.html">order</a></div><div class="ttdef"><b>Definition:</b> order.cpp:3</div></div>
 <div class="ttc" id="anamespaceorder_html_a12a0095bb79a5dcd9b07ed566cc42b42"><div class="ttname"><a href="namespaceorder.html#a12a0095bb79a5dcd9b07ed566cc42b42">order::joystickMove</a></div><div class="ttdeci">void joystickMove(int axis, int value)</div><div class="ttdef"><b>Definition:</b> order.cpp:99</div></div>
 <div class="ttc" id="anamespaceorder_html_a14f3e7a1992a71d5985c157bd8ed51c0"><div class="ttname"><a href="namespaceorder.html#a14f3e7a1992a71d5985c157bd8ed51c0">order::moveLeft</a></div><div class="ttdeci">bool moveLeft()</div><div class="ttdef"><b>Definition:</b> order.cpp:88</div></div>
@@ -209,14 +209,6 @@ $(function() {
 <div class="ttc" id="anamespaceorder_html_a4c3a6ee553a5993a6a66b36697db421e"><div class="ttname"><a href="namespaceorder.html#a4c3a6ee553a5993a6a66b36697db421e">order::moveRight</a></div><div class="ttdeci">bool moveRight()</div><div class="ttdef"><b>Definition:</b> order.cpp:93</div></div>
 <div class="ttc" id="anamespaceorder_html_a84d4f628bd33806f1f9a4ba3061d7fd5"><div class="ttname"><a href="namespaceorder.html#a84d4f628bd33806f1f9a4ba3061d7fd5">order::moveBackward</a></div><div class="ttdeci">bool moveBackward()</div><div class="ttdef"><b>Definition:</b> order.cpp:83</div></div>
 <div class="ttc" id="aorder__codes_8hpp_html"><div class="ttname"><a href="order__codes_8hpp.html">order_codes.hpp</a></div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a1e189f1598f27514336e71a5f1cc8fba"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a1e189f1598f27514336e71a5f1cc8fba">ACTIVATE_PUMP</a></div><div class="ttdeci">@ ACTIVATE_PUMP</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:23</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4">MOVE_ARM</a></div><div class="ttdeci">@ MOVE_ARM</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:21</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a40fe8ca522b3e72112ac33a1320ba924"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a40fe8ca522b3e72112ac33a1320ba924">START_ROTATE_RIGHT</a></div><div class="ttdeci">@ START_ROTATE_RIGHT</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:16</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a554d857d27b093e0161814e8ba8246e2"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a554d857d27b093e0161814e8ba8246e2">RELEASE_PUMP</a></div><div class="ttdeci">@ RELEASE_PUMP</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:25</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a679ee5320d66c8322e310daeb2ee99b8"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a679ee5320d66c8322e310daeb2ee99b8">STOP</a></div><div class="ttdeci">@ STOP</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:18</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060a9b2cfe7abf2e05e29be5980ee5aa0ec2"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a9b2cfe7abf2e05e29be5980ee5aa0ec2">START_MOVE_FORWARD</a></div><div class="ttdeci">@ START_MOVE_FORWARD</div><div class="ttdoc">Julien : idées mais on peut changer.</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:10</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060ad23b4bf4aa90248405d165424352376f"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060ad23b4bf4aa90248405d165424352376f">START_MOVE_BACKWARD</a></div><div class="ttdeci">@ START_MOVE_BACKWARD</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:12</div></div>
-<div class="ttc" id="aorder__codes_8hpp_html_a34a5ea14bf002b0dcc88fe8b5f548060ae8a5342a69c0ae9fac8ac8d523b1dd5d"><div class="ttname"><a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060ae8a5342a69c0ae9fac8ac8d523b1dd5d">START_ROTATE_LEFT</a></div><div class="ttdeci">@ START_ROTATE_LEFT</div><div class="ttdef"><b>Definition:</b> order_codes.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

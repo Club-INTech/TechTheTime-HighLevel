@@ -6,5 +6,5 @@ var searchData=
   ['service_3',['service',['../classActionService.html#a1999b2bed67d423c0c273c117bff86de',1,'ActionService']]],
   ['service_5fname_4',['service_name',['../classActionService.html#a08e7b909eb248563345c4aba57841160',1,'ActionService']]],
   ['stuffing_5fbyte_5',['stuffing_byte',['../namespacescom.html#a72fdcd659d7ad96096280f70fb698cf9',1,'scom']]],
-  ['subscription_5f_6',['subscription_',['../classSubscriber.html#a693779d37d3a2b8436c2fcd40ad83bec',1,'Subscriber']]]
+  ['subscriber_5f_6',['subscriber_',['../classMotionSubscriber.html#aec5c576971bb022708437b04a813bcb0',1,'MotionSubscriber']]]
 ];

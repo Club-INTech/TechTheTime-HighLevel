@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['move_0',['MOVE',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62',1,'order_codes.hpp']]],
-  ['move_5farm_1',['MOVE_ARM',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a2666869d2292bb459ec901895fa36aa4',1,'order_codes.hpp']]]
+  ['motion_5ftimeout_0',['MOTION_TIMEOUT',['../order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa',1,'order_codes.hpp']]],
+  ['move_1',['MOVE',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62',1,'order_codes.hpp']]]
 ];

@@ -10,6 +10,5 @@ var searchData=
   ['set_5foutput_5fspeed_7',['set_output_speed',['../classscom_1_1SerialPort.html#a3fe8b479d55aac52892dfe61921f3529',1,'scom::SerialPort']]],
   ['set_5fshared_8',['set_shared',['../classClientT.html#a5652e544df0a717cf97a6bc5c5df04c5',1,'ClientT']]],
   ['set_5fvalues_9',['set_values',['../structstruct__wrapper.html#a402e75dafe59de2d658f6d8ef932aa3c',1,'struct_wrapper']]],
-  ['struct_5fwrapper_10',['struct_wrapper',['../structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62',1,'struct_wrapper']]],
-  ['subscriber_11',['Subscriber',['../classSubscriber.html#ae137ca3b17d465180ac602dc360849cf',1,'Subscriber']]]
+  ['struct_5fwrapper_10',['struct_wrapper',['../structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62',1,'struct_wrapper']]]
 ];

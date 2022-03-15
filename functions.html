@@ -73,6 +73,8 @@ $(function() {
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>ActionClient()&#160;:&#160;<a class="el" href="classActionClient.html#ae63df64cf308fec328805a2efdbf395d">ActionClient</a></li>
 <li>ActionService()&#160;:&#160;<a class="el" href="classActionService.html#afae57934b79d4b0a9337e42eb5f8931d">ActionService</a></li>
+<li>angle&#160;:&#160;<a class="el" href="classRobotMotion.html#ad971fae04522c28583a939e20b73dbbb">RobotMotion</a></li>
+<li>atomic_move()&#160;:&#160;<a class="el" href="classRobotMotion.html#a4c5c0226f7138f5fa13673aa77cf6939">RobotMotion</a></li>
 <li>axisCallback&#160;:&#160;<a class="el" href="classBinder.html#aafc105ff61e8ef4c907c388a7cc52a93">Binder</a></li>
 </ul>
 
@@ -83,6 +85,7 @@ $(function() {
 <li>BindButton()&#160;:&#160;<a class="el" href="classBinder.html#a753534fb21a0414031c8f31856671895">Binder</a></li>
 <li>Binder()&#160;:&#160;<a class="el" href="classBinder.html#a192e6e3575ee87d3e842c7318c217af3">Binder</a></li>
 <li>binder&#160;:&#160;<a class="el" href="classControllerSetup.html#a056c48acdac99309bdcc377a9683d07c">ControllerSetup</a></li>
+<li>broadcast_motion()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a2eccefbabd5fc2ce5635cd6075d5be88">MotionPublisher</a></li>
 <li>buttonsCallback&#160;:&#160;<a class="el" href="classBinder.html#ad145f9f173d167055851fb6e50eaf0be">Binder</a></li>
 </ul>
 
@@ -102,7 +105,6 @@ $(function() {
 <li>configure_local_modes()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#a822e6c3c553ab0719aa9050a0cd59cfe">scom::SerialPort</a></li>
 <li>configure_output_modes()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#aac3dfde991a49a273b63e8a7f9ae11ee">scom::SerialPort</a></li>
 <li>ControllerSetup()&#160;:&#160;<a class="el" href="classControllerSetup.html#a4f617cf52a91c26b96d21a1c8d5a1236">ControllerSetup</a></li>
-<li>count_&#160;:&#160;<a class="el" href="classMinimalPublisher.html#a896abc7d57397667e774d4db7ae44ffe">MinimalPublisher</a></li>
 </ul>
 
 
@@ -118,6 +120,7 @@ $(function() {
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>get_config()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#a10bf21e5f1b4c33662cb654498394a36">scom::SerialPort</a></li>
+<li>get_motion_status()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a9b492fefc222438d0ce0d83dc27f21f2">MotionPublisher</a></li>
 </ul>
 
 
@@ -137,9 +140,13 @@ $(function() {
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
 <li>MAX_AXES_VALUE&#160;:&#160;<a class="el" href="classJoystickEvent.html#a344acb05d03e6eeba74cef98209497eb">JoystickEvent</a></li>
-<li>microcontroller_gateway&#160;:&#160;<a class="el" href="classActionService.html#ab8296cb6ae798994ca8f29abc2ba86ea">ActionService</a></li>
+<li>microcontroller_gateway&#160;:&#160;<a class="el" href="classActionService.html#a51e19571576cecd494ec27cdc95b5783">ActionService</a>, <a class="el" href="classMotionPublisher.html#a895427823fe3b84c644f9e13dc776528">MotionPublisher</a></li>
 <li>MIN_AXES_VALUE&#160;:&#160;<a class="el" href="classJoystickEvent.html#a4785b5a5d2157f8507561af42b5d28f1">JoystickEvent</a></li>
-<li>MinimalPublisher()&#160;:&#160;<a class="el" href="classMinimalPublisher.html#aa04f84fd8b936705856aa3525ec6f119">MinimalPublisher</a></li>
+<li>motion_callback()&#160;:&#160;<a class="el" href="classMotionSubscriber.html#acc796033cc0a90a5a4c26edd6259e8c9">MotionSubscriber</a></li>
+<li>motion_publisher&#160;:&#160;<a class="el" href="classActionService.html#a8a8bb9517bbb56b59c076f20c144ce53">ActionService</a></li>
+<li>motion_status&#160;:&#160;<a class="el" href="classMotionPublisher.html#aa2ae68abb389c11ac9bfe6fc0920201e">MotionPublisher</a></li>
+<li>MotionPublisher()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a412a093f4845f4f68b365792b9dd8840">MotionPublisher</a></li>
+<li>MotionSubscriber()&#160;:&#160;<a class="el" href="classMotionSubscriber.html#a11ff03f22e56a0a42955db9a164da3ca">MotionSubscriber</a></li>
 </ul>
 
 
@@ -160,7 +167,7 @@ $(function() {
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>port_name&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#af6cfe3efd0659c63865319f3b6e25eff">scom::SerialPort</a></li>
-<li>publisher_&#160;:&#160;<a class="el" href="classMinimalPublisher.html#a46e27e1471ec255a323f625ff14ff761">MinimalPublisher</a></li>
+<li>publisher_&#160;:&#160;<a class="el" href="classMotionPublisher.html#a4f6c855d02813bce1961b291760d4305">MotionPublisher</a></li>
 </ul>
 
 
@@ -170,6 +177,8 @@ $(function() {
 <li>request&#160;:&#160;<a class="el" href="classClientT.html#a0458a94ee82905a63726afac76d9dedf">ClientT&lt; T, Treq, Rs &gt;</a></li>
 <li>request_T&#160;:&#160;<a class="el" href="classActionService.html#a503783681d711af7bcd83bb878820302">ActionService</a></li>
 <li>response_T&#160;:&#160;<a class="el" href="classActionService.html#ac60fc06682e9c9c85f3a1e6f2f4e6382">ActionService</a></li>
+<li>robot_motion&#160;:&#160;<a class="el" href="classMotionSubscriber.html#a5f12542454d3e8de24bcf1a818a4c1a5">MotionSubscriber</a></li>
+<li>RobotMotion()&#160;:&#160;<a class="el" href="classRobotMotion.html#a17fe52b19710c5b9669017fd5d247ad7">RobotMotion</a></li>
 <li>run()&#160;:&#160;<a class="el" href="classControllerSetup.html#a96aca273cbb644eb8d8728ebdecfb262">ControllerSetup</a></li>
 </ul>
 
@@ -191,25 +200,18 @@ $(function() {
 <li>set_shared()&#160;:&#160;<a class="el" href="classClientT.html#a5652e544df0a717cf97a6bc5c5df04c5">ClientT&lt; T, Treq, Rs &gt;</a></li>
 <li>set_values()&#160;:&#160;<a class="el" href="structstruct__wrapper.html#a402e75dafe59de2d658f6d8ef932aa3c">struct_wrapper&lt; T, Ts &gt;</a></li>
 <li>shared_future_T&#160;:&#160;<a class="el" href="classClientT.html#a28ed54ec609f016d48b36b94b003f215">ClientT&lt; T, Treq, Rs &gt;</a></li>
-<li>shared_ptr_T&#160;:&#160;<a class="el" href="classClientT.html#ab3469c7e628ba930d3fc07a9511aca8a">ClientT&lt; T, Treq, Rs &gt;</a>, <a class="el" href="classSubscriber.html#ae3d3b9e92a7d9b16fde07f1dae1e82db">Subscriber&lt; T &gt;</a></li>
+<li>shared_ptr_T&#160;:&#160;<a class="el" href="classClientT.html#ab3469c7e628ba930d3fc07a9511aca8a">ClientT&lt; T, Treq, Rs &gt;</a></li>
 <li>shared_request_T&#160;:&#160;<a class="el" href="classActionService.html#a76f933c4150df4bc5bf3b07b1ee7910c">ActionService</a></li>
 <li>shared_response_T&#160;:&#160;<a class="el" href="classActionService.html#aaa5fab4dbf542e91c2cd1b5fec6b6303">ActionService</a></li>
 <li>struct_wrapper()&#160;:&#160;<a class="el" href="structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62">struct_wrapper&lt; T, Ts &gt;</a></li>
-<li>Subscriber()&#160;:&#160;<a class="el" href="classSubscriber.html#ae137ca3b17d465180ac602dc360849cf">Subscriber&lt; T &gt;</a></li>
-<li>Subscriber_T&#160;:&#160;<a class="el" href="classSubscriber.html#a4572d847604420db450a70bc5ce1752c">Subscriber&lt; T &gt;</a></li>
-<li>subscription_&#160;:&#160;<a class="el" href="classSubscriber.html#a693779d37d3a2b8436c2fcd40ad83bec">Subscriber&lt; T &gt;</a></li>
+<li>subscriber_&#160;:&#160;<a class="el" href="classMotionSubscriber.html#aec5c576971bb022708437b04a813bcb0">MotionSubscriber</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>TestSubscriber()&#160;:&#160;<a class="el" href="classTestSubscriber.html#ab69b79be5a04fd2f6913ebd5a034f9e4">TestSubscriber</a></li>
 <li>time&#160;:&#160;<a class="el" href="classJoystickEvent.html#a5daa361798dd403ff4dd771fca60ede0">JoystickEvent</a></li>
-<li>timer_&#160;:&#160;<a class="el" href="classMinimalPublisher.html#aa65089952ab0c3fb490a530ed7af6ae2">MinimalPublisher</a></li>
-<li>timer_callback()&#160;:&#160;<a class="el" href="classMinimalPublisher.html#a6019391d2635ca5b3a9b8409151806c3">MinimalPublisher</a></li>
-<li>topic_callback()&#160;:&#160;<a class="el" href="classSubscriber.html#adae6c64449a87973149eaaacd359866e">Subscriber&lt; T &gt;</a>, <a class="el" href="classTestSubscriber.html#a7a827c0720c0c49395eef73aabb59ce9">TestSubscriber</a></li>
-<li>treat()&#160;:&#160;<a class="el" href="classActionClient.html#ad059948540bea251d2fc8540067755e0">ActionClient</a></li>
 <li>treat_orders()&#160;:&#160;<a class="el" href="classActionService.html#a01a8bf947e78ee956ee390a32b0375af">ActionService</a></li>
-<li>treat_response()&#160;:&#160;<a class="el" href="classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9">ClientT&lt; T, Treq, Rs &gt;</a></li>
+<li>treat_response()&#160;:&#160;<a class="el" href="classActionClient.html#a08abe78b7c05a77381b0a5d396e66d94">ActionClient</a>, <a class="el" href="classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9">ClientT&lt; T, Treq, Rs &gt;</a></li>
 <li>type&#160;:&#160;<a class="el" href="classJoystickEvent.html#ada8aabcfb833ec362a3d8b2502d26951">JoystickEvent</a>, <a class="el" href="structstruct__wrapper.html#af6095c90297d2b1497fb66934990660d">struct_wrapper&lt; T, Ts &gt;</a></li>
 </ul>
 
@@ -225,6 +227,16 @@ $(function() {
 <li>write_byte()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#aaaaf5c43ef28d9c6d9afa743f2039879">scom::SerialPort</a></li>
 <li>write_stuff_counter&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#aea2a0a3beefd206e58a5c08cfaf25d62">scom::SerialPort</a></li>
 <li>write_word()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#aa6b7b06eaa3bbff90e1ebfac98f1ebd1">scom::SerialPort</a></li>
+</ul>
+
+
+<h3><a id="index_x" name="index_x"></a>- x -</h3><ul>
+<li>x&#160;:&#160;<a class="el" href="classRobotMotion.html#a789c5e873155d4bd957fda2d863fe2a7">RobotMotion</a></li>
+</ul>
+
+
+<h3><a id="index_y" name="index_y"></a>- y -</h3><ul>
+<li>y&#160;:&#160;<a class="el" href="classRobotMotion.html#abc9c36e2ca693b30e0ca5c354b1d9615">RobotMotion</a></li>
 </ul>
 
 

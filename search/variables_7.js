@@ -1,6 +1,9 @@
 var searchData=
 [
   ['max_5faxes_5fvalue_0',['MAX_AXES_VALUE',['../classJoystickEvent.html#a344acb05d03e6eeba74cef98209497eb',1,'JoystickEvent']]],
-  ['microcontroller_5fgateway_1',['microcontroller_gateway',['../classActionService.html#ab8296cb6ae798994ca8f29abc2ba86ea',1,'ActionService']]],
-  ['min_5faxes_5fvalue_2',['MIN_AXES_VALUE',['../classJoystickEvent.html#a4785b5a5d2157f8507561af42b5d28f1',1,'JoystickEvent']]]
+  ['microcontroller_5fgateway_1',['microcontroller_gateway',['../classMotionPublisher.html#a895427823fe3b84c644f9e13dc776528',1,'MotionPublisher::microcontroller_gateway()'],['../classActionService.html#a51e19571576cecd494ec27cdc95b5783',1,'ActionService::microcontroller_gateway()']]],
+  ['min_5faxes_5fvalue_2',['MIN_AXES_VALUE',['../classJoystickEvent.html#a4785b5a5d2157f8507561af42b5d28f1',1,'JoystickEvent']]],
+  ['motion_5fbroadcast_5fperiod_3',['MOTION_BROADCAST_PERIOD',['../TimeConst_8hpp.html#a4d65a0ad081ef7c29763d54d3d93c5b1',1,'TimeConst.hpp']]],
+  ['motion_5fpublisher_4',['motion_publisher',['../classActionService.html#a8a8bb9517bbb56b59c076f20c144ce53',1,'ActionService']]],
+  ['motion_5fstatus_5',['motion_status',['../classMotionPublisher.html#aa2ae68abb389c11ac9bfe6fc0920201e',1,'MotionPublisher']]]
 ];

@@ -68,6 +68,7 @@ $(function() {
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>ActionClient()&#160;:&#160;<a class="el" href="classActionClient.html#ae63df64cf308fec328805a2efdbf395d">ActionClient</a></li>
 <li>ActionService()&#160;:&#160;<a class="el" href="classActionService.html#afae57934b79d4b0a9337e42eb5f8931d">ActionService</a></li>
+<li>atomic_move()&#160;:&#160;<a class="el" href="classRobotMotion.html#a4c5c0226f7138f5fa13673aa77cf6939">RobotMotion</a></li>
 </ul>
 
 
@@ -76,6 +77,7 @@ $(function() {
 <li>BindAxis()&#160;:&#160;<a class="el" href="classBinder.html#a0975cc0b68cc27295c201d259747377f">Binder</a></li>
 <li>BindButton()&#160;:&#160;<a class="el" href="classBinder.html#a753534fb21a0414031c8f31856671895">Binder</a></li>
 <li>Binder()&#160;:&#160;<a class="el" href="classBinder.html#a192e6e3575ee87d3e842c7318c217af3">Binder</a></li>
+<li>broadcast_motion()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a2eccefbabd5fc2ce5635cd6075d5be88">MotionPublisher</a></li>
 </ul>
 
 
@@ -107,6 +109,7 @@ $(function() {
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>get_config()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#a10bf21e5f1b4c33662cb654498394a36">scom::SerialPort</a></li>
+<li>get_motion_status()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a9b492fefc222438d0ce0d83dc27f21f2">MotionPublisher</a></li>
 </ul>
 
 
@@ -124,7 +127,9 @@ $(function() {
 
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
-<li>MinimalPublisher()&#160;:&#160;<a class="el" href="classMinimalPublisher.html#aa04f84fd8b936705856aa3525ec6f119">MinimalPublisher</a></li>
+<li>motion_callback()&#160;:&#160;<a class="el" href="classMotionSubscriber.html#acc796033cc0a90a5a4c26edd6259e8c9">MotionSubscriber</a></li>
+<li>MotionPublisher()&#160;:&#160;<a class="el" href="classMotionPublisher.html#a412a093f4845f4f68b365792b9dd8840">MotionPublisher</a></li>
+<li>MotionSubscriber()&#160;:&#160;<a class="el" href="classMotionSubscriber.html#a11ff03f22e56a0a42955db9a164da3ca">MotionSubscriber</a></li>
 </ul>
 
 
@@ -138,6 +143,7 @@ $(function() {
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>read_byte()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#a4efd55da26ee8b05e50afedae1562609">scom::SerialPort</a></li>
 <li>read_word()&#160;:&#160;<a class="el" href="classscom_1_1SerialPort.html#aff67b8e9f3ef69add5fd6dc1146ca315">scom::SerialPort</a></li>
+<li>RobotMotion()&#160;:&#160;<a class="el" href="classRobotMotion.html#a17fe52b19710c5b9669017fd5d247ad7">RobotMotion</a></li>
 <li>run()&#160;:&#160;<a class="el" href="classControllerSetup.html#a96aca273cbb644eb8d8728ebdecfb262">ControllerSetup</a></li>
 </ul>
 
@@ -154,17 +160,12 @@ $(function() {
 <li>set_shared()&#160;:&#160;<a class="el" href="classClientT.html#a5652e544df0a717cf97a6bc5c5df04c5">ClientT&lt; T, Treq, Rs &gt;</a></li>
 <li>set_values()&#160;:&#160;<a class="el" href="structstruct__wrapper.html#a402e75dafe59de2d658f6d8ef932aa3c">struct_wrapper&lt; T, Ts &gt;</a></li>
 <li>struct_wrapper()&#160;:&#160;<a class="el" href="structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62">struct_wrapper&lt; T, Ts &gt;</a></li>
-<li>Subscriber()&#160;:&#160;<a class="el" href="classSubscriber.html#ae137ca3b17d465180ac602dc360849cf">Subscriber&lt; T &gt;</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>TestSubscriber()&#160;:&#160;<a class="el" href="classTestSubscriber.html#ab69b79be5a04fd2f6913ebd5a034f9e4">TestSubscriber</a></li>
-<li>timer_callback()&#160;:&#160;<a class="el" href="classMinimalPublisher.html#a6019391d2635ca5b3a9b8409151806c3">MinimalPublisher</a></li>
-<li>topic_callback()&#160;:&#160;<a class="el" href="classSubscriber.html#adae6c64449a87973149eaaacd359866e">Subscriber&lt; T &gt;</a>, <a class="el" href="classTestSubscriber.html#a7a827c0720c0c49395eef73aabb59ce9">TestSubscriber</a></li>
-<li>treat()&#160;:&#160;<a class="el" href="classActionClient.html#ad059948540bea251d2fc8540067755e0">ActionClient</a></li>
 <li>treat_orders()&#160;:&#160;<a class="el" href="classActionService.html#a01a8bf947e78ee956ee390a32b0375af">ActionService</a></li>
-<li>treat_response()&#160;:&#160;<a class="el" href="classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9">ClientT&lt; T, Treq, Rs &gt;</a></li>
+<li>treat_response()&#160;:&#160;<a class="el" href="classActionClient.html#a08abe78b7c05a77381b0a5d396e66d94">ActionClient</a>, <a class="el" href="classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9">ClientT&lt; T, Treq, Rs &gt;</a></li>
 </ul>
 
 

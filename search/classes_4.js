@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['minimalpublisher_0',['MinimalPublisher',['../classMinimalPublisher.html',1,'']]]
+  ['motionpublisher_0',['MotionPublisher',['../classMotionPublisher.html',1,'']]],
+  ['motionsubscriber_1',['MotionSubscriber',['../classMotionSubscriber.html',1,'']]]
 ];

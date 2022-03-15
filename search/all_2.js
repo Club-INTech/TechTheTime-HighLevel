@@ -6,5 +6,6 @@ var searchData=
   ['binder_3',['Binder',['../classBinder.html',1,'Binder'],['../classBinder.html#a192e6e3575ee87d3e842c7318c217af3',1,'Binder::Binder()']]],
   ['binder_4',['binder',['../classControllerSetup.html#a056c48acdac99309bdcc377a9683d07c',1,'ControllerSetup']]],
   ['blockingmodes_5',['BlockingModes',['../namespacescom.html#a6b62e2aa725ea6f1e3659baf40c782f0',1,'scom']]],
-  ['buttonscallback_6',['buttonsCallback',['../classBinder.html#ad145f9f173d167055851fb6e50eaf0be',1,'Binder']]]
+  ['broadcast_5fmotion_6',['broadcast_motion',['../classMotionPublisher.html#a2eccefbabd5fc2ce5635cd6075d5be88',1,'MotionPublisher']]],
+  ['buttonscallback_7',['buttonsCallback',['../classBinder.html#ad145f9f173d167055851fb6e50eaf0be',1,'Binder']]]
 ];

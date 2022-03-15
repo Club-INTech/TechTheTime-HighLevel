@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ordercodes_0',['OrderCodes',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060',1,'order_codes.hpp']]]
+  ['motionstatuscodes_0',['MotionStatusCodes',['../order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5',1,'order_codes.hpp']]]
 ];
