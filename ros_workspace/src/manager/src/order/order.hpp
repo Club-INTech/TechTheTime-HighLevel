@@ -65,7 +65,7 @@ namespace order {
     }
 
     /**
-     * @brief Deactivate pump to catch a puck in front of id'th arm
+     * @brief Deactivate pump to catch a puck in front of idth arm
      *
      * @param id the id of the arm
      * @return Puck was successfully released
@@ -84,4 +84,55 @@ namespace order {
     bool moveArm(unsigned int id, int angle) {
         return true;
     }
+
+    /**
+     * @brief Moves the arms and activates the pumps to take the puck to the idth arm from the floor
+     * 
+     * @param objectiveId The id of the arm at the end
+     * @return The action is successfull
+     */
+    bool takePuckFromFloor(unsigned int objectiveId) {
+        return true;
+    }
+
+    /**
+     * @brief Moves the arms and activates the pumps to exchange the puck - bottom to top if id is top, top to bottom if id is bottom
+     *
+     * @param objectiveId The id of the arm at the end
+     * @return The action is successfull
+     */
+    bool exchangePuck(unsigned int objectiveId) {
+        return true;
+    }
+
+    /**
+     * @brief Puts down the puck located at the idth arm
+     * 
+     * @param fromId The id of the arm that should put down the puck
+     * @return The action was successfull
+     */
+    bool putDownPuck(unsigned int fromId) {
+        return true;
+    }
+
+    /**
+     * @brief Activates the stroller of the pucks
+     * 
+     * @return The action was successfull
+     */
+    bool activateStroller() {
+        return true;
+    }
+
+    /**
+     * @brief Deactivates the stroller of the pucks
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool deactivateStroller() {
+        return true;
+    }
+
+    //bool 
 }
