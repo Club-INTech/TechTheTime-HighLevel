@@ -9,9 +9,6 @@ jobs:
                 runs-on: ubuntu-latest
                 steps:
                 - uses: actions/checkout@v2
-                - name: Checkout Awesome CSS
-                run: git submodule set-branch --branch v2.0.2 doxygen-awesome-css
-
                 - name: Doxygen Documentation Deploy
                   uses: mattnotmitt/doxygen-action@v1.1.0
                   with:
