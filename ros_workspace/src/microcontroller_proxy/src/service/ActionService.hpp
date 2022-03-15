@@ -116,6 +116,10 @@ private:
      * A shared pointer to ROS2 service, which is responsable to receive requests and send responses 
     */ 
     rclcpp::Service<action_msg_srv::srv::Order>::SharedPtr service;
+
+    /**
+     * A shared pointer to the MotionPublisher used to publish microcontroller feedback while moving. 
+    */ 
     std::shared_ptr<MotionPublisher> motion_publisher;
     
 };

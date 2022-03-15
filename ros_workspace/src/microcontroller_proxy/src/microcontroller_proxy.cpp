@@ -2,6 +2,8 @@
 #include <memory>
 
 /**
+ * @ingroup microcontroller_proxy
+ * 
  * microcontroller_proxy.cpp is an entry point of the microcontroller_proxy node.
  * 
  * It initializes rclcpp, creates an ActionService and listens for the requests.

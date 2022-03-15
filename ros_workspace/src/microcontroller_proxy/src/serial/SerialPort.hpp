@@ -19,27 +19,80 @@
 #include <rpc/master.hpp>
 #include <k2o/dispatcher.hpp>
 
+/**
+ * @ingroup microcontroller_proxy
+ * 
+ * A namespace scom is a shortcut for serial communication.
+ * It introduces a scom::BlockingModes, scom::SerialPort and other members, that are required
+ * for using <a target="_blank" href="https://github.com/Club-INTech/TechTheTime-Shared">TechTheTime-Shared</a> 
+ * and <a target="_blank" href="https://github.com/StarQTius/Key-To-Order">Key-To-Order</a>
+ * 
+ * This libraries allow to communicate with microcontroller.
+ * scom::SerialPort introduces some serial communication basics (using termios) and some specific
+ * methods used as communication basis of <b>Key-To-Order</b>
+ * 
+ * @author sudogauss
+*/ 
 namespace scom {
 
+    /**
+     * scom::stuffing_byte is used to indicate a new order transmission  
+    */ 
     extern uint8_t stuffing_byte;
     // extern k2o::dispatcher dispatcher;
 
+    /**
+     * @ingroup microcontroller_proxy
+     * scom::BlockingModes are used to determine which read mode will be used in serial communication
+    */ 
     enum class BlockingModes {
+        /**
+         * Returns immediately with all available data
+        */ 
         NO_BLOCK,
+        /**
+         * Returns the data after the exact required number of bytes has been received 
+        */ 
         FIXED_BYTES,
+        /**
+         * Returns after data is available or after timeout has exceeded
+        */ 
         TIMEOUT,
+        /**
+         * Returns the data after the exact required number of bytes has been received or timeout has exceeded  
+        */ 
         TIMEOUT_WITH_FIXED_BYTES
     };
 
+    /**
+     * Contains the bytes that are used to configure serial communication control modes 
+     * (PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD) 
+    */ 
     extern unsigned int control_mode_bytes[];
+    /**
+     * Contains the bytes that are used to configure serial communication local modes 
+     * (ICANON, ECHO, ECHOE, ECHONL, ISIG) 
+    */ 
     extern unsigned int local_modes_bytes[];
+    /**
+     * Contains the bytes that are used to configure serial communication input modes 
+     * (IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL) 
+    */ 
     extern unsigned int input_modes_bytes[];
+    /**
+     * Contains the bytes that are used to configure serial communication output modes 
+     * (OPOST, ONLCR) 
+    */ 
     extern unsigned int output_modes_bytes[];
 
 
     /**
      * @ingroup microcontroller_proxy
-     * SerialPort class
+     * Class responsible for serial communication, that introduces some special methods to send orders to the
+     * microcontroller using <a target="_blank" href="https://github.com/StarQTius/Key-To-Order">Key-To-Order</a>
+     * 
+     * Inspired a lot by  <a target="_blank" href="https://blog.mbedded.ninja/programming/operating-systems/linux/linux-serial-ports-using-c-cpp/">Embedded Ninja</a>
+     * 
      * @author sudogauss 
     */
     class SerialPort {
