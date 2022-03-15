@@ -8,6 +8,8 @@ jobs:
         build:
                 runs-on: ubuntu-latest
                 steps:
+                - name: Checkout submodule
+                  run: "cd doxygen-awesome-css && git checkout v2.0.2"
                 - uses: actions/checkout@v2
                 - name: Doxygen Documentation Deploy
                   uses: mattnotmitt/doxygen-action@v1.1.0
