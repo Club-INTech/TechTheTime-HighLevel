@@ -59,7 +59,7 @@ public:
   }
 
   virtual void treat_response(shared_future_T res) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: %d", res.get()->success);
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Finished, %p", res);
   }
 
 private:

@@ -96,8 +96,8 @@ int main(int argc, char** argv) {
     });
   
     std::thread client_thread([&commClient](){
-        commClient->send((int64_t) OrderCodes::MOVE, 3000, 0, 0);
-        commClient->send((int64_t) OrderCodes::MOVE, 2000, 0, 0);
+        commClient->send((int64_t) OrderCodes::MOVE, 1000, 0, 0);
+        commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
     });
 
     subscriber_thread.join();
