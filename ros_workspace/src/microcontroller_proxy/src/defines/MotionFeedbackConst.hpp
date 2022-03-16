@@ -2,9 +2,12 @@
 
 #include <chrono>
 
-#define TICKS_INCERTITUDE 20
-#define MOTION_CRITERIA 10
-#define TIMEOUT 4000
+/**
+ *  
+*/
+constexpr int TICKS_INCERTITUDE = 20;
+constexpr int MOTION_CRITERIA = 10;
+constexpr int64_t TIMEOUT  = 4000;
 
 using namespace std::chrono_literals;
 

@@ -3,7 +3,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "../serial/SerialPort.hpp"
 #include "motion_msg_srv/msg/motion.hpp"
-#include "../defines/TimeConst.hpp"
+#include "../defines/MotionFeedbackConst.hpp"
 #include <cmath>
 #include "order_codes.hpp"
 
