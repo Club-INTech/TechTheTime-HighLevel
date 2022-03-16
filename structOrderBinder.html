@@ -92,30 +92,49 @@ $(document).ready(function(){initNavTree('structOrderBinder.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="structOrderBinder.html" title="OrderBinder is used by ActionService in order to execute callback attached to an order code.">OrderBinder</a> is used by <a class="el" href="classActionService.html" title="ActionService is a ROS2 service node, which accepts a request(defined by action_msg_srv) from ClientT...">ActionService</a> in order to execute callback attached to an order code.  
+ <a href="structOrderBinder.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="order__binder_8hpp_source.html">order_binder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a37a6fe703e92df67fbb8ffa8d339571c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c">wrapped_func_T</a> = typename std::function&lt; void(Treq, Tres)&gt;</td></tr>
-<tr class="separator:a37a6fe703e92df67fbb8ffa8d339571c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2486ceef7dba5c12ef94e6c33dc7c4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">order_functor_T</a> = typename std::function&lt; void(Treq, Tres)&gt;</td></tr>
+<tr class="memdesc:a3c2486ceef7dba5c12ef94e6c33dc7c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">An alias to the function type that can be associated to one of the OrderCodes(<a class="el" href="order__codes_8hpp.html">order_codes.hpp</a>)  <a href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">More...</a><br /></td></tr>
+<tr class="separator:a3c2486ceef7dba5c12ef94e6c33dc7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af26f9be9ed43f8aec60a37df49ace131"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#af26f9be9ed43f8aec60a37df49ace131">OrderBinder</a> ()</td></tr>
+<tr class="memdesc:af26f9be9ed43f8aec60a37df49ace131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor, calls a default constructor of <a class="el" href="structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092" title="A map that associate an order_code to the callback.">OrderBinder::orders</a>.  <a href="structOrderBinder.html#af26f9be9ed43f8aec60a37df49ace131">More...</a><br /></td></tr>
 <tr class="separator:af26f9be9ed43f8aec60a37df49ace131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d8fcce7ab7448d080ce9f9e48c2ef0"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#a92d8fcce7ab7448d080ce9f9e48c2ef0">bind_order</a> (int64_t order_code, <a class="el" href="structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c">wrapped_func_T</a> order)</td></tr>
-<tr class="separator:a92d8fcce7ab7448d080ce9f9e48c2ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcfdfb94929c50c51352f233a18684d9"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#abcfdfb94929c50c51352f233a18684d9">bind_order</a> (int64_t order_code, <a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">order_functor_T</a> order)</td></tr>
+<tr class="memdesc:abcfdfb94929c50c51352f233a18684d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Associates an order(an OrderBinder::order_functor_T) to an order_code.  <a href="structOrderBinder.html#abcfdfb94929c50c51352f233a18684d9">More...</a><br /></td></tr>
+<tr class="separator:abcfdfb94929c50c51352f233a18684d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff5361391d10e6a0d6fc641913204a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#aff5361391d10e6a0d6fc641913204a60">execute_order</a> (int64_t order_code, Treq req, Tres res)</td></tr>
+<tr class="memdesc:aff5361391d10e6a0d6fc641913204a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes an order(an OrderBinder::order_functor_T) associated to an <b>order_code</b>  <a href="structOrderBinder.html#aff5361391d10e6a0d6fc641913204a60">More...</a><br /></td></tr>
 <tr class="separator:aff5361391d10e6a0d6fc641913204a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aee0fdd0b3e07eeb91313347a9c81d6d7"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int64_t, <a class="el" href="structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c">wrapped_func_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#aee0fdd0b3e07eeb91313347a9c81d6d7">orders</a></td></tr>
-<tr class="separator:aee0fdd0b3e07eeb91313347a9c81d6d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c0ce4c2dd9b845c030a3103f81d8092"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int64_t, <a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">order_functor_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092">orders</a></td></tr>
+<tr class="memdesc:a4c0ce4c2dd9b845c030a3103f81d8092"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map that associate an <b>order_code</b> to the callback.  <a href="structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092">More...</a><br /></td></tr>
+<tr class="separator:a4c0ce4c2dd9b845c030a3103f81d8092"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a37a6fe703e92df67fbb8ffa8d339571c" name="a37a6fe703e92df67fbb8ffa8d339571c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37a6fe703e92df67fbb8ffa8d339571c">&#9670;&nbsp;</a></span>wrapped_func_T</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Treq, typename Tres&gt;<br />
+struct OrderBinder&lt; Treq, Tres &gt;</div><p ><a class="el" href="structOrderBinder.html" title="OrderBinder is used by ActionService in order to execute callback attached to an order code.">OrderBinder</a> is used by <a class="el" href="classActionService.html" title="ActionService is a ROS2 service node, which accepts a request(defined by action_msg_srv) from ClientT...">ActionService</a> in order to execute callback attached to an order code. </p>
+<p >You can bind any of OrderCodes(<a class="el" href="order__codes_8hpp.html">order_codes.hpp</a>) to any function with the <a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4" title="An alias to the function type that can be associated to one of the OrderCodes(order_codes....">OrderBinder::order_functor_T</a> signature and then execute it by providing an <b>order_code</b> and parameters.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Treq</td><td>The type of request for the order </td></tr>
+    <tr><td class="paramname">Tres</td><td>The type of response of an order </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a3c2486ceef7dba5c12ef94e6c33dc7c4" name="a3c2486ceef7dba5c12ef94e6c33dc7c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2486ceef7dba5c12ef94e6c33dc7c4">&#9670;&nbsp;</a></span>order_functor_T</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,10 +142,12 @@ Public Attributes</h2></td></tr>
 template&lt;typename Treq , typename Tres &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structOrderBinder.html">OrderBinder</a>&lt; Treq, Tres &gt;::wrapped_func_T =  typename std::function&lt;void(Treq, Tres)&gt;</td>
+          <td class="memname">using <a class="el" href="structOrderBinder.html">OrderBinder</a>&lt; Treq, Tres &gt;::order_functor_T =  typename std::function&lt;void(Treq, Tres)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>An alias to the function type that can be associated to one of the OrderCodes(<a class="el" href="order__codes_8hpp.html">order_codes.hpp</a>) </p>
 
 </div>
 </div>
@@ -156,11 +177,13 @@ template&lt;typename Treq , typename Tres &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Default constructor, calls a default constructor of <a class="el" href="structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092" title="A map that associate an order_code to the callback.">OrderBinder::orders</a>. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a92d8fcce7ab7448d080ce9f9e48c2ef0" name="a92d8fcce7ab7448d080ce9f9e48c2ef0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92d8fcce7ab7448d080ce9f9e48c2ef0">&#9670;&nbsp;</a></span>bind_order()</h2>
+<a id="abcfdfb94929c50c51352f233a18684d9" name="abcfdfb94929c50c51352f233a18684d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcfdfb94929c50c51352f233a18684d9">&#9670;&nbsp;</a></span>bind_order()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +202,7 @@ template&lt;typename Treq , typename Tres &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c">wrapped_func_T</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">order_functor_T</a>&#160;</td>
           <td class="paramname"><em>order</em>&#160;</td>
         </tr>
         <tr>
@@ -194,6 +217,15 @@ template&lt;typename Treq , typename Tres &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Associates an order(an OrderBinder::order_functor_T) to an order_code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">order_code</td><td>A code of an order (type is int64_t to allow a direct execution of an associated order after receiving it from the <a class="el" href="classClientT.html" title="ClientT class.">ClientT</a>) </td></tr>
+    <tr><td class="paramname">order</td><td>A functor associated to the <b>order_code</b> </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -239,11 +271,21 @@ template&lt;typename Treq , typename Tres &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Executes an order(an OrderBinder::order_functor_T) associated to an <b>order_code</b> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">order_code</td><td>A code of an order (type is int64_t to allow a direct execution of an associated order after receiving it from the <a class="el" href="classClientT.html" title="ClientT class.">ClientT</a>) </td></tr>
+    <tr><td class="paramname">req</td><td>A received request, that must be treated </td></tr>
+    <tr><td class="paramname">res</td><td>A response that must be composed and sended back </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aee0fdd0b3e07eeb91313347a9c81d6d7" name="aee0fdd0b3e07eeb91313347a9c81d6d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee0fdd0b3e07eeb91313347a9c81d6d7">&#9670;&nbsp;</a></span>orders</h2>
+<a id="a4c0ce4c2dd9b845c030a3103f81d8092" name="a4c0ce4c2dd9b845c030a3103f81d8092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c0ce4c2dd9b845c030a3103f81d8092">&#9670;&nbsp;</a></span>orders</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,10 +293,12 @@ template&lt;typename Treq , typename Tres &gt; </div>
 template&lt;typename Treq , typename Tres &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;int64_t, <a class="el" href="structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c">wrapped_func_T</a>&gt; <a class="el" href="structOrderBinder.html">OrderBinder</a>&lt; Treq, Tres &gt;::orders</td>
+          <td class="memname">std::unordered_map&lt;int64_t, <a class="el" href="structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4">order_functor_T</a>&gt; <a class="el" href="structOrderBinder.html">OrderBinder</a>&lt; Treq, Tres &gt;::orders</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A map that associate an <b>order_code</b> to the callback. </p>
 
 </div>
 </div>

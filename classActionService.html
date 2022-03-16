@@ -145,6 +145,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a1999b2bed67d423c0c273c117bff86de"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shared pointer to ROS2 service, which is responsable to receive requests and send responses.  <a href="classActionService.html#a1999b2bed67d423c0c273c117bff86de">More...</a><br /></td></tr>
 <tr class="separator:a1999b2bed67d423c0c273c117bff86de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a8bb9517bbb56b59c076f20c144ce53"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classMotionPublisher.html">MotionPublisher</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActionService.html#a8a8bb9517bbb56b59c076f20c144ce53">motion_publisher</a></td></tr>
+<tr class="memdesc:a8a8bb9517bbb56b59c076f20c144ce53"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shared pointer to the <a class="el" href="classMotionPublisher.html">MotionPublisher</a> used to publish microcontroller feedback while moving.  <a href="classActionService.html#a8a8bb9517bbb56b59c076f20c144ce53">More...</a><br /></td></tr>
 <tr class="separator:a8a8bb9517bbb56b59c076f20c144ce53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -318,6 +319,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>A shared pointer to the <a class="el" href="classMotionPublisher.html">MotionPublisher</a> used to publish microcontroller feedback while moving. </p>
+
 </div>
 </div>
 <a id="a3e5e29cc58434873a47b2a4f53310e76" name="a3e5e29cc58434873a47b2a4f53310e76"></a>
@@ -341,7 +344,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>order_binder is used to redirect received requests by calling a function binded to an order code. </p>
-<p >Take a look at <a class="el" href="structOrderBinder.html">OrderBinder</a> documentation to better understand it functionning. </p>
+<p >Take a look at <a class="el" href="structOrderBinder.html" title="OrderBinder is used by ActionService in order to execute callback attached to an order code.">OrderBinder</a> documentation to better understand it functionning. </p>
 
 </div>
 </div>

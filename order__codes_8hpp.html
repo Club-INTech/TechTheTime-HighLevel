@@ -96,11 +96,13 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a34a5ea14bf002b0dcc88fe8b5f548060"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060">OrderCodes</a> { <a class="el" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62">MOVE</a>
 , <a class="el" href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060a3dcfe0046eb5876e287dbf0914819b16">ROTATE</a>
  }</td></tr>
+<tr class="memdesc:a34a5ea14bf002b0dcc88fe8b5f548060"><td class="mdescLeft">&#160;</td><td class="mdescRight">OrderCodes are used to distinguish orders and send them from manager to microcontroller_proxy.  <a href="order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060">More...</a><br /></td></tr>
 <tr class="separator:a34a5ea14bf002b0dcc88fe8b5f548060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b80b901c4b49c9131fefcb2f50182b5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">MotionStatusCodes</a> { <a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa">MOTION_TIMEOUT</a>
 , <a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5acdecd04610a296847f05968c974a6bf2">NOT_COMPLETE</a>
 , <a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5a00a900c9df90c74f75004b3dc04f173d">COMPLETE</a>
  }</td></tr>
+<tr class="memdesc:a0b80b901c4b49c9131fefcb2f50182b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">MotionStatusCodes are used to determine the status of the robot after movement.  <a href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">More...</a><br /></td></tr>
 <tr class="separator:a0b80b901c4b49c9131fefcb2f50182b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -115,10 +117,16 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>MotionStatusCodes are used to determine the status of the robot after movement. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa" name="a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa"></a>MOTION_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5acdecd04610a296847f05968c974a6bf2" name="a0b80b901c4b49c9131fefcb2f50182b5acdecd04610a296847f05968c974a6bf2"></a>NOT_COMPLETE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5a00a900c9df90c74f75004b3dc04f173d" name="a0b80b901c4b49c9131fefcb2f50182b5a00a900c9df90c74f75004b3dc04f173d"></a>COMPLETE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa" name="a0b80b901c4b49c9131fefcb2f50182b5ad81e49a14b0171d304f8af39192867aa"></a>MOTION_TIMEOUT&#160;</td><td class="fielddoc"><p >MOTION_TIMEOUT indicates that the requested motion has not been done in required time interval <br  />
+ </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5acdecd04610a296847f05968c974a6bf2" name="a0b80b901c4b49c9131fefcb2f50182b5acdecd04610a296847f05968c974a6bf2"></a>NOT_COMPLETE&#160;</td><td class="fielddoc"><p >NOT_COMPLETE indicates that the robot stopped without completing the movement. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0b80b901c4b49c9131fefcb2f50182b5a00a900c9df90c74f75004b3dc04f173d" name="a0b80b901c4b49c9131fefcb2f50182b5a00a900c9df90c74f75004b3dc04f173d"></a>COMPLETE&#160;</td><td class="fielddoc"><p >COMPLETE indicates that the robot completed movement and stopped. </p>
+</td></tr>
 </table>
 
 </div>
@@ -134,6 +142,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OrderCodes are used to distinguish orders and send them from manager to microcontroller_proxy. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62" name="a34a5ea14bf002b0dcc88fe8b5f548060aed3ef32890b6da0919b57254c5206c62"></a>MOVE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a34a5ea14bf002b0dcc88fe8b5f548060a3dcfe0046eb5876e287dbf0914819b16" name="a34a5ea14bf002b0dcc88fe8b5f548060a3dcfe0046eb5876e287dbf0914819b16"></a>ROTATE&#160;</td><td class="fielddoc"></td></tr>

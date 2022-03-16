@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classscom_1_1SerialPort.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classscom_1_1SerialPort.html" title="SerialPort class.">SerialPort</a> class.  
+<p>Class responsible for serial communication, that introduces some special methods to send orders to the microcontroller using <a href="https://github.com/StarQTius/Key-To-Order" target="_blank">Key-To-Order</a>  
  <a href="classscom_1_1SerialPort.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SerialPort_8hpp_source.html">SerialPort.hpp</a>&gt;</code></p>
@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8bd9905bb763c730590eef6b4e8f8d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe8b479d55aac52892dfe61921f3529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a3fe8b479d55aac52892dfe61921f3529">set_output_speed</a> (speed_t)</td></tr>
 <tr class="separator:a3fe8b479d55aac52892dfe61921f3529"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae332f496b770f32edbaec05eb38102b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ae332f496b770f32edbaec05eb38102b9">define_blocking_mode</a> (<a class="el" href="namespacescom.html#a6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a>, std::initializer_list&lt; int &gt;)</td></tr>
+<tr class="memitem:ae332f496b770f32edbaec05eb38102b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ae332f496b770f32edbaec05eb38102b9">define_blocking_mode</a> (<a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a>, std::initializer_list&lt; int &gt;)</td></tr>
 <tr class="separator:ae332f496b770f32edbaec05eb38102b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c866ba56912e318c8a9f71612f7604"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a60c866ba56912e318c8a9f71612f7604">configure_control_modes</a> (tcflag_t, std::initializer_list&lt; bool &gt;)</td></tr>
 <tr class="separator:a60c866ba56912e318c8a9f71612f7604"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,7 +160,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aea2a0a3beefd206e58a5c08cfaf25d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p ><a class="el" href="classscom_1_1SerialPort.html" title="SerialPort class.">SerialPort</a> class. </p>
+<div class="textblock"><p >Class responsible for serial communication, that introduces some special methods to send orders to the microcontroller using <a href="https://github.com/StarQTius/Key-To-Order" target="_blank">Key-To-Order</a> </p>
+<p >Inspired a lot by <a href="https://blog.mbedded.ninja/programming/operating-systems/linux/linux-serial-ports-using-c-cpp/" target="_blank">Embedded Ninja</a></p>
 <dl class="section author"><dt>Author</dt><dd>sudogauss </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af47dc896cd7ead140472b654336c00e9" name="af47dc896cd7ead140472b654336c00e9"></a>
@@ -395,7 +396,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
         <tr>
           <td class="memname">void SerialPort::define_blocking_mode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacescom.html#a6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a>&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>

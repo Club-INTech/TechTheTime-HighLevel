@@ -1,5 +1,6 @@
 var group__microcontroller__proxy =
 [
+    [ "scom", "namespacescom.html", null ],
     [ "scom::SerialPort", "classscom_1_1SerialPort.html", [
       [ "SerialPort", "classscom_1_1SerialPort.html#af47dc896cd7ead140472b654336c00e9", null ],
       [ "~SerialPort", "classscom_1_1SerialPort.html#a2b6b140db54cfaeaec35556d5e9a460b", null ],
@@ -40,5 +41,12 @@ var group__microcontroller__proxy =
       [ "order_binder", "classActionService.html#a3e5e29cc58434873a47b2a4f53310e76", null ],
       [ "service", "classActionService.html#a1999b2bed67d423c0c273c117bff86de", null ],
       [ "service_name", "classActionService.html#a08e7b909eb248563345c4aba57841160", null ]
-    ] ]
+    ] ],
+    [ "scom::BlockingModes", "group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0", [
+      [ "scom::BlockingModes::NO_BLOCK", "group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0a424aa3a69b1e6521fff2b1ced225c793", null ],
+      [ "scom::BlockingModes::FIXED_BYTES", "group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0aacde326a8c19aaaa30fe0a55bccf51bf", null ],
+      [ "scom::BlockingModes::TIMEOUT", "group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0a070a0fb40f6c308ab544b227660aadff", null ],
+      [ "scom::BlockingModes::TIMEOUT_WITH_FIXED_BYTES", "group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0a8f2792ac2396044b8ac74acae3d26c71", null ]
+    ] ],
+    [ "main", "group__microcontroller__proxy.html#ga3c04138a5bfe5d72780bb7e82a18e627", null ]
 ];

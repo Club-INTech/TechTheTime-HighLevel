@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wrapped_5ffunc_5ft_0',['wrapped_func_T',['../structOrderBinder.html#a37a6fe703e92df67fbb8ffa8d339571c',1,'OrderBinder']]]
+  ['type_0',['type',['../structstruct__wrapper.html#af6095c90297d2b1497fb66934990660d',1,'struct_wrapper']]]
 ];
