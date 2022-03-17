@@ -13,7 +13,7 @@
 #include <order/type.h>
 
 #include "../serial/SerialPort.hpp"
-#include "../defines/TimeConst.hpp"
+#include "../defines/MotionFeedbackConst.hpp"
 
 using namespace scom;
 using namespace std::chrono_literals;

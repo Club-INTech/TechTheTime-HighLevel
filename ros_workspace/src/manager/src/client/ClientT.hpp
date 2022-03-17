@@ -52,14 +52,11 @@ public:
     if (rclcpp::spin_until_future_complete(this->self_ptr, result) ==
       rclcpp::FutureReturnCode::SUCCESS)
     {
-      this->treat_response(result);
+      return result;
     } else {
       RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service");
+      throw std::runtime_error("Failed to call service");
     }
-  }
-
-  virtual void treat_response(shared_future_T res) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Finished, %p", res);
   }
 
 private:
