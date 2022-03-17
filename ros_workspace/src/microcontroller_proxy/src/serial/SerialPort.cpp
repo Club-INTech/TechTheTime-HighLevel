@@ -18,10 +18,10 @@ using namespace scom;
 
 namespace scom {
 
-    unsigned int control_mode_bytes[] = {PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD};
-    unsigned int local_modes_bytes[] = {ICANON, ECHO, ECHOE, ECHONL, ISIG};
-    unsigned int input_modes_bytes[] = {IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL};
-    unsigned int output_modes_bytes[] = {OPOST, ONLCR};
+    unsigned int control_mode_bits[] = {PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD};
+    unsigned int local_modes_bits[] = {ICANON, ECHO, ECHOE, ECHONL, ISIG};
+    unsigned int input_modes_bits[] = {IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL};
+    unsigned int output_modes_bits[] = {OPOST, ONLCR};
 
     uint8_t stuffing_byte = ~rpc::header[0];
     // k2o::dispatcher dispatcher{rpc::master::keyring};
@@ -96,9 +96,9 @@ void SerialPort::configure_control_modes(tcflag_t bits_per_byte, std::initialize
 
     for(auto it = control_bits_state.begin(); it < control_bits_state.end(); it++) {
         if(*it) {
-            this->serial_port_config.c_cflag |= control_mode_bytes[std::distance(control_bits_state.begin(), it)];
+            this->serial_port_config.c_cflag |= control_mode_bits[std::distance(control_bits_state.begin(), it)];
         } else {
-            this->serial_port_config.c_cflag &= ~control_mode_bytes[std::distance(control_bits_state.begin(), it)];
+            this->serial_port_config.c_cflag &= ~control_mode_bits[std::distance(control_bits_state.begin(), it)];
         }    
     }
 }
@@ -109,9 +109,9 @@ void SerialPort::configure_local_modes(std::initializer_list<bool> local_bits_st
 
     for(auto it = local_bits_state.begin(); it < local_bits_state.end(); it++) {
         if(*it) {
-            this->serial_port_config.c_lflag |= control_mode_bytes[std::distance(local_bits_state.begin(), it)];
+            this->serial_port_config.c_lflag |= control_mode_bits[std::distance(local_bits_state.begin(), it)];
         } else {
-            this->serial_port_config.c_lflag &= ~control_mode_bytes[std::distance(local_bits_state.begin(), it)];
+            this->serial_port_config.c_lflag &= ~control_mode_bits[std::distance(local_bits_state.begin(), it)];
         }    
     }
 }
@@ -122,9 +122,9 @@ void SerialPort::configure_input_modes(std::initializer_list<bool> input_bits_st
 
     for(auto it = input_bits_state.begin(); it < input_bits_state.end(); it++) {
         if(*it) {
-            this->serial_port_config.c_iflag |= control_mode_bytes[std::distance(input_bits_state.begin(), it)];
+            this->serial_port_config.c_iflag |= control_mode_bits[std::distance(input_bits_state.begin(), it)];
         } else {
-            this->serial_port_config.c_iflag &= ~control_mode_bytes[std::distance(input_bits_state.begin(), it)];
+            this->serial_port_config.c_iflag &= ~control_mode_bits[std::distance(input_bits_state.begin(), it)];
         }    
     }
 }
@@ -135,9 +135,9 @@ void SerialPort::configure_output_modes(std::initializer_list<bool> output_bits_
 
     for(auto it = output_bits_state.begin(); it < output_bits_state.end(); it++) {
         if(*it) {
-            this->serial_port_config.c_oflag |= control_mode_bytes[std::distance(output_bits_state.begin(), it)];
+            this->serial_port_config.c_oflag |= control_mode_bits[std::distance(output_bits_state.begin(), it)];
         } else {
-            this->serial_port_config.c_oflag &= ~control_mode_bytes[std::distance(output_bits_state.begin(), it)];
+            this->serial_port_config.c_oflag &= ~control_mode_bits[std::distance(output_bits_state.begin(), it)];
         }    
     }
 }
