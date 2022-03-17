@@ -12,7 +12,14 @@ namespace order {
      * @param distance distance in mm (moves backward if negative)
      * @return Robot successfully moved
      */
-    bool move(int distance) {
+    bool move(int distance) { 
+        if(distance>=0){
+            commClient->send(OrderCodes::START_MOVE_FORWARD, distance, 0, 0);
+        }
+        else{
+            commClient->send(OrderCodes::START_MOVE_BACKWARD, abs(distance), 0, 0);
+        }
+        // Traitement feedback response
         return true;
     }
 
@@ -23,6 +30,8 @@ namespace order {
      * @return Robot successfully moved
      */
     bool turn(int angle) {
+        commClient->send(OrderCodes::START_ROTATE_LEFT, 0, 0, angle);
+        // Traitement feedback response
         return true;
     }
 
@@ -32,26 +41,9 @@ namespace order {
      * @return Robot successfully stoped
      */
     bool stop() {
+        commClient->send(OrderCodes::STOP, 0, 0, 0);
+        // Traitement feedback response
         return true;
-    }
-
-    /**
-     * @brief Get the Sick Distance object
-     * 
-     * @param id The id of the sick
-     * @return The distance read by the sick
-     */
-    int getSickDistance(unsigned short id) {
-        return 0;
-    }
-
-    /**
-     * @brief Get the Resistance read by the robot
-     * 
-     * @return int the ohm value of the resistance
-     */
-    int getResistance() {
-        return 0;
     }
 
     /**
@@ -61,6 +53,8 @@ namespace order {
      * @return true if puck was successfully caught
      */
     bool catchPuck(unsigned int id) {
+        commClient->send(OrderCodes::ACTIVATE_PUMP, 0, id, 0);
+        // Traitement feedback response
         return true;
     }
 
@@ -71,6 +65,8 @@ namespace order {
      * @return Puck was successfully released
      */
     bool releasePuck(unsigned int id) {
+        commClient->send(OrderCodes::RELEASE_PUMP, 0, id, 0);
+        // Traitement feedback response
         return true;
     }
 
@@ -132,6 +128,25 @@ namespace order {
      */
     bool deactivateStroller() {
         return true;
+    }
+
+    /**
+     * @brief Get the Sick Distance object
+     * 
+     * @param id The id of the sick
+     * @return The distance read by the sick
+     */
+    int getSickDistance(unsigned short id) {
+        return 0;
+    }
+
+    /**
+     * @brief Get the Resistance read by the robot
+     * 
+     * @return int the ohm value of the resistance
+     */
+    int getResistance() {
+        return 0;
     }
 
     //bool 
