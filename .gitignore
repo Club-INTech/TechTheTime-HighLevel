@@ -18,6 +18,8 @@ bin/
 # doc
 
 doc/
+html/
+latex/
 doxygen/
 #
 

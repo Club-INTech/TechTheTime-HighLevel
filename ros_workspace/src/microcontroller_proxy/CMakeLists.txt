@@ -29,6 +29,7 @@ add_compile_options(-Wall -Wextra)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(action_msg_srv REQUIRED)
+find_package(motion_msg_srv REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -57,14 +58,15 @@ add_executable(
   ${PROJECT_NAME} 
   src/serial/SerialPort.cpp
   src/service/ActionService.cpp 
-  src/microcontroller_proxy.cpp 
+  src/microcontroller_proxy.cpp
+  src/publisher/MotionPublisher.cpp 
   ${ActionOrderHeaders} 
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ${ActionOrderDirectory})
 target_link_libraries(${PROJECT_NAME} expected)
 
 ament_target_dependencies(${PROJECT_NAME}
-  rclcpp action_msg_srv)
+  rclcpp action_msg_srv motion_msg_srv)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
