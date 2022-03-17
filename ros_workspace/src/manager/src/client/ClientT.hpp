@@ -22,10 +22,11 @@ using namespace std::chrono_literals;
 template<class T, class Treq, class... Rs>
 class ClientT : public rclcpp::Node {
 
+public:
+
   using shared_ptr_T = typename rclcpp::Client<T>::SharedPtr;
   using shared_future_T = typename rclcpp::Client<T>::SharedFuture;
 
-public:
   ClientT(const std::string& client_name) : Node(client_name) {
     this->client_name = client_name;
     this->client = this->create_client<T>(client_name);
@@ -58,7 +59,7 @@ public:
   }
 
   virtual void treat_response(shared_future_T res) {
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: %d", res.get()->success);
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Finished, %p", res);
   }
 
 private:
