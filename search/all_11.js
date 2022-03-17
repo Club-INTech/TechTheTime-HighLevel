@@ -12,6 +12,5 @@ var searchData=
   ['timeout_9',['TIMEOUT',['../MotionFeedbackConst_8hpp.html#a11d50b1ecfc0df885ea003e890edcc0a',1,'TIMEOUT():&#160;MotionFeedbackConst.hpp'],['../group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0a070a0fb40f6c308ab544b227660aadff',1,'scom::TIMEOUT()']]],
   ['timeout_5fwith_5ffixed_5fbytes_10',['TIMEOUT_WITH_FIXED_BYTES',['../group__microcontroller__proxy.html#gga6b62e2aa725ea6f1e3659baf40c782f0a8f2792ac2396044b8ac74acae3d26c71',1,'scom']]],
   ['treat_5forders_11',['treat_orders',['../classActionService.html#a01a8bf947e78ee956ee390a32b0375af',1,'ActionService']]],
-  ['treat_5fresponse_12',['treat_response',['../classActionClient.html#a08abe78b7c05a77381b0a5d396e66d94',1,'ActionClient::treat_response()'],['../classClientT.html#ad9dab3eaf7f22db0477713ff4fafc6d9',1,'ClientT::treat_response()']]],
-  ['type_13',['type',['../structstruct__wrapper.html#af6095c90297d2b1497fb66934990660d',1,'struct_wrapper::type()'],['../classJoystickEvent.html#ada8aabcfb833ec362a3d8b2502d26951',1,'JoystickEvent::type()']]]
+  ['type_12',['type',['../structstruct__wrapper.html#af6095c90297d2b1497fb66934990660d',1,'struct_wrapper::type()'],['../classJoystickEvent.html#ada8aabcfb833ec362a3d8b2502d26951',1,'JoystickEvent::type()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['input_5fmodes_5fbytes_0',['input_modes_bytes',['../namespacescom.html#a2fd8adf1eef72a9af2ab67b8d0457eb7',1,'scom']]]
+  ['input_5fmodes_5fbits_0',['input_modes_bits',['../namespacescom.html#a640a8acc46f2304134d506952ea9506f',1,'scom']]]
 ];

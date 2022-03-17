@@ -15,5 +15,5 @@ var searchData=
   ['orderbinder_3c_20shared_5frequest_5ft_2c_20shared_5fresponse_5ft_20_3e_12',['OrderBinder&lt; shared_request_T, shared_response_T &gt;',['../structOrderBinder.html',1,'']]],
   ['ordercodes_13',['OrderCodes',['../order__codes_8hpp.html#a34a5ea14bf002b0dcc88fe8b5f548060',1,'order_codes.hpp']]],
   ['orders_14',['orders',['../structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092',1,'OrderBinder']]],
-  ['output_5fmodes_5fbytes_15',['output_modes_bytes',['../namespacescom.html#a8355fef72e1272a586eeabc698df5461',1,'scom']]]
+  ['output_5fmodes_5fbits_15',['output_modes_bits',['../namespacescom.html#afffccb624f0ac375b7b67cc6d27a08dc',1,'scom']]]
 ];
