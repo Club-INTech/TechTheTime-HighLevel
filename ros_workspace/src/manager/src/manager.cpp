@@ -4,6 +4,8 @@
 #include <order_codes.hpp>
 #include "subscriber/MotionSubscriber.hpp"
 #include <thread>
+#include "action_msg_srv/srv/order.hpp"
+#include <stdexcept>
 
 
 using namespace std;
@@ -96,8 +98,22 @@ int main(int argc, char** argv) {
     });
   
     std::thread client_thread([&commClient](){
-        commClient->send((int64_t) OrderCodes::MOVE, 1000, 0, 0);
-        commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+        try {
+            auto res = commClient->send((int64_t) OrderCodes::MOVE, 1000, 0, 0);
+
+            MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
+            if(status == MotionStatusCodes::COMPLETE) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
+            } else if(status == MotionStatusCodes::NOT_COMPLETE){
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+            } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+            }
+
+            res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+        } catch(const std::runtime_error& e) {
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
+        }  
     });
 
     subscriber_thread.join();
