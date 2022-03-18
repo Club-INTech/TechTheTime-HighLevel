@@ -53,7 +53,7 @@ using namespace std;
  * 
  * motion_control is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.
  * 
- * Link to the @ref motion
+ * Link to the motion_control.py
  * 
  * \subsection urg_node
  * 
