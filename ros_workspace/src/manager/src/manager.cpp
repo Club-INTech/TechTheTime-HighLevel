@@ -6,6 +6,7 @@
 #include <thread>
 #include "action_msg_srv/srv/order.hpp"
 #include <stdexcept>
+#include "robot_motion/RobotMotion.hpp"
 
 
 using namespace std;
@@ -52,6 +53,8 @@ using namespace std;
  * 
  * motion_control is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.
  * 
+ * Link to the @ref motion_control
+ * 
  * \subsection urg_node
  * 
  * urg_node is a default ROS2 node, which publishes the points data of lidar. 
@@ -69,6 +72,15 @@ using namespace std;
  * \image html ROS2_Architecture.png
  * 
  * 
+ * <br>
+ * <br>
+ * <hr>
+ * <br>
+ * 
+ * \section sequence_diagram The example of functionning of the manager <-> microcontroller_proxy communication.
+ * 
+ * \image html ManagerMicrocontrollerFunctionning.png
+ * 
  */
 
 /**
@@ -85,6 +97,9 @@ using namespace std;
  * @author sudogauss
 */
 
+double RobotMotion::x = 0.0;
+double RobotMotion::y = 0.0;
+double RobotMotion::angle = 0.0;
 
 int main(int argc, char** argv) {
 
@@ -96,7 +111,7 @@ int main(int argc, char** argv) {
     std::thread subscriber_thread([](){
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
-  
+
     std::thread client_thread([&commClient](){
         try {
             auto res = commClient->send((int64_t) OrderCodes::MOVE, 1000, 0, 0);

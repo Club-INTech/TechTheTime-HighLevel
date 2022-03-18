@@ -9,13 +9,13 @@ constexpr double TICKS_TO_MM = WHEEL_RADIUS_MM / TICKS_PER_TURN;
 class RobotMotion {
 public:
 
-    RobotMotion() = default;
+    RobotMotion() = delete;
 
-    double x;
-    double y;
-    double angle;
+    static double x;
+    static double y;
+    static double angle;
 
-    void atomic_move(int64_t left_ticks, int64_t right_ticks) {
+    static void atomic_move(int64_t left_ticks, int64_t right_ticks) {
         x += ((left_ticks * TICKS_TO_MM + right_ticks * TICKS_TO_MM) / 2);
     }
 };
