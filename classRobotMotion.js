@@ -1,8 +1,8 @@
 var classRobotMotion =
 [
-    [ "RobotMotion", "classRobotMotion.html#ab85ceb1ec554236097fc6384926355ef", null ],
-    [ "atomic_move", "classRobotMotion.html#a3456139fb2626bc89f47b3824932c604", null ],
-    [ "angle", "classRobotMotion.html#ad971fae04522c28583a939e20b73dbbb", null ],
-    [ "x", "classRobotMotion.html#a789c5e873155d4bd957fda2d863fe2a7", null ],
-    [ "y", "classRobotMotion.html#abc9c36e2ca693b30e0ca5c354b1d9615", null ]
+    [ "RobotMotion", "classRobotMotion.html#a2a2d589b25726c510678f11fa12b1d3b", null ],
+    [ "atomic_move", "classRobotMotion.html#aec7173250ec4691da0590f5ee9846c6c", null ],
+    [ "angle", "classRobotMotion.html#a79dea7ed146af26ff4a0ba4bf5c83eee", null ],
+    [ "x", "classRobotMotion.html#af88b946fb90d5f08b5fb740c70e98c10", null ],
+    [ "y", "classRobotMotion.html#ab927965981178aa1fba979a37168db2a", null ]
 ];

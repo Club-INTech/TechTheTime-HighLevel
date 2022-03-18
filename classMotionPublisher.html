@@ -104,40 +104,40 @@ Inheritance diagram for MotionPublisher:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a412a093f4845f4f68b365792b9dd8840"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a412a093f4845f4f68b365792b9dd8840">MotionPublisher</a> (std::shared_ptr&lt; <a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a> &gt; gateway)</td></tr>
-<tr class="memdesc:a412a093f4845f4f68b365792b9dd8840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="classMotionPublisher.html" title="MotionPublisher is responsible to request and publish motion feedback provided by microcontroller via...">MotionPublisher</a>.  <a href="classMotionPublisher.html#a412a093f4845f4f68b365792b9dd8840">More...</a><br /></td></tr>
-<tr class="separator:a412a093f4845f4f68b365792b9dd8840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eccefbabd5fc2ce5635cd6075d5be88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a2eccefbabd5fc2ce5635cd6075d5be88">broadcast_motion</a> (int32_t expected_left_ticks, int32_t expected_right_ticks)</td></tr>
-<tr class="memdesc:a2eccefbabd5fc2ce5635cd6075d5be88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes ticks provided by microcontroller until robot is stopped or finished its goal or timeout for motion has exceeded.  <a href="classMotionPublisher.html#a2eccefbabd5fc2ce5635cd6075d5be88">More...</a><br /></td></tr>
-<tr class="separator:a2eccefbabd5fc2ce5635cd6075d5be88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b492fefc222438d0ce0d83dc27f21f2"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a9b492fefc222438d0ce0d83dc27f21f2">get_motion_status</a> () const</td></tr>
-<tr class="separator:a9b492fefc222438d0ce0d83dc27f21f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeac881c5e0e5a65479391b2e1f646ad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#aeac881c5e0e5a65479391b2e1f646ad0">broadcast_motion</a> (int32_t expected_left_ticks, int32_t expected_right_ticks)</td></tr>
+<tr class="memdesc:aeac881c5e0e5a65479391b2e1f646ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes ticks provided by microcontroller until robot is stopped or finished its goal or timeout for motion has exceeded.  <a href="classMotionPublisher.html#aeac881c5e0e5a65479391b2e1f646ad0">More...</a><br /></td></tr>
+<tr class="separator:aeac881c5e0e5a65479391b2e1f646ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d647c96594aaa948eb4f8e684728bb0"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a0d647c96594aaa948eb4f8e684728bb0">get_motion_status</a> () const</td></tr>
+<tr class="separator:a0d647c96594aaa948eb4f8e684728bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46397cb4bcc6b5d1f4d784766564cf7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#aa46397cb4bcc6b5d1f4d784766564cf7">MotionPublisher</a> (std::shared_ptr&lt; <a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a> &gt; gateway)</td></tr>
+<tr class="memdesc:aa46397cb4bcc6b5d1f4d784766564cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="classMotionPublisher.html" title="MotionPublisher is responsible to request and publish motion feedback provided by microcontroller via...">MotionPublisher</a>.  <a href="classMotionPublisher.html#aa46397cb4bcc6b5d1f4d784766564cf7">More...</a><br /></td></tr>
+<tr class="separator:aa46397cb4bcc6b5d1f4d784766564cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a4f6c855d02813bce1961b291760d4305"><td class="memItemLeft" align="right" valign="top">rclcpp::Publisher&lt; motion_msg_srv::msg::Motion &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a4f6c855d02813bce1961b291760d4305">publisher_</a></td></tr>
-<tr class="memdesc:a4f6c855d02813bce1961b291760d4305"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1Publisher.html" target="_blank">A ROS2 publisher</a> for motion_msg_srv::msg::Motion.  <a href="classMotionPublisher.html#a4f6c855d02813bce1961b291760d4305">More...</a><br /></td></tr>
-<tr class="separator:a4f6c855d02813bce1961b291760d4305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a895427823fe3b84c644f9e13dc776528"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a895427823fe3b84c644f9e13dc776528">microcontroller_gateway</a></td></tr>
-<tr class="memdesc:a895427823fe3b84c644f9e13dc776528"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shared pointer to the <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> instance, that has been initialized by <a class="el" href="classActionService.html#afae57934b79d4b0a9337e42eb5f8931d" title="ActionService constructor.">ActionService::ActionService</a>.  <a href="classMotionPublisher.html#a895427823fe3b84c644f9e13dc776528">More...</a><br /></td></tr>
-<tr class="separator:a895427823fe3b84c644f9e13dc776528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2ae68abb389c11ac9bfe6fc0920201e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">MotionStatusCodes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#aa2ae68abb389c11ac9bfe6fc0920201e">motion_status</a></td></tr>
-<tr class="memdesc:aa2ae68abb389c11ac9bfe6fc0920201e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a robot motion status after movement has been finished.  <a href="classMotionPublisher.html#aa2ae68abb389c11ac9bfe6fc0920201e">More...</a><br /></td></tr>
-<tr class="separator:aa2ae68abb389c11ac9bfe6fc0920201e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ba3a1ed0406e5b01dad045d185b5bc"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#ae4ba3a1ed0406e5b01dad045d185b5bc">microcontroller_gateway</a></td></tr>
+<tr class="memdesc:ae4ba3a1ed0406e5b01dad045d185b5bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shared pointer to the <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> instance, that has been initialized by <a class="el" href="classActionService.html#af261c2aed3401e2bc4f6cd1d16999bd8" title="ActionService constructor.">ActionService::ActionService</a>.  <a href="classMotionPublisher.html#ae4ba3a1ed0406e5b01dad045d185b5bc">More...</a><br /></td></tr>
+<tr class="separator:ae4ba3a1ed0406e5b01dad045d185b5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c60b31a605eaa19241e35361cc58920"><td class="memItemLeft" align="right" valign="top"><a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">MotionStatusCodes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#a5c60b31a605eaa19241e35361cc58920">motion_status</a></td></tr>
+<tr class="memdesc:a5c60b31a605eaa19241e35361cc58920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a robot motion status after movement has been finished.  <a href="classMotionPublisher.html#a5c60b31a605eaa19241e35361cc58920">More...</a><br /></td></tr>
+<tr class="separator:a5c60b31a605eaa19241e35361cc58920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae69fbd3cba96aa1dbc90d7faa892bf47"><td class="memItemLeft" align="right" valign="top">rclcpp::Publisher&lt; motion_msg_srv::msg::Motion &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotionPublisher.html#ae69fbd3cba96aa1dbc90d7faa892bf47">publisher_</a></td></tr>
+<tr class="memdesc:ae69fbd3cba96aa1dbc90d7faa892bf47"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1Publisher.html" target="_blank">A ROS2 publisher</a> for motion_msg_srv::msg::Motion.  <a href="classMotionPublisher.html#ae69fbd3cba96aa1dbc90d7faa892bf47">More...</a><br /></td></tr>
+<tr class="separator:ae69fbd3cba96aa1dbc90d7faa892bf47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="classMotionPublisher.html" title="MotionPublisher is responsible to request and publish motion feedback provided by microcontroller via...">MotionPublisher</a> is responsible to request and publish motion feedback provided by microcontroller via UART(see scom::SerialPort). </p>
-<p >It also provides a response for <a class="el" href="classActionService.html" title="ActionService is a ROS2 service node, which accepts a request(defined by action_msg_srv) from ClientT...">ActionService</a> by writing it in <a class="el" href="classMotionPublisher.html#aa2ae68abb389c11ac9bfe6fc0920201e" title="Indicates a robot motion status after movement has been finished.">MotionPublisher::motion_status</a></p>
+<p >It also provides a response for <a class="el" href="classActionService.html" title="ActionService is a ROS2 service node, which accepts a request(defined by action_msg_srv) from ClientT...">ActionService</a> by writing it in <a class="el" href="classMotionPublisher.html#a5c60b31a605eaa19241e35361cc58920" title="Indicates a robot motion status after movement has been finished.">MotionPublisher::motion_status</a></p>
 <dl class="section author"><dt>Author</dt><dd>sudogauss </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a412a093f4845f4f68b365792b9dd8840" name="a412a093f4845f4f68b365792b9dd8840"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a412a093f4845f4f68b365792b9dd8840">&#9670;&nbsp;</a></span>MotionPublisher()</h2>
+<a id="aa46397cb4bcc6b5d1f4d784766564cf7" name="aa46397cb4bcc6b5d1f4d784766564cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46397cb4bcc6b5d1f4d784766564cf7">&#9670;&nbsp;</a></span>MotionPublisher()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MotionPublisher::MotionPublisher </td>
+          <td class="memname"><a class="el" href="classMotionPublisher.html">MotionPublisher</a> </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a> &gt;&#160;</td>
           <td class="paramname"><em>gateway</em></td><td>)</td>
@@ -147,7 +147,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes <a class="el" href="classMotionPublisher.html" title="MotionPublisher is responsible to request and publish motion feedback provided by microcontroller via...">MotionPublisher</a>. </p>
-<p >Defines a topic name for <a class="el" href="classMotionPublisher.html#a4f6c855d02813bce1961b291760d4305" title="A ROS2 publisher for motion_msg_srv::msg::Motion.">MotionPublisher::publisher_</a> and sets a gateway to microcontroller</p>
+<p >Defines a topic name for <a class="el" href="classMotionPublisher.html#ae69fbd3cba96aa1dbc90d7faa892bf47" title="A ROS2 publisher for motion_msg_srv::msg::Motion.">MotionPublisher::publisher_</a> and sets a gateway to microcontroller</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gateway</td><td>a shared pointer to the open <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a>, also known as microcontroller_gateway </td></tr>
@@ -158,14 +158,14 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2eccefbabd5fc2ce5635cd6075d5be88" name="a2eccefbabd5fc2ce5635cd6075d5be88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2eccefbabd5fc2ce5635cd6075d5be88">&#9670;&nbsp;</a></span>broadcast_motion()</h2>
+<a id="aeac881c5e0e5a65479391b2e1f646ad0" name="aeac881c5e0e5a65479391b2e1f646ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeac881c5e0e5a65479391b2e1f646ad0">&#9670;&nbsp;</a></span>broadcast_motion()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MotionPublisher::broadcast_motion </td>
+          <td class="memname">void broadcast_motion </td>
           <td>(</td>
           <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>expected_left_ticks</em>, </td>
@@ -195,14 +195,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9b492fefc222438d0ce0d83dc27f21f2" name="a9b492fefc222438d0ce0d83dc27f21f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b492fefc222438d0ce0d83dc27f21f2">&#9670;&nbsp;</a></span>get_motion_status()</h2>
+<a id="a0d647c96594aaa948eb4f8e684728bb0" name="a0d647c96594aaa948eb4f8e684728bb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d647c96594aaa948eb4f8e684728bb0">&#9670;&nbsp;</a></span>get_motion_status()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int64_t MotionPublisher::get_motion_status </td>
+          <td class="memname">int64_t get_motion_status </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -214,8 +214,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a895427823fe3b84c644f9e13dc776528" name="a895427823fe3b84c644f9e13dc776528"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a895427823fe3b84c644f9e13dc776528">&#9670;&nbsp;</a></span>microcontroller_gateway</h2>
+<a id="ae4ba3a1ed0406e5b01dad045d185b5bc" name="ae4ba3a1ed0406e5b01dad045d185b5bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ba3a1ed0406e5b01dad045d185b5bc">&#9670;&nbsp;</a></span>microcontroller_gateway</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +224,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a>&gt; MotionPublisher::microcontroller_gateway</td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classscom_1_1SerialPort.html">scom::SerialPort</a>&gt; microcontroller_gateway</td>
         </tr>
       </table>
   </td>
@@ -234,12 +234,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A shared pointer to the <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> instance, that has been initialized by <a class="el" href="classActionService.html#afae57934b79d4b0a9337e42eb5f8931d" title="ActionService constructor.">ActionService::ActionService</a>. </p>
+<p>A shared pointer to the <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> instance, that has been initialized by <a class="el" href="classActionService.html#af261c2aed3401e2bc4f6cd1d16999bd8" title="ActionService constructor.">ActionService::ActionService</a>. </p>
 
 </div>
 </div>
-<a id="aa2ae68abb389c11ac9bfe6fc0920201e" name="aa2ae68abb389c11ac9bfe6fc0920201e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2ae68abb389c11ac9bfe6fc0920201e">&#9670;&nbsp;</a></span>motion_status</h2>
+<a id="a5c60b31a605eaa19241e35361cc58920" name="a5c60b31a605eaa19241e35361cc58920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c60b31a605eaa19241e35361cc58920">&#9670;&nbsp;</a></span>motion_status</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +248,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">MotionStatusCodes</a> MotionPublisher::motion_status</td>
+          <td class="memname"><a class="el" href="order__codes_8hpp.html#a0b80b901c4b49c9131fefcb2f50182b5">MotionStatusCodes</a> motion_status</td>
         </tr>
       </table>
   </td>
@@ -263,8 +263,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4f6c855d02813bce1961b291760d4305" name="a4f6c855d02813bce1961b291760d4305"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f6c855d02813bce1961b291760d4305">&#9670;&nbsp;</a></span>publisher_</h2>
+<a id="ae69fbd3cba96aa1dbc90d7faa892bf47" name="ae69fbd3cba96aa1dbc90d7faa892bf47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae69fbd3cba96aa1dbc90d7faa892bf47">&#9670;&nbsp;</a></span>publisher_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,7 +273,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">rclcpp::Publisher&lt;motion_msg_srv::msg::Motion&gt;::SharedPtr MotionPublisher::publisher_</td>
+          <td class="memname">rclcpp::Publisher&lt;motion_msg_srv::msg::Motion&gt;::SharedPtr publisher_</td>
         </tr>
       </table>
   </td>

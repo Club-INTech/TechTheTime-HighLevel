@@ -1,10 +1,10 @@
 var classBinder =
 [
-    [ "Binder", "classBinder.html#a192e6e3575ee87d3e842c7318c217af3", null ],
-    [ "BindAxis", "classBinder.html#a0975cc0b68cc27295c201d259747377f", null ],
-    [ "BindButton", "classBinder.html#a753534fb21a0414031c8f31856671895", null ],
-    [ "CallAxisCallback", "classBinder.html#a582ec72efe49cda054b28d4d15667b3c", null ],
-    [ "CallButtonCallback", "classBinder.html#ad66c5d5e2552922a6cbd3e26247ea1a6", null ],
-    [ "axisCallback", "classBinder.html#aafc105ff61e8ef4c907c388a7cc52a93", null ],
-    [ "buttonsCallback", "classBinder.html#ad145f9f173d167055851fb6e50eaf0be", null ]
+    [ "Binder", "classBinder.html#adbd10539b8d1f9f9ab3580bf24a12f51", null ],
+    [ "BindAxis", "classBinder.html#a941a7f17a5b0798055d38d25294fd371", null ],
+    [ "BindButton", "classBinder.html#afadfed55169cc3c4a6f7293bf60e99af", null ],
+    [ "CallAxisCallback", "classBinder.html#a20e2208618718f3552454d68606fbbb8", null ],
+    [ "CallButtonCallback", "classBinder.html#afaf3b545f293265a27045797504311ab", null ],
+    [ "axisCallback", "classBinder.html#acab17bcd78938e85603e8618f1efa2b6", null ],
+    [ "buttonsCallback", "classBinder.html#a37202a91e6f175242e4d02c4ce386a28", null ]
 ];

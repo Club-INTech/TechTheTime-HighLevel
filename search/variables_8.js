@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['license_0',['license',['../namespacesetup.html#a8ed6f50a28bd6a8794f8e1153baa6de9',1,'setup']]],
-  ['local_5fmodes_5fbits_1',['local_modes_bits',['../namespacescom.html#ae91dc7c693b4b69af4495bb0c3b62b68',1,'scom']]]
+  ['license_0',['license',['../namespacesetup.html#a4e659be027e258b72df12349200a263e',1,'setup']]],
+  ['local_5fmodes_5fbits_1',['local_modes_bits',['../namespacescom.html#a39e1da90e3efa1e673caa6af31a3396d',1,'scom']]]
 ];

@@ -1,13 +1,13 @@
 var classJoystickEvent =
 [
-    [ "isAxis", "classJoystickEvent.html#a0b82c33e3a562798595138bcffe02d6a", null ],
-    [ "isButton", "classJoystickEvent.html#aae34d965daafe3e45a0bbfd733866386", null ],
-    [ "isInitialState", "classJoystickEvent.html#a33df9d4e8ffc2a83e96fda2010a5d7ca", null ],
+    [ "isAxis", "classJoystickEvent.html#a98f2162093d17944bbd7eef8aa787113", null ],
+    [ "isButton", "classJoystickEvent.html#a9c99e66d3b83e70bcdf30aba49779941", null ],
+    [ "isInitialState", "classJoystickEvent.html#a495da192a4ebc482535b99cbccd26c1c", null ],
     [ "operator<<", "classJoystickEvent.html#a174c96ca1fe4126bc983b9c718cbf40c", null ],
-    [ "MAX_AXES_VALUE", "classJoystickEvent.html#a344acb05d03e6eeba74cef98209497eb", null ],
-    [ "MIN_AXES_VALUE", "classJoystickEvent.html#a4785b5a5d2157f8507561af42b5d28f1", null ],
-    [ "number", "classJoystickEvent.html#a786468a9d3ad11577fdbd64292d8bc06", null ],
-    [ "time", "classJoystickEvent.html#a5daa361798dd403ff4dd771fca60ede0", null ],
-    [ "type", "classJoystickEvent.html#ada8aabcfb833ec362a3d8b2502d26951", null ],
-    [ "value", "classJoystickEvent.html#a52cd09ad823d2eec682657f27485109d", null ]
+    [ "MAX_AXES_VALUE", "classJoystickEvent.html#abd23a8a7d4f29dbab679590540c5d16f", null ],
+    [ "MIN_AXES_VALUE", "classJoystickEvent.html#acbfc7fb1cb1203bd4b1352c460ba9c0d", null ],
+    [ "number", "classJoystickEvent.html#aa6787fc6eb732987040b1f378489db54", null ],
+    [ "time", "classJoystickEvent.html#a83e57ce9bd59cfa0995c2e2c8589c274", null ],
+    [ "type", "classJoystickEvent.html#aa5044999f3339d2ba3b1bf22fa6cfe95", null ],
+    [ "value", "classJoystickEvent.html#a96e2c7878a59414fb461fac716124f6d", null ]
 ];

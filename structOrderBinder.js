@@ -1,8 +1,8 @@
 var structOrderBinder =
 [
-    [ "order_functor_T", "structOrderBinder.html#a3c2486ceef7dba5c12ef94e6c33dc7c4", null ],
-    [ "OrderBinder", "structOrderBinder.html#af26f9be9ed43f8aec60a37df49ace131", null ],
-    [ "bind_order", "structOrderBinder.html#abcfdfb94929c50c51352f233a18684d9", null ],
-    [ "execute_order", "structOrderBinder.html#aff5361391d10e6a0d6fc641913204a60", null ],
-    [ "orders", "structOrderBinder.html#a4c0ce4c2dd9b845c030a3103f81d8092", null ]
+    [ "order_functor_T", "structOrderBinder.html#a99fadadbf354e0c22ed8ef44bfcf642a", null ],
+    [ "OrderBinder", "structOrderBinder.html#ae7055ef6530e2942ce8fba7494eb867c", null ],
+    [ "bind_order", "structOrderBinder.html#a1cf34cf405e9c3db37f34cca88a22824", null ],
+    [ "execute_order", "structOrderBinder.html#afa4866e117a8eea100b461746fb2d229", null ],
+    [ "orders", "structOrderBinder.html#a7dd972c7ab965dca29229339c9865ba6", null ]
 ];

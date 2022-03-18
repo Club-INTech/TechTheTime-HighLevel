@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['data_5ffiles_0',['data_files',['../namespacesetup.html#ad027a8e9452da003dca32bf7467bd16e',1,'setup']]],
-  ['define_5fblocking_5fmode_1',['define_blocking_mode',['../classscom_1_1SerialPort.html#a63361bb8ae1ae8b52aa0dbd36ae3a19c',1,'scom::SerialPort']]],
-  ['description_2',['description',['../namespacesetup.html#aedf461ec52a946bda975938ba0b93ec0',1,'setup']]],
+  ['data_5ffiles_0',['data_files',['../namespacesetup.html#ab2a4f143e926c57a50df01bb182a4fd5',1,'setup']]],
+  ['define_5fblocking_5fmode_1',['define_blocking_mode',['../classscom_1_1SerialPort.html#a3f804313d9e28e483d098839ae728242',1,'scom::SerialPort']]],
+  ['description_2',['description',['../namespacesetup.html#a2661f439a4a94ffdcd5e47ae1da0bb1d',1,'setup']]],
   ['detect_3',['detect',['../namespacedetection.html#a2bc1b27054672adc3f3b11f3807a064b',1,'detection']]],
   ['detection_4',['detection',['../namespacedetection.html',1,'']]],
   ['detection_2epy_5',['detection.py',['../detection_8py.html',1,'']]],

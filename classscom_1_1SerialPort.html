@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TechTheTime-HighLevel: scom::SerialPort Class Reference</title>
+<title>TechTheTime-HighLevel: SerialPort Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('classscom_1_1SerialPort.html',''); ini
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classscom_1_1SerialPort-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">scom::SerialPort Class Reference<div class="ingroups"><a class="el" href="group__microcontroller__proxy.html">Microcontroller node.</a></div></div></div>
+  <div class="headertitle"><div class="title">SerialPort Class Reference<div class="ingroups"><a class="el" href="group__microcontroller__proxy.html">Microcontroller node.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -99,91 +99,91 @@ $(document).ready(function(){initNavTree('classscom_1_1SerialPort.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af47dc896cd7ead140472b654336c00e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#af47dc896cd7ead140472b654336c00e9">SerialPort</a> (const char *)</td></tr>
-<tr class="memdesc:af47dc896cd7ead140472b654336c00e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor, which initializes <a class="el" href="classscom_1_1SerialPort.html#af6cfe3efd0659c63865319f3b6e25eff" title="Port name (example: /dev/ttyACM0) The default value is nullptr as scom::SerialPort is not initialized...">scom::SerialPort::port_name</a> and stuff counters.  <a href="classscom_1_1SerialPort.html#af47dc896cd7ead140472b654336c00e9">More...</a><br /></td></tr>
-<tr class="separator:af47dc896cd7ead140472b654336c00e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b6b140db54cfaeaec35556d5e9a460b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a2b6b140db54cfaeaec35556d5e9a460b">~SerialPort</a> ()=default</td></tr>
-<tr class="memdesc:a2b6b140db54cfaeaec35556d5e9a460b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <a href="classscom_1_1SerialPort.html#a2b6b140db54cfaeaec35556d5e9a460b">More...</a><br /></td></tr>
-<tr class="separator:a2b6b140db54cfaeaec35556d5e9a460b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81c40f110274c3f06f4d852e833f0f07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a81c40f110274c3f06f4d852e833f0f07">open_serial</a> ()</td></tr>
-<tr class="memdesc:a81c40f110274c3f06f4d852e833f0f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a serial port or exits with error if an error has occured.  <a href="classscom_1_1SerialPort.html#a81c40f110274c3f06f4d852e833f0f07">More...</a><br /></td></tr>
-<tr class="separator:a81c40f110274c3f06f4d852e833f0f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d55254350a6dab689af1cc0b7b84dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a2d55254350a6dab689af1cc0b7b84dd6">set_config</a> ()</td></tr>
-<tr class="memdesc:a2d55254350a6dab689af1cc0b7b84dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a> to the <a class="el" href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc" title="Serial port id.">scom::SerialPort::serial_port</a>.  <a href="classscom_1_1SerialPort.html#a2d55254350a6dab689af1cc0b7b84dd6">More...</a><br /></td></tr>
-<tr class="separator:a2d55254350a6dab689af1cc0b7b84dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10bf21e5f1b4c33662cb654498394a36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a10bf21e5f1b4c33662cb654498394a36">get_config</a> ()</td></tr>
-<tr class="memdesc:a10bf21e5f1b4c33662cb654498394a36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current serial config(your environment config) and assigns it to the <a class="el" href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc" title="Serial port id.">scom::SerialPort::serial_port</a>.  <a href="classscom_1_1SerialPort.html#a10bf21e5f1b4c33662cb654498394a36">More...</a><br /></td></tr>
-<tr class="separator:a10bf21e5f1b4c33662cb654498394a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fac8e8272bda1c8fd80caf7920788df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a7fac8e8272bda1c8fd80caf7920788df">set_input_speed</a> (speed_t baud_rate)</td></tr>
-<tr class="memdesc:a7fac8e8272bda1c8fd80caf7920788df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets input communication speed.  <a href="classscom_1_1SerialPort.html#a7fac8e8272bda1c8fd80caf7920788df">More...</a><br /></td></tr>
-<tr class="separator:a7fac8e8272bda1c8fd80caf7920788df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b6bdd9c14b2e14c4b0220eec22122ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a1b6bdd9c14b2e14c4b0220eec22122ff">set_output_speed</a> (speed_t baud_rate)</td></tr>
-<tr class="memdesc:a1b6bdd9c14b2e14c4b0220eec22122ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets output communication speed.  <a href="classscom_1_1SerialPort.html#a1b6bdd9c14b2e14c4b0220eec22122ff">More...</a><br /></td></tr>
-<tr class="separator:a1b6bdd9c14b2e14c4b0220eec22122ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63361bb8ae1ae8b52aa0dbd36ae3a19c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a63361bb8ae1ae8b52aa0dbd36ae3a19c">define_blocking_mode</a> (<a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a> mode, std::initializer_list&lt; int &gt; args)</td></tr>
-<tr class="memdesc:a63361bb8ae1ae8b52aa0dbd36ae3a19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a> for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a63361bb8ae1ae8b52aa0dbd36ae3a19c">More...</a><br /></td></tr>
-<tr class="separator:a63361bb8ae1ae8b52aa0dbd36ae3a19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae41de158784830840dd40474e4b1b325"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ae41de158784830840dd40474e4b1b325">configure_control_modes</a> (tcflag_t bits_per_byte, std::initializer_list&lt; bool &gt; control_bits_state)</td></tr>
-<tr class="memdesc:ae41de158784830840dd40474e4b1b325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures control modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#ae41de158784830840dd40474e4b1b325">More...</a><br /></td></tr>
-<tr class="separator:ae41de158784830840dd40474e4b1b325"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80fda8fbaab8507c7e200e5edc299937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a80fda8fbaab8507c7e200e5edc299937">configure_local_modes</a> (std::initializer_list&lt; bool &gt; local_bits_state)</td></tr>
-<tr class="memdesc:a80fda8fbaab8507c7e200e5edc299937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures local modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a80fda8fbaab8507c7e200e5edc299937">More...</a><br /></td></tr>
-<tr class="separator:a80fda8fbaab8507c7e200e5edc299937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48670475308a76a124a0a5f07e0c44c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a48670475308a76a124a0a5f07e0c44c9">configure_input_modes</a> (std::initializer_list&lt; bool &gt; input_bits_state)</td></tr>
-<tr class="memdesc:a48670475308a76a124a0a5f07e0c44c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures input modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a48670475308a76a124a0a5f07e0c44c9">More...</a><br /></td></tr>
-<tr class="separator:a48670475308a76a124a0a5f07e0c44c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a407b87a2f9fdcbf9fa7d8c45af5ddfb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a407b87a2f9fdcbf9fa7d8c45af5ddfb8">configure_output_modes</a> (std::initializer_list&lt; bool &gt; output_bits_state)</td></tr>
-<tr class="memdesc:a407b87a2f9fdcbf9fa7d8c45af5ddfb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures output modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a407b87a2f9fdcbf9fa7d8c45af5ddfb8">More...</a><br /></td></tr>
-<tr class="separator:a407b87a2f9fdcbf9fa7d8c45af5ddfb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5622449ba24ad802c3c7a28a7807e30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ac5622449ba24ad802c3c7a28a7807e30">write_byte</a> (uint8_t *byte)</td></tr>
-<tr class="memdesc:ac5622449ba24ad802c3c7a28a7807e30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte to serial.  <a href="classscom_1_1SerialPort.html#ac5622449ba24ad802c3c7a28a7807e30">More...</a><br /></td></tr>
-<tr class="separator:ac5622449ba24ad802c3c7a28a7807e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a665ceea999d19ed95671d7e5b0caa4c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a665ceea999d19ed95671d7e5b0caa4c7">write_word</a> (uint8_t *word, int size)</td></tr>
-<tr class="memdesc:a665ceea999d19ed95671d7e5b0caa4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a word to serial.  <a href="classscom_1_1SerialPort.html#a665ceea999d19ed95671d7e5b0caa4c7">More...</a><br /></td></tr>
-<tr class="separator:a665ceea999d19ed95671d7e5b0caa4c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff5291687061e485226eacf795b09a22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aff5291687061e485226eacf795b09a22">read_byte</a> (uint8_t *byte)</td></tr>
-<tr class="memdesc:aff5291687061e485226eacf795b09a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>.  <a href="classscom_1_1SerialPort.html#aff5291687061e485226eacf795b09a22">More...</a><br /></td></tr>
-<tr class="separator:aff5291687061e485226eacf795b09a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58db6e9fce7a3c20558cd0225c9cc608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a58db6e9fce7a3c20558cd0225c9cc608">read_word</a> (uint8_t *word, int size)</td></tr>
-<tr class="memdesc:a58db6e9fce7a3c20558cd0225c9cc608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a sequence of bytes from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>.  <a href="classscom_1_1SerialPort.html#a58db6e9fce7a3c20558cd0225c9cc608">More...</a><br /></td></tr>
-<tr class="separator:a58db6e9fce7a3c20558cd0225c9cc608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88308319742fd438b1da9055039ac554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a88308319742fd438b1da9055039ac554">close_port</a> ()</td></tr>
-<tr class="memdesc:a88308319742fd438b1da9055039ac554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes serial port.  <a href="classscom_1_1SerialPort.html#a88308319742fd438b1da9055039ac554">More...</a><br /></td></tr>
-<tr class="separator:a88308319742fd438b1da9055039ac554"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29604f09572b270405c7f27065ab593a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a29604f09572b270405c7f27065ab593a">set_exclusive_access</a> ()</td></tr>
-<tr class="memdesc:a29604f09572b270405c7f27065ab593a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an exclusive to the serial port by the current process.  <a href="classscom_1_1SerialPort.html#a29604f09572b270405c7f27065ab593a">More...</a><br /></td></tr>
-<tr class="separator:a29604f09572b270405c7f27065ab593a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4458010bd7e641756ffcaec965cb6df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ac4458010bd7e641756ffcaec965cb6df">set_default_config</a> ()</td></tr>
-<tr class="memdesc:ac4458010bd7e641756ffcaec965cb6df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens serial, gets config, then sets a default config to serial port.  <a href="classscom_1_1SerialPort.html#ac4458010bd7e641756ffcaec965cb6df">More...</a><br /></td></tr>
-<tr class="separator:ac4458010bd7e641756ffcaec965cb6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3af519993320f1e8e1958bcaa4cc0209"><td class="memTemplParams" colspan="2">template&lt;auto &amp; Ftor, typename... Args&gt; </td></tr>
-<tr class="memitem:a3af519993320f1e8e1958bcaa4cc0209"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a3af519993320f1e8e1958bcaa4cc0209">call_remote_function</a> (Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a3af519993320f1e8e1958bcaa4cc0209"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic to call a function(an order) on the target device.  <a href="classscom_1_1SerialPort.html#a3af519993320f1e8e1958bcaa4cc0209">More...</a><br /></td></tr>
-<tr class="separator:a3af519993320f1e8e1958bcaa4cc0209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacb484b5dfc0a4bf5371e61ce6340ce3"><td class="memTemplParams" colspan="2">template&lt;auto &amp; Ftor, typename... Args&gt; </td></tr>
+<tr class="memitem:aacb484b5dfc0a4bf5371e61ce6340ce3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aacb484b5dfc0a4bf5371e61ce6340ce3">call_remote_function</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:aacb484b5dfc0a4bf5371e61ce6340ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic to call a function(an order) on the target device.  <a href="classscom_1_1SerialPort.html#aacb484b5dfc0a4bf5371e61ce6340ce3">More...</a><br /></td></tr>
+<tr class="separator:aacb484b5dfc0a4bf5371e61ce6340ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abca7ee1f64c78b282dffc239880364ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#abca7ee1f64c78b282dffc239880364ab">close_port</a> ()</td></tr>
+<tr class="memdesc:abca7ee1f64c78b282dffc239880364ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes serial port.  <a href="classscom_1_1SerialPort.html#abca7ee1f64c78b282dffc239880364ab">More...</a><br /></td></tr>
+<tr class="separator:abca7ee1f64c78b282dffc239880364ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac731ae9ce4e942e1bba7815f79fbbbdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ac731ae9ce4e942e1bba7815f79fbbbdc">configure_control_modes</a> (tcflag_t bits_per_byte, std::initializer_list&lt; bool &gt; control_bits_state)</td></tr>
+<tr class="memdesc:ac731ae9ce4e942e1bba7815f79fbbbdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures control modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#ac731ae9ce4e942e1bba7815f79fbbbdc">More...</a><br /></td></tr>
+<tr class="separator:ac731ae9ce4e942e1bba7815f79fbbbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd7725eba767177bbe7529dc2a3764a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a6cd7725eba767177bbe7529dc2a3764a">configure_input_modes</a> (std::initializer_list&lt; bool &gt; input_bits_state)</td></tr>
+<tr class="memdesc:a6cd7725eba767177bbe7529dc2a3764a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures input modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a6cd7725eba767177bbe7529dc2a3764a">More...</a><br /></td></tr>
+<tr class="separator:a6cd7725eba767177bbe7529dc2a3764a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a942d7059058734ec71c67648df859401"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a942d7059058734ec71c67648df859401">configure_local_modes</a> (std::initializer_list&lt; bool &gt; local_bits_state)</td></tr>
+<tr class="memdesc:a942d7059058734ec71c67648df859401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures local modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a942d7059058734ec71c67648df859401">More...</a><br /></td></tr>
+<tr class="separator:a942d7059058734ec71c67648df859401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb6b54e63a787202c2f5a90ba5302bef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aeb6b54e63a787202c2f5a90ba5302bef">configure_output_modes</a> (std::initializer_list&lt; bool &gt; output_bits_state)</td></tr>
+<tr class="memdesc:aeb6b54e63a787202c2f5a90ba5302bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures output modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#aeb6b54e63a787202c2f5a90ba5302bef">More...</a><br /></td></tr>
+<tr class="separator:aeb6b54e63a787202c2f5a90ba5302bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f804313d9e28e483d098839ae728242"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a3f804313d9e28e483d098839ae728242">define_blocking_mode</a> (<a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841">BlockingModes</a> mode, std::initializer_list&lt; int &gt; args)</td></tr>
+<tr class="memdesc:a3f804313d9e28e483d098839ae728242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a> for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>.  <a href="classscom_1_1SerialPort.html#a3f804313d9e28e483d098839ae728242">More...</a><br /></td></tr>
+<tr class="separator:a3f804313d9e28e483d098839ae728242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed82e40af93b81d6fcc92a9778ef289"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a4ed82e40af93b81d6fcc92a9778ef289">get_config</a> ()</td></tr>
+<tr class="memdesc:a4ed82e40af93b81d6fcc92a9778ef289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets current serial config(your environment config) and assigns it to the <a class="el" href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c" title="Serial port id.">scom::SerialPort::serial_port</a>.  <a href="classscom_1_1SerialPort.html#a4ed82e40af93b81d6fcc92a9778ef289">More...</a><br /></td></tr>
+<tr class="separator:a4ed82e40af93b81d6fcc92a9778ef289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931208a0ef80cbd4bdf0300150774e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a931208a0ef80cbd4bdf0300150774e07">open_serial</a> ()</td></tr>
+<tr class="memdesc:a931208a0ef80cbd4bdf0300150774e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a serial port or exits with error if an error has occured.  <a href="classscom_1_1SerialPort.html#a931208a0ef80cbd4bdf0300150774e07">More...</a><br /></td></tr>
+<tr class="separator:a931208a0ef80cbd4bdf0300150774e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730f0b8f75313414e142cf0c0fe182ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a730f0b8f75313414e142cf0c0fe182ab">read_byte</a> (uint8_t *byte)</td></tr>
+<tr class="memdesc:a730f0b8f75313414e142cf0c0fe182ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>.  <a href="classscom_1_1SerialPort.html#a730f0b8f75313414e142cf0c0fe182ab">More...</a><br /></td></tr>
+<tr class="separator:a730f0b8f75313414e142cf0c0fe182ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58960f711f70385619c3f0fb863a522a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a58960f711f70385619c3f0fb863a522a">read_word</a> (uint8_t *word, int size)</td></tr>
+<tr class="memdesc:a58960f711f70385619c3f0fb863a522a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a sequence of bytes from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>.  <a href="classscom_1_1SerialPort.html#a58960f711f70385619c3f0fb863a522a">More...</a><br /></td></tr>
+<tr class="separator:a58960f711f70385619c3f0fb863a522a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd06f1ee572bcba088597f4636e22ed1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#acd06f1ee572bcba088597f4636e22ed1">SerialPort</a> (const char *)</td></tr>
+<tr class="memdesc:acd06f1ee572bcba088597f4636e22ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor, which initializes <a class="el" href="classscom_1_1SerialPort.html#ab0789a247d7d010b91ef81ab4e598a8c" title="Port name (example: /dev/ttyACM0) The default value is nullptr as scom::SerialPort is not initialized...">scom::SerialPort::port_name</a> and stuff counters.  <a href="classscom_1_1SerialPort.html#acd06f1ee572bcba088597f4636e22ed1">More...</a><br /></td></tr>
+<tr class="separator:acd06f1ee572bcba088597f4636e22ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8be1feacd96d4c2577b3c5ab077dbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aac8be1feacd96d4c2577b3c5ab077dbe">set_config</a> ()</td></tr>
+<tr class="memdesc:aac8be1feacd96d4c2577b3c5ab077dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a> to the <a class="el" href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c" title="Serial port id.">scom::SerialPort::serial_port</a>.  <a href="classscom_1_1SerialPort.html#aac8be1feacd96d4c2577b3c5ab077dbe">More...</a><br /></td></tr>
+<tr class="separator:aac8be1feacd96d4c2577b3c5ab077dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91866aa03ee00d6c8db00e5acf31e94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ae91866aa03ee00d6c8db00e5acf31e94">set_default_config</a> ()</td></tr>
+<tr class="memdesc:ae91866aa03ee00d6c8db00e5acf31e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens serial, gets config, then sets a default config to serial port.  <a href="classscom_1_1SerialPort.html#ae91866aa03ee00d6c8db00e5acf31e94">More...</a><br /></td></tr>
+<tr class="separator:ae91866aa03ee00d6c8db00e5acf31e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9743f5ceb91e261165c4726f64377c18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a9743f5ceb91e261165c4726f64377c18">set_exclusive_access</a> ()</td></tr>
+<tr class="memdesc:a9743f5ceb91e261165c4726f64377c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an exclusive to the serial port by the current process.  <a href="classscom_1_1SerialPort.html#a9743f5ceb91e261165c4726f64377c18">More...</a><br /></td></tr>
+<tr class="separator:a9743f5ceb91e261165c4726f64377c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc332c6e2ffe31998864a78a55a2dd01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#afc332c6e2ffe31998864a78a55a2dd01">set_input_speed</a> (speed_t baud_rate)</td></tr>
+<tr class="memdesc:afc332c6e2ffe31998864a78a55a2dd01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets input communication speed.  <a href="classscom_1_1SerialPort.html#afc332c6e2ffe31998864a78a55a2dd01">More...</a><br /></td></tr>
+<tr class="separator:afc332c6e2ffe31998864a78a55a2dd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaff5203cc271e581ed5fc4aee3313a4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aaff5203cc271e581ed5fc4aee3313a4b">set_output_speed</a> (speed_t baud_rate)</td></tr>
+<tr class="memdesc:aaff5203cc271e581ed5fc4aee3313a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets output communication speed.  <a href="classscom_1_1SerialPort.html#aaff5203cc271e581ed5fc4aee3313a4b">More...</a><br /></td></tr>
+<tr class="separator:aaff5203cc271e581ed5fc4aee3313a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebff21d56f9ad55489bc3ee2b42200d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aebff21d56f9ad55489bc3ee2b42200d2">write_byte</a> (uint8_t *byte)</td></tr>
+<tr class="memdesc:aebff21d56f9ad55489bc3ee2b42200d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte to serial.  <a href="classscom_1_1SerialPort.html#aebff21d56f9ad55489bc3ee2b42200d2">More...</a><br /></td></tr>
+<tr class="separator:aebff21d56f9ad55489bc3ee2b42200d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3756b3d6b643d7e0e49f36f40a8f428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ab3756b3d6b643d7e0e49f36f40a8f428">write_word</a> (uint8_t *word, int size)</td></tr>
+<tr class="memdesc:ab3756b3d6b643d7e0e49f36f40a8f428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a word to serial.  <a href="classscom_1_1SerialPort.html#ab3756b3d6b643d7e0e49f36f40a8f428">More...</a><br /></td></tr>
+<tr class="separator:ab3756b3d6b643d7e0e49f36f40a8f428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8b1c0019e4fb86f54ead265b4b7a9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a3b8b1c0019e4fb86f54ead265b4b7a9b">~SerialPort</a> ()=default</td></tr>
+<tr class="memdesc:a3b8b1c0019e4fb86f54ead265b4b7a9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <a href="classscom_1_1SerialPort.html#a3b8b1c0019e4fb86f54ead265b4b7a9b">More...</a><br /></td></tr>
+<tr class="separator:a3b8b1c0019e4fb86f54ead265b4b7a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a5433faff286ebdf149b828a43e39db6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a5433faff286ebdf149b828a43e39db6e">com_write_byte</a> (upd::byte_t byte)</td></tr>
-<tr class="memdesc:a5433faff286ebdf149b828a43e39db6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte to the serial port and takes care of <a class="el" href="classscom_1_1SerialPort.html#aea2a0a3beefd206e58a5c08cfaf25d62" title="A write counter used to distinguish frame header and a beggining of data transmission.">scom::SerialPort::write_stuff_counter</a> and separation of header and data.  <a href="classscom_1_1SerialPort.html#a5433faff286ebdf149b828a43e39db6e">More...</a><br /></td></tr>
-<tr class="separator:a5433faff286ebdf149b828a43e39db6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4d66bdef24b09a2b2c1d63252951168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ae4d66bdef24b09a2b2c1d63252951168">com_start_frame_transmission</a> (rpc::Frame_Type frame_type)</td></tr>
-<tr class="memdesc:ae4d66bdef24b09a2b2c1d63252951168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a sequence of bytes that determine the frame type(message type).  <a href="classscom_1_1SerialPort.html#ae4d66bdef24b09a2b2c1d63252951168">More...</a><br /></td></tr>
-<tr class="separator:ae4d66bdef24b09a2b2c1d63252951168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af532e054ec5ca0dafd35c4814a7c1b1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#af532e054ec5ca0dafd35c4814a7c1b1a">com_start_frame_transmission</a> (rpc::Frame_Type frame_type)</td></tr>
+<tr class="memdesc:af532e054ec5ca0dafd35c4814a7c1b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a sequence of bytes that determine the frame type(message type).  <a href="classscom_1_1SerialPort.html#af532e054ec5ca0dafd35c4814a7c1b1a">More...</a><br /></td></tr>
+<tr class="separator:af532e054ec5ca0dafd35c4814a7c1b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a654b42a4a602316f93a65d29a79e554a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a654b42a4a602316f93a65d29a79e554a">com_write_byte</a> (upd::byte_t byte)</td></tr>
+<tr class="memdesc:a654b42a4a602316f93a65d29a79e554a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a byte to the serial port and takes care of <a class="el" href="classscom_1_1SerialPort.html#aef6bfb7403a8d9bb39b7f2cd73d10a95" title="A write counter used to distinguish frame header and a beggining of data transmission.">scom::SerialPort::write_stuff_counter</a> and separation of header and data.  <a href="classscom_1_1SerialPort.html#a654b42a4a602316f93a65d29a79e554a">More...</a><br /></td></tr>
+<tr class="separator:a654b42a4a602316f93a65d29a79e554a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a03dc6e1e6df1e9a8f6c4b8f725b748fc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc">serial_port</a> = -1</td></tr>
-<tr class="memdesc:a03dc6e1e6df1e9a8f6c4b8f725b748fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial port id.  <a href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc">More...</a><br /></td></tr>
-<tr class="separator:a03dc6e1e6df1e9a8f6c4b8f725b748fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6cfe3efd0659c63865319f3b6e25eff"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#af6cfe3efd0659c63865319f3b6e25eff">port_name</a> = nullptr</td></tr>
-<tr class="memdesc:af6cfe3efd0659c63865319f3b6e25eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port name (example: /dev/ttyACM0) The default value is nullptr as <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> is not initialized.  <a href="classscom_1_1SerialPort.html#af6cfe3efd0659c63865319f3b6e25eff">More...</a><br /></td></tr>
-<tr class="separator:af6cfe3efd0659c63865319f3b6e25eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a218f4d96bc6c845ab5a06d88c5ce4eaf"><td class="memItemLeft" align="right" valign="top">struct termios&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf">serial_port_config</a></td></tr>
-<tr class="memdesc:a218f4d96bc6c845ab5a06d88c5ce4eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">termios struct used to configure serial port  <a href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf">More...</a><br /></td></tr>
-<tr class="separator:a218f4d96bc6c845ab5a06d88c5ce4eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2a0a3beefd206e58a5c08cfaf25d62"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aea2a0a3beefd206e58a5c08cfaf25d62">write_stuff_counter</a></td></tr>
-<tr class="memdesc:aea2a0a3beefd206e58a5c08cfaf25d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">A write counter used to distinguish frame header and a beggining of data transmission.  <a href="classscom_1_1SerialPort.html#aea2a0a3beefd206e58a5c08cfaf25d62">More...</a><br /></td></tr>
-<tr class="separator:aea2a0a3beefd206e58a5c08cfaf25d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0789a247d7d010b91ef81ab4e598a8c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#ab0789a247d7d010b91ef81ab4e598a8c">port_name</a> = nullptr</td></tr>
+<tr class="memdesc:ab0789a247d7d010b91ef81ab4e598a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port name (example: /dev/ttyACM0) The default value is nullptr as <a class="el" href="classscom_1_1SerialPort.html" title="Class responsible for serial communication, that introduces some special methods to send orders to th...">scom::SerialPort</a> is not initialized.  <a href="classscom_1_1SerialPort.html#ab0789a247d7d010b91ef81ab4e598a8c">More...</a><br /></td></tr>
+<tr class="separator:ab0789a247d7d010b91ef81ab4e598a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b365ebb064191b771702852dc177a3c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c">serial_port</a> = -1</td></tr>
+<tr class="memdesc:a8b365ebb064191b771702852dc177a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial port id.  <a href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c">More...</a><br /></td></tr>
+<tr class="separator:a8b365ebb064191b771702852dc177a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170a179568d62a8a07627667800e6f1a"><td class="memItemLeft" align="right" valign="top">struct termios&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a">serial_port_config</a></td></tr>
+<tr class="memdesc:a170a179568d62a8a07627667800e6f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">termios struct used to configure serial port  <a href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a">More...</a><br /></td></tr>
+<tr class="separator:a170a179568d62a8a07627667800e6f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef6bfb7403a8d9bb39b7f2cd73d10a95"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classscom_1_1SerialPort.html#aef6bfb7403a8d9bb39b7f2cd73d10a95">write_stuff_counter</a></td></tr>
+<tr class="memdesc:aef6bfb7403a8d9bb39b7f2cd73d10a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">A write counter used to distinguish frame header and a beggining of data transmission.  <a href="classscom_1_1SerialPort.html#aef6bfb7403a8d9bb39b7f2cd73d10a95">More...</a><br /></td></tr>
+<tr class="separator:aef6bfb7403a8d9bb39b7f2cd73d10a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Class responsible for serial communication, that introduces some special methods to send orders to the microcontroller using <a href="https://github.com/StarQTius/Key-To-Order" target="_blank">Key-To-Order</a> </p>
@@ -191,14 +191,14 @@ Private Attributes</h2></td></tr>
 <p >Take a look to <a href="http://manpagesfr.free.fr/man/man3/termios.3.html" target="_blank">termios</a> for more information about serial communication.</p>
 <dl class="section author"><dt>Author</dt><dd>sudogauss </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af47dc896cd7ead140472b654336c00e9" name="af47dc896cd7ead140472b654336c00e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af47dc896cd7ead140472b654336c00e9">&#9670;&nbsp;</a></span>SerialPort()</h2>
+<a id="acd06f1ee572bcba088597f4636e22ed1" name="acd06f1ee572bcba088597f4636e22ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd06f1ee572bcba088597f4636e22ed1">&#9670;&nbsp;</a></span>SerialPort()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">SerialPort::SerialPort </td>
+          <td class="memname"><a class="el" href="classscom_1_1SerialPort.html">SerialPort</a> </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>port_name</em></td><td>)</td>
@@ -207,12 +207,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Basic constructor, which initializes <a class="el" href="classscom_1_1SerialPort.html#af6cfe3efd0659c63865319f3b6e25eff" title="Port name (example: /dev/ttyACM0) The default value is nullptr as scom::SerialPort is not initialized...">scom::SerialPort::port_name</a> and stuff counters. </p>
+<p>Basic constructor, which initializes <a class="el" href="classscom_1_1SerialPort.html#ab0789a247d7d010b91ef81ab4e598a8c" title="Port name (example: /dev/ttyACM0) The default value is nullptr as scom::SerialPort is not initialized...">scom::SerialPort::port_name</a> and stuff counters. </p>
 
 </div>
 </div>
-<a id="a2b6b140db54cfaeaec35556d5e9a460b" name="a2b6b140db54cfaeaec35556d5e9a460b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b6b140db54cfaeaec35556d5e9a460b">&#9670;&nbsp;</a></span>~SerialPort()</h2>
+<a id="a3b8b1c0019e4fb86f54ead265b4b7a9b" name="a3b8b1c0019e4fb86f54ead265b4b7a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8b1c0019e4fb86f54ead265b4b7a9b">&#9670;&nbsp;</a></span>~SerialPort()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +221,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">scom::SerialPort::~SerialPort </td>
+          <td class="memname">~<a class="el" href="classscom_1_1SerialPort.html">SerialPort</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -239,30 +239,20 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3af519993320f1e8e1958bcaa4cc0209" name="a3af519993320f1e8e1958bcaa4cc0209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3af519993320f1e8e1958bcaa4cc0209">&#9670;&nbsp;</a></span>call_remote_function()</h2>
+<a id="aacb484b5dfc0a4bf5371e61ce6340ce3" name="aacb484b5dfc0a4bf5371e61ce6340ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacb484b5dfc0a4bf5371e61ce6340ce3">&#9670;&nbsp;</a></span>call_remote_function()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;auto &amp; Ftor, typename... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void scom::SerialPort::call_remote_function </td>
+          <td class="memname">void call_remote_function </td>
           <td>(</td>
           <td class="paramtype">Args &amp;&amp;...&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>A generic to call a function(an order) on the target device. </p>
@@ -284,14 +274,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a88308319742fd438b1da9055039ac554" name="a88308319742fd438b1da9055039ac554"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88308319742fd438b1da9055039ac554">&#9670;&nbsp;</a></span>close_port()</h2>
+<a id="abca7ee1f64c78b282dffc239880364ab" name="abca7ee1f64c78b282dffc239880364ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abca7ee1f64c78b282dffc239880364ab">&#9670;&nbsp;</a></span>close_port()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::close_port </td>
+          <td class="memname">void close_port </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -303,8 +293,8 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="ae4d66bdef24b09a2b2c1d63252951168" name="ae4d66bdef24b09a2b2c1d63252951168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4d66bdef24b09a2b2c1d63252951168">&#9670;&nbsp;</a></span>com_start_frame_transmission()</h2>
+<a id="af532e054ec5ca0dafd35c4814a7c1b1a" name="af532e054ec5ca0dafd35c4814a7c1b1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af532e054ec5ca0dafd35c4814a7c1b1a">&#9670;&nbsp;</a></span>com_start_frame_transmission()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +303,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::com_start_frame_transmission </td>
+          <td class="memname">void com_start_frame_transmission </td>
           <td>(</td>
           <td class="paramtype">rpc::Frame_Type&#160;</td>
           <td class="paramname"><em>frame_type</em></td><td>)</td>
@@ -338,8 +328,8 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a5433faff286ebdf149b828a43e39db6e" name="a5433faff286ebdf149b828a43e39db6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5433faff286ebdf149b828a43e39db6e">&#9670;&nbsp;</a></span>com_write_byte()</h2>
+<a id="a654b42a4a602316f93a65d29a79e554a" name="a654b42a4a602316f93a65d29a79e554a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a654b42a4a602316f93a65d29a79e554a">&#9670;&nbsp;</a></span>com_write_byte()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +338,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::com_write_byte </td>
+          <td class="memname">void com_write_byte </td>
           <td>(</td>
           <td class="paramtype">upd::byte_t&#160;</td>
           <td class="paramname"><em>byte</em></td><td>)</td>
@@ -362,7 +352,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Writes a byte to the serial port and takes care of <a class="el" href="classscom_1_1SerialPort.html#aea2a0a3beefd206e58a5c08cfaf25d62" title="A write counter used to distinguish frame header and a beggining of data transmission.">scom::SerialPort::write_stuff_counter</a> and separation of header and data. </p>
+<p>Writes a byte to the serial port and takes care of <a class="el" href="classscom_1_1SerialPort.html#aef6bfb7403a8d9bb39b7f2cd73d10a95" title="A write counter used to distinguish frame header and a beggining of data transmission.">scom::SerialPort::write_stuff_counter</a> and separation of header and data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">byte</td><td>a byte to send. </td></tr>
@@ -372,14 +362,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="ae41de158784830840dd40474e4b1b325" name="ae41de158784830840dd40474e4b1b325"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae41de158784830840dd40474e4b1b325">&#9670;&nbsp;</a></span>configure_control_modes()</h2>
+<a id="ac731ae9ce4e942e1bba7815f79fbbbdc" name="ac731ae9ce4e942e1bba7815f79fbbbdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac731ae9ce4e942e1bba7815f79fbbbdc">&#9670;&nbsp;</a></span>configure_control_modes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::configure_control_modes </td>
+          <td class="memname">void configure_control_modes </td>
           <td>(</td>
           <td class="paramtype">tcflag_t&#160;</td>
           <td class="paramname"><em>bits_per_byte</em>, </td>
@@ -398,25 +388,25 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Configures control modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
+<p>Configures control modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bits_per_byte</td><td>a number of data bits transmitted per byte. </td></tr>
-    <tr><td class="paramname">control_bits_state</td><td>an initializer list of bool, where control_bits_state[i] indicates whether <a class="el" href="namespacescom.html#a9c632c8061d365f00cfdb58d977107cb" title="Contains the bits that are used to configure serial communication control modes (PARENB,...">scom::control_mode_bits</a>[i] must be set at 1 or 0. </td></tr>
+    <tr><td class="paramname">control_bits_state</td><td>an initializer list of bool, where control_bits_state[i] indicates whether <a class="el" href="namespacescom.html#a5a08e82ce1eac4158612dec16b00b059" title="Contains the bits that are used to configure serial communication control modes (PARENB,...">scom::control_mode_bits</a>[i] must be set at 1 or 0. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a48670475308a76a124a0a5f07e0c44c9" name="a48670475308a76a124a0a5f07e0c44c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48670475308a76a124a0a5f07e0c44c9">&#9670;&nbsp;</a></span>configure_input_modes()</h2>
+<a id="a6cd7725eba767177bbe7529dc2a3764a" name="a6cd7725eba767177bbe7529dc2a3764a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd7725eba767177bbe7529dc2a3764a">&#9670;&nbsp;</a></span>configure_input_modes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::configure_input_modes </td>
+          <td class="memname">void configure_input_modes </td>
           <td>(</td>
           <td class="paramtype">std::initializer_list&lt; bool &gt;&#160;</td>
           <td class="paramname"><em>input_bits_state</em></td><td>)</td>
@@ -425,7 +415,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Configures input modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
+<p>Configures input modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input_bits_state</td><td>an initializer list of bool, where input_bits_state[i] indicates whether scom::input_mode_bits[i] must be set at 1 or 0. </td></tr>
@@ -435,14 +425,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a80fda8fbaab8507c7e200e5edc299937" name="a80fda8fbaab8507c7e200e5edc299937"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80fda8fbaab8507c7e200e5edc299937">&#9670;&nbsp;</a></span>configure_local_modes()</h2>
+<a id="a942d7059058734ec71c67648df859401" name="a942d7059058734ec71c67648df859401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a942d7059058734ec71c67648df859401">&#9670;&nbsp;</a></span>configure_local_modes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::configure_local_modes </td>
+          <td class="memname">void configure_local_modes </td>
           <td>(</td>
           <td class="paramtype">std::initializer_list&lt; bool &gt;&#160;</td>
           <td class="paramname"><em>local_bits_state</em></td><td>)</td>
@@ -451,7 +441,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Configures local modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
+<p>Configures local modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">local_bits_state</td><td>an initializer list of bool, where local_bits_state[i] indicates whether scom::local_mode_bits[i] must be set at 1 or 0. </td></tr>
@@ -461,14 +451,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a407b87a2f9fdcbf9fa7d8c45af5ddfb8" name="a407b87a2f9fdcbf9fa7d8c45af5ddfb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a407b87a2f9fdcbf9fa7d8c45af5ddfb8">&#9670;&nbsp;</a></span>configure_output_modes()</h2>
+<a id="aeb6b54e63a787202c2f5a90ba5302bef" name="aeb6b54e63a787202c2f5a90ba5302bef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6b54e63a787202c2f5a90ba5302bef">&#9670;&nbsp;</a></span>configure_output_modes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::configure_output_modes </td>
+          <td class="memname">void configure_output_modes </td>
           <td>(</td>
           <td class="paramtype">std::initializer_list&lt; bool &gt;&#160;</td>
           <td class="paramname"><em>output_bits_state</em></td><td>)</td>
@@ -477,7 +467,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Configures output modes for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
+<p>Configures output modes for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">output_bits_state</td><td>an initializer list of bool, where output_bits_state[i] indicates whether scom::output_mode_bits[i] must be set at 1 or 0. </td></tr>
@@ -487,16 +477,16 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a63361bb8ae1ae8b52aa0dbd36ae3a19c" name="a63361bb8ae1ae8b52aa0dbd36ae3a19c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63361bb8ae1ae8b52aa0dbd36ae3a19c">&#9670;&nbsp;</a></span>define_blocking_mode()</h2>
+<a id="a3f804313d9e28e483d098839ae728242" name="a3f804313d9e28e483d098839ae728242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f804313d9e28e483d098839ae728242">&#9670;&nbsp;</a></span>define_blocking_mode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::define_blocking_mode </td>
+          <td class="memname">void define_blocking_mode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0">BlockingModes</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841">BlockingModes</a>&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
         </tr>
         <tr>
@@ -513,7 +503,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Sets <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a> for <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
+<p>Sets <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a> for <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a>. </p>
 <p >It also takes an initializer_list of arguments and checks its length. You can provide from 0 to 2 arguments (timeout and bytes number to wait).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -525,14 +515,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a10bf21e5f1b4c33662cb654498394a36" name="a10bf21e5f1b4c33662cb654498394a36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10bf21e5f1b4c33662cb654498394a36">&#9670;&nbsp;</a></span>get_config()</h2>
+<a id="a4ed82e40af93b81d6fcc92a9778ef289" name="a4ed82e40af93b81d6fcc92a9778ef289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed82e40af93b81d6fcc92a9778ef289">&#9670;&nbsp;</a></span>get_config()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::get_config </td>
+          <td class="memname">void get_config </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -540,19 +530,19 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Gets current serial config(your environment config) and assigns it to the <a class="el" href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc" title="Serial port id.">scom::SerialPort::serial_port</a>. </p>
+<p>Gets current serial config(your environment config) and assigns it to the <a class="el" href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c" title="Serial port id.">scom::SerialPort::serial_port</a>. </p>
 <p >See <a href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcgetattr-get-attributes-terminal" target="_blank">tcgetattr</a> for more information </p>
 
 </div>
 </div>
-<a id="a81c40f110274c3f06f4d852e833f0f07" name="a81c40f110274c3f06f4d852e833f0f07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81c40f110274c3f06f4d852e833f0f07">&#9670;&nbsp;</a></span>open_serial()</h2>
+<a id="a931208a0ef80cbd4bdf0300150774e07" name="a931208a0ef80cbd4bdf0300150774e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931208a0ef80cbd4bdf0300150774e07">&#9670;&nbsp;</a></span>open_serial()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::open_serial </td>
+          <td class="memname">void open_serial </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -564,14 +554,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="aff5291687061e485226eacf795b09a22" name="aff5291687061e485226eacf795b09a22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5291687061e485226eacf795b09a22">&#9670;&nbsp;</a></span>read_byte()</h2>
+<a id="a730f0b8f75313414e142cf0c0fe182ab" name="a730f0b8f75313414e142cf0c0fe182ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a730f0b8f75313414e142cf0c0fe182ab">&#9670;&nbsp;</a></span>read_byte()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::read_byte </td>
+          <td class="memname">void read_byte </td>
           <td>(</td>
           <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>byte</em></td><td>)</td>
@@ -580,7 +570,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Read a byte from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>. </p>
+<p>Read a byte from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">byte</td><td>an address of byte to read into </td></tr>
@@ -590,14 +580,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a58db6e9fce7a3c20558cd0225c9cc608" name="a58db6e9fce7a3c20558cd0225c9cc608"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58db6e9fce7a3c20558cd0225c9cc608">&#9670;&nbsp;</a></span>read_word()</h2>
+<a id="a58960f711f70385619c3f0fb863a522a" name="a58960f711f70385619c3f0fb863a522a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58960f711f70385619c3f0fb863a522a">&#9670;&nbsp;</a></span>read_word()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::read_word </td>
+          <td class="memname">void read_word </td>
           <td>(</td>
           <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>word</em>, </td>
@@ -616,7 +606,7 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Read a sequence of bytes from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga6b62e2aa725ea6f1e3659baf40c782f0" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>. </p>
+<p>Read a sequence of bytes from serial with respect to the <a class="el" href="group__microcontroller__proxy.html#ga2c2f21c106187f930e26bb621644e841" title="scom::BlockingModes are used to determine which read mode will be used in serial communication">scom::BlockingModes</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">word</td><td>an address of word to read into </td></tr>
@@ -627,14 +617,14 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
 
 </div>
 </div>
-<a id="a2d55254350a6dab689af1cc0b7b84dd6" name="a2d55254350a6dab689af1cc0b7b84dd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d55254350a6dab689af1cc0b7b84dd6">&#9670;&nbsp;</a></span>set_config()</h2>
+<a id="aac8be1feacd96d4c2577b3c5ab077dbe" name="aac8be1feacd96d4c2577b3c5ab077dbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8be1feacd96d4c2577b3c5ab077dbe">&#9670;&nbsp;</a></span>set_config()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::set_config </td>
+          <td class="memname">void set_config </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -642,19 +632,19 @@ template&lt;auto &amp; Ftor, typename... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Sets <a class="el" href="classscom_1_1SerialPort.html#a218f4d96bc6c845ab5a06d88c5ce4eaf" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a> to the <a class="el" href="classscom_1_1SerialPort.html#a03dc6e1e6df1e9a8f6c4b8f725b748fc" title="Serial port id.">scom::SerialPort::serial_port</a>. </p>
+<p>Sets <a class="el" href="classscom_1_1SerialPort.html#a170a179568d62a8a07627667800e6f1a" title="termios struct used to configure serial port">scom::SerialPort::serial_port_config</a> to the <a class="el" href="classscom_1_1SerialPort.html#a8b365ebb064191b771702852dc177a3c" title="Serial port id.">scom::SerialPort::serial_port</a>. </p>
 <p >See <a href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcsetattr-set-attributes-terminal" target="_blank">tcsetattr</a> for more information </p>
 
 </div>
 </div>
-<a id="ac4458010bd7e641756ffcaec965cb6df" name="ac4458010bd7e641756ffcaec965cb6df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4458010bd7e641756ffcaec965cb6df">&#9670;&nbsp;</a></span>set_default_config()</h2>
+<a id="ae91866aa03ee00d6c8db00e5acf31e94" name="ae91866aa03ee00d6c8db00e5acf31e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae91866aa03ee00d6c8db00e5acf31e94">&#9670;&nbsp;</a></span>set_default_config()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::set_default_config </td>
+          <td class="memname">void set_default_config </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -682,14 +672,14 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a29604f09572b270405c7f27065ab593a" name="a29604f09572b270405c7f27065ab593a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29604f09572b270405c7f27065ab593a">&#9670;&nbsp;</a></span>set_exclusive_access()</h2>
+<a id="a9743f5ceb91e261165c4726f64377c18" name="a9743f5ceb91e261165c4726f64377c18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9743f5ceb91e261165c4726f64377c18">&#9670;&nbsp;</a></span>set_exclusive_access()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::set_exclusive_access </td>
+          <td class="memname">void set_exclusive_access </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -707,14 +697,14 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a7fac8e8272bda1c8fd80caf7920788df" name="a7fac8e8272bda1c8fd80caf7920788df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fac8e8272bda1c8fd80caf7920788df">&#9670;&nbsp;</a></span>set_input_speed()</h2>
+<a id="afc332c6e2ffe31998864a78a55a2dd01" name="afc332c6e2ffe31998864a78a55a2dd01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc332c6e2ffe31998864a78a55a2dd01">&#9670;&nbsp;</a></span>set_input_speed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::set_input_speed </td>
+          <td class="memname">void set_input_speed </td>
           <td>(</td>
           <td class="paramtype">speed_t&#160;</td>
           <td class="paramname"><em>baud_rate</em></td><td>)</td>
@@ -733,14 +723,14 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a1b6bdd9c14b2e14c4b0220eec22122ff" name="a1b6bdd9c14b2e14c4b0220eec22122ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b6bdd9c14b2e14c4b0220eec22122ff">&#9670;&nbsp;</a></span>set_output_speed()</h2>
+<a id="aaff5203cc271e581ed5fc4aee3313a4b" name="aaff5203cc271e581ed5fc4aee3313a4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff5203cc271e581ed5fc4aee3313a4b">&#9670;&nbsp;</a></span>set_output_speed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::set_output_speed </td>
+          <td class="memname">void set_output_speed </td>
           <td>(</td>
           <td class="paramtype">speed_t&#160;</td>
           <td class="paramname"><em>baud_rate</em></td><td>)</td>
@@ -759,14 +749,14 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="ac5622449ba24ad802c3c7a28a7807e30" name="ac5622449ba24ad802c3c7a28a7807e30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5622449ba24ad802c3c7a28a7807e30">&#9670;&nbsp;</a></span>write_byte()</h2>
+<a id="aebff21d56f9ad55489bc3ee2b42200d2" name="aebff21d56f9ad55489bc3ee2b42200d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebff21d56f9ad55489bc3ee2b42200d2">&#9670;&nbsp;</a></span>write_byte()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::write_byte </td>
+          <td class="memname">void write_byte </td>
           <td>(</td>
           <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>byte</em></td><td>)</td>
@@ -785,14 +775,14 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a665ceea999d19ed95671d7e5b0caa4c7" name="a665ceea999d19ed95671d7e5b0caa4c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a665ceea999d19ed95671d7e5b0caa4c7">&#9670;&nbsp;</a></span>write_word()</h2>
+<a id="ab3756b3d6b643d7e0e49f36f40a8f428" name="ab3756b3d6b643d7e0e49f36f40a8f428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3756b3d6b643d7e0e49f36f40a8f428">&#9670;&nbsp;</a></span>write_word()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialPort::write_word </td>
+          <td class="memname">void write_word </td>
           <td>(</td>
           <td class="paramtype">uint8_t *&#160;</td>
           <td class="paramname"><em>word</em>, </td>
@@ -823,8 +813,8 @@ output modes: {false, false} </li>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="af6cfe3efd0659c63865319f3b6e25eff" name="af6cfe3efd0659c63865319f3b6e25eff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6cfe3efd0659c63865319f3b6e25eff">&#9670;&nbsp;</a></span>port_name</h2>
+<a id="ab0789a247d7d010b91ef81ab4e598a8c" name="ab0789a247d7d010b91ef81ab4e598a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0789a247d7d010b91ef81ab4e598a8c">&#9670;&nbsp;</a></span>port_name</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -833,7 +823,7 @@ output modes: {false, false} </li>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* scom::SerialPort::port_name = nullptr</td>
+          <td class="memname">const char* port_name = nullptr</td>
         </tr>
       </table>
   </td>
@@ -847,8 +837,8 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a03dc6e1e6df1e9a8f6c4b8f725b748fc" name="a03dc6e1e6df1e9a8f6c4b8f725b748fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03dc6e1e6df1e9a8f6c4b8f725b748fc">&#9670;&nbsp;</a></span>serial_port</h2>
+<a id="a8b365ebb064191b771702852dc177a3c" name="a8b365ebb064191b771702852dc177a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b365ebb064191b771702852dc177a3c">&#9670;&nbsp;</a></span>serial_port</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -857,7 +847,7 @@ output modes: {false, false} </li>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int scom::SerialPort::serial_port = -1</td>
+          <td class="memname">int serial_port = -1</td>
         </tr>
       </table>
   </td>
@@ -872,8 +862,8 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="a218f4d96bc6c845ab5a06d88c5ce4eaf" name="a218f4d96bc6c845ab5a06d88c5ce4eaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a218f4d96bc6c845ab5a06d88c5ce4eaf">&#9670;&nbsp;</a></span>serial_port_config</h2>
+<a id="a170a179568d62a8a07627667800e6f1a" name="a170a179568d62a8a07627667800e6f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170a179568d62a8a07627667800e6f1a">&#9670;&nbsp;</a></span>serial_port_config</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -882,7 +872,7 @@ output modes: {false, false} </li>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct termios scom::SerialPort::serial_port_config</td>
+          <td class="memname">struct termios serial_port_config</td>
         </tr>
       </table>
   </td>
@@ -896,8 +886,8 @@ output modes: {false, false} </li>
 
 </div>
 </div>
-<a id="aea2a0a3beefd206e58a5c08cfaf25d62" name="aea2a0a3beefd206e58a5c08cfaf25d62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea2a0a3beefd206e58a5c08cfaf25d62">&#9670;&nbsp;</a></span>write_stuff_counter</h2>
+<a id="aef6bfb7403a8d9bb39b7f2cd73d10a95" name="aef6bfb7403a8d9bb39b7f2cd73d10a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef6bfb7403a8d9bb39b7f2cd73d10a95">&#9670;&nbsp;</a></span>write_stuff_counter</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -906,7 +896,7 @@ output modes: {false, false} </li>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t scom::SerialPort::write_stuff_counter</td>
+          <td class="memname">size_t write_stuff_counter</td>
         </tr>
       </table>
   </td>
@@ -917,7 +907,7 @@ output modes: {false, false} </li>
 </div><div class="memdoc">
 
 <p>A write counter used to distinguish frame header and a beggining of data transmission. </p>
-<p >Indicates the end of header and initiates a <a class="el" href="namespacescom.html#a72fdcd659d7ad96096280f70fb698cf9" title="scom::stuffing_byte is used to indicate a new order transmission">scom::stuffing_byte</a> transmission. </p>
+<p >Indicates the end of header and initiates a <a class="el" href="namespacescom.html#a4323d53920ec8d0ebab189e104893ee6" title="scom::stuffing_byte is used to indicate a new order transmission">scom::stuffing_byte</a> transmission. </p>
 
 </div>
 </div>
