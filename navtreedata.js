@@ -33,6 +33,7 @@ var NAVTREE =
       [ "urg_node", "index.html#urg_node", null ]
     ] ],
     [ "The high level diagram:", "index.html#sheme", null ],
+    [ "The example of functionning of the manager <-> microcontroller_proxy communication.", "index.html#sequence_diagram", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -72,7 +73,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActionClient_8hpp.html",
-"order__binder_8hpp.html"
+"functions.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

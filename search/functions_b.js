@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['sample_0',['sample',['../classJoystick.html#a13d48d8d9a32a788394f69472b6b3d9d',1,'Joystick']]],
-  ['send_1',['send',['../classClientT.html#a722f4ae9c93fd8ad61756155bb1e79be',1,'ClientT']]],
-  ['serialport_2',['SerialPort',['../classscom_1_1SerialPort.html#af47dc896cd7ead140472b654336c00e9',1,'scom::SerialPort']]],
-  ['set_5fconfig_3',['set_config',['../classscom_1_1SerialPort.html#a2d55254350a6dab689af1cc0b7b84dd6',1,'scom::SerialPort']]],
-  ['set_5fdefault_5fconfig_4',['set_default_config',['../classscom_1_1SerialPort.html#ac4458010bd7e641756ffcaec965cb6df',1,'scom::SerialPort']]],
-  ['set_5fexclusive_5faccess_5',['set_exclusive_access',['../classscom_1_1SerialPort.html#a29604f09572b270405c7f27065ab593a',1,'scom::SerialPort']]],
-  ['set_5finput_5fspeed_6',['set_input_speed',['../classscom_1_1SerialPort.html#a7fac8e8272bda1c8fd80caf7920788df',1,'scom::SerialPort']]],
-  ['set_5foutput_5fspeed_7',['set_output_speed',['../classscom_1_1SerialPort.html#a1b6bdd9c14b2e14c4b0220eec22122ff',1,'scom::SerialPort']]],
-  ['set_5fshared_8',['set_shared',['../classClientT.html#a5652e544df0a717cf97a6bc5c5df04c5',1,'ClientT']]],
-  ['set_5fvalues_9',['set_values',['../structstruct__wrapper.html#a402e75dafe59de2d658f6d8ef932aa3c',1,'struct_wrapper']]],
-  ['struct_5fwrapper_10',['struct_wrapper',['../structstruct__wrapper.html#a4d3e6bd27ed56bb16ac0c2f67f432c62',1,'struct_wrapper']]]
+  ['main_0',['main',['../test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;test.cpp'],['../group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;manager.cpp'],['../group__microcontroller__proxy.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;microcontroller_proxy.cpp']]],
+  ['motion_5fcallback_1',['motion_callback',['../classMotionSubscriber.html#acc796033cc0a90a5a4c26edd6259e8c9',1,'MotionSubscriber']]],
+  ['motionpublisher_2',['MotionPublisher',['../classMotionPublisher.html#a412a093f4845f4f68b365792b9dd8840',1,'MotionPublisher']]],
+  ['motionsubscriber_3',['MotionSubscriber',['../classMotionSubscriber.html#a11ff03f22e56a0a42955db9a164da3ca',1,'MotionSubscriber']]],
+  ['movebackward_4',['moveBackward',['../namespaceorder.html#a84d4f628bd33806f1f9a4ba3061d7fd5',1,'order']]],
+  ['moveforward_5',['moveForward',['../namespaceorder.html#a16278394b591517b4e0b03c96dc68b36',1,'order']]],
+  ['moveleft_6',['moveLeft',['../namespaceorder.html#a14f3e7a1992a71d5985c157bd8ed51c0',1,'order']]],
+  ['moveright_7',['moveRight',['../namespaceorder.html#a4c3a6ee553a5993a6a66b36697db421e',1,'order']]]
 ];

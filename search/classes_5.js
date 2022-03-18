@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['orderbinder_0',['OrderBinder',['../structOrderBinder.html',1,'']]],
-  ['orderbinder_3c_20shared_5frequest_5ft_2c_20shared_5fresponse_5ft_20_3e_1',['OrderBinder&lt; shared_request_T, shared_response_T &gt;',['../structOrderBinder.html',1,'']]]
+  ['map_0',['Map',['../classmap_1_1Map.html',1,'map']]],
+  ['motionpublisher_1',['MotionPublisher',['../classMotionPublisher.html',1,'']]],
+  ['motionsubscriber_2',['MotionSubscriber',['../classMotionSubscriber.html',1,'']]]
 ];

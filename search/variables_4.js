@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['input_5fmodes_5fbits_0',['input_modes_bits',['../namespacescom.html#a640a8acc46f2304134d506952ea9506f',1,'scom']]]
+  ['data_5ffiles_0',['data_files',['../namespacesetup.html#ad027a8e9452da003dca32bf7467bd16e',1,'setup']]],
+  ['description_1',['description',['../namespacesetup.html#aedf461ec52a946bda975938ba0b93ec0',1,'setup']]]
 ];

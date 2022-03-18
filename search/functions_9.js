@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['open_5fserial_0',['open_serial',['../classscom_1_1SerialPort.html#a81c40f110274c3f06f4d852e833f0f07',1,'scom::SerialPort']]],
-  ['openpath_1',['openPath',['../classJoystick.html#a123fc88a8d1c32de9246559e89cb221d',1,'Joystick']]],
-  ['operator_3c_3c_2',['operator&lt;&lt;',['../joystick_8cpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp'],['../joystick_8hpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp']]],
-  ['orderbinder_3',['OrderBinder',['../structOrderBinder.html#af26f9be9ed43f8aec60a37df49ace131',1,'OrderBinder']]]
+  ['joystick_0',['Joystick',['../classJoystick.html#a158b1f77b78717efbf1b8fac43b1fcef',1,'Joystick::Joystick()'],['../classJoystick.html#a0bd88249a8e103fe326d5345019a3de2',1,'Joystick::Joystick(int joystickNumber)'],['../classJoystick.html#ac0cd7f0cb955fd62850589e1f0660285',1,'Joystick::Joystick(std::string devicePath)'],['../classJoystick.html#acfd22601c2d98af935a95fcf8308d726',1,'Joystick::Joystick(Joystick const &amp;)=delete'],['../classJoystick.html#a4f988a0c2cf6f3d3f58dc840e2f686c4',1,'Joystick::Joystick(Joystick &amp;&amp;)=default'],['../classJoystick.html#aab7720fce11483b0f35b82726fc8f2db',1,'Joystick::Joystick(std::string devicePath, bool blocking)']]],
+  ['joystickmove_1',['joystickMove',['../namespaceorder.html#a12a0095bb79a5dcd9b07ed566cc42b42',1,'order']]]
 ];

@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['isaxis_0',['isAxis',['../classJoystickEvent.html#a0b82c33e3a562798595138bcffe02d6a',1,'JoystickEvent']]],
-  ['isbutton_1',['isButton',['../classJoystickEvent.html#aae34d965daafe3e45a0bbfd733866386',1,'JoystickEvent']]],
-  ['isfound_2',['isFound',['../classJoystick.html#a466b80d028a829cb4aa24ae60602c646',1,'Joystick']]],
-  ['isinitialstate_3',['isInitialState',['../classJoystickEvent.html#a33df9d4e8ffc2a83e96fda2010a5d7ca',1,'JoystickEvent']]]
+  ['focal_5fcalibration_0',['focal_calibration',['../namespacecalibrate.html#a328a6ee6dc753106435d452449e1b950',1,'calibrate.focal_calibration(eyes.Eyes c)'],['../namespacecalibrate.html#a52d22c6a61499b09ff908cf9f1a91fbc',1,'calibrate.focal_calibration(frame, known_distance, known_width)']]]
 ];

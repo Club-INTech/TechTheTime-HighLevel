@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['wait_5ffor_5fconnection_0',['wait_for_connection',['../classClientT.html#aed77067671c316fe4e750278193dc90c',1,'ClientT']]],
-  ['write_5fbyte_1',['write_byte',['../classscom_1_1SerialPort.html#ac5622449ba24ad802c3c7a28a7807e30',1,'scom::SerialPort']]],
-  ['write_5fword_2',['write_word',['../classscom_1_1SerialPort.html#a665ceea999d19ed95671d7e5b0caa4c7',1,'scom::SerialPort']]]
+  ['read_5fbyte_0',['read_byte',['../classscom_1_1SerialPort.html#aff5291687061e485226eacf795b09a22',1,'scom::SerialPort']]],
+  ['read_5fword_1',['read_word',['../classscom_1_1SerialPort.html#a58db6e9fce7a3c20558cd0225c9cc608',1,'scom::SerialPort']]],
+  ['robotmotion_2',['RobotMotion',['../classRobotMotion.html#ab85ceb1ec554236097fc6384926355ef',1,'RobotMotion']]],
+  ['rotate_3',['rotate',['../namespaceimage__transforms.html#a12d3940708fb4bfa534e76505380de8e',1,'image_transforms']]],
+  ['run_4',['run',['../classControllerSetup.html#a96aca273cbb644eb8d8728ebdecfb262',1,'ControllerSetup']]]
 ];

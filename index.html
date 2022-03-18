@@ -96,7 +96,7 @@ manager </li>
 <li>
 robot_vision </li>
 <li>
-motion_control </li>
+<a class="el" href="namespacemotion__control.html">motion_control</a> </li>
 <li>
 urg_node </li>
 </ul>
@@ -108,14 +108,15 @@ microcontroller_proxy</h2>
 <p >Link to the <a class="el" href="group__microcontroller__proxy.html">Microcontroller node.</a></p>
 <h2><a class="anchor" id="intro2"></a>
 manager</h2>
-<p >manager node is responsible for the orders distribution and robot's position tracking. It sends data to the motion_control node and requests robot_vision and microcontroller_proxy nodes to execute some orders. It takes the user action script as input.</p>
+<p >manager node is responsible for the orders distribution and robot's position tracking. It sends data to the <a class="el" href="namespacemotion__control.html">motion_control</a> node and requests robot_vision and microcontroller_proxy nodes to execute some orders. It takes the user action script as input.</p>
 <p >Link to the <a class="el" href="group__manager.html">Manager node.</a></p>
 <h2><a class="anchor" id="intro3"></a>
 robot_vision</h2>
 <p >robot_vision is responsible for image processing, distance measuring and aruco tag scanning. It receives requests from manager.</p>
 <h2><a class="anchor" id="motion_control"></a>
 motion_control</h2>
-<p >motion_control is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.</p>
+<p ><a class="el" href="namespacemotion__control.html">motion_control</a> is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.</p>
+<p >Link to the <a class="el" href="namespacemotion.html">motion</a></p>
 <h2><a class="anchor" id="urg_node"></a>
 urg_node</h2>
 <p >urg_node is a default ROS2 node, which publishes the points data of lidar.</p>
@@ -128,6 +129,16 @@ urg_node</h2>
 The high level diagram:</h1>
 <div class="image">
 <img src="ROS2_Architecture.png" alt=""/>
+</div>
+<p ><br  />
+ <br  />
+ </p><hr  />
+<p> <br  />
+</p>
+<h1><a class="anchor" id="sequence_diagram"></a>
+The example of functionning of the manager &lt;-&gt; microcontroller_proxy communication.</h1>
+<div class="image">
+<img src="ManagerMicrocontrollerFunctionning.png" alt=""/>
 </div>
  </div></div><!-- PageDoc -->
 </div><!-- contents -->

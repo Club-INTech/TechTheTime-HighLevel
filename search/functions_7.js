@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['joystick_0',['Joystick',['../classJoystick.html#a158b1f77b78717efbf1b8fac43b1fcef',1,'Joystick::Joystick()'],['../classJoystick.html#a0bd88249a8e103fe326d5345019a3de2',1,'Joystick::Joystick(int joystickNumber)'],['../classJoystick.html#ac0cd7f0cb955fd62850589e1f0660285',1,'Joystick::Joystick(std::string devicePath)'],['../classJoystick.html#acfd22601c2d98af935a95fcf8308d726',1,'Joystick::Joystick(Joystick const &amp;)=delete'],['../classJoystick.html#a4f988a0c2cf6f3d3f58dc840e2f686c4',1,'Joystick::Joystick(Joystick &amp;&amp;)=default'],['../classJoystick.html#aab7720fce11483b0f35b82726fc8f2db',1,'Joystick::Joystick(std::string devicePath, bool blocking)']]],
-  ['joystickmove_1',['joystickMove',['../namespaceorder.html#a12a0095bb79a5dcd9b07ed566cc42b42',1,'order']]]
+  ['get_5fconfig_0',['get_config',['../classscom_1_1SerialPort.html#a10bf21e5f1b4c33662cb654498394a36',1,'scom::SerialPort']]],
+  ['get_5fcoors_1',['get_coors',['../namespacedetection.html#a79ae5714dee9461961f1966be9e71681',1,'detection']]],
+  ['get_5fmotion_5fstatus_2',['get_motion_status',['../classMotionPublisher.html#a9b492fefc222438d0ce0d83dc27f21f2',1,'MotionPublisher']]],
+  ['goto_3',['goTo',['../namespaceorder.html#a2e15fa716b9ad618a08aa443d6584078',1,'order']]]
 ];

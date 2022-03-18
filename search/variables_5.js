@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystick_0',['joystick',['../classControllerSetup.html#a6c12db7ddaa7e07e65da434818b40732',1,'ControllerSetup']]]
+  ['entry_5fpoints_0',['entry_points',['../namespacesetup.html#ada7058afc98897f073d3f3b8b9157059',1,'setup']]]
 ];
