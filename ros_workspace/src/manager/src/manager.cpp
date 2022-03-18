@@ -53,7 +53,7 @@ using namespace std;
  * 
  * motion_control is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.
  * 
- * Link to the @ref motion_control
+ * Link to the @ref motion
  * 
  * \subsection urg_node
  * 
@@ -83,6 +83,14 @@ using namespace std;
  * 
  */
 
+// Main page and manager.cpp documentation separator
+// ======================================================================================================================
+
+
+double RobotMotion::x = 0.0;
+double RobotMotion::y = 0.0;
+double RobotMotion::angle = 0.0;
+
 /**
  * 
  * @ingroup manager
@@ -96,10 +104,6 @@ using namespace std;
  * 
  * @author sudogauss
 */
-
-double RobotMotion::x = 0.0;
-double RobotMotion::y = 0.0;
-double RobotMotion::angle = 0.0;
 
 int main(int argc, char** argv) {
 

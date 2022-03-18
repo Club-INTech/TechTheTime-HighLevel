@@ -1,9 +1,10 @@
 import numpy as np
 
-## @package motion_control Motion control node.
-# motion_control doc
+##
+# @package motion
 
-## Map class
+##
+# @ingroup motion
 # Map class
 class Map:
     def __init__(self):
