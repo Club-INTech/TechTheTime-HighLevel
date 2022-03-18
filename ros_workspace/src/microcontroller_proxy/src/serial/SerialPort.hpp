@@ -38,8 +38,7 @@ namespace scom {
     /**
      * scom::stuffing_byte is used to indicate a new order transmission  
     */ 
-    extern uint8_t stuffing_byte;
-    // extern k2o::dispatcher dispatcher;
+    extern uint8_t stuffing_byte; 
 
     /**
      * @ingroup microcontroller_proxy
@@ -214,6 +213,7 @@ namespace scom {
         void read_word(uint8_t* word, int size);
 
 
+
         /**
          * Closes serial port
          */ 
@@ -258,6 +258,12 @@ namespace scom {
             key(std::forward<Args>(args)...) >> [&](upd::byte_t byte){this->com_write_byte(byte);};
         }
 
+        template<auto& Ftor>
+        auto receive_feedback() {
+            auto key = rpc::master::keyring.get<Ftor>();
+            return (key << [&]() {return this->com_read_byte()});
+        }
+
     private:
         /**
          * Serial port id.
@@ -282,6 +288,8 @@ namespace scom {
         */ 
         size_t write_stuff_counter;
 
+        size_t read_stuff_counter;
+
         /**
          * Writes a byte to the serial port and takes care of scom::SerialPort::write_stuff_counter
          * and separation of header and data.
@@ -298,6 +306,8 @@ namespace scom {
          * @param frame_type a type of the frame(of the message)
         */ 
         void com_start_frame_transmission(rpc::Frame_Type frame_type);
+
+        upd::byte com_read_byte();
     };
 
 }

@@ -189,6 +189,23 @@ void SerialPort::com_write_byte(upd::byte_t byte) {
     }
 }
 
+upd::byte SerialPort::com_read_byte() {
+     upd::byte byte;
+     upd::byte buf[3]; 
+     this->read_byte(&byte);
+     if(byte == rpc::header[0]) {
+         this->read_stuff_counter++;
+         if(this->read_stuff_counter == sizeof rpc::header) {
+             this->read_stuff_counter = 0;
+             this->read_word(buf, 3);
+         }
+     } else {
+         this->read_stuff_counter = 0;
+     }
+
+     return *byte;
+}
+
 void SerialPort::com_start_frame_transmission(rpc::Frame_Type frame_type) {
     auto t_byte = static_cast<uint8_t>(frame_type);
 

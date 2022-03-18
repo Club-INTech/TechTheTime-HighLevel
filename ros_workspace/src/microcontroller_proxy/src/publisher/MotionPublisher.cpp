@@ -30,8 +30,13 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
         ) {
             previous_left_ticks = left_ticks;
             previous_right_ticks = right_ticks; 
-            left_ticks = (left_ticks + 20 >= expected_left_ticks ? expected_left_ticks : (left_ticks + 20));
-            right_ticks = (right_ticks + 20 >= expected_right_ticks ? expected_right_ticks : (right_ticks + 20));
+
+            this->microcontroller_gateway->call_remote_function<Get_Left_Ticks, void>(void);
+            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback();
+
+            this->microcontroller_gateway->call_remote_function<Get_Right_Ticks, void>(void);
+            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback();
+        
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
             if(interval.count() >= TIMEOUT) {
