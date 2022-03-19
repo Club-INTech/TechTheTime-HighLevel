@@ -2,7 +2,7 @@
 
 #include "../client/ClientT.hpp"
 #include "../controller/controllerSetup.hpp"
-#include "action_msg_srv/srv/order.hpp"
+#include "action_msg_srv/srv/order.hpp" //Order.srv ?
 #include "order_codes.hpp"
 
 namespace order {
@@ -12,13 +12,8 @@ namespace order {
      * @param distance distance in mm (moves backward if negative)
      * @return Robot successfully moved
      */
-    bool move(int distance) { 
-        if(distance>=0){
-            commClient->send(OrderCodes::START_MOVE_FORWARD, distance, 0, 0);
-        }
-        else{
-            commClient->send(OrderCodes::START_MOVE_BACKWARD, abs(distance), 0, 0);
-        }
+    bool move(int x, int y) { 
+
         // Traitement feedback response
         return true;
     }
@@ -30,8 +25,6 @@ namespace order {
      * @return Robot successfully moved
      */
     bool turn(int angle) {
-        commClient->send(OrderCodes::START_ROTATE_LEFT, 0, 0, angle);
-        // Traitement feedback response
         return true;
     }
 
@@ -41,8 +34,6 @@ namespace order {
      * @return Robot successfully stoped
      */
     bool stop() {
-        commClient->send(OrderCodes::STOP, 0, 0, 0);
-        // Traitement feedback response
         return true;
     }
 
@@ -53,8 +44,6 @@ namespace order {
      * @return true if puck was successfully caught
      */
     bool catchPuck(unsigned int id) {
-        commClient->send(OrderCodes::ACTIVATE_PUMP, 0, id, 0);
-        // Traitement feedback response
         return true;
     }
 
@@ -65,8 +54,6 @@ namespace order {
      * @return Puck was successfully released
      */
     bool releasePuck(unsigned int id) {
-        commClient->send(OrderCodes::RELEASE_PUMP, 0, id, 0);
-        // Traitement feedback response
         return true;
     }
 

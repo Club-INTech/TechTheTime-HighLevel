@@ -6,9 +6,6 @@
 */ 
 enum OrderCodes {
     MOVE,
-<<<<<<< HEAD
-    ROTATE,
-
     ///Julien : idées mais on peut changer
     //Avance tout droit
     START_MOVE_FORWARD,
@@ -26,8 +23,7 @@ enum OrderCodes {
     //Active la pompe d'index id
     ACTIVATE_PUMP,
     //Relache la pompe d'index id
-    RELEASE_PUMP
-=======
+    RELEASE_PUMP,
     ROTATE
 };
 
@@ -47,7 +43,6 @@ enum MotionStatusCodes {
      * COMPLETE indicates that the robot completed movement and stopped 
     */ 
     COMPLETE
->>>>>>> acf27257aa99d1837c9fab01b696403d4db12ed7
 };
 
 #endif
