@@ -19,7 +19,33 @@ Order::Order() {
     commClient_MCU->wait_for_connection(); 
 }
 
-Order::Move(int aim_x,int aim_y) {
+Order::take_statue(){
+    
+}
+
+
+Order::angle(double angle){
+    if(angle>std::M_PI){
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*std::M_PI-angle);
+    }
+    else{
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
+    }
+    MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
+    if(status_move == MotionStatusCodes::COMPLETE) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &angle);
+        return true;
+    } else if(status == MotionStatusCodes::NOT_COMPLETE){
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+        return false;
+    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+        return false;
+    }
+}
+
+
+Order::move(double aim_x,double aim_y) {
     double curr_x = RobotMotion::x;
     double curr_y = RobotMotion::y;
     double curr_angle = RobotMotion::angle;
@@ -48,12 +74,12 @@ Order::Move(int aim_x,int aim_y) {
         auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*std::M_PI-aim_angle);
     }
     else{
-        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, aim_angle);
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, aim_angle); // Possible de laisser que le IF et de mettre le send à l'extérieur
     }
     // Response Treat Rotation
     MotionStatusCodes status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     if(status_angle == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &aim_angle);
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &aim_angle); // Faut différencier si on a pri theta ou 2pi-theta
     } else if(status == MotionStatusCodes::NOT_COMPLETE){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
         return false; // We can avoid this if we look if we tend to get closer to the target with the move  but without the rotate

@@ -9,5 +9,6 @@ class Order{
         Order();
         bool move(double,double);
         bool angle(double);
+        bool take_statue(); // On admet qu'il y a pas de recalage à faire
         bool take_palet(int,bool,bool);
 };
