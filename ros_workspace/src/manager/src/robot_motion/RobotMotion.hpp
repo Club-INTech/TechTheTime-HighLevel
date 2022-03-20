@@ -5,6 +5,9 @@
 constexpr double WHEEL_RADIUS_MM = 60.0;
 constexpr double TICKS_PER_TURN = 1024;
 constexpr double TICKS_TO_MM = WHEEL_RADIUS_MM / TICKS_PER_TURN;
+constexpr double HAFL_LENGHT_2A = 75;
+constexpr double HAFL_WIDTH_2A = 123;
+
 
 class RobotMotion {
 public:
