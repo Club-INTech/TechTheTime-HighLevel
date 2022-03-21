@@ -4,12 +4,13 @@
 #include "order_codes.hpp"
 
 class Order{
-        auto commClient_MCU;
+        auto commClient;
     public:
         Order();
         bool move(double,double);
         bool angle(double);
         bool take_statue();
         bool drop_replic();
-        bool take_palet(int,bool,bool);
+        bool take_distrib_vertical(int); // Take the id of the distrib
+        bool take_distrib_horizon(int); // Take the id of the distrib
 };

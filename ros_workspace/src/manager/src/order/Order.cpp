@@ -14,18 +14,44 @@
 // By Gaétan Becker (the doc), jtm tim 30%
 
 Order::Order() {
-    auto commClient_MCU = std::make_shared<ActionClient>();
-    commClient_MCU->set_shared(commClient_MCU);
-    commClient_MCU->wait_for_connection(); 
+    commClient = std::make_shared<ActionClient>();
+    commClient->set_shared(commClient);
+    commClient->wait_for_connection(); 
+}
+
+Oder::take_distrib_vertical(int id) {
+    double KP_x;
+    double KP_y;
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Distributor %d Vertical =====", id);
+    // We choose the KP (middle of the distrib) on the depend of the distrib
+    switch (id)
+    {
+    case 1:
+        KP_x = 144.29;
+        KP_y = 1250;
+        break;
+    case 2:
+        KP_x = 1350;
+        KP_y = 144.29;
+        break;
+    case 3:
+        KP_x = 1650;
+        KP_y = 144.29;
+        break;
+    default:
+        return false;
+    }
 }
 
 Order::take_statue(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
-    this->move(414,1704); // Move to the key point one look the doc bellow of key point
+    this->move(421.43,1700); // Move to the key point one look the doc bellow of key point 
+    // NOTE THAT WE HAVE 1,6cm OF MARGE FOR THE ROTATION / WE MIGHT BE GO HIGHER
     this->angle(3*M_PI/4); // To face the support of the "Abri de chantier"
 
-    auto res_move = commClient->send((int64_t) OrderCodes::MOVE, 160, 0, 0); // We move 10mm further than needed
+    auto res_move = commClient->send((int64_t) OrderCodes::MOVE, 170-HAFL_LENGHT_2A, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
     if(status_move == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", 160);
@@ -69,7 +95,7 @@ Order::take_statue(){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
         return false;
     }
-    auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, -160, 0, 0); // We move 10mm further than needed
+    auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, HAFL_LENGHT_2A-170, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move_back = static_cast<MotionStatusCodes>(res_move_back.get()->motion_status);
     if(status_move_back == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
@@ -87,10 +113,10 @@ Order::take_statue(){
 Order::drop_replic(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
-    this->move(414,1704); // Move to the key point one look the doc bellow of key point
+    this->move(421.43,1704); // Move to the key point one look the doc bellow of key point
     this->angle(7*M_PI/4); // To face the support of the "Abri de chantier"
 
-    auto res_move = commClient->send((int64_t) OrderCodes::MOVE, -160, 0, 0); // We move 10mm further than needed
+    auto res_move = commClient->send((int64_t) OrderCodes::MOVE, HAFL_LENGHT_2A-170, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
     if(status_move == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
@@ -134,7 +160,7 @@ Order::drop_replic(){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
         return false;
     }
-    auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, 160, 0, 0); // We move 10mm further than needed
+    auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, 170-HAFL_LENGHT_2A, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move_back = static_cast<MotionStatusCodes>(res_move_back.get()->motion_status);
     if(status_move_back == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
