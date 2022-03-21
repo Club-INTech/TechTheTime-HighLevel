@@ -260,8 +260,10 @@ namespace scom {
 
         template<auto& Ftor>
         auto receive_feedback() {
+            // this->response_size = sizeof(typename std::result_of<decltype(Ftor)(Args...)>::type);
+            this->new_response = true;
             auto key = rpc::master::keyring.get<Ftor>();
-            return (key << [&]() {return this->com_read_byte()});
+            return key << [&]() {return this->com_read_byte();};
         }
 
     private:
@@ -289,6 +291,8 @@ namespace scom {
         size_t write_stuff_counter;
 
         size_t read_stuff_counter;
+        // size_t response_size;
+        bool new_response;
 
         /**
          * Writes a byte to the serial port and takes care of scom::SerialPort::write_stuff_counter
@@ -307,7 +311,7 @@ namespace scom {
         */ 
         void com_start_frame_transmission(rpc::Frame_Type frame_type);
 
-        upd::byte com_read_byte();
+        upd::byte_t com_read_byte();
     };
 
 }

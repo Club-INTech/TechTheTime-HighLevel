@@ -23,19 +23,19 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
     int32_t previous_left_ticks = MOTION_CRITERIA, previous_right_ticks = MOTION_CRITERIA;
     auto start = std::chrono::system_clock::now();
     while(
-        abs(left_ticks - expected_left_ticks) >= TICKS_INCERTITUDE &&
-        abs(right_ticks - expected_right_ticks) >= TICKS_INCERTITUDE &&
-        abs(left_ticks - previous_left_ticks) >= MOTION_CRITERIA &&
-        abs(right_ticks - previous_right_ticks) >= MOTION_CRITERIA
+        (abs(left_ticks - expected_left_ticks) >= TICKS_INCERTITUDE ||
+        abs(right_ticks - expected_right_ticks) >= TICKS_INCERTITUDE) ||
+        (abs(left_ticks - previous_left_ticks) >= MOTION_CRITERIA ||
+        abs(right_ticks - previous_right_ticks) >= MOTION_CRITERIA)
         ) {
             previous_left_ticks = left_ticks;
             previous_right_ticks = right_ticks; 
 
-            this->microcontroller_gateway->call_remote_function<Get_Left_Ticks, void>(void);
-            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback();
+            this->microcontroller_gateway->call_remote_function<Get_Ticks>();
+            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Ticks>();
 
-            this->microcontroller_gateway->call_remote_function<Get_Right_Ticks, void>(void);
-            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback();
+            this->microcontroller_gateway->call_remote_function<Get_Ticks>();
+            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Ticks>();
         
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
@@ -45,9 +45,9 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
                 return;
             }
             auto msg = motion_msg_srv::msg::Motion();
-            msg.left_ticks = left_ticks - previous_left_ticks;
-            msg.right_ticks = right_ticks - previous_right_ticks;
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d\n", msg.left_ticks);
+            msg.left_ticks = left_ticks;
+            msg.right_ticks = right_ticks;
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d %d\n", msg.left_ticks, msg.right_ticks);
             this->publisher_->publish(msg);
             std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);
         }

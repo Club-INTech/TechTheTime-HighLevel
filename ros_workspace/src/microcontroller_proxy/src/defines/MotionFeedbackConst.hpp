@@ -17,7 +17,7 @@ constexpr int MOTION_CRITERIA = 10;
 /**
  * A time within which robot must finish its movement. 
 */ 
-constexpr int64_t TIMEOUT  = 4000;
+constexpr int64_t TIMEOUT  = 5000;
 
 using namespace std::chrono_literals;
 

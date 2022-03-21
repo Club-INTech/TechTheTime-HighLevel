@@ -30,6 +30,9 @@ namespace scom {
 SerialPort::SerialPort(const char* port_name) {
     this->port_name = port_name;
     this->write_stuff_counter = 0;
+    this->read_stuff_counter = 0;
+    // this->response_size = 0;
+    this->new_response = false;
 }
 
 void SerialPort::open_serial() {
@@ -189,21 +192,29 @@ void SerialPort::com_write_byte(upd::byte_t byte) {
     }
 }
 
-upd::byte SerialPort::com_read_byte() {
-     upd::byte byte;
-     upd::byte buf[3]; 
+upd::byte_t SerialPort::com_read_byte() {
+     upd::byte_t header[5];
+     if(this->new_response) {
+         this->read_word(header, 5);
+         this->new_response = false;
+     }
+
+     upd::byte_t byte; 
+
+     if(this->read_stuff_counter == sizeof(rpc::header)) {
+         this->read_byte(&byte);
+         this->read_stuff_counter = 0;
+     }
+
      this->read_byte(&byte);
+
      if(byte == rpc::header[0]) {
          this->read_stuff_counter++;
-         if(this->read_stuff_counter == sizeof rpc::header) {
-             this->read_stuff_counter = 0;
-             this->read_word(buf, 3);
-         }
      } else {
          this->read_stuff_counter = 0;
      }
 
-     return *byte;
+     return byte;
 }
 
 void SerialPort::com_start_frame_transmission(rpc::Frame_Type frame_type) {
@@ -263,7 +274,7 @@ void SerialPort::set_default_config() {
         false
     });
 
-    this->define_blocking_mode(scom::BlockingModes::TIMEOUT, {1000});
+    this->define_blocking_mode(scom::BlockingModes::NO_BLOCK, {});
     this->set_input_speed(115200);
     this->set_output_speed(115200);
 

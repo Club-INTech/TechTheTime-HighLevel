@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
 
     std::thread client_thread([&commClient](){
         try {
-            auto res = commClient->send((int64_t) OrderCodes::MOVE, 1000, 0, 0);
+            auto res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
 
             MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
             if(status == MotionStatusCodes::COMPLETE) {
