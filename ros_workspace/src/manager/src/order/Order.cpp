@@ -315,7 +315,7 @@ Order::drop_replic(){
 
 Order::angleABS(double angle_rel){
     double angle = -RobotMotion::angle+angle_rel;
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
     if(angle>std::M_PI){
         auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*std::M_PI-angle);
     }
@@ -333,7 +333,24 @@ Order::angleABS(double angle_rel){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
         return false;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
+}
+
+Order::moveABS(double distance_rel){
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
+    auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
+    MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
+    if(status == MotionStatusCodes::COMPLETE) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", distance_rel);
+        return true;
+    } else if(status == MotionStatusCodes::NOT_COMPLETE){
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+        return false;
+    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+        return false;
+    }
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
 }
 
 

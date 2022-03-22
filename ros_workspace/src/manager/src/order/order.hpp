@@ -8,7 +8,8 @@ class Order{
     public:
         Order();
         bool move(double,double);
-        bool angle(double);
+        bool moveABS(double);
+        bool angleABS(double);
         bool take_statue();
         bool drop_replic();
         bool take_distrib_vertical(int); // Take the id of the distrib
