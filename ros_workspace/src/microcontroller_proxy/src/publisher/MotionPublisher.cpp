@@ -31,11 +31,11 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
             previous_left_ticks = left_ticks;
             previous_right_ticks = right_ticks; 
 
-            this->microcontroller_gateway->call_remote_function<Get_Ticks>();
-            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Ticks>();
+            this->microcontroller_gateway->call_remote_function<Get_Left_Ticks>();
+            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Left_Ticks>();
 
-            this->microcontroller_gateway->call_remote_function<Get_Ticks>();
-            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Ticks>();
+            this->microcontroller_gateway->call_remote_function<Get_Right_Ticks>();
+            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Right_Ticks>();
         
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);

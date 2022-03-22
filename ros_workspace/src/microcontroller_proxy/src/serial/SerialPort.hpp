@@ -260,7 +260,6 @@ namespace scom {
 
         template<auto& Ftor>
         auto receive_feedback() {
-            // this->response_size = sizeof(typename std::result_of<decltype(Ftor)(Args...)>::type);
             this->new_response = true;
             auto key = rpc::master::keyring.get<Ftor>();
             return key << [&]() {return this->com_read_byte();};
@@ -291,7 +290,6 @@ namespace scom {
         size_t write_stuff_counter;
 
         size_t read_stuff_counter;
-        // size_t response_size;
         bool new_response;
 
         /**
