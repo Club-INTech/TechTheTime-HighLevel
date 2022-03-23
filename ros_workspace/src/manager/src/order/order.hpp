@@ -12,6 +12,5 @@ class Order{
         bool angleABS(double);
         bool take_statue();
         bool drop_replic();
-        bool take_distrib_vertical(int); // Take the id of the distrib
-        bool take_distrib_horizon(int); // Take the id of the distrib
+        bool take_palet_distrib(int);
 };
