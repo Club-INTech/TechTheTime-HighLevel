@@ -26,13 +26,13 @@ int main(int argc, char** argv) {
     // rclcpp::spin(actionService);
     actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
     while(true) {
-        actionService->microcontroller_gateway->call_remote_function<Get_Left_Ticks>();
-        std::this_thread::sleep_for(20ms);
-        auto value = actionService->microcontroller_gateway->receive_feedback<Get_Left_Ticks>();
-        actionService->microcontroller_gateway->call_remote_function<Get_Right_Ticks>();
-        std::this_thread::sleep_for(20ms);
-        auto value_ = actionService->microcontroller_gateway->receive_feedback<Get_Right_Ticks>();
-        std::cout << value << " " << value_ << std::endl;
+        actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();
+        std::this_thread::sleep_for(25ms);
+        auto value = actionService->microcontroller_gateway->receive_feedback<Get_Ticks>();
+        Shared_Tick left_ticks = (Shared_Tick) (value >> 32);
+        Shared_Tick right_ticks = (Shared_Tick) (value & (((Shared_Encoded_Ticks) 1 << 32) - 1));
+        std::cout << left_ticks << " " << right_ticks << std::endl;
+        std::this_thread::sleep_for(25ms);
     }
     actionService->microcontroller_gateway->close_port();
     rclcpp::shutdown();

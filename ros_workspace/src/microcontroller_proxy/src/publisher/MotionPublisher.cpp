@@ -6,6 +6,8 @@
 #include "../defines/MotionFeedbackConst.hpp"
 #include <cmath>
 #include "order_codes.hpp"
+#include <order/motion.h>
+
 
 MotionPublisher::MotionPublisher(std::shared_ptr<scom::SerialPort> gateway) : 
     microcontroller_gateway(gateway), Node("motion_publisher") {
@@ -31,11 +33,11 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
             previous_left_ticks = left_ticks;
             previous_right_ticks = right_ticks; 
 
-            this->microcontroller_gateway->call_remote_function<Get_Left_Ticks>();
-            left_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Left_Ticks>();
-
-            this->microcontroller_gateway->call_remote_function<Get_Right_Ticks>();
-            right_ticks = (int32_t) this->microcontroller_gateway->receive_feedback<Get_Right_Ticks>();
+            microcontroller_gateway->call_remote_function<Get_Ticks>();
+            std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
+            auto value = microcontroller_gateway->receive_feedback<Get_Ticks>();
+            left_ticks = (int32_t) (value >> 32);
+            right_ticks = (int32_t) (value & (((uint64_t) 1 << 32) - 1));
         
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
