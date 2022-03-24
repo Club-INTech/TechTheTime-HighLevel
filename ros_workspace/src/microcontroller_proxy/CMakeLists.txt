@@ -53,6 +53,7 @@ include_directories(${UnpaddedDirectory})
 include_directories(${MP11Directory})
 include_directories(${StaticAssertDirectory})
 include_directories(${TypeTraitsDirectory})
+include_directories(${ConfigDirectory})
 
 add_executable(
   ${PROJECT_NAME} 

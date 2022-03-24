@@ -4,17 +4,11 @@ services:
     container_name: microcontroller_proxy
     build: .
     image: techthetime-highlevel
-    command: bash -c "cd /hl/ros_workspace/src/microcontroller_proxy/lib && git submodule init && git submodule update --remote && \
-      cd /hl/ros_workspace/src/microcontroller_proxy/src && git submodule init && git submodule update --remote && \ 
-      cd /hl/build_tool && ./build-hl.sh -v -p microcontroller_proxy && \
-      cd /hl/ros_workspace && . install/setup.bash && \
-      ros2 run microcontroller_proxy microcontroller_proxy"
+    command: bash -c "export TERM=vt100 && cd /hl/build_tool && ./build-hl.sh -v -p microcontroller_proxy && cd /hl/ros_workspace && source install/setup.bash && ros2 run microcontroller_proxy microcontroller_proxy"
   manager:
     container_name: manager
     image: techthetime-highlevel
-    # command: bash -c "export TERM=vt100 && cd build_tool && ./build-hl.sh -v -p manager && cd ../ros_workspace && . install/setup.bash && \
-    #          compgen -c | grep ros && ros2 run manager manager"
-    command: bash -c "compgen -c | grep ros"
+    command: bash -c "export TERM=vt100 && cd /hl/build_tool && ./build-hl.sh -v -p manager && cd /hl/ros_workspace && source install/setup.bash && ros2 run manager manager"
     depends_on:
       - microcontroller_proxy
     links:
