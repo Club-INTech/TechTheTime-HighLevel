@@ -19,6 +19,27 @@ cd build_tool
 sudo chmod u+x build-hl.sh
 sudo chmod u+x install-ros.sh
 
+echo "============================================="
+echo ""
+echo "You can install all required tools to run highlevel nodes or just install docker and build image."
+echo "Choose the good options depending on your build and run preferencies."
+echo ""
+echo "============================================="
+
+echo "Do you want proceed with docker installation[Y/n]? : "
+
+read answer 
+
+if [ "${answer,,}" = "y" ] || [ -z $answer ]; then
+    ./install-docker.sh
+    if [ $? -ne 0 ]; then
+        echo "Failed to install"
+        exit 1
+    fi
+    echo "===== Finished ====="
+    echo "${green}Now you can run docker now. Go to the root directory and run docker-compose up${reset}"
+fi
+
 echo "Do you want proceed to the essentials installation (ros2-foxy, rosdep, colcon, build_essentials[curl, locales, etc...]) [Y/n]? : "
 
 read answer
