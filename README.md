@@ -25,6 +25,9 @@ After clonning the repo do:
     $ sudo ./init-hl.sh
 ```
 
+The choose the appropriate options. You can either build from source and run the nodes manually or use 
+a docker-compose.
+
 # Build and launch
 
 ## Build
@@ -41,7 +44,7 @@ Run the next command to build
 
 This command will build all interfaces which are located in **ros_workspace/src/srvs_msgs**, needed for nodes communication.
 
-Then, it will build all available or all provided in command nodes which are located in **ros_workspace/src**
+Then, it will build all available or all provided nodes which are located in **ros_workspace/src**
 
 ### From source
 
@@ -65,6 +68,25 @@ $ source install/setup.bash
 
 ***Note:*** You must build an interface and source its installation before you build the node which uses this interface.
 
+### Docker
+
+You can build an image manually or by running docker-compose, which will also run the HL.
+
+***Note:*** Be careful and delete all build, install and log directories after manual build. If not you risk to use cmake cache, which uses absolute path incompatible with container's one.
+
+You can build image manually by running:
+
+```bash
+    $ sudo docker build .
+```
+
+Run the following if you want to delete this image: 
+
+```bash
+    $ sudo docker rmi techthetime-highlevel --force
+    $ sudo docker system prune 
+```
+
 ## Launch
 
 ### By hand
@@ -77,7 +99,21 @@ $ ros2 run <node> <executable>
 
 ### Docker
 
-It is coming
+You have two ways of running HL with docker.
+The simplest way is to build and run all at the same time:
+
+```bash
+    $ sudo docker-compose up
+```
+
+If you have built an image manually and you are familiar with docker, you can run a container an execute your own 
+commands like this:
+
+```bash
+    $ sudo docker run techthetime-highlevel [COMMAND] [ARG...]
+```
+
+You can read about this command and docker [there](https://docs.docker.com/engine/reference/commandline/run/)
 
 # Documentation
 
