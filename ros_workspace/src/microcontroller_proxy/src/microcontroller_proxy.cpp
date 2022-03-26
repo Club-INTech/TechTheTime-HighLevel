@@ -28,7 +28,10 @@ int main(int argc, char** argv) {
     while(true) {
         actionService->microcontroller_gateway->call_remote_function<Get_Left_Ticks>();
         std::this_thread::sleep_for(25ms);
-        auto value = actionService->microcontroller_gateway->receive_feedback<Get_Left_Ticks>();
+        int32_t value = actionService->microcontroller_gateway->receive_feedback<Get_Left_Ticks>();
+        if( value & ((int32_t)(1 << 20)) ) {
+            value = -(value & ((int32_t)((1 << 20) - 1)));
+        }
         // Shared_Tick left_ticks = (Shared_Tick) (value >> 32u);
         // Shared_Tick right_ticks = (Shared_Tick) (value & (((Shared_Encoded_Ticks) 1u << 32u) - 1u));
         // std::cout << left_ticks << " " << right_ticks << std::endl;
