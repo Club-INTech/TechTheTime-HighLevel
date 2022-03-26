@@ -22,7 +22,7 @@ ActionService::ActionService(const std::string& service_name) : Node(service_nam
     service(this->create_service<action_msg_srv::srv::Order>(service_name, [&](
         const shared_request_T req, shared_response_T res){ this->treat_orders(req, res);})) {
 
-                microcontroller_gateway = std::make_shared<SerialPort>("/dev/ttyACM1");
+                microcontroller_gateway = std::make_shared<SerialPort>("/dev/ttyACM0");
                 this->microcontroller_gateway->open_serial();
                 this->microcontroller_gateway->get_config();
                 this->microcontroller_gateway->set_default_config();

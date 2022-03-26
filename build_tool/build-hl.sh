@@ -35,6 +35,7 @@ print_help () {
     echo "options are:"
     echo ""
     echo "-h for help"
+    echo "-r for rebuild without cache"
     echo "-v for verbose. If you use -v all backlog of colcon will be showed"
     echo ""
 
@@ -50,12 +51,14 @@ print_help () {
 p_flag='false' # package flag
 v_flag='false' # verbose flag
 h_flag='false' # help flag
+r_flag='false' #rebuild flag
 nodes=(${available_nodes[@]})
 
-while getopts 'hvp:' flag; do
+while getopts 'hrvp:' flag; do
   case "${flag}" in
     h) h_flag='true' ;;
     v) v_flag='true' ;;
+    r) r_flag='true' ;;
     p) nodes=(${OPTARG})
         p_flag='true' ;;
     *) print_help
@@ -77,6 +80,18 @@ if [ $p_flag = 'true' ]; then
             exit 1
         fi
     done
+fi
+
+if [ $r_flag = 'true' ]; then
+    cd ../ros_workspace
+    rm -rf build
+    rm -rf install
+    rm -rf log
+    cd src/srvs_msgs
+    rm -rf build
+    rm -rf install
+    rm -rf log
+    cd ../../../build_tool
 fi
 
 ostream=/dev/null
