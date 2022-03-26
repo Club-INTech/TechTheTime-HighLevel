@@ -18,7 +18,7 @@
 // 1st FLOOR : 6 5 4
 // ON ARM :
 // 2nd RAW : 7 8 9
-// 1st RAW : 12 11 10
+// 1st RAW : 12 11 10 
 
 Order::Order() {
     commClient = std::make_shared<ActionClient>();
@@ -86,7 +86,7 @@ Oder::reverse_palet(int id) {
     }
 }
 
-Oder::take_distrib_vertical(int id) { // Dépends du côté où est #IFDEF #ENDIF POUR LE MOMENT C EST POUR LE COTE JAUNE
+Oder::take_distrib_vertical(int id) {
     double angle_arm_floor; // TO DEF
     double angle_arm_floorback; // TO DEF
     double angle_arm_arm; // TO DEF
