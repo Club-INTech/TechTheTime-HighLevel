@@ -1,0 +1,35 @@
+========== This documents regroups all the key value of match to determine the strategie ==========
+
+Distances are in mm and angles in radian
+
+===== TEAM YELLOW =====
+
+
+The key point are point (x,y) to reach before to do the rotateABS adequate et the moveABS adequate
+
+Key point (x,y) :
+
+- The point to drop and take statue/replic : (421.43,1700)
+    Distrib camp side :
+    - The point to take blue palet of the distrib verti on the camp side : (144.29+RADIUS_BASE_1A+10,1250-115)
+    - The point to take green palet of the distrib verti on the camp side : (144.29+RADIUS_BASE_1A+10,1250)
+    - The point to take red palet of the distrib verti on the camp side : (144.29+RADIUS_BASE_1A+10,1250+115)
+
+
+Key angle ABS :
+
+    - The angle abs to take statue : 3*pi/4
+    - The angle to drop replic : -3*pi/4
+    - The angle to take distrib camp side : pi
+    - To take
+The key distance are the distance of the robot to do when he have the adequate angle
+
+Key distance ABS :
+
+    - To take statue : 170-HAFL_LENGHT_2A 
+    - To drop statue : -(170-HAFL_LENGHT_2A)
+    Distrib camp side:
+    - To take blue : 95
+    - To take green : 77
+    - To tale red : 60
+

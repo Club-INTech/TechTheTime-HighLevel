@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include "robot_motion/RobotMotion.hpp"
 
-
 using namespace std;
 
 /*! \mainpage 
