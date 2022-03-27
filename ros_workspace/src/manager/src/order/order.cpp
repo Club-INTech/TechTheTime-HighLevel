@@ -25,8 +25,8 @@ Order::Order() {
     commClient->set_shared(commClient);
     commClient->wait_for_connection(); 
 }
-
-Oder::reverse_palet(int id) {
+/*
+Order::reverse_palet(int id) {
     double angle_floor1_floor; // TO DEF
     double angle_floor1_arm; // TO DEF
     double angle_floor1_floor_back; // TO DEF
@@ -85,7 +85,8 @@ Oder::reverse_palet(int id) {
         return false;
     }
 }
-
+*/
+/*
 Oder::take_distrib_vertical(int id) {
     double angle_arm_floor; // TO DEF
     double angle_arm_floorback; // TO DEF
@@ -139,7 +140,7 @@ Oder::take_distrib_vertical(int id) {
         return false;
     }
 }
-
+*/
 Order::take_statue(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
@@ -283,6 +284,7 @@ Order::angleABS(double angle_rel){
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     if(status_move == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &angle);
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
         return true;
     } else if(status_move == MotionStatusCodes::NOT_COMPLETE){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
@@ -291,15 +293,16 @@ Order::angleABS(double angle_rel){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
         return false;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
 Order::moveABS(double distance_rel){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
+    // TODO: call void treat_response(MotionStatusCodes, bool reinsert, std::string...)
     if(status == MotionStatusCodes::COMPLETE) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", distance_rel);
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
         return true;
     } else if(status == MotionStatusCodes::NOT_COMPLETE){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
@@ -308,9 +311,7 @@ Order::moveABS(double distance_rel){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
         return false;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
 }
-
 
 Order::move(double aim_x,double aim_y) {
 
