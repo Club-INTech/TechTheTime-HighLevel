@@ -31,8 +31,8 @@ ActionService::ActionService(const std::string& service_name) : Node(service_nam
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %d\n",req->distance);
-                        this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(5*req->distance);
-                        this->motion_publisher->broadcast_motion(3*req->distance, 3*req->distance);
+                        this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>((int32_t) (MM_TO_TICKS * req->distance));
+                        this->motion_publisher->broadcast_motion((int32_t) (MM_TO_TICKS * req->distance), (int32_t) (MM_TO_TICKS * req->distance));
                         res->motion_status = this->motion_publisher->get_motion_status();
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", res->motion_status);                
                 });

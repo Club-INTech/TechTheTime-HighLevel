@@ -2,9 +2,9 @@
 
 #include <cmath>
 
-constexpr double WHEEL_RADIUS_MM = 60.0;
+constexpr double WHEEL_RADIUS_MM = 68.0;
 constexpr double TICKS_PER_TURN = 1024;
-constexpr double TICKS_TO_MM = WHEEL_RADIUS_MM / TICKS_PER_TURN;
+constexpr double TICKS_TO_MM = (M_PI * WHEEL_RADIUS_MM) / TICKS_PER_TURN;
 
 class RobotMotion {
 public:

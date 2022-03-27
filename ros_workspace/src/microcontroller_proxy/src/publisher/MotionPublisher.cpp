@@ -7,6 +7,7 @@
 #include <cmath>
 #include "order_codes.hpp"
 #include <order/motion.h>
+#include "../bit_decoder/bit_decoder.hpp"
 
 
 MotionPublisher::MotionPublisher(std::shared_ptr<scom::SerialPort> gateway) : 
@@ -30,15 +31,25 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
         (abs(left_ticks - previous_left_ticks) >= MOTION_CRITERIA ||
         abs(right_ticks - previous_right_ticks) >= MOTION_CRITERIA)
         ) {
-            previous_left_ticks = left_ticks;
-            previous_right_ticks = right_ticks; 
 
             microcontroller_gateway->call_remote_function<Get_Ticks>();
             std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
             auto value = microcontroller_gateway->receive_feedback<Get_Ticks>();
-            left_ticks = (int32_t) (value >> 32);
-            right_ticks = (int32_t) (value & (((uint64_t) 1 << 32) - 1));
+            
+            bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
+            decoded_values.decoder.decode(value);
         
+            if(decoded_values.decoder.decoded.at(0) < 65536 && 
+                decoded_values.decoder.decoded.at(0) > -5000 && 
+                decoded_values.decoder.decoded.at(1) < 65536 &&
+                decoded_values.decoder.decoded.at(1) > -5000) {
+                    previous_left_ticks = left_ticks;
+                    previous_right_ticks = right_ticks;
+
+                    left_ticks = decoded_values.decoder.decoded.at(0);
+                    right_ticks = decoded_values.decoder.decoded.at(1);
+                }
+
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
             if(interval.count() >= TIMEOUT) {
