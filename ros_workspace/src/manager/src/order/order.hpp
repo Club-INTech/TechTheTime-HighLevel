@@ -13,6 +13,7 @@ class Order{
         bool take_statue();
         bool drop_replic();
         bool take_palet_distrib(int);
+        void treat_response(MotionStatusCodes, double, bool);
     private:
         auto commClient;
 };

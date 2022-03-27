@@ -1,4 +1,3 @@
-#include "OrderClasse.hpp"
 #include "controller/controllerSetup.hpp"
 #include "order/order.hpp"
 #include "client/ClientT.hpp"
@@ -150,61 +149,26 @@ Order::take_statue(){
 
     auto res_move = commClient->send((int64_t) OrderCodes::MOVE, 170-HAFL_LENGHT_2A, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
-    if(status_move == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", 160);
-    } else if(status_move == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move, 170-HAFL_LENGHT_2A);
+
     auto res_move_arm_down = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     MotionStatusCodes status_move_arm_down = static_cast<MotionStatusCodes>(res_move_arm_down.get()->motion_status);
-    if(status_move_arm_down == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a angle of %lf", std::M_PI*(1/2+1/3));
-    } else if(status_move_arm_down == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_arm_down == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move_arm_down, std::M_PI*(1/2+1/3));
+
     auto res_pompe_activ = commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, 13, 0);
     MotionStatusCodes status_pompe_activ = static_cast<MotionStatusCodes>(res_pompe_activ.get()->motion_status);
-    if(status_pompe_activ == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result:  Pump Activated");
-    } else if(status_pompe_activ == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_pompe_activ == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_pompe_activ, 12321);
+
     auto res_move_arm_up = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, -std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     MotionStatusCodes status_move_arm_up = static_cast<MotionStatusCodes>(res_move_arm_up.get()->motion_status);
-    if(status_move_arm_up == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a angle of %lf", -std::M_PI*(1/2+1/3));
-    } else if(status_move_arm_up == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_arm_up == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(res_move_arm_up, -std::M_PI*(1/2+1/3));
+
     auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, HAFL_LENGHT_2A-170, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move_back = static_cast<MotionStatusCodes>(res_move_back.get()->motion_status);
-    if(status_move_back == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
-        return true;
-    } else if(status_move_back == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_back == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move_back, HAFL_LENGHT_2A-170);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
+    return true;
 }
 
 Order::drop_replic(){
@@ -215,61 +179,26 @@ Order::drop_replic(){
 
     auto res_move = commClient->send((int64_t) OrderCodes::MOVE, HAFL_LENGHT_2A-170, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
-    if(status_move == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
-    } else if(status_move == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move,HAFL_LENGHT_2A-170);
+
     auto res_move_arm_down = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 14, -std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     MotionStatusCodes status_move_arm_down = static_cast<MotionStatusCodes>(res_move_arm_down.get()->motion_status);
-    if(status_move_arm_down == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a angle of %lf", -std::M_PI*(1/2+1/3));
-    } else if(status_move_arm_down == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_arm_down == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move_arm_down,-std::M_PI*(1/2+1/3));
+
     auto res_pompe_activ = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 14, 0);
     MotionStatusCodes status_pompe_activ = static_cast<MotionStatusCodes>(res_pompe_activ.get()->motion_status);
-    if(status_pompe_activ == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: Pump Desactivated");
-    } else if(status_pompe_activ == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_pompe_activ == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_pompe_activ,12321);
+
     auto res_move_arm_up = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, std::M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
     MotionStatusCodes status_move_arm_up = static_cast<MotionStatusCodes>(res_move_arm_up.get()->motion_status);
-    if(status_move_arm_up == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a angle of %lf", std::M_PI*(1+1/3));
-    } else if(status_move_arm_up == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_arm_up == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move_arm_up,std::M_PI*(1+1/3));
+    
     auto res_move_back = commClient->send((int64_t) OrderCodes::MOVE, 170-HAFL_LENGHT_2A, 0, 0); // We move 10mm further than needed
     MotionStatusCodes status_move_back = static_cast<MotionStatusCodes>(res_move_back.get()->motion_status);
-    if(status_move_back == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", -160);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
-        return true;
-    } else if(status_move_back == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move_back == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status_move_back,170-HAFL_LENGHT_2A);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
+    return true;
 }
 
 Order::angleABS(double angle_rel){
@@ -281,36 +210,19 @@ Order::angleABS(double angle_rel){
     else{
         auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
     }
-    MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
-    if(status_move == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &angle);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
-        return true;
-    } else if(status_move == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    MotionStatusCodes status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+    this->treat_response(status,res_angle);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
+    return True;
 }
 
 Order::moveABS(double distance_rel){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
-    // TODO: call void treat_response(MotionStatusCodes, bool reinsert, std::string...)
-    if(status == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", distance_rel);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
-        return true;
-    } else if(status == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
-    }
+    this->treat_response(status,distance_rel);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
+    return True;
 }
 
 Order::move(double aim_x,double aim_y) {
@@ -346,30 +258,29 @@ Order::move(double aim_x,double aim_y) {
     else{
         auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, aim_angle); // Possible de laisser que le IF et de mettre le send à l'extérieur
     }
-    // Response Treat Rotation
     MotionStatusCodes status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
-    if(status_angle == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with an angle of %lf", &aim_angle); // Faut différencier si on a pri theta ou 2pi-theta
-    } else if(status_angle == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false; // We can avoid this if we look if we tend to get closer to the target with the move  but without the rotate
-    } else if(status_angle == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false; // Same thing
-    }
+    this->treat_response(status_angle,aim_angle);
 
     auto res_move = commClient->send((int64_t) OrderCodes::MOVE, distance, 0, 0);
-
     MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
-    if(status_move == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a distance of %lf", &distance);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Move =====");
-        return true;
-    } else if(status_move == MotionStatusCodes::NOT_COMPLETE){
+    this->treat_response(status_move,distance);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Move =====");
+    return true;
+}
+
+Order::treat_response(MotionStatusCodes status, double value, bool reinsert = true) {
+    if(status == MotionStatusCodes::COMPLETE) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished with a value of %lf", value);
+    } else if(status == MotionStatusCodes::NOT_COMPLETE){
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-        return false;
-    } else if(status_move == MotionStatusCodes::MOTION_TIMEOUT) {
+        if (reinsert){
+            // Reinsert order
+        }
+    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-        return false;
+        if (reinsert){
+            // Reinsert order
+        }
     }
 }
