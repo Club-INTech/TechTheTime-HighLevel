@@ -17,6 +17,9 @@ constexpr double RADIUS_BASE_1A = 184.817;
 constexpr double WHEEL_DISTANCE = 278.0;
 constexpr double ANGLE_PER_TICK = (M_PI * WHEEL_DIAMETER_MM) / (1024.0 * WHEEL_DISTANCE);
 
+constexpr double WHEEL_DISTANCE = 278.0;
+constexpr double ANGLE_PER_TICK = (M_PI * WHEEL_DIAMETER_MM) / (1024.0 * WHEEL_DISTANCE);
+
 class RobotMotion {
 public:
 
