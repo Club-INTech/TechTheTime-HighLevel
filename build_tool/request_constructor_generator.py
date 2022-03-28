@@ -14,6 +14,8 @@ def extract_vars(srv_file_path: str) -> Dict[str, str]:
             vartype, var = srv_var.split(NAME_TYPE_SEP)
             if vartype == "int64":
                 vartype += "_t"
+            elif vartype == "float64":
+                vartype = "double"
             srv_vartypes_dict[var[:len(var)-1]] = vartype
     return srv_vartypes_dict
 

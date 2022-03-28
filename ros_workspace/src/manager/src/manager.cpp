@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
 
     std::thread client_thread([&commClient](){
         try {
-            auto res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+            auto res = commClient->send((int64_t) OrderCodes::MOVE, 500.0, 0, 0.0);
 
             MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
             if(status == MotionStatusCodes::COMPLETE) {
@@ -128,7 +128,7 @@ int main(int argc, char** argv) {
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
             }
 
-            res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+            res = commClient->send((int64_t) OrderCodes::MOVE, 500.0, 0, 0.0);
         } catch(const std::runtime_error& e) {
             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
         }  
