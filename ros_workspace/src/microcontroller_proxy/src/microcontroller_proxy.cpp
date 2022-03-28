@@ -23,18 +23,24 @@ int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
 
     auto actionService = std::make_shared<ActionService>("action");
+    if(argc == 2 && !strcmp(argv[1], "monitor")) {
+        actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
+        while(true) {
+            actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();
+            std::this_thread::sleep_for(25ms);
+            uint64_t value = actionService->microcontroller_gateway->receive_feedback<Get_Ticks>();
+            bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
+            decoded_values.decoder.decode(value);
+            std::cout << value << " " << decoded_values.decoder.decoded.at(0) << " " << decoded_values.decoder.decoded.at(1) << std::endl;
+            std::this_thread::sleep_for(25ms);
+        }
+    } else if (argc == 1)
+    {
+        rclcpp::spin(actionService);
+    } else {
+        std::cout << "Allowed only one argument: [monitor], for ticks monitoring" << std::endl;
+    }
     
-    rclcpp::spin(actionService);
-    // actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
-    // while(true) {
-    //     actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();
-    //     std::this_thread::sleep_for(25ms);
-    //     uint64_t value = actionService->microcontroller_gateway->receive_feedback<Get_Ticks>();
-    //     bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
-    //     decoded_values.decoder.decode(value);
-    //     std::cout << value << " " << decoded_values.decoder.decoded.at(0) << " " << decoded_values.decoder.decoded.at(1) << std::endl;
-    //     std::this_thread::sleep_for(25ms);
-    // }
     actionService->microcontroller_gateway->close_port();
     rclcpp::shutdown();
 
