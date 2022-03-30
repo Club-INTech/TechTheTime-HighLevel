@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
 
     auto actionService = std::make_shared<ActionService>("action");
-    if(argc == 2 && !strcmp(argv[1], "monitor")) {
+    if(argc == 2 && strcmp(argv[1], "monitor") == 0) {
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
         while(true) {
             actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();

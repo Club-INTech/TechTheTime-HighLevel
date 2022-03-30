@@ -3,9 +3,10 @@
 #include "rclcpp/rclcpp.hpp"
 #include "../serial/SerialPort.hpp"
 #include "motion_msg_srv/msg/motion.hpp"
-#include "../defines/MotionFeedbackConst.hpp"
+#include <const_shared/CommunicationConst.hpp>
+#include <const_shared/MotionConst.hpp>
 #include <cmath>
-#include "order_codes.hpp"
+#include <action_msg_srv_shared/order_codes.hpp>
 #include <order/motion.h>
 #include "../bit_decoder/bit_decoder.hpp"
 
@@ -22,8 +23,23 @@ int64_t MotionPublisher::get_motion_status() const {
 
 
 void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expected_right_ticks) {
+
     int32_t left_ticks = 0, right_ticks = 0;
+
+    int32_t left_ticks_mult = 1;
+    int32_t right_ticks_mult = 1;
+
+    if(expected_left_ticks < 0) {
+        expected_left_ticks = -expected_left_ticks;
+        left_ticks_mult = -1;
+    }
+    if(expected_right_ticks < 0) {
+        expected_right_ticks = -expected_right_ticks;
+        right_ticks_mult = -1;
+    }
+
     int32_t previous_left_ticks = MOTION_CRITERIA, previous_right_ticks = MOTION_CRITERIA;
+
     auto start = std::chrono::system_clock::now();
     while(
         (abs(left_ticks - expected_left_ticks) >= TICKS_INCERTITUDE ||
@@ -42,13 +58,15 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
             if(decoded_values.decoder.decoded.at(0) < 65536 && 
                 decoded_values.decoder.decoded.at(0) > -5000 && 
                 decoded_values.decoder.decoded.at(1) < 65536 &&
-                decoded_values.decoder.decoded.at(1) > -5000) {
+                decoded_values.decoder.decoded.at(1) > -5000) 
+            {
+
                     previous_left_ticks = left_ticks;
                     previous_right_ticks = right_ticks;
 
                     left_ticks = decoded_values.decoder.decoded.at(0);
                     right_ticks = decoded_values.decoder.decoded.at(1);
-                }
+            }
 
             auto now = std::chrono::system_clock::now();
             auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
@@ -57,9 +75,10 @@ void MotionPublisher::broadcast_motion(int32_t expected_left_ticks, int32_t expe
                 this->motion_status = MotionStatusCodes::MOTION_TIMEOUT;
                 return;
             }
+            
             auto msg = motion_msg_srv::msg::Motion();
-            msg.left_ticks = left_ticks;
-            msg.right_ticks = right_ticks;
+            msg.left_ticks = left_ticks_mult * (left_ticks - previous_left_ticks);
+            msg.right_ticks = right_ticks_mult * (right_ticks - previous_right_ticks);
             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d %d\n", msg.left_ticks, msg.right_ticks);
             this->publisher_->publish(msg);
             std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);

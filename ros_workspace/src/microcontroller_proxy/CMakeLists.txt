@@ -35,9 +35,9 @@ find_package(motion_msg_srv REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 
-set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
+set(SharedDirectory ../shared)
 set(KeyToOrderDirectory ./lib/Key-To-Order/include)
-set(SharedDirectory ./src/TechTheTime-Shared)
+set(TechTheTimeSharedDirectory ./src/TechTheTime-Shared)
 
 set(UnpaddedDirectory ./lib/Unpadded/include)
 set(MP11Directory ./lib/mp11/include)
@@ -45,14 +45,16 @@ set(ConfigDirectory ./lib/config/include)
 set(StaticAssertDirectory ./lib/static_assert/include)
 set(TypeTraitsDirectory ./lib/type_traits/include)
 
-set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
-
-include_directories(${KeyToOrderDirectory})
-include_directories(${SharedDirectory})
 include_directories(${UnpaddedDirectory})
 include_directories(${MP11Directory})
 include_directories(${StaticAssertDirectory})
 include_directories(${TypeTraitsDirectory})
+include_directories(${ConfigDirectory})
+
+include_directories(${KeyToOrderDirectory})
+include_directories(${TechTheTimeSharedDirectory})
+
+include_directories(${SharedDirectory})
 
 add_executable(
   ${PROJECT_NAME} 
@@ -60,9 +62,9 @@ add_executable(
   src/service/ActionService.cpp 
   src/microcontroller_proxy.cpp
   src/publisher/MotionPublisher.cpp 
-  ${ActionOrderHeaders} 
 )
-target_include_directories(${PROJECT_NAME} PUBLIC ${ActionOrderDirectory})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${SharedDirectory})
 target_link_libraries(${PROJECT_NAME} expected)
 
 ament_target_dependencies(${PROJECT_NAME}

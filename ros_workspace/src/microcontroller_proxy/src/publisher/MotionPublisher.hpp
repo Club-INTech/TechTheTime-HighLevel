@@ -4,7 +4,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "../serial/SerialPort.hpp"
 #include "motion_msg_srv/msg/motion.hpp"
-#include "order_codes.hpp"
+#include <action_msg_srv_shared/order_codes.hpp>
 
 using namespace std::chrono_literals;
 
