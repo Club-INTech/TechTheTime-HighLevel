@@ -10,13 +10,13 @@
  * Acceptable tolerancy in ticks(both for left wheel and right wheel). If 
  * <b>|expected_ticks - ticks| < TICKS_INCERTITUDE</b> then robot is considered to be close enough to its goal.
 */
-constexpr int TICKS_INCERTITUDE = 100;
+constexpr int TICKS_INCERTITUDE = 20;
 
 /**
  * Stop condition tolerancy. If <b>|ticks-previous_ticks| < MOTION_CRITERIA</b> then robot considered
  * not moving
 */ 
-constexpr int MOTION_CRITERIA = 50;
+constexpr int MOTION_CRITERIA = 2;
 
 /**
  * A time within which robot must finish its movement. 
@@ -35,10 +35,11 @@ constexpr double WHEEL_DISTANCE = 278.0;
 constexpr double HALF_WHEEL_DISTANCE = WHEEL_DISTANCE / 2;
 
 constexpr double TICKS_TO_MM = (M_PI * WHEEL_DIAMETER_MM) / (2 * TICKS_PER_TURN);
-constexpr double MM_TO_TICKS =  2 * TICKS_PER_TURN / (M_PI * WHEEL_DIAMETER_MM);
+constexpr double MM_TO_TICKS =  1 / TICKS_TO_MM;
 
-constexpr double RADIANS_TO_TICKS = (M_PI * WHEEL_DIAMETER_MM) / (512.0 * WHEEL_DISTANCE);
-constexpr double TICKS_TO_RADIANS = (512.0 * WHEEL_DISTANCE) / (M_PI * WHEEL_DIAMETER_MM);
+constexpr double TICKS_TO_RADIANS = 2 * TICKS_TO_MM / WHEEL_DISTANCE;
+constexpr double RADIANS_TO_TICKS = 1 / TICKS_TO_RADIANS;
 
-constexpr double HALF_TICKS_TO_RADIANS = TICKS_TO_RADIANS / 2;
+constexpr double TICKS_TO_RADIANS_HALF_BASE = 2 * TICKS_TO_RADIANS;
+constexpr double RADIANS_TO_TICKS_HALF_BASE = 1 / TICKS_TO_RADIANS_HALF_BASE;
  

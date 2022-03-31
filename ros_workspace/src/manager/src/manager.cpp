@@ -91,7 +91,6 @@ using namespace std;
 double RobotMotion::x = 0.0;
 double RobotMotion::y = 0.0;
 double RobotMotion::angle = 0.0;
-OrderCodes RobotMotion::current_order = OrderCodes::NONE;
 
 /**
  * 

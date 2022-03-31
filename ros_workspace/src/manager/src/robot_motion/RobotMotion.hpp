@@ -2,6 +2,7 @@
 
 #include <const_shared/MotionConst.hpp>
 #include <action_msg_srv_shared/order_codes.hpp>
+#include <iostream>
 
 class RobotMotion {
 public:
@@ -11,20 +12,29 @@ public:
     static double x;
     static double y;
     static double angle;
-    static OrderCodes current_order;
 
     static void atomic_move(int64_t left_ticks, int64_t right_ticks) {
-        // TODO: delta ticks influences x, y and angle. 
-        if(current_order == OrderCodes::MOVE) {
-            double dl = SIGN(left_ticks) * MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_MM;
-            x += dl * cos(angle);
-            y += dl * sin(angle);
-        } else if(current_order == OrderCodes::START_ROTATE_LEFT) {
-            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * HALF_TICKS_TO_RADIANS;
-            angle -= alpha; 
-        } else if(current_order == OrderCodes::START_ROTATE_RIGHT) {
-            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * HALF_TICKS_TO_RADIANS;
-            angle += alpha; 
+        double dbeta = 0; 
+        double cos_angle = cos(angle);
+        double sin_angle = sin(angle);
+        if(SIGN(left_ticks) == SIGN(right_ticks)) {
+            double c_ticks = SIGN(left_ticks) * MIN(ABS(left_ticks), ABS(right_ticks));
+            double dl = c_ticks * TICKS_TO_MM;
+            x += (dl * cos_angle);
+            y += (dl * sin_angle);
+            dbeta = TICKS_TO_RADIANS * (left_ticks - right_ticks);
+        } else if(left_ticks < 0 && right_ticks >= 0) {
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
+            angle -= alpha;
+            //dbeta = -TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+        } else if(left_ticks >= 0 && right_ticks < 0) {
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
+            angle += alpha;
+            //dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         }
+        angle += dbeta;
+        double dr = dbeta * WHEEL_DISTANCE;
+        // x += (dr * (cos_angle * (1 + dbeta * dbeta / 4) - (sin_angle * dbeta / 2)));
+        // y += (dr * (sin_angle * (1 + dbeta * dbeta / 4) + (cos_angle * dbeta / 2)));
     }
 };
