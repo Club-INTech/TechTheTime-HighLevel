@@ -37,7 +37,8 @@ enum MotionStatusCodes {
     /**
      * COMPLETE indicates that the robot completed movement and stopped 
     */ 
-    COMPLETE
+    COMPLETE,
+    MOVING
 };
 
 #endif
