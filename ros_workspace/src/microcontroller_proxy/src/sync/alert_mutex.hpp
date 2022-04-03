@@ -12,6 +12,12 @@ struct alert_mutex {
         mut.unlock();
     }
 
+    void calm() {
+        mut.lock();
+        is_alert = false;
+        mut.unlock();
+    }
+
     bool alerting() {
         mut.lock();
         bool alert = is_alert;

@@ -12,10 +12,10 @@
 #include <mutex>
 
 
-MotionPublisher::MotionPublisher(std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
+MotionPublisher::MotionPublisher(const std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
         std::mutex& serial_mut, alert_mutex& alert_mut) : microcontroller_gateway(gateway), 
-        Node("motion_publisher"), serial_read_mutex(serial_mut), alert_mutex(alert_mut) {
-        publisher_ = this->create_publisher<motion_msg_srv::msg::Motion>("motion_topic", 10);
+        Node("motion_publisher"), serial_read_mutex(serial_mut), alert_mut(alert_mut) {
+        publisher_ = this->create_publisher<motion_msg_srv::msg::Motion>(topic, 10);
         motion_status = MotionStatusCodes::COMPLETE;
         this->expected_left_ticks = 0;
         this->expected_right_ticks = 0;
@@ -26,7 +26,7 @@ MotionStatusCodes MotionPublisher::get_motion_status() const {
     return this->motion_status;
 }
 
-void MotionPublisher::set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks) const {
+void MotionPublisher::set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks) {
     this->motion_status = MotionStatusCodes::MOVING;
     this->expected_left_ticks = expected_left_ticks;
     this->expected_right_ticks = expected_right_ticks;
@@ -59,7 +59,7 @@ void MotionPublisher::broadcast_motion() {
 
         read_error = false;
 
-        if(this->alert_mutex.alerting()) {
+        if(this->alert_mut.alerting()) {
             this->serial_read_mutex.lock();
             microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(0);
             std::this_thread::sleep_for(SERIAL_COM_DELAY);
@@ -103,7 +103,7 @@ void MotionPublisher::broadcast_motion() {
         auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::system_clock::now() - this->motion_start);
 
-        if(!this->alert_mutex.alerting() && this->motion_status == MOVING && interval.count() >= TIMEOUT) {
+        if(!this->alert_mut.alerting() && this->motion_status == MOVING && interval.count() >= TIMEOUT) {
             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Timed out %d\n", interval.count());
             this->motion_status = MotionStatusCodes::MOTION_TIMEOUT;
             this->serial_read_mutex.lock();
@@ -114,7 +114,7 @@ void MotionPublisher::broadcast_motion() {
             this->serial_read_mutex.unlock();
         }
 
-        if(!this->alert_mutex.alerting() && abs(left_ticks - previous_left_ticks) <= MOTION_CRITERIA &&
+        if(!this->alert_mut.alerting() && abs(left_ticks - previous_left_ticks) <= MOTION_CRITERIA &&
                     abs(right_ticks - previous_right_ticks) <= MOTION_CRITERIA) {
             
             if(abs(left_ticks - expected_left_ticks) >= TICKS_INCERTITUDE || (right_ticks - expected_right_ticks) >= TICKS_INCERTITUDE) {

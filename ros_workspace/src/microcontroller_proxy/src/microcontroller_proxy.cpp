@@ -1,4 +1,7 @@
 #include "service/ActionService.hpp"
+#include "publisher/MotionPublisher.hpp"
+#include "alert/AlertSubscriber.hpp"
+#include "serial/SerialPort.hpp"
 #include <memory>
 #include <order/motion.h>
 #include <iostream>
@@ -25,16 +28,16 @@ int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
 
     std::mutex serial_read_mutex;
-    alert_mutex alert_mutex{.is_alert = false};
+    alert_mutex alert_mut{.is_alert = false};
     
-    auto serial_port = std::make_shared<SerialPort>("/dev/ttyACM0");
-    this->microcontroller_gateway->open_serial();
-    this->microcontroller_gateway->get_config();
-    this->microcontroller_gateway->set_default_config();
+    auto serial_port = std::make_shared<scom::SerialPort>("/dev/ttyACM0");
+    serial_port->open_serial();
+    serial_port->get_config();
+    serial_port->set_default_config();
 
-    auto motionPublisher = std::make_shared<MotionPublisher>("motion", serial_port, &serial_read_mutex, &alert_mutex);
-    auto alertSubscriber = std::make_shared<AlertSubscriber>("alert", motionPublisher, &alert_mutex);
-    auto actionService = std::make_shared<ActionService>("action", motionPublisher, &serial_read_mutex);
+    auto motionPublisher = std::make_shared<MotionPublisher>("motion", serial_port, serial_read_mutex, alert_mut);
+    auto alertSubscriber = std::make_shared<AlertSubscriber>("alert", alert_mut);
+    auto actionService = std::make_shared<ActionService>("action", motionPublisher, serial_read_mutex);
 
     if(argc == 2 && strcmp(argv[1], "monitor") == 0) {
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);

@@ -29,7 +29,7 @@ public:
      * 
      * @param gateway a shared pointer to the open scom::SerialPort, also known as microcontroller_gateway
     */ 
-    MotionPublisher(std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
+    MotionPublisher(const std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
         std::mutex& serial_mut, alert_mutex& alert_mut);
 
     /**
@@ -39,7 +39,7 @@ public:
      * @param expected_left_ticks the left ticks goal
      * @param expected_right_ticks the right ticks goal
     */ 
-    void set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks) const;
+    void set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks);
 
     /**
      * @return motion_status for ActionService to build a response
@@ -72,10 +72,10 @@ private:
 
     std::mutex& serial_read_mutex;
 
-    alert_mutex& alert_mutex;
+    alert_mutex& alert_mut;
 
     int32_t expected_left_ticks;
     int32_t expected_right_ticks;
-    auto motion_start;
+    std::chrono::time_point<std::chrono::system_clock> motion_start;
 
 };
