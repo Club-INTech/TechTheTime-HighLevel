@@ -1,10 +1,12 @@
 #pragma once
 
-#include <chrono>
 #include "rclcpp/rclcpp.hpp"
-#include "../serial/SerialPort.hpp"
 #include "motion_msg_srv/msg/motion.hpp"
+#include "../serial/SerialPort.hpp"
+#include <chrono>
+#include <mutex>
 #include <action_msg_srv_shared/order_codes.hpp>
+#include "../sync/alert_mutex.hpp"
 
 using namespace std::chrono_literals;
 
@@ -27,7 +29,8 @@ public:
      * 
      * @param gateway a shared pointer to the open scom::SerialPort, also known as microcontroller_gateway
     */ 
-    MotionPublisher(std::shared_ptr<scom::SerialPort> gateway);
+    MotionPublisher(std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
+        std::mutex& serial_mut, alert_mutex& alert_mut);
 
     /**
      * Publishes ticks provided by microcontroller until robot is stopped or finished its goal
@@ -36,12 +39,16 @@ public:
      * @param expected_left_ticks the left ticks goal
      * @param expected_right_ticks the right ticks goal
     */ 
-    void broadcast_motion(int32_t expected_left_ticks, int32_t expected_right_ticks);
+    void set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks) const;
 
     /**
      * @return motion_status for ActionService to build a response
     */ 
-    int64_t get_motion_status() const;
+    MotionStatusCodes get_motion_status() const;
+
+    void broadcast_motion();
+
+
 
 private:
 
@@ -62,5 +69,13 @@ private:
      * COMPLETE, NO_COMPLETE, MOTION_TIMEOUT. See order_codes.hpp
     */ 
     MotionStatusCodes motion_status;
+
+    std::mutex& serial_read_mutex;
+
+    alert_mutex& alert_mutex;
+
+    int32_t expected_left_ticks;
+    int32_t expected_right_ticks;
+    auto motion_start;
 
 };

@@ -3,7 +3,9 @@
 #include <order/motion.h>
 #include <iostream>
 #include <thread>
+#include <mutex>
 #include "bit_decoder/bit_decoder.hpp"
+#include "sync/alert_mutex.hpp"
 
 /**
  * @ingroup microcontroller_proxy
@@ -22,7 +24,18 @@ int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
 
-    auto actionService = std::make_shared<ActionService>("action");
+    std::mutex serial_read_mutex;
+    alert_mutex alert_mutex{.is_alert = false};
+    
+    auto serial_port = std::make_shared<SerialPort>("/dev/ttyACM0");
+    this->microcontroller_gateway->open_serial();
+    this->microcontroller_gateway->get_config();
+    this->microcontroller_gateway->set_default_config();
+
+    auto motionPublisher = std::make_shared<MotionPublisher>("motion", serial_port, &serial_read_mutex, &alert_mutex);
+    auto alertSubscriber = std::make_shared<AlertSubscriber>("alert", motionPublisher, &alert_mutex);
+    auto actionService = std::make_shared<ActionService>("action", motionPublisher, &serial_read_mutex);
+
     if(argc == 2 && strcmp(argv[1], "monitor") == 0) {
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
         while(true) {
@@ -36,12 +49,27 @@ int main(int argc, char** argv) {
         }
     } else if (argc == 1)
     {
-        rclcpp::spin(actionService);
+        std::thread actionServiceThread([&actionService](){
+            rclcpp::spin(actionService);
+            actionService->microcontroller_gateway->close_port();
+        });
+
+        std::thread motionPublisherThread([&motionPublisher](){
+            motionPublisher->broadcast_motion();
+        });
+
+        std::thread alertSubscriberThread([&alertSubscriber](){
+            rclcpp::spin(alertSubscriber);
+        });
+
+        motionPublisherThread.join();
+        actionServiceThread.join();
+        alertSubscriberThread.join();
+
     } else {
         std::cout << "Allowed only one argument: [monitor], for ticks monitoring" << std::endl;
     }
     
-    actionService->microcontroller_gateway->close_port();
     rclcpp::shutdown();
 
     return 0;
