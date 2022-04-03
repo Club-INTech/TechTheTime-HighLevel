@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <string>
+#include <mutex>
 
 #include "../serial/SerialPort.hpp"
 #include "../publisher/MotionPublisher.hpp"
@@ -80,7 +81,7 @@ public:
      * 
      * All order codes are defined there order_codes.hpp.
     */ 
-    ActionService(const std::string& service_name);
+    ActionService(const std::string& service_name, std::shared_ptr<MotionPublisher> motion_publisher, std::mutex& mut);
 
     /**
      * 
@@ -121,6 +122,10 @@ private:
      * A shared pointer to the MotionPublisher used to publish microcontroller feedback while moving. 
     */ 
     std::shared_ptr<MotionPublisher> motion_publisher;
+
+    std::mutex& serial_read_mutex;
+
+    int64_t spin_while_moving();
     
 };
 
