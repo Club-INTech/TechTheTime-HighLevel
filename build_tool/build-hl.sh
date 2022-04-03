@@ -12,6 +12,7 @@ green="$(tput bold ; tput setaf 2)"
 yellow="$(tput bold ; tput setaf 3)"
 
 available_nodes=(manager microcontroller_proxy)
+srvs_msgs=(action_msg_srv motion_msg_srv alert_msg_srv)
 
 check_node_exists () {
     for available_node in ${available_nodes[@]}; do
@@ -105,12 +106,15 @@ echo "${yellow}===== Building interfaces =====${reset}"
 echo "${yellow}===== Building action_msg_srv =====${reset}"
 
 cd ../ros_workspace/src/srvs_msgs
-colcon build --packages-select action_msg_srv >&$ostream
-colcon build --packages-select motion_msg_srv >&$ostream
 
-if [ $? -ne 0 ]; then
-    fail_on_build "action_msg_srv"
-fi
+for srv_msg in "${srvs_msgs[@]}"; do
+    echo "${yellow}===== Building $srv_msg =====${reset}"
+    colcon build --packages-select $srv_msg >&$ostream
+    if [ $? -ne 0 ]; then
+        fail_on_build "action_msg_srv"
+    fi
+    echo "${green}===== Finished $srv_msg =====${reset}"
+done
 
 source install/setup.bash
 cd $path
