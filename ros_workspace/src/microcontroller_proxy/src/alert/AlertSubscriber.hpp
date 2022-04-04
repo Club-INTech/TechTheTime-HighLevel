@@ -4,7 +4,7 @@
 #include <string>
 #include "../sync/alert_mutex.hpp"
 #include <memory>
-#include "alert_msg_srv/msg/alert.hpp"
+#include "std_msgs/msg/bool.hpp"
 
 using std::placeholders::_1;
 
@@ -15,6 +15,6 @@ public:
 
 private:
     alert_mutex& alert_mut;
-    void alert_callback(const alert_msg_srv::msg::Alert::SharedPtr msg) const;
-    rclcpp::Subscription<alert_msg_srv::msg::Alert>::SharedPtr subscriber_;
+    void alert_callback(const std_msgs::msg::Bool::SharedPtr msg) const;
+    rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr subscriber_;
 };
