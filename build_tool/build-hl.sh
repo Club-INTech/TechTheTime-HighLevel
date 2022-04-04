@@ -11,8 +11,8 @@ red="$(tput bold ; tput setaf 1)"
 green="$(tput bold ; tput setaf 2)"
 yellow="$(tput bold ; tput setaf 3)"
 
-available_nodes=(manager microcontroller_proxy)
-srvs_msgs=(action_msg_srv motion_msg_srv alert_msg_srv)
+available_nodes=(manager microcontroller_proxy motion_control)
+srvs_msgs=(action_msg_srv motion_msg_srv)
 
 check_node_exists () {
     for available_node in ${available_nodes[@]}; do
