@@ -7,6 +7,7 @@
 #include "action_msg_srv/srv/order.hpp"
 #include <stdexcept>
 #include "robot_motion/RobotMotion.hpp"
+#include "script/script.hpp"
 
 using namespace std;
 
@@ -107,31 +108,25 @@ double RobotMotion::angle = 0.0;
 int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto commClient = std::make_shared<ActionClient>();
-    commClient->set_shared(commClient);
-    commClient->wait_for_connection(); 
+    
+    Script script = Script();
 
     std::thread subscriber_thread([](){
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
 
-    std::thread client_thread([&commClient](){
-        try {
-            auto res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+    std::thread client_thread({
+        std::function<void()> orderONE = std::bind(&script::move, script, 1000,1000,0);
+        std::function<void()> orderTWO = std::bind(&script::move, script, 1500,700,0);
+        std::function<void()> orderTHREE = std::bind(&script::moveABS, script, 700,0.0,0);
+        std::function<void()> orderFOUR = std::bind(&script::move, script, 1000,1000,0);
 
-            MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
-            if(status == MotionStatusCodes::COMPLETE) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
-            } else if(status == MotionStatusCodes::NOT_COMPLETE){
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-            } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-            }
+        script.pushOrder(orderONE);
+        script.pushOrder(orderTWO);
+        script.pushOrder(orderTHREE);
+        script.pushOrder(orderFOUR);
 
-            res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
-        } catch(const std::runtime_error& e) {
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
-        }  
+        script.run();
     });
 
     subscriber_thread.join();
