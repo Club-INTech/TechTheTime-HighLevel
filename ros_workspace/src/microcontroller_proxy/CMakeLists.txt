@@ -23,6 +23,15 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Expected)
 
+message("Fetching google test...")
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
 add_compile_options(-Wall -Wextra)
 
 # find dependencies
@@ -30,7 +39,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(action_msg_srv REQUIRED)
 find_package(motion_msg_srv REQUIRED)
-find_package(alert_msg_srv REQUIRED)
+find_package(std_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -70,21 +79,26 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${SharedDirectory})
 target_link_libraries(${PROJECT_NAME} expected)
 
 ament_target_dependencies(${PROJECT_NAME}
-  rclcpp action_msg_srv motion_msg_srv alert_msg_srv)
+  rclcpp action_msg_srv motion_msg_srv std_msgs)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # uncomment the line when a copyright and license is not present in all source files
-  #set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # uncomment the line when this package is not in a git repo
-  #set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+enable_testing()
+
+add_executable(
+  microcontroller_proxy_test
+  test/main_test.cpp
+)
+
+target_link_libraries(
+  microcontroller_proxy_test
+  gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(microcontroller_proxy_test)
 
 install(TARGETS
   ${PROJECT_NAME}
+  microcontroller_proxy_test
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
