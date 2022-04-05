@@ -24,18 +24,21 @@ find_package(motion_msg_srv REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-set(ActionOrderDirectory ../srvs_msgs/action_msg_srv_shared)
+set(SharedDirectory ../shared)
 
-set(ActionOrderHeaders ${ActionOrderDirectory}/order_codes.hpp ${ActionOrderDirectory}/order_binder.hpp)
+include_directories(${SharedDirectory})
 
-add_executable(${PROJECT_NAME} src/manager.cpp ${ActionOrderDirectory} src/subscriber/MotionSubscriber.cpp)
+add_executable(${PROJECT_NAME} 
+  src/manager.cpp 
+  src/subscriber/MotionSubscriber.cpp
+  src/dev/order_reader.cpp
+)
+
 ament_target_dependencies(manager
   rclcpp 
   action_msg_srv
   motion_msg_srv
 )
-
-target_include_directories(manager PUBLIC ${ActionOrderDirectory})
 
 
 if(BUILD_TESTING)

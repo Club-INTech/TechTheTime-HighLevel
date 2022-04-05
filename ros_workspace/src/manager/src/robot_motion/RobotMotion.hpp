@@ -1,21 +1,8 @@
 #pragma once
 
-#include <cmath>
-
-#define MIN(a, b) (a) < (b) ? (a) : (b)
-
-constexpr double WHEEL_DIAMETER_MM = 68.0;
-constexpr double TICKS_PER_TURN = 1024;
-constexpr double TICKS_TO_MM = (M_PI * WHEEL_DIAMETER_MM) / (2 * TICKS_PER_TURN);
-constexpr double HAFL_LENGHT_2A = 75;
-constexpr double HAFL_WIDTH_2A = 123;
-constexpr double RADIUS_BASE_2A = 143,962;
-constexpr double HAFL_LENGHT_1A = 83,9925;
-constexpr double HAFL_WIDTH_1A = 170;
-constexpr double RADIUS_BASE_1A = 184,817;
-
-constexpr double WHEEL_DISTANCE = 278.0;
-constexpr double ANGLE_PER_TICK = (M_PI * WHEEL_DIAMETER_MM) / (1024.0 * WHEEL_DISTANCE);
+#include <const_shared/MotionConst.hpp>
+#include <action_msg_srv_shared/order_codes.hpp>
+#include <iostream>
 
 class RobotMotion {
 public:
@@ -27,10 +14,27 @@ public:
     static double angle;
 
     static void atomic_move(int64_t left_ticks, int64_t right_ticks) {
-        double dl = MIN(left_ticks, right_ticks) * TICKS_TO_MM;
-        double delta = right_ticks - left_ticks;
-        x += -dl * cos(angle);
-        y += -dl * sin(angle);
-        angle += ((3 * M_PI_2) - (ANGLE_PER_TICK * delta));
+        double dbeta = 0; 
+        double cos_angle = cos(angle);
+        double sin_angle = sin(angle);
+        if(SIGN(left_ticks) == SIGN(right_ticks)) {
+            double c_ticks = SIGN(left_ticks) * MIN(ABS(left_ticks), ABS(right_ticks));
+            double dl = c_ticks * TICKS_TO_MM;
+            x += (dl * cos_angle);
+            y += (dl * sin_angle);
+            dbeta = TICKS_TO_RADIANS * (left_ticks - right_ticks);
+        } else if(left_ticks < 0 && right_ticks >= 0) {
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
+            angle -= alpha;
+            //dbeta = -TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+        } else if(left_ticks >= 0 && right_ticks < 0) {
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
+            angle += alpha;
+            //dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+        }
+        angle += dbeta;
+        double dr = dbeta * WHEEL_DISTANCE;
+        // x += (dr * (cos_angle * (1 + dbeta * dbeta / 4) - (sin_angle * dbeta / 2)));
+        // y += (dr * (sin_angle * (1 + dbeta * dbeta / 4) + (cos_angle * dbeta / 2)));
     }
 };

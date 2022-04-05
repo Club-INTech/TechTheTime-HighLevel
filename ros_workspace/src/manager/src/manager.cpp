@@ -1,12 +1,14 @@
 #include "client/ActionClient.hpp"
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
-#include <order_codes.hpp>
+#include <action_msg_srv_shared/order_codes.hpp>
 #include "subscriber/MotionSubscriber.hpp"
 #include <thread>
 #include "action_msg_srv/srv/order.hpp"
 #include <stdexcept>
 #include "robot_motion/RobotMotion.hpp"
+#include "dev/order_reader.hpp"
+#include <tuple>
 
 using namespace std;
 
@@ -115,23 +117,34 @@ int main(int argc, char** argv) {
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
 
-    std::thread client_thread([&commClient](){
-        try {
-            auto res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
+    std::thread client_thread([&commClient, argc, &argv](){
+        if(argc == 2 && strcmp(argv[1], "free") == 0) {
+            std::string expression = "";
+            while(1) {
+                try {
+                    std::getline(std::cin, expression);
+                    auto order = order_reader::get_order_as_tuple(expression);
+                    auto res = commClient->send((int64_t) std::get<0>(order),
+                                                            std::get<1>(order),
+                                                            std::get<2>(order),
+                                                            std::get<3>(order) 
+                    );
 
-            MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
-            if(status == MotionStatusCodes::COMPLETE) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
-            } else if(status == MotionStatusCodes::NOT_COMPLETE){
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-            } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+                    MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
+                    if(status == MotionStatusCodes::COMPLETE) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
+                    } else if(status == MotionStatusCodes::NOT_COMPLETE){
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+                    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+                    }
+
+                } catch(const std::runtime_error& e) {
+                    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
+                }         
             }
 
-            res = commClient->send((int64_t) OrderCodes::MOVE, 500, 0, 0);
-        } catch(const std::runtime_error& e) {
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
-        }  
+        } else {}
     });
 
     subscriber_thread.join();
