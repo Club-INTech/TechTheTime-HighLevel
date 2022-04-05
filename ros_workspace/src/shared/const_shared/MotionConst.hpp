@@ -2,9 +2,9 @@
 
 #include <cmath>
 
-#define MIN(a, b) (a) < (b) ? (a) : (b)
-#define ABS(a) (a) < 0 ? (-(a)) : (a)
-#define SIGN(a) (a) < 0 ? (-1) : (1)
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define ABS(a) ((a) < 0 ? (-(a)) : (a))
+#define SIGN(a) ((a) < 0 ? (-1) : (1))
 
 /**
  * Acceptable tolerancy in ticks(both for left wheel and right wheel). If 

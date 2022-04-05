@@ -20,12 +20,14 @@
 using namespace scom;
 using namespace std::chrono_literals;
 
-ActionService::ActionService(const std::string& service_name, std::shared_ptr<MotionPublisher> motion_publisher,
-        std::mutex& mut) : Node(service_name), order_binder(), service_name(service_name), serial_read_mutex(mut),
-        service(this->create_service<action_msg_srv::srv::Order>(service_name, [&](
+ActionService::ActionService(const std::string& service_name, std::shared_ptr<scom::SerialPort> serial_port,
+        std::shared_ptr<MotionPublisher> motion_publisher, std::mutex& mut) : Node(service_name), 
+        order_binder(), service_name(service_name), serial_read_mutex(mut),
+                service(this->create_service<action_msg_srv::srv::Order>(service_name, [&](
                 const shared_request_T req, shared_response_T res){ this->treat_orders(req, res);})) {
 
                 this->motion_publisher = motion_publisher;
+                this->microcontroller_gateway = serial_port;
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %lf\n",req->distance);

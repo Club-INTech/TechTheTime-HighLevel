@@ -48,12 +48,12 @@ void MotionPublisher::broadcast_motion() {
 
     while(1) {
 
-        if(expected_left_ticks < 0) {
-            expected_left_ticks = -expected_left_ticks;
+        if(this->expected_left_ticks < 0) {
+            this->expected_left_ticks = -this->expected_left_ticks;
             left_ticks_mult = -1;
         }
         if(expected_right_ticks < 0) {
-            expected_right_ticks = -expected_right_ticks;
+            this->expected_right_ticks = -this->expected_right_ticks;
             right_ticks_mult = -1;
         }
 

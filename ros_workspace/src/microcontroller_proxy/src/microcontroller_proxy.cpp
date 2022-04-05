@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 
     auto motionPublisher = std::make_shared<MotionPublisher>("motion", serial_port, serial_read_mutex, alert_mut);
     auto alertSubscriber = std::make_shared<AlertSubscriber>("alert", alert_mut);
-    auto actionService = std::make_shared<ActionService>("action", motionPublisher, serial_read_mutex);
+    auto actionService = std::make_shared<ActionService>("action", serial_port, motionPublisher, serial_read_mutex);
 
     if(argc == 2 && strcmp(argv[1], "monitor") == 0) {
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
