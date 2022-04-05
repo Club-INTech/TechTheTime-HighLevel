@@ -1,13 +1,13 @@
-#include "controller/controllerSetup.hpp"
 #include "script.hpp"
-#include "client/ClientT.hpp"
+#include <action_msg_srv_shared/order_codes.hpp>
+#include "../client/ClientT.hpp"
 #include <iostream>
 #include <string>
 #include <cstddef>
 #include <stdexcept>
+#include <type_traits>
 #include "rclcpp/rclcpp.hpp"
-#include "order_codes.hpp"
-#include "RobotMotion.hpp"
+#include "../robot_motion/RobotMotion.hpp"
 #include <cmath>
 #include <functional>
 
@@ -20,13 +20,13 @@
 // 2nd RAW : 7 8 9
 // 1st RAW : 12 11 10 
 
-Script::Order() {
-    this.commClient = std::make_shared<ActionClient>();
-    this.commClient->set_shared(this.commClient);
-    this.commClient->wait_for_connection(); 
+Script::Script() {
+    this->commClient = std::make_shared<ActionClient>();
+    this->commClient->set_shared(this->commClient);
+    this->commClient->wait_for_connection(); 
 }
 
-Script::reverse_palet(double useless, double useless2, int id) {
+void Script::reverse_palet(double useless, double useless2, int id) {
     double angle_floor1_floor; // TO DEF
     double angle_floor1_arm; // TO DEF
     double angle_floor1_floor_back; // TO DEF
@@ -39,16 +39,16 @@ Script::reverse_palet(double useless, double useless2, int id) {
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Reverse the palet of the column %d =====", id);
 
-    auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, angle_arm_floor);
-    auto res_move_arm_arm = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id+6, angle_arm_arm);
+    auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, angle_floor1_floor);
+    auto res_move_arm_arm = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id+6, angle_floor1_arm);
     auto res_pompe_activ = commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, id, 0);
-    auto res_move_arm_floor_backup = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, angle_arm_floor2);
+    auto res_move_arm_floor_backup = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, angle_floor2_floor);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet with XL %d =====", id);
 }
 
 
-Script::take_distrib_vertical(double useless, double useless, int id) {
+void Script::take_distrib_vertical(double useless, double useless2, int id) {
     double angle_arm_floor; // TO DEF
     double angle_arm_floorback; // TO DEF
     double angle_arm_arm; // TO DEF
@@ -63,48 +63,49 @@ Script::take_distrib_vertical(double useless, double useless, int id) {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet with XL %d =====", id);
 }
 
-Script::take_statue(double useless, double useless2, int useless3){
+void Script::take_statue(double useless, double useless2, int useless3){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
 
-    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, 13, 0);
-    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, -std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
 }
 
-Script::drop_replic(double useless, double useless2, int useless3){
+void Script::drop_replic(double useless, double useless2, int useless3){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
 
-    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 14, -std::M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 14, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 14, 0);
-    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, std::M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
+    commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
 }
 
-Script::angleABS(double angle_rel, double useless, double useless2){
+void Script::angleABS(double angle_rel, double useless, int useless2){
     double angle = -RobotMotion::angle+angle_rel;
-    action_msg_srv::srv::Order res_angle;
+    MotionStatusCodes status;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
-    if(angle>std::M_PI){
-        res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*std::M_PI-angle);
+    if(angle>M_PI){
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*M_PI-angle);
+        status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     }
     else{
-        res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
-    }
-    MotionStatusCodes status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
+        status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+    } 
 
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle_rel,0.0,0);
-    this->treat_response(status,res_angle,orderToReinsert);
+    this->treat_response(status,angle,orderToReinsert);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
-Script::moveABS(double distance_rel, double useless, int useless2){
+void Script::moveABS(double distance_rel, double useless, int useless2){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
@@ -116,22 +117,22 @@ Script::moveABS(double distance_rel, double useless, int useless2){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
 }
 
-Script::run(){
-    while(!this.deque.empty()){
-        auto order = this.deck_order.front()
-        this.deck_order.pop_front()
+void Script::run(){
+    while(!this->deque_order.empty()){
+        auto order = this->deque_order.front();
+        this->deque_order.pop_front();  
         order();
     }
 }
 
-Script::move(double aim_x,double aim_y,int useless) {
+void Script::move(double aim_x,double aim_y,int useless) {
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Move =====");
     double curr_x = RobotMotion::x;
     double curr_y = RobotMotion::y;
     double curr_angle = RobotMotion::angle;
-    action_msg_srv::srv::Order res_angle;
-    double distance = sqrt((aim_x-curr_x)**2 + (aim_y-curr_y)**2); //Physical distance between too position in staight line
+    MotionStatusCodes status_angle;
+    double distance = sqrt((aim_x-curr_x)*(aim_x-curr_x) + (aim_y-curr_y)*(aim_y-curr_y)); //Physical distance between too position in staight line
     double aim_angle;
     // Voir Feuille Gaétan
     double cosAIM_ANGLE;
@@ -140,27 +141,28 @@ Script::move(double aim_x,double aim_y,int useless) {
     double x_prime = aim_x - curr_x;
     double y_prime = aim_y - curr_y;
 
-    cosAIM_ANGLE = (x*x_prime+y*y_prime)/(x**2+y**2);
+    cosAIM_ANGLE = (x*x_prime+y*y_prime)/(x*x+y*y);
 
     aim_angle = std::acos(cosAIM_ANGLE);
 
     // Pour savoir si on a vraiment le bonne angle on regarde le sinus
 
-    double sinAIM_ANGLE =(x_prime*y-y_prime*x)/(y**2+x**2);
+    double sinAIM_ANGLE =(x_prime*y-y_prime*x)/(y*y+x*x);
 
     if(std::asin(aim_angle)==-sinAIM_ANGLE){
-        aim_angle += std::M_PI;
+        aim_angle += M_PI;
     }
-    if(aim_angle>std::M_PI){
-        res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*std::M_PI-aim_angle);
+    if(aim_angle>M_PI){
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*M_PI-aim_angle);
+        status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     }
     else{
-        res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, aim_angle); // Possible de laisser que le IF et de mettre le send à l'extérieur
+        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, aim_angle);
+        status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     }
-    MotionStatusCodes status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
 
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&script::move, this, aim_x,aim_y,0);
+    std::function<void()> orderToReinsert = std::bind(&Script::move, this, aim_x,aim_y,0);
     bool execption = this->treat_response(status_angle,aim_angle,orderToReinsert);
 
     if (execption==false){
@@ -172,6 +174,6 @@ Script::move(double aim_x,double aim_y,int useless) {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Move =====");
 }   
 
-Script::pushOrder(std::function<void()> orderToPush){
-    this.deque_order.push_back(orderToPush);
+void Script::pushOrder(std::function<void()> orderToPush){
+    this->deque_order.push_back(orderToPush);
 }

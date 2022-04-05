@@ -115,8 +115,9 @@ int main(int argc, char** argv) {
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
 
-    std::thread client_thread([&commClient, argc, &argv](){
+    std::thread client_thread([&script, argc, &argv](){
         if(argc == 2 && strcmp(argv[1], "free") == 0) {
+            auto commClient = std::make_shared<ActionClient>();
             std::string expression = "";
             while(1) {
                 try {
@@ -143,10 +144,10 @@ int main(int argc, char** argv) {
             }
 
         } else {
-            std::function<void()> orderONE = std::bind(&script::move, script, 1000,1000,0);
-            std::function<void()> orderTWO = std::bind(&script::move, script, 1500,700,0);
-            std::function<void()> orderTHREE = std::bind(&script::moveABS, script, 700,0.0,0);
-            std::function<void()> orderFOUR = std::bind(&script::move, script, 1000,1000,0);
+            std::function<void()> orderONE = std::bind(&Script::move, script, 1000,1000,0);
+            std::function<void()> orderTWO = std::bind(&Script::move, script, 1500,700,0);
+            std::function<void()> orderTHREE = std::bind(&Script::moveABS, script, 700,0.0,0);
+            std::function<void()> orderFOUR = std::bind(&Script::move, script, 1000,1000,0);
 
             script.pushOrder(orderONE);
             script.pushOrder(orderTWO);
@@ -155,7 +156,7 @@ int main(int argc, char** argv) {
 
             script.run();
         }
-
+    });
     subscriber_thread.join();
     client_thread.join();
 
