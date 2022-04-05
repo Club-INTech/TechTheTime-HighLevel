@@ -9,8 +9,7 @@
 #include "robot_motion/RobotMotion.hpp"
 #include "dev/order_reader.hpp"
 #include <tuple>
-
-using namespace std;
+#include "script/script.hpp"
 
 /*! \mainpage 
  *
@@ -109,9 +108,8 @@ double RobotMotion::angle = 0.0;
 int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
-    auto commClient = std::make_shared<ActionClient>();
-    commClient->set_shared(commClient);
-    commClient->wait_for_connection(); 
+    
+    Script script = Script();
 
     std::thread subscriber_thread([](){
         rclcpp::spin(std::make_shared<MotionSubscriber>());
@@ -144,8 +142,19 @@ int main(int argc, char** argv) {
                 }         
             }
 
-        } else {}
-    });
+        } else {
+            std::function<void()> orderONE = std::bind(&script::move, script, 1000,1000,0);
+            std::function<void()> orderTWO = std::bind(&script::move, script, 1500,700,0);
+            std::function<void()> orderTHREE = std::bind(&script::moveABS, script, 700,0.0,0);
+            std::function<void()> orderFOUR = std::bind(&script::move, script, 1000,1000,0);
+
+            script.pushOrder(orderONE);
+            script.pushOrder(orderTWO);
+            script.pushOrder(orderTHREE);
+            script.pushOrder(orderFOUR);
+
+            script.run();
+        }
 
     subscriber_thread.join();
     client_thread.join();
