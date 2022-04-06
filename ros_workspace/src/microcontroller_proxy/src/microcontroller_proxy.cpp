@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
         while(true) {
             actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();
-            std::this_thread::sleep_for(25ms);
+            std::this_thread::sleep_for(50ms);
             uint64_t value = actionService->microcontroller_gateway->receive_feedback<Get_Ticks>();
             bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
             decoded_values.decoder.decode(value);

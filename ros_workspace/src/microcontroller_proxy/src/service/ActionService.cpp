@@ -57,6 +57,8 @@ void ActionService::treat_orders(const shared_request_T req, shared_response_T r
         try {
                 this->serial_read_mutex.lock();
                 this->order_binder.execute_order(req->order_code, req, res);
+                std::this_thread::sleep_for(SERIAL_COM_DELAY);
+                this->microcontroller_gateway->flush();
                 this->serial_read_mutex.unlock();
                 res->motion_status = this->spin_while_moving();
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", res->motion_status);

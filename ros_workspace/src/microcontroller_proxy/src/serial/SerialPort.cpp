@@ -35,7 +35,8 @@ SerialPort::SerialPort(const char* port_name) {
 }
 
 void SerialPort::open_serial() {
-    int serial_port  = open(this->port_name, O_RDWR);
+    int serial_port  = open(this->port_name, O_RDWR | O_NOCTTY | O_NDELAY);
+    sleep(1);
     if (serial_port < 0) {
         printf("Error %i open: %s\n", errno, std::strerror(errno));
         exit(errno);
@@ -169,8 +170,9 @@ void SerialPort::read_byte(uint8_t* byte) {
 }
 
 void SerialPort::read_word(uint8_t* word, int size) {
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Blocks");
     if(read(this->serial_port, word, size) == -1) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read word failure.");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read word failure. %s", std::strerror(errno));
         rclcpp::shutdown();
         exit(1);
     }
@@ -194,7 +196,9 @@ void SerialPort::com_write_byte(upd::byte_t byte) {
 upd::byte_t SerialPort::com_read_byte() {
     upd::byte_t header[5];
     if(this->new_response) {
-        this->read_word(header, 5);
+        for(int i = 0; i < 5; i++) {
+            this->read_byte(&header[i]);
+        }
         this->new_response = false;
     }
 
@@ -234,9 +238,16 @@ void SerialPort::set_exclusive_access() {
     }
 }
 
+void SerialPort::flush() {
+    sleep(1);
+    tcflush(this->serial_port, TCIOFLUSH);
+}
+
 void SerialPort::set_default_config() {
     this->open_serial();
     this->get_config();
+
+    // fcntl(this->serial_port, F_SETFL, 0);
 
     this->configure_control_modes(CS8, {
         false,
@@ -247,7 +258,7 @@ void SerialPort::set_default_config() {
     });
 
     this->configure_local_modes({
-        false,
+        true,
         false,
         false,
         false,
@@ -272,9 +283,11 @@ void SerialPort::set_default_config() {
         false
     });
 
-    this->define_blocking_mode(scom::BlockingModes::NO_BLOCK, {});
+    // this->define_blocking_mode(scom::BlockingModes::NO_BLOCK, {});
     this->set_input_speed(115200);
     this->set_output_speed(115200);
+
+    // this->flush();
 
     this->set_config();
 }

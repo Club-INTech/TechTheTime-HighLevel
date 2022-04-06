@@ -225,6 +225,8 @@ namespace scom {
         */ 
         void set_exclusive_access();
 
+        void flush();
+
         /**
          * Opens serial, gets config, then sets a default config to serial port.
          * The default config is the following:
