@@ -26,7 +26,7 @@ Script::Script() {
     this->commClient->wait_for_connection(); 
 }
 
-void Script::reverse_palet(double useless, double useless2, int id) {
+void Script::reverse_palet(double, double, int id) {
     double angle_floor1_floor; // TO DEF
     double angle_floor1_arm; // TO DEF
     double angle_floor1_floor_back; // TO DEF
@@ -48,7 +48,7 @@ void Script::reverse_palet(double useless, double useless2, int id) {
 }
 
 
-void Script::take_distrib_vertical(double useless, double useless2, int id) {
+void Script::take_distrib_vertical(double, double, int id) {
     double angle_arm_floor; // TO DEF
     double angle_arm_floorback; // TO DEF
     double angle_arm_arm; // TO DEF
@@ -63,7 +63,7 @@ void Script::take_distrib_vertical(double useless, double useless2, int id) {
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet with XL %d =====", id);
 }
 
-void Script::take_statue(double useless, double useless2, int useless3){
+void Script::take_statue(double, double, int){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
 
@@ -74,7 +74,7 @@ void Script::take_statue(double useless, double useless2, int useless3){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
 }
 
-void Script::drop_replic(double useless, double useless2, int useless3){
+void Script::drop_replic(double, double, int){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
 
@@ -85,7 +85,7 @@ void Script::drop_replic(double useless, double useless2, int useless3){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
 }
 
-void Script::angleABS(double angle_rel, double useless, int useless2){
+void Script::angleABS(double angle_rel, double, int){
     double angle = -RobotMotion::angle+angle_rel;
     MotionStatusCodes status;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
@@ -105,7 +105,7 @@ void Script::angleABS(double angle_rel, double useless, int useless2){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
-void Script::moveABS(double distance_rel, double useless, int useless2){
+void Script::moveABS(double distance_rel, double, int){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
@@ -125,7 +125,7 @@ void Script::run(){
     }
 }
 
-void Script::move(double aim_x,double aim_y,int useless) {
+void Script::move(double aim_x,double aim_y,int) {
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Move =====");
     double curr_x = RobotMotion::x;
