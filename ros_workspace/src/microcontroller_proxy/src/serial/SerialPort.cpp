@@ -240,7 +240,7 @@ void SerialPort::set_exclusive_access() {
 
 void SerialPort::flush() {
     sleep(1);
-    tcflush(this->serial_port, TCIOFLUSH);
+    tcflush(this->serial_port, TCIFLUSH);
 }
 
 void SerialPort::set_default_config() {

@@ -33,32 +33,18 @@ void MotionPublisher::set_motion_goal(int32_t expected_left_ticks, int32_t expec
     this->motion_start = std::chrono::system_clock::now();
 }
 
-// std::pair<int32_t, int32_t> MotionPublisher::get_ticks() {
-
-//     if(this->expected_left_ticks < 0) {
-//             this->expected_left_ticks = -this->expected_left_ticks;
-//             left_ticks_mult = -1;
-//         }
-
-//     if(this->expected_right_ticks < 0) {
-//         this->expected_right_ticks = -this->expected_right_ticks;
-//         right_ticks_mult = -1;
-//     }
-
-// }
-
 
 void MotionPublisher::broadcast_motion() {
     
     bool read_error = false;
     int32_t left_ticks = 0, right_ticks = 0;
 
+    auto msg = motion_msg_srv::msg::Motion();
+
     int32_t left_ticks_mult = 1;
     int32_t right_ticks_mult = 1;
 
     int32_t previous_left_ticks = 0, previous_right_ticks = 0;
-
-    auto msg = motion_msg_srv::msg::Motion();
 
     while(1) {
 
@@ -107,12 +93,12 @@ void MotionPublisher::broadcast_motion() {
             read_error = true;
         }
 
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d %d\n", decoded_values.decoder.decoded.at(0), 
-            decoded_values.decoder.decoded.at(1));
         if(!read_error) {
             msg.left_ticks = left_ticks_mult * (left_ticks - previous_left_ticks);
             msg.right_ticks = right_ticks_mult * (right_ticks - previous_right_ticks);
             this->publisher_->publish(msg);
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d %d\n", msg.left_ticks, 
+            msg.right_ticks);
         }
 
         auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -130,13 +116,13 @@ void MotionPublisher::broadcast_motion() {
         if(!this->alert_mut.alerting() && abs(left_ticks - previous_left_ticks) <= MOTION_CRITERIA &&
                     abs(right_ticks - previous_right_ticks) <= MOTION_CRITERIA) {
             
-            if(abs(left_ticks - expected_left_ticks) >= TICKS_INCERTITUDE || (right_ticks - expected_right_ticks) >= TICKS_INCERTITUDE) {
+            if(abs(left_ticks - this->expected_left_ticks) >= TICKS_INCERTITUDE || (right_ticks - this->expected_right_ticks) >= TICKS_INCERTITUDE) {
                 this->motion_status = MotionStatusCodes::NOT_COMPLETE;
             } else {
                 this->motion_status = MotionStatusCodes::COMPLETE;
             }
         }
-        this->microcontroller_gateway->flush();
+
         this->serial_read_mutex.unlock();
 
         std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);
