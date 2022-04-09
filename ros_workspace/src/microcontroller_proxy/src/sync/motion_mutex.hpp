@@ -1,5 +1,6 @@
 #pragma once
 #include <mutex>
+#include "alert_mutex.hpp"
 
 class MotionMutex {
 public:
@@ -9,8 +10,8 @@ public:
     MotionMutex(MotionMutex&& motion_mutex) = delete;
 
     template<auto& Ftor, class... Args>
-    static typename std::result_of<decltype(Ftor)(Args...)>::type protected_call(bool serial_access, 
-    bool motion_status_access, Args... args) {
+    static typename std::result_of<decltype(Ftor)(Args...)>::type sync_call(bool serial_access, 
+    bool motion_status_access, bool alert_access, Args... args) {
         
         if(serial_access) serial_mutex.lock();
         if(motion_status_access) motion_status_mutex.lock();
@@ -25,4 +26,5 @@ public:
 
     static std::mutex serial_mutex;
     static std::mutex motion_status_mutex;
-}
+    static alert_mutex alert_mutex;
+};
