@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
+#including fetch content
 include(FetchContent)
 
 project(microcontroller_proxy)
@@ -14,6 +15,7 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
 endif()
 
+# Fetches expected nedded for k2o functionning
 message("Fetching Expected...")
 FetchContent_Declare(
   Expected
@@ -21,34 +23,50 @@ FetchContent_Declare(
   GIT_TAG v1.0.0
 )
 
+# Making available expected
 FetchContent_MakeAvailable(Expected)
 
-message("Fetching google test...")
+#Fetching yaml-cpp to process yaml config for microcontroller_proxy launching
+message("Fetching yaml-cpp")
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+  yaml-cpp
+  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+  GIT_SHALLOW ON
+  GIT_TAG yaml-cpp-0.6.3
 )
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+FetchContent_GetProperties(yaml-cpp)
+if(NOT yaml-cpp_POPULATED)
+	message(STATUS "Populating yaml-cpp...")
+	FetchContent_Populate(yaml-cpp)
+	# Add here options for yaml-cpp building
+	set(YAML_CPP_BUILD_TESTS OFF CACHE BOOL "disable yaml tests")
+	add_subdirectory(${yaml-cpp_SOURCE_DIR} ${yaml-cpp_BINARY_DIR})
+	message(STATUS "Done.")
+endif()
 
-add_compile_options(-Wall -Wextra)
+include_directories(BEFORE SYSTEM ${yaml-cpp_SOURCE_DIR} ${yaml-cpp_BINARY_DIR}/include)
 
-# find dependencies
+#Add compile flag to show warnings and errors
+add_compile_options(-Wall)
+
+
+# Find dependencies
+# Ament and rclcpp for ros2 functionning
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+
+# Ros custom interfaces
 find_package(action_msg_srv REQUIRED)
 find_package(motion_msg_srv REQUIRED)
+
+# Ros std interface
 find_package(std_msgs REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
 
-set(SharedDirectory ../shared)
+# Include submodules' headers
+
 set(KeyToOrderDirectory ./lib/Key-To-Order/include)
-set(TechTheTimeSharedDirectory ./src/TechTheTime-Shared)
-
 set(UnpaddedDirectory ./lib/Unpadded/include)
 set(MP11Directory ./lib/mp11/include)
 set(ConfigDirectory ./lib/config/include)
@@ -60,45 +78,37 @@ include_directories(${MP11Directory})
 include_directories(${StaticAssertDirectory})
 include_directories(${TypeTraitsDirectory})
 include_directories(${ConfigDirectory})
-
 include_directories(${KeyToOrderDirectory})
+
+# Include path
+
+set(SharedDirectory ../shared)
+set(IncludePath ./include)
+set(TechTheTimeSharedDirectory ./include/TechTheTime-Shared)
+
 include_directories(${TechTheTimeSharedDirectory})
-
 include_directories(${SharedDirectory})
+include_directories(${IncludePath})
 
+# Compile sources and produce executable
 add_executable(
   ${PROJECT_NAME} 
-  src/serial/SerialPort.cpp
-  src/service/ActionService.cpp 
+  src/com/SerialPort.cpp
+  src/ros/cli_serv/ActionService.cpp 
+  src/ros/pub_sub/MotionPublisher.cpp
+  src/ros/pub_sub/AlertSubscriber.cpp
   src/microcontroller_proxy.cpp
-  src/publisher/MotionPublisher.cpp
-  src/alert/AlertSubscriber.cpp
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${SharedDirectory})
-target_link_libraries(${PROJECT_NAME} expected)
+# Linking expected
+target_link_libraries(${PROJECT_NAME} expected yaml-cpp)
 
+# Linking ament dependencies for ROS2
 ament_target_dependencies(${PROJECT_NAME}
   rclcpp action_msg_srv motion_msg_srv std_msgs)
 
-enable_testing()
-
-add_executable(
-  microcontroller_proxy_test
-  test/main_test.cpp
-)
-
-target_link_libraries(
-  microcontroller_proxy_test
-  gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(microcontroller_proxy_test)
-
 install(TARGETS
   ${PROJECT_NAME}
-  microcontroller_proxy_test
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
