@@ -9,8 +9,8 @@
 #include <string>
 #include <mutex>
 
-#include "../serial/SerialPort.hpp"
-#include "../publisher/MotionPublisher.hpp"
+#include <com/SerialPort.hpp>
+#include <ros/pub_sub/MotionPublisher.hpp>
 
 /** @defgroup microcontroller_proxy Microcontroller node.
  * @{
@@ -82,7 +82,7 @@ public:
      * All order codes are defined there order_codes.hpp.
     */ 
     ActionService(const std::string& service_name, std::shared_ptr<scom::SerialPort> serial_port,
-        std::shared_ptr<MotionPublisher> motion_publisher, std::mutex& mut);
+        std::shared_ptr<MotionPublisher> motion_publisher);
 
     /**
      * 
@@ -124,9 +124,9 @@ private:
     */ 
     std::shared_ptr<MotionPublisher> motion_publisher;
 
-    std::mutex& serial_read_mutex;
-
     int64_t spin_while_moving();
+
+    void execute_order(const shared_request_T req, shared_response_T res);
     
 };
 

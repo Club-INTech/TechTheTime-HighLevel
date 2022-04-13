@@ -2,11 +2,10 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "motion_msg_srv/msg/motion.hpp"
-#include "../serial/SerialPort.hpp"
+#include <com/SerialPort.hpp>
 #include <chrono>
 #include <mutex>
 #include <action_msg_srv_shared/order_codes.hpp>
-#include "../sync/alert_mutex.hpp"
 
 using namespace std::chrono_literals;
 
@@ -29,8 +28,7 @@ public:
      * 
      * @param gateway a shared pointer to the open scom::SerialPort, also known as microcontroller_gateway
     */ 
-    MotionPublisher(const std::string& topic, std::shared_ptr<scom::SerialPort> gateway, 
-        std::mutex& serial_mut, alert_mutex& alert_mut);
+    MotionPublisher(const std::string& topic, std::shared_ptr<scom::SerialPort> gateway);
 
     /**
      * Publishes ticks provided by microcontroller until robot is stopped or finished its goal
@@ -70,12 +68,16 @@ private:
     */ 
     MotionStatusCodes motion_status;
 
-    std::mutex& serial_read_mutex;
-
-    alert_mutex& alert_mut;
-
     int32_t expected_left_ticks;
     int32_t expected_right_ticks;
+    int32_t left_ticks;
+    int32_t right_ticks;
+    int32_t previous_left_ticks;
+    int32_t previous_right_ticks;
     std::chrono::time_point<std::chrono::system_clock> motion_start;
+
+    void update_status();
+    void stop_motion();
+    void follow_motion();
 
 };

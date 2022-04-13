@@ -24,3 +24,6 @@
 [submodule "doxygen-awesome-css"]
 	path = doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "ros_workspace/src/microcontroller_proxy/include/TechTheTime-Shared"]
+	path = ros_workspace/src/microcontroller_proxy/include/TechTheTime-Shared
+	url = git@github.com:Club-INTech/TechTheTime-Shared.git
