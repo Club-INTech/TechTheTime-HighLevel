@@ -35,7 +35,7 @@ SerialPort::SerialPort(const char* port_name) {
 }
 
 void SerialPort::open_serial() {
-    int serial_port  = open(this->port_name, O_RDWR | O_NOCTTY | O_NDELAY);
+    int serial_port  = open(this->port_name, O_RDWR);
     sleep(1);
     if (serial_port < 0) {
         printf("Error %i open: %s\n", errno, std::strerror(errno));
@@ -258,7 +258,7 @@ void SerialPort::set_default_config() {
     });
 
     this->configure_local_modes({
-        true,
+        false,
         false,
         false,
         false,
@@ -283,7 +283,7 @@ void SerialPort::set_default_config() {
         false
     });
 
-    // this->define_blocking_mode(scom::BlockingModes::NO_BLOCK, {});
+    this->define_blocking_mode(scom::BlockingModes::TIMEOUT, {5});
     this->set_input_speed(115200);
     this->set_output_speed(115200);
 
