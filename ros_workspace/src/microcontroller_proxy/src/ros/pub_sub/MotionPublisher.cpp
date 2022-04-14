@@ -104,7 +104,7 @@ void MotionPublisher::follow_motion() {
     std::this_thread::sleep_for(SERIAL_COM_DELAY);
     auto value = microcontroller_gateway->receive_feedback<Get_Ticks>();
     std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
-    this->microcontroller_gateway->flush();
+    // this->microcontroller_gateway->flush();
         
     bit_decoder::values<Get_Ticks, int32_t> decoded_values{};
     decoded_values.decoder.decode(value);

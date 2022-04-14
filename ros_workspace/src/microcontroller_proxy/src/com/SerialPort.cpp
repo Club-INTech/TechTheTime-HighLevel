@@ -169,7 +169,6 @@ void SerialPort::read_byte(uint8_t* byte) {
 }
 
 void SerialPort::read_word(uint8_t* word, int size) {
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Blocks");
     if(read(this->serial_port, word, size) == -1) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read word failure. %s", std::strerror(errno));
         rclcpp::shutdown();
@@ -203,7 +202,7 @@ upd::byte_t SerialPort::com_read_byte() {
 
     upd::byte_t byte; 
     
-    if(this->read_stuff_counter == sizeof(rpc::header) - 1) {
+    if(this->read_stuff_counter == sizeof(rpc::header)) {
         this->read_byte(&byte);
         this->read_stuff_counter = 0;
     }
@@ -238,7 +237,6 @@ void SerialPort::set_exclusive_access() {
 }
 
 void SerialPort::flush() {
-    sleep(1);
     tcflush(this->serial_port, TCIFLUSH);
 }
 
@@ -246,7 +244,6 @@ void SerialPort::set_default_config() {
     this->open_serial();
     this->get_config();
 
-    // fcntl(this->serial_port, F_SETFL, 0);
 
     this->configure_control_modes(CS8, {
         false,
@@ -282,11 +279,9 @@ void SerialPort::set_default_config() {
         false
     });
 
-    this->define_blocking_mode(scom::BlockingModes::TIMEOUT, {5});
+    this->define_blocking_mode(scom::BlockingModes::FIXED_BYTES, {1});
     this->set_input_speed(115200);
     this->set_output_speed(115200);
-
-    // this->flush();
 
     this->set_config();
 }
