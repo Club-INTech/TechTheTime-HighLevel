@@ -24,7 +24,6 @@ namespace scom {
     unsigned int output_modes_bits[] = {OPOST, ONLCR};
 
     uint8_t stuffing_byte = ~rpc::header[0];
-    // k2o::dispatcher dispatcher{rpc::master::keyring};
 }
 
 SerialPort::SerialPort(const char* port_name) {
@@ -204,7 +203,7 @@ upd::byte_t SerialPort::com_read_byte() {
 
     upd::byte_t byte; 
     
-    if(this->read_stuff_counter == sizeof(rpc::header)) {
+    if(this->read_stuff_counter == sizeof(rpc::header) - 1) {
         this->read_byte(&byte);
         this->read_stuff_counter = 0;
     }
