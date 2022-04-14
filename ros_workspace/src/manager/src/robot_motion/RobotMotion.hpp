@@ -26,15 +26,15 @@ public:
         } else if(left_ticks < 0 && right_ticks >= 0) {
             double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
             angle -= alpha;
-            //dbeta = -TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+            dbeta = -TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         } else if(left_ticks >= 0 && right_ticks < 0) {
             double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
             angle += alpha;
-            //dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+            dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         }
         angle += dbeta;
         double dr = dbeta * (WHEEL_DISTANCE / 2);
-        // x += dr * (1 - dbeta * dbeta / 2);
-        // y += dr * dbeta;
+        x += dr * (1 - dbeta * dbeta / 2);
+        y += dr * dbeta;
     }
 };

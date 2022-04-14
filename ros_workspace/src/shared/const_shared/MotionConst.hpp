@@ -37,7 +37,7 @@ constexpr double HALF_WHEEL_DISTANCE = WHEEL_DISTANCE / 2;
 constexpr double TICKS_TO_MM = (M_PI * WHEEL_DIAMETER_MM) / (2 * TICKS_PER_TURN);
 constexpr double MM_TO_TICKS =  1 / TICKS_TO_MM;
 
-constexpr double TICKS_TO_RADIANS = 2 * TICKS_TO_MM / WHEEL_DISTANCE;
+constexpr double TICKS_TO_RADIANS = TICKS_TO_MM / WHEEL_DISTANCE;
 constexpr double RADIANS_TO_TICKS = 1 / TICKS_TO_RADIANS;
 
 constexpr double TICKS_TO_RADIANS_HALF_BASE = 2 * TICKS_TO_RADIANS;
