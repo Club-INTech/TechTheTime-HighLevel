@@ -33,8 +33,8 @@ public:
             //dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         }
         angle += dbeta;
-        double dr = dbeta * WHEEL_DISTANCE;
-        // x += (dr * (cos_angle * (1 + dbeta * dbeta / 4) - (sin_angle * dbeta / 2)));
-        // y += (dr * (sin_angle * (1 + dbeta * dbeta / 4) + (cos_angle * dbeta / 2)));
+        double dr = dbeta * (WHEEL_DISTANCE / 2);
+        // x += dr * (1 - dbeta * dbeta / 2);
+        // y += dr * dbeta;
     }
 };
