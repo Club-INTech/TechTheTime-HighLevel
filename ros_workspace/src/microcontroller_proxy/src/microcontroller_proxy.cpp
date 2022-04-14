@@ -12,6 +12,8 @@
 #include <sync/motion_mutex.hpp>
 #include "yaml-cpp/yaml.h"
 #include <csignal>
+#include <fstream>
+#include <const_shared/CommunicationConst.hpp>
 
 /**
  * @ingroup microcontroller_proxy
@@ -35,9 +37,9 @@ void terminate(int code) {
 }
 
 template<typename T>
-T process_element(YAML::Node* config, std::string elem) {
+T process_element(YAML::Node* config, const char* elem) {
     if(!(*config)[elem]) {
-        std::cout << "Parameter " << elem << " is required";
+        std::cout << "Parameter " << elem << " is required" << std::endl;
         terminate(1);
     } else {
         return (*config)[elem].as<T>();
@@ -50,7 +52,13 @@ int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
 
-    YAML::Node config = YAML::LoadFile("config.yaml");
+    if(argc < 2) {
+        std::cout << "Please provide a full path to your config file. Example: $PWD/config.yaml" << std::endl;
+        terminate(1);
+    }
+
+    std::string filename(argv[1]);
+    YAML::Node config = YAML::LoadFile(filename);
     
     auto serial_port = std::make_shared<scom::SerialPort>(process_element<std::string>(&config, "serial_port").c_str());
     serial_port->open_serial();
@@ -76,17 +84,17 @@ int main(int argc, char** argv) {
     if(mode == "monitor") {
 
         actionService->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(2000);
-        std::this_thread::sleep_for(20ms);
+        std::this_thread::sleep_for(SERIAL_COM_DELAY);
         actionService->microcontroller_gateway->flush();
         while(true) {
             actionService->microcontroller_gateway->call_remote_function<Get_Ticks>();
-            std::this_thread::sleep_for(50ms);
+            std::this_thread::sleep_for(SERIAL_COM_DELAY);
             uint64_t value = actionService->microcontroller_gateway->receive_feedback<Get_Ticks>();
-            std::this_thread::sleep_for(20ms);
-            bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
+            std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
+            bit_decoder::values<Get_Ticks, int32_t> decoded_values{};
             decoded_values.decoder.decode(value);
             std::cout << value << " " << decoded_values.decoder.decoded.at(0) << " " << decoded_values.decoder.decoded.at(1) << std::endl;
-            std::this_thread::sleep_for(25ms);
+            std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);
         }
 
     } else if(mode == "match") {
