@@ -106,7 +106,7 @@ void MotionPublisher::follow_motion() {
     std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
     this->microcontroller_gateway->flush();
         
-    bit_encoder::values<Get_Ticks, int32_t> decoded_values{};
+    bit_decoder::values<Get_Ticks, int32_t> decoded_values{};
     decoded_values.decoder.decode(value);
 
     if(decoded_values.decoder.decoded.at(0) < 65536 && 
