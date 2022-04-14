@@ -32,6 +32,7 @@ add_executable(${PROJECT_NAME}
   src/manager.cpp 
   src/subscriber/MotionSubscriber.cpp
   src/dev/order_reader.cpp
+  src/script/script.cpp
 )
 
 ament_target_dependencies(manager
