@@ -36,6 +36,7 @@ SerialPort::SerialPort(const char* port_name) {
 void SerialPort::open_serial() {
     int serial_port  = open(this->port_name, O_RDWR);
     sleep(1);
+    this->flush();
     if (serial_port < 0) {
         printf("Error %i open: %s\n", errno, std::strerror(errno));
         exit(errno);
