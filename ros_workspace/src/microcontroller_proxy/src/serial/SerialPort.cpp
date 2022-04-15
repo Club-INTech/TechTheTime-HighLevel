@@ -224,6 +224,10 @@ void SerialPort::com_start_frame_transmission(rpc::Frame_Type frame_type) {
     this->write_byte(&t_byte);
 }
 
+void SerialPort::flush() {
+    tcflush(this->serial_port, TCIFLUSH);
+}
+
 void SerialPort::close_port() {
     close(this->serial_port);
 }

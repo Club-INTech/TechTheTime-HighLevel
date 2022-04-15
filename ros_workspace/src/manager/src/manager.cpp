@@ -87,9 +87,9 @@
 // ======================================================================================================================
 
 
-double RobotMotion::x = 0.0;
-double RobotMotion::y = 0.0;
-double RobotMotion::angle = 0.0;
+double RobotMotion::x = BEGIN_X_2A;
+double RobotMotion::y = BEGIN_Y_2A;
+double RobotMotion::angle = BEGIN_ANGLE_2A;
 
 /**
  * 
