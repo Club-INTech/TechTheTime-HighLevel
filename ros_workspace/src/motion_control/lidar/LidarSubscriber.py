@@ -1,10 +1,7 @@
 import rclpy
 from rclpy.node import Node
 
-import tf2_ros
-
-# Topic : /tf_static [tf2_msgs/msg/TFMessage]
-# Type of message : geometry_msgs/TransformStamped[] transforms
+from std_msgs.msg import float32
 
 
 class MinimalSubscriber(Node):
@@ -12,8 +9,7 @@ class MinimalSubscriber(Node):
     def __init__(self):
         super().__init__('minimal_subscriber')
         self.subscription = self.create_subscription(
-            tf2.tf2_ros.TransformStamped,
-            'tf_static',
+            ,
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
