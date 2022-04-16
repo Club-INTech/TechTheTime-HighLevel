@@ -19,6 +19,12 @@ MotionPublisher::MotionPublisher(
         motion_status = MotionStatusCodes::COMPLETE;
         this->expected_left_ticks = 0;
         this->expected_right_ticks = 0;
+        this->left_ticks = 0;
+        this->right_ticks = 0;
+        this->previous_left_ticks = 0;
+        this->previous_right_ticks = 0;
+        this->left_ticks_mult = 1;
+        this->right_ticks_mult = 1;
         this->motion_start = std::chrono::system_clock::now();
 
     }
@@ -29,13 +35,27 @@ MotionStatusCodes MotionPublisher::get_motion_status() const {
 
 void MotionPublisher::set_motion_goal(int32_t expected_left_ticks, int32_t expected_right_ticks) {
     this->motion_status = MotionStatusCodes::MOVING;
-    this->expected_left_ticks = expected_left_ticks;
-    this->expected_right_ticks = expected_right_ticks;
     this->motion_start = std::chrono::system_clock::now();
     this->left_ticks = 0;
     this->right_ticks = 0;
     this->previous_left_ticks = 0;
     this->previous_right_ticks = 0;
+
+    if(expected_left_ticks < 0) {
+        this->expected_left_ticks = -expected_left_ticks;
+        this->left_ticks_mult = -1;
+    } else {
+        this->expected_left_ticks = expected_left_ticks;
+        this->left_ticks_mult = 1;
+    }
+
+    if(expected_right_ticks < 0) {
+        this->expected_right_ticks = -expected_right_ticks;
+        this->right_ticks_mult = -1;
+    } else {
+        this->expected_right_ticks = expected_right_ticks;
+        this->right_ticks_mult = 1;
+    }
 }
 
 void MotionPublisher::stop_motion() {
@@ -44,6 +64,8 @@ void MotionPublisher::stop_motion() {
     this->microcontroller_gateway->flush();
     this->expected_left_ticks = 0;
     this->expected_right_ticks = 0;
+    this->left_ticks_mult = 1;
+    this->right_ticks_mult = 1;
 }
 
 void MotionPublisher::update_status() {
@@ -85,21 +107,8 @@ void MotionPublisher::follow_motion() {
 
     auto msg = motion_msg_srv::msg::Motion();
 
-    int32_t left_ticks_mult = 1;
-    int32_t right_ticks_mult = 1;
-
     this->previous_left_ticks = this->left_ticks; 
     this->previous_right_ticks = this->right_ticks;
-
-    if(this->expected_left_ticks < 0) {
-        this->expected_left_ticks = -this->expected_left_ticks;
-        left_ticks_mult = -1;
-    }
-
-    if(this->expected_right_ticks < 0) {
-        this->expected_right_ticks = -this->expected_right_ticks;
-        right_ticks_mult = -1;
-    }
 
     this->microcontroller_gateway->call_remote_function<Get_Ticks>();
     std::this_thread::sleep_for(SERIAL_COM_DELAY);
@@ -125,8 +134,8 @@ void MotionPublisher::follow_motion() {
     }
 
     if(!read_error) {
-        msg.left_ticks = left_ticks_mult * (this->left_ticks - this->previous_left_ticks);
-        msg.right_ticks = right_ticks_mult * (this->right_ticks - this->previous_right_ticks);
+        msg.left_ticks = this->left_ticks_mult * (this->left_ticks - this->previous_left_ticks);
+        msg.right_ticks = this->right_ticks_mult * (this->right_ticks - this->previous_right_ticks);
         this->publisher_->publish(msg);
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Publishing: %d %d\n", msg.left_ticks, 
         msg.right_ticks);

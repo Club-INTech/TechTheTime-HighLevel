@@ -18,11 +18,6 @@ using namespace scom;
 
 namespace scom {
 
-    unsigned int control_mode_bits[] = {PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD};
-    unsigned int local_modes_bits[] = {ICANON, ECHO, ECHOE, ECHONL, ISIG};
-    unsigned int input_modes_bits[] = {IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL};
-    unsigned int output_modes_bits[] = {OPOST, ONLCR};
-
     uint8_t stuffing_byte = ~rpc::header[0];
 }
 
@@ -44,105 +39,41 @@ void SerialPort::open_serial() {
     this->serial_port = serial_port;
 }
 
-void SerialPort::set_config() {
-    if(tcsetattr(this->serial_port, TCSANOW, &this->serial_port_config) != 0) {
-        printf("Error %i set config: %s\n", errno, std::strerror(errno));
-        exit(errno);
-    }
-}
+void SerialPort::define_blocking_mode(BlockingModes mode, std::initializer_list<int> args) {
 
-void SerialPort::get_config() {
-    if(tcgetattr(this->serial_port, &this->serial_port_config) != 0) {
+    struct termios serial_port_config;
+
+    if(tcgetattr(this->serial_port, &serial_port_config) < 0) {
         printf("Error %i get config: %s\n", errno, std::strerror(errno));
         exit(errno);
     }
-}
 
-void SerialPort::set_input_speed(speed_t baud_rate) {
-    cfsetispeed(&this->serial_port_config, baud_rate);
-}
-
-void SerialPort::set_output_speed(speed_t baud_rate) {
-    cfsetospeed(&this->serial_port_config, baud_rate);
-}
-
-void SerialPort::define_blocking_mode(BlockingModes mode, std::initializer_list<int> args) {
     if(mode == BlockingModes::NO_BLOCK) {
-        this->serial_port_config.c_cc[VTIME] = 0;
-        this->serial_port_config.c_cc[VMIN] = 0;
+        serial_port_config.c_cc[VTIME] = 0;
+        serial_port_config.c_cc[VMIN] = 0;
     } else if (mode == BlockingModes::FIXED_BYTES) {
         assert(args.size() == 1);
-        this->serial_port_config.c_cc[VTIME] = 0;
+        serial_port_config.c_cc[VTIME] = 0;
         auto it = args.begin();
-        this->serial_port_config.c_cc[VMIN] = *it;
+        serial_port_config.c_cc[VMIN] = *it;
     } else if (mode == BlockingModes::TIMEOUT) {
         assert(args.size() == 1);
-        this->serial_port_config.c_cc[VMIN] = 0;
+        serial_port_config.c_cc[VMIN] = 0;
         auto it = args.begin();
-        this->serial_port_config.c_cc[VTIME] = *it;
+        serial_port_config.c_cc[VTIME] = *it;
     } else if (mode == BlockingModes::TIMEOUT_WITH_FIXED_BYTES) {
         assert(args.size() == 2);
         auto it = args.begin();
-        this->serial_port_config.c_cc[VTIME] = *it;
+        serial_port_config.c_cc[VTIME] = *it;
         it++;
-        this->serial_port_config.c_cc[VMIN] = *it;
+        serial_port_config.c_cc[VMIN] = *it;
     }
     
-
-}
-
-void SerialPort::configure_control_modes(tcflag_t bits_per_byte, std::initializer_list<bool> control_bits_state) {
-    this->serial_port_config.c_cflag &= ~CSIZE;
-    this->serial_port_config.c_cflag |= bits_per_byte;
-
-    assert(control_bits_state.size() == 5);    
-
-    for(auto it = control_bits_state.begin(); it < control_bits_state.end(); it++) {
-        if(*it) {
-            this->serial_port_config.c_cflag |= control_mode_bits[std::distance(control_bits_state.begin(), it)];
-        } else {
-            this->serial_port_config.c_cflag &= ~control_mode_bits[std::distance(control_bits_state.begin(), it)];
-        }    
+    if(tcsetattr(this->serial_port, TCSANOW ,&serial_port_config) < 0) {
+        printf("Error %i set config: %s\n", errno, std::strerror(errno));
+        exit(errno);
     }
-}
 
-void SerialPort::configure_local_modes(std::initializer_list<bool> local_bits_state) {
-
-    assert(local_bits_state.size() == 5);    
-
-    for(auto it = local_bits_state.begin(); it < local_bits_state.end(); it++) {
-        if(*it) {
-            this->serial_port_config.c_lflag |= control_mode_bits[std::distance(local_bits_state.begin(), it)];
-        } else {
-            this->serial_port_config.c_lflag &= ~control_mode_bits[std::distance(local_bits_state.begin(), it)];
-        }    
-    }
-}
-
-void SerialPort::configure_input_modes(std::initializer_list<bool> input_bits_state) {
-
-    assert(input_bits_state.size() == 10);    
-
-    for(auto it = input_bits_state.begin(); it < input_bits_state.end(); it++) {
-        if(*it) {
-            this->serial_port_config.c_iflag |= control_mode_bits[std::distance(input_bits_state.begin(), it)];
-        } else {
-            this->serial_port_config.c_iflag &= ~control_mode_bits[std::distance(input_bits_state.begin(), it)];
-        }    
-    }
-}
-
-void SerialPort::configure_output_modes(std::initializer_list<bool> output_bits_state) {
-
-    assert(output_bits_state.size() == 2);    
-
-    for(auto it = output_bits_state.begin(); it < output_bits_state.end(); it++) {
-        if(*it) {
-            this->serial_port_config.c_oflag |= control_mode_bits[std::distance(output_bits_state.begin(), it)];
-        } else {
-            this->serial_port_config.c_oflag &= ~control_mode_bits[std::distance(output_bits_state.begin(), it)];
-        }    
-    }
 }
 
 void SerialPort::write_byte(uint8_t* byte) {
@@ -243,46 +174,28 @@ void SerialPort::flush() {
 
 void SerialPort::set_default_config() {
     this->open_serial();
-    this->get_config();
+    
+    struct termios serial_port_config;
 
+    if(tcgetattr(this->serial_port, &serial_port_config) < 0) {
+        printf("Error %i get config: %s\n", errno, std::strerror(errno));
+        exit(errno);
+    }
 
-    this->configure_control_modes(CS8, {
-        false,
-        false,
-        false,
-        true,
-        true
-    });
+    serial_port_config.c_iflag &= ~(BRKINT | ICRNL | IMAXBEL);
+    serial_port_config.c_oflag &= ~(OPOST | ONLCR);
+    serial_port_config.c_oflag |= (OFILL);
+    serial_port_config.c_cflag &= ~(PARENB | CSTOPB | CSIZE | CRTSCTS);
+    serial_port_config.c_cflag |= (CS8 | CREAD | CLOCAL);
+    serial_port_config.c_lflag &= ~(ISIG | ICANON | IEXTEN | ECHO |ECHOE | ECHOK | ECHOCTL | ECHOKE);
+    serial_port_config.c_lflag |= (NOFLSH | TOSTOP);
 
-    this->configure_local_modes({
-        false,
-        false,
-        false,
-        false,
-        false
-    });
+    cfsetispeed(&serial_port_config, B115200);
+    cfsetospeed(&serial_port_config, B115200);
 
-    this->configure_input_modes({
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-    });
+    if(tcsetattr(this->serial_port, TCSANOW ,&serial_port_config) < 0) {
+        printf("Error %i set config: %s\n", errno, std::strerror(errno));
+        exit(errno);
+    }
 
-    this->configure_output_modes({
-        false,
-        false
-    });
-
-    this->define_blocking_mode(scom::BlockingModes::FIXED_BYTES, {1});
-    this->set_input_speed(115200);
-    this->set_output_speed(115200);
-
-    this->set_config();
 }

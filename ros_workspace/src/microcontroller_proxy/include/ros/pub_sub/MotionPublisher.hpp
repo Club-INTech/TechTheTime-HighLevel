@@ -74,6 +74,8 @@ private:
     int32_t right_ticks;
     int32_t previous_left_ticks;
     int32_t previous_right_ticks;
+    int32_t left_ticks_mult;
+    int32_t right_ticks_mult;
     std::chrono::time_point<std::chrono::system_clock> motion_start;
 
     void update_status();

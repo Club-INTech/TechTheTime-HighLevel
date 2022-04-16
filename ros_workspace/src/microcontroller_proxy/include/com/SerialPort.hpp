@@ -67,27 +67,6 @@ namespace scom {
         TIMEOUT_WITH_FIXED_BYTES
     };
 
-    /**
-     * Contains the bits that are used to configure serial communication control modes 
-     * (PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD) 
-    */ 
-    extern unsigned int control_mode_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication local modes 
-     * (ICANON, ECHO, ECHOE, ECHONL, ISIG) 
-    */ 
-    extern unsigned int local_modes_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication input modes 
-     * (IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL) 
-    */ 
-    extern unsigned int input_modes_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication output modes 
-     * (OPOST, ONLCR) 
-    */ 
-    extern unsigned int output_modes_bits[];
-
 
     /**
      * @ingroup microcontroller_proxy
@@ -121,32 +100,6 @@ namespace scom {
         void open_serial();
         
         /**
-         * Sets scom::SerialPort::serial_port_config to the scom::SerialPort::serial_port.
-         * See <a target="_blank" href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcsetattr-set-attributes-terminal">tcsetattr</a> for more information
-        */ 
-        void set_config();
-
-        /**
-         * Gets current serial config(your environment config) and assigns it to the scom::SerialPort::serial_port.
-         * See <a target="_blank" href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcgetattr-get-attributes-terminal">tcgetattr</a> for more information
-        */ 
-        void get_config();
-
-
-        /**
-         * Sets input communication speed.
-         * @param baud_rate an input speed in bauds 
-        */
-        void set_input_speed(speed_t baud_rate);
-
-        /**
-         * Sets output communication speed.
-         * @param baud_rate an output speed in bauds
-        */ 
-        void set_output_speed(speed_t baud_rate);
-
-
-        /**
          * Sets scom::BlockingModes for scom::SerialPort::serial_port_config.
          * It also takes an initializer_list of arguments and checks its length.
          * You can provide from 0 to 2 arguments (timeout and bytes number to wait).
@@ -155,40 +108,6 @@ namespace scom {
          * @param args an initializer list of arguments <b>for a particular blocking mode</b>
         */ 
         void define_blocking_mode(BlockingModes mode, std::initializer_list<int> args);
-
-
-        /**
-         * Configures control modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param bits_per_byte a number of data bits transmitted per byte.
-         * @param control_bits_state an initializer list of bool, where control_bits_state[i]
-         * indicates whether scom::control_mode_bits[i] must be set at 1 or 0. 
-        */ 
-        void configure_control_modes(tcflag_t bits_per_byte, std::initializer_list<bool> control_bits_state);
-
-        /**
-         * Configures local modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param local_bits_state an initializer list of bool, where local_bits_state[i]
-         * indicates whether scom::local_mode_bits[i] must be set at 1 or 0. 
-        */ 
-        void configure_local_modes(std::initializer_list<bool> local_bits_state);
-
-        /**
-         * Configures input modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param input_bits_state an initializer list of bool, where input_bits_state[i]
-         * indicates whether scom::input_mode_bits[i] must be set at 1 or 0. 
-        */
-        void configure_input_modes(std::initializer_list<bool> input_bits_state);
-
-        /**
-         * Configures output modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param output_bits_state an initializer list of bool, where output_bits_state[i]
-         * indicates whether scom::output_mode_bits[i] must be set at 1 or 0. 
-        */
-        void configure_output_modes(std::initializer_list<bool> output_bits_state);
 
         /**
          * Writes a byte to serial
@@ -215,8 +134,6 @@ namespace scom {
          * @param size a size of word to read
         */ 
         void read_word(uint8_t* word, int size);
-
-
 
         /**
          * Closes serial port
@@ -301,12 +218,6 @@ namespace scom {
         const char* port_name = nullptr;
 
         /**
-         * <a target="_blank" href="http://manpagesfr.free.fr/man/man3/termios.3.html">termios</a> 
-         * struct used to configure serial port.
-        */ 
-        struct termios serial_port_config;
-
-        /**
          * A write counter used to distinguish frame header bytes and data bytes in writing. 
          * Initiates a stuffing byte transmission.
          * Take a look at scom::stuffing_byte for explanation.
@@ -359,6 +270,7 @@ namespace scom {
          * @return upd::byte_t a byte that has been read 
          */
         upd::byte_t com_read_byte();
+
     }; 
 
 }
