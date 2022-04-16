@@ -19,10 +19,11 @@ class MinimalSubscriber(Node):
     def listener_callback(self, msg):
         obj_groupes = []
         continuite = 1
-        for i in range(len(msg.ranges)):
-            if(msg.ranges[i]<=2.5):
-                obj_groupes.append([msg.ranges[i],i])
-        #self.get_logger().info('I heard: "%s"' % msg.data)
+        obj_groupes = segmentation_groupe_point(msg)
+        rpz = representant(obj_groupes)
+        object_in_game_area = discrimination(rpz)
+        for k in range(object_in_game_area):
+            self.get_logger().info('I see: "%d"' % object_in_game_area[k])
 
 
 def main(args=None):
@@ -72,11 +73,13 @@ def discrimination(msg,obj_groupes):
     angle_robot = RobotMotion.angle
     rpz_groupe = representant(obj_groupes)
 
+    object_in_game_area = []
+
     for k in range(len(rpz_groupe)):
     
         angle_lidar_point = msg.angle_min+msg.angle_increment*rpz_groupe[k][1]
-        R = rpz_groupe[k][0]
-
+        R = rpz_groupe[k][0]*1000 # Conversion m from LIDAR to mm because all value are in mm in the code
+        
         angleAim_repRobot = angle_robot + angle_lidar_point
 
         x_prime = R*math.cos(angleAim_repRobot)
@@ -84,3 +87,8 @@ def discrimination(msg,obj_groupes):
 
         x_aim = x_robot + x_prime
         y_aim = y_robot + y_prime
+
+        if(0<= x_aim <= 3000 and 0 <= y_aim <=2000):
+            object_in_game_area.append([x_aim,y_aim])
+
+    return object_in_game_area

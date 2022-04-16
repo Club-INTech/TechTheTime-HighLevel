@@ -136,8 +136,8 @@ void Script::move(double aim_x,double aim_y,int) {
     double aim_angle;
     // Voir Feuille Gaétan
     double cosAIM_ANGLE;
-    double x = std::cos(curr_angle);
-    double y = std::sin(curr_angle);
+    double x = distance*std::cos(curr_angle);
+    double y = distance*std::sin(curr_angle);
     double x_prime = aim_x - curr_x;
     double y_prime = aim_y - curr_y;
 
@@ -165,7 +165,7 @@ void Script::move(double aim_x,double aim_y,int) {
     std::function<void()> orderToReinsert = std::bind(&Script::move, this, aim_x,aim_y,0);
     bool execption = this->treat_response(status_angle,aim_angle,orderToReinsert);
 
-    if (execption==false){
+    if (execption!=false){
         auto res_move = commClient->send((int64_t) OrderCodes::MOVE, distance, 0, 0);
         MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
         this->treat_response(status_move,distance,orderToReinsert);
