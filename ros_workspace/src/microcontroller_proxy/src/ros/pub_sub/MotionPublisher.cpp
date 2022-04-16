@@ -47,6 +47,7 @@ void MotionPublisher::stop_motion() {
 }
 
 void MotionPublisher::update_status() {
+    std::cout << "Updating status" << std::endl;
     if(motion_mutex::alert_mutex.alert_status == AlertStatus::ALERT) {
         this->stop_motion();
     }
@@ -55,7 +56,7 @@ void MotionPublisher::update_status() {
             std::chrono::system_clock::now() - this->motion_start);
 
     if(
-        motion_mutex::alert_mutex.alert_status != AlertStatus::CLOSED && 
+        motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED && 
         this->motion_status == MOVING && 
         interval.count() >= TIMEOUT) {
 
@@ -65,7 +66,7 @@ void MotionPublisher::update_status() {
     }
 
     if(
-        motion_mutex::alert_mutex.alert_status != AlertStatus::CLOSED &&  
+        motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED &&  
         abs(this->left_ticks - this->previous_left_ticks) <= MOTION_CRITERIA &&
         abs(this->right_ticks - this->previous_right_ticks) <= MOTION_CRITERIA) {
             

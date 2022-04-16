@@ -136,20 +136,26 @@ void Script::move(double aim_x,double aim_y,int) {
     double aim_angle;
     // Voir Feuille Gaétan
     double cosAIM_ANGLE;
-    double x = std::cos(curr_angle);
-    double y = std::sin(curr_angle);
+    double x = distance*std::cos(curr_angle);
+    double y = distance*std::sin(curr_angle);
     double x_prime = aim_x - curr_x;
     double y_prime = aim_y - curr_y;
 
+    std::cout << x_prime << " " << y_prime << std::endl;
+
     cosAIM_ANGLE = (x*x_prime+y*y_prime)/(x*x+y*y);
 
+    std::cout << cosAIM_ANGLE << std::endl;
+
     aim_angle = std::acos(cosAIM_ANGLE);
+
+    std::cout << aim_angle << std::endl;
 
     // Pour savoir si on a vraiment le bonne angle on regarde le sinus
 
     double sinAIM_ANGLE =(x_prime*y-y_prime*x)/(y*y+x*x);
 
-    if(std::asin(aim_angle)==-sinAIM_ANGLE){
+    if(std::sin(aim_angle)==-sinAIM_ANGLE){
         aim_angle += M_PI;
     }
     if(aim_angle>M_PI){
@@ -165,7 +171,7 @@ void Script::move(double aim_x,double aim_y,int) {
     std::function<void()> orderToReinsert = std::bind(&Script::move, this, aim_x,aim_y,0);
     bool execption = this->treat_response(status_angle,aim_angle,orderToReinsert);
 
-    if (execption==false){
+    if (execption){
         auto res_move = commClient->send((int64_t) OrderCodes::MOVE, distance, 0, 0);
         MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
         this->treat_response(status_move,distance,orderToReinsert);

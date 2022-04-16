@@ -87,8 +87,8 @@
 // ======================================================================================================================
 
 
-double RobotMotion::x = 0.0;
-double RobotMotion::y = 0.0;
+double RobotMotion::x = 255.0;
+double RobotMotion::y = 855.0;
 double RobotMotion::angle = 0.0;
 
 /**
