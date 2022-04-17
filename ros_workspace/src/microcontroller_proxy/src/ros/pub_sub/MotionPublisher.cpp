@@ -60,17 +60,22 @@ void MotionPublisher::set_motion_goal(int32_t expected_left_ticks, int32_t expec
 
 void MotionPublisher::stop_motion() {
     this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>(0);
-    std::this_thread::sleep_for(SERIAL_COM_DELAY);
-    this->microcontroller_gateway->flush();
+    uint8_t buf[5];
+    this->microcontroller_gateway->read_word(buf, 5);
     this->expected_left_ticks = 0;
     this->expected_right_ticks = 0;
+    this->left_ticks = 0;
+    this->right_ticks = 0;
+    this->previous_left_ticks = 0;
+    this->previous_right_ticks = 0;
     this->left_ticks_mult = 1;
     this->right_ticks_mult = 1;
 }
 
 void MotionPublisher::update_status() {
-    std::cout << "Updating status" << std::endl;
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Updating status");
     if(motion_mutex::alert_mutex.alert_status == AlertStatus::ALERT) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Alert");
         this->stop_motion();
     }
 
@@ -91,6 +96,8 @@ void MotionPublisher::update_status() {
         motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED &&  
         abs(this->left_ticks - this->previous_left_ticks) <= MOTION_CRITERIA &&
         abs(this->right_ticks - this->previous_right_ticks) <= MOTION_CRITERIA) {
+
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Stopped");
             
             if(abs(this->left_ticks - this->expected_left_ticks) >= TICKS_INCERTITUDE || 
                 (this->right_ticks - this->expected_right_ticks) >= TICKS_INCERTITUDE) {
@@ -98,11 +105,16 @@ void MotionPublisher::update_status() {
             } else {
                 this->motion_status = MotionStatusCodes::COMPLETE;
             }
-        }
+        } else this->motion_status = MotionStatusCodes::MOVING;
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Status: %d", this->motion_status);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Finished Updating status");
 }
 
 void MotionPublisher::follow_motion() {
     
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Getting ticks");
+
     bool read_error = false;
 
     auto msg = motion_msg_srv::msg::Motion();
@@ -110,11 +122,11 @@ void MotionPublisher::follow_motion() {
     this->previous_left_ticks = this->left_ticks; 
     this->previous_right_ticks = this->right_ticks;
 
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Send");
     this->microcontroller_gateway->call_remote_function<Get_Ticks>();
-    std::this_thread::sleep_for(SERIAL_COM_DELAY);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Receive");
     auto value = microcontroller_gateway->receive_feedback<Get_Ticks>();
-    std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
-    // this->microcontroller_gateway->flush();
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Received");
         
     bit_decoder::values<Get_Ticks, int32_t> decoded_values{};
     decoded_values.decoder.decode(value);
@@ -141,14 +153,16 @@ void MotionPublisher::follow_motion() {
         msg.right_ticks);
     }
 
-    motion_mutex::sync_call<&MotionPublisher::update_status>(false, true, this);
+    motion_mutex::sync_call<&MotionPublisher::update_status>(false, true, true, this);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Finished Getting ticks");
 }
 
 
 void MotionPublisher::broadcast_motion() {
 
     while(1) {
-        motion_mutex::sync_call<&MotionPublisher::follow_motion>(true, false, this);
-        std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Broadcasting");
+        motion_mutex::sync_call<&MotionPublisher::follow_motion>(true, false, false, this);
+        // std::this_thread::sleep_for(MOTION_BROADCAST_PERIOD);
     }
 }

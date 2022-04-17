@@ -11,7 +11,7 @@ AlertSubscriber::AlertSubscriber(const std::string& topic) : Node("alert_subscri
 }
 
 void AlertSubscriber::alert_callback(const shared_message_T msg) {
-    motion_mutex::sync_call<&AlertSubscriber::check_alert>(false, true, this);
+    motion_mutex::sync_call<&AlertSubscriber::check_alert>(false, false, true, this);
 }
 
 void AlertSubscriber::check_alert() {

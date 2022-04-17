@@ -127,6 +127,8 @@ private:
     int64_t spin_while_moving();
 
     void execute_order(const shared_request_T req, shared_response_T res);
+
+    void check_motion_status(bool&);
     
 };
 

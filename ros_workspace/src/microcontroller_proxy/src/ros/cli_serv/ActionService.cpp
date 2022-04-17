@@ -36,37 +36,41 @@ ActionService::ActionService(
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %lf\n",req->distance);
                         if(req->distance < 0) {
                                 this->microcontroller_gateway->call_remote_function<Motion_Set_Backward_Translation_Setpoint, Shared_Tick>((int32_t) (-MM_TO_TICKS * req->distance));        
+                                this->motion_publisher->set_motion_goal((int32_t) (MM_TO_TICKS * req->distance), (int32_t) (MM_TO_TICKS * req->distance));                
                         } else {
                                 this->microcontroller_gateway->call_remote_function<Motion_Set_Forward_Translation_Setpoint, Shared_Tick>((int32_t) (MM_TO_TICKS * req->distance));
+                                this->motion_publisher->set_motion_goal((int32_t) (MM_TO_TICKS * req->distance), (int32_t) (MM_TO_TICKS * req->distance));
                         }
-                        this->motion_publisher->set_motion_goal((int32_t) (MM_TO_TICKS * req->distance), (int32_t) (MM_TO_TICKS * req->distance));                
                 });
 
                 order_binder.bind_order(OrderCodes::START_ROTATE_LEFT, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Turning anticlockwise for angle: %lf\n",req->angle);
-                        this->microcontroller_gateway->call_remote_function<Motion_Set_Counterclockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS * req->angle));
-                        this->motion_publisher->set_motion_goal((int32_t) (-RADIANS_TO_TICKS * req->angle), (int32_t) (RADIANS_TO_TICKS * req->angle));
+                        this->microcontroller_gateway->call_remote_function<Motion_Set_Counterclockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
+                        this->motion_publisher->set_motion_goal((int32_t) (-RADIANS_TO_TICKS_HALF_BASE * req->angle), (int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
                 });
 
                 order_binder.bind_order(OrderCodes::START_ROTATE_RIGHT, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Turning clockwise for angle: %lf\n",req->angle);
-                        this->microcontroller_gateway->call_remote_function<Motion_Set_Clockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS * req->angle));
-                        this->motion_publisher->set_motion_goal((int32_t) (RADIANS_TO_TICKS * req->angle), (int32_t) (-RADIANS_TO_TICKS * req->angle));
+                        this->microcontroller_gateway->call_remote_function<Motion_Set_Clockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
+                        this->motion_publisher->set_motion_goal((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle), (int32_t) (-RADIANS_TO_TICKS_HALF_BASE * req->angle));
                 });
 
         }
 
 
 void ActionService::execute_order(const shared_request_T req, shared_response_T res) {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Order begin");
         this->order_binder.execute_order(req->order_code, req, res);
-        std::this_thread::sleep_for(SERIAL_COM_DELAY);
-        this->microcontroller_gateway->flush();
+        uint8_t buf[5];
+        this->microcontroller_gateway->read_word(buf, 5);
+        std::cout << buf << std::endl;
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Order end");
 }
 
 
 void ActionService::treat_orders(const shared_request_T req, shared_response_T res) {
         try {   
-                motion_mutex::sync_call<&ActionService::execute_order>(true, false, this, req, res);
+                motion_mutex::sync_call<&ActionService::execute_order>(true, false, false, this, req, res);
                 res->motion_status = this->spin_while_moving();
 
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", res->motion_status);
@@ -76,8 +80,16 @@ void ActionService::treat_orders(const shared_request_T req, shared_response_T r
 }
 
 int64_t ActionService::spin_while_moving() {
-        while(this->motion_publisher->get_motion_status() == MotionStatusCodes::MOVING) {
+        bool status = false;
+        while(1) {
+                motion_mutex::sync_call<&ActionService::check_motion_status>(false, true, false, this, status);
+                if(!status) break;
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Waiting");
                 std::this_thread::sleep_for(WAITING_PERIOD);
         }
         return (int64_t) this->motion_publisher->get_motion_status();
+}
+
+void ActionService::check_motion_status(bool& status) {
+        status = (this->motion_publisher->get_motion_status() == MotionStatusCodes::MOVING);
 }

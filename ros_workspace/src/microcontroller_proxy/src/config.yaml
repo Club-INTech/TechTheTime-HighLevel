@@ -1,5 +1,5 @@
-serial_port: "/dev/ttyACM0"
+serial_port: "/dummy"
 motion_topic: "motion"
 alert_topic: "alert"
 action_topic: "action"
-mode: "monitor"
+mode: "match"

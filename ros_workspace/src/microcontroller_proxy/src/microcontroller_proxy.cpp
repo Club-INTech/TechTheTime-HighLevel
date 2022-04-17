@@ -29,6 +29,7 @@
 using namespace std::chrono_literals;
 
 std::mutex motion_mutex::order_mutex{};
+std::mutex motion_mutex::status_mutex{};
 AlertMutex motion_mutex::alert_mutex{.alert_status = AlertStatus::CLOSED};
 
 void terminate(int code) {
