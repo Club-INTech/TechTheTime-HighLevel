@@ -149,7 +149,7 @@ void Script::move(double aim_x,double aim_y,int) {
 
     double sinAIM_ANGLE =(x_prime*y-y_prime*x)/(y*y+x*x);
 
-    if(std::asin(aim_angle)==-sinAIM_ANGLE){
+    if(std::sin(aim_angle)==-sinAIM_ANGLE){
         aim_angle += M_PI;
     }
     if(aim_angle>M_PI){
