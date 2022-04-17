@@ -16,7 +16,7 @@ constexpr int TICKS_INCERTITUDE = 100;
  * Stop condition tolerancy. If <b>|ticks-previous_ticks| < MOTION_CRITERIA</b> then robot considered
  * not moving
 */ 
-constexpr int MOTION_CRITERIA = 2;
+constexpr int MOTION_CRITERIA = 0;
 
 /**
  * A time within which robot must finish its movement. 
