@@ -18,6 +18,10 @@
 #include <rpc/master.hpp>
 #include <k2o/dispatcher.hpp>
 
+#include <chrono>
+#include <thread>
+#include <const_shared/CommunicationConst.hpp>
+
 /**
  * @ingroup microcontroller_proxy
  * 
@@ -186,6 +190,7 @@ namespace scom {
             auto key = rpc::master::keyring.get<Ftor>();
             this->com_start_frame_transmission(rpc::Frame_Type::REQUEST);
             key(std::forward<Args>(args)...) >> [&](upd::byte_t byte){this->com_write_byte(byte);};
+            std::this_thread::sleep_for(SERIAL_COM_DELAY);
         }
 
         /**
@@ -201,6 +206,7 @@ namespace scom {
         auto receive_feedback() {
             this->new_response = true;
             auto key = rpc::master::keyring.get<Ftor>();
+            std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
             return key << [&]() {return this->com_read_byte();};
         }
 

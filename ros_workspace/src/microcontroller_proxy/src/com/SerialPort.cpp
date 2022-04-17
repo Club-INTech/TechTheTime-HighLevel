@@ -29,7 +29,7 @@ SerialPort::SerialPort(const char* port_name) {
 }
 
 void SerialPort::open_serial() {
-    int serial_port  = open(this->port_name, O_RDWR);
+    int serial_port  = open(this->port_name, O_RDWR | O_NOCTTY | O_SYNC | O_NOCTTY);
     sleep(1);
     this->flush();
     if (serial_port < 0) {
