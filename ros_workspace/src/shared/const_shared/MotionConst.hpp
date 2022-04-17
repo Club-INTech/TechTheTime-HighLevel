@@ -42,4 +42,7 @@ constexpr double RADIANS_TO_TICKS = 1 / TICKS_TO_RADIANS;
 
 constexpr double TICKS_TO_RADIANS_HALF_BASE = 2 * TICKS_TO_RADIANS;
 constexpr double RADIANS_TO_TICKS_HALF_BASE = 1 / TICKS_TO_RADIANS_HALF_BASE;
- 
+
+constexpr double BEGIN_X_2A = 250.0;
+constexpr double BEGIN_Y_2A = 850.0;
+constexpr double BEGIN_ANGLE_2A = 0;

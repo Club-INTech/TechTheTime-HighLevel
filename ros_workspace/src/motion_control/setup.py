@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'motion_control = motion_control.motion_control:main'
+            'listener = motion_control.motion_control:main',
         ],
     },
 )
