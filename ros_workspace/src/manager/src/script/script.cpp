@@ -85,8 +85,8 @@ void Script::drop_replic(double, double, int){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
 }
 
-void Script::angleABS(double angle_rel, double, int){
-    double angle = -RobotMotion::angle+angle_rel;
+void Script::angleABS(double angle, double, int){
+    angle = -RobotMotion::angle+angle;
     MotionStatusCodes status;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
     if(angle>M_PI){
@@ -99,7 +99,7 @@ void Script::angleABS(double angle_rel, double, int){
     } 
 
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle_rel,0.0,0);
+    std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle,0.0,0);
     this->treat_response(status,angle,orderToReinsert);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
@@ -141,11 +141,8 @@ void Script::move(double aim_x,double aim_y,int) {
     double x_prime = aim_x - curr_x;
     double y_prime = aim_y - curr_y;
 
-    std::cout << x_prime << " " << y_prime << std::endl;
 
     cosAIM_ANGLE = (x*x_prime+y*y_prime)/(x*x+y*y);
-
-    std::cout << cosAIM_ANGLE << std::endl;
 
     aim_angle = std::acos(cosAIM_ANGLE);
 
@@ -153,12 +150,18 @@ void Script::move(double aim_x,double aim_y,int) {
 
     // Pour savoir si on a vraiment le bonne angle on regarde le sinus
 
-    double sinAIM_ANGLE =(x_prime*y-y_prime*x)/(y*y+x*x);
+    double sinAIM_ANGLE =(y_prime*x - x_prime*y)/(y*y+x*x);
 
-    if(std::sin(aim_angle)==-sinAIM_ANGLE){
+    std::cout << std::sin(aim_angle) << " " << sinAIM_ANGLE << std::endl;
+
+    if(fabs(std::sin(aim_angle)-sinAIM_ANGLE) >= (2 * fabs(std::sin(aim_angle) - 0.1))){
         aim_angle += M_PI;
     }
+
+    std::cout << aim_angle << std::endl;
+
     if(aim_angle>M_PI){
+        std::cout << 2*M_PI - aim_angle << std::endl;
         auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*M_PI-aim_angle);
         status_angle = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
     }
