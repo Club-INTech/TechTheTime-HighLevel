@@ -78,12 +78,9 @@ include_directories(${MP11Directory})
 include_directories(${StaticAssertDirectory})
 include_directories(${TypeTraitsDirectory})
 include_directories(${ConfigDirectory})
-<<<<<<< HEAD
-=======
 include_directories(${KeyToOrderDirectory})
 
 # Include path
->>>>>>> experimental_multi_thread
 
 set(SharedDirectory ../shared)
 set(IncludePath ./include)
