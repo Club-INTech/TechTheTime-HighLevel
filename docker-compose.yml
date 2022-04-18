@@ -4,7 +4,10 @@ services:
     container_name: microcontroller_proxy
     build: .
     image: techthetime-highlevel
-    command: bash -c "export TERM=vt100 && cd /hl/build_tool && ./build-hl.sh -vr -p microcontroller_proxy && cd /hl/ros_workspace && source install/setup.bash && cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $PWD/config.yaml"
+    command: bash -c "sudo chmod 777 /dev/ttyACM0 && cd /hl && git clone https://github.com/geoffmeyers/interceptty.git && cd interceptty && ./configure && make && make install && export TERM=vt100 && cd /hl/build_tool && ./build-hl.sh -vr -p microcontroller_proxy && cd /hl/ros_workspace && source install/setup.bash  && ros2 run microcontroller_proxy microcontroller_proxy /hl/ros_workspace/src/microcontroller_proxy/src/config_docker.yaml"
+    volumes:
+      - /dev:/dev
+    privileged: true
   manager:
     container_name: manager
     image: techthetime-highlevel
