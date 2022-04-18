@@ -174,8 +174,6 @@ namespace scom {
         */ 
         void set_default_config();
 
-        void flush();
-
         /**
          * A generic rpc function to call another function(an order) on the target device. 
          * It gets a key, based on the provided functor, from a master keyring.

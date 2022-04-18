@@ -118,35 +118,35 @@ int main(int argc, char** argv) {
     std::thread client_thread([&script, argc, &argv](){
         if(argc == 2 && strcmp(argv[1], "free") == 0) {
             auto commClient = std::make_shared<ActionClient>();
-            // std::string expression = "";
-            // while(1) {
-            //     try {
-            //         std::getline(std::cin, expression);
-            //         auto order = order_reader::get_order_as_tuple(expression);
-            //         auto res = commClient->send((int64_t) std::get<0>(order),
-            //                                                 std::get<1>(order),
-            //                                                 std::get<2>(order),
-            //                                                 std::get<3>(order) 
-            //         );
+            std::string expression = "";
+            while(1) {
+                try {
+                    std::getline(std::cin, expression);
+                    auto order = order_reader::get_order_as_tuple(expression);
+                    auto res = commClient->send((int64_t) std::get<0>(order),
+                                                            std::get<1>(order),
+                                                            std::get<2>(order),
+                                                            std::get<3>(order) 
+                    );
 
-            //         MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
-            //         if(status == MotionStatusCodes::COMPLETE) {
-            //             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
-            //         } else if(status == MotionStatusCodes::NOT_COMPLETE){
-            //             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-            //         } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-            //             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-            //         }
+                    MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
+                    if(status == MotionStatusCodes::COMPLETE) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
+                    } else if(status == MotionStatusCodes::NOT_COMPLETE){
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+                    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+                    }
 
-            //     } catch(const std::runtime_error& e) {
-            //         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
-            //     }         
-            // }
+                } catch(const std::runtime_error& e) {
+                    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
+                }         
+            }
             commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, M_PI / 2);
         } else {
             std::function<void()> orderONE = std::bind(&Script::move, script, 1000,1000,0);
             std::function<void()> orderTWO = std::bind(&Script::move, script, 1500,700,0);
-            std::function<void()> orderFIVE = std::bind(&Script::angleABS, script, 3*M_PI/2 ,0,0);
+            std::function<void()> orderFIVE = std::bind(&Script::angleABS, script, M_PI/2 ,0,0);
             std::function<void()> orderTHREE = std::bind(&Script::moveABS, script, 700,0.0,0);
             std::function<void()> orderFOUR = std::bind(&Script::move, script, 1000,1000,0);
 

@@ -166,7 +166,7 @@ void Script::move(double aim_x,double aim_y,int) {
     std::cout << std::sin(aim_angle) << " " << sinAIM_ANGLE << std::endl;
 
     if(fabs(std::sin(aim_angle)-sinAIM_ANGLE) >= (2 * fabs(std::sin(aim_angle) - 0.1))){
-        aim_angle += M_PI;
+        aim_angle += 2*(M_PI-aim_angle);
     }
 
     std::cout << aim_angle << std::endl;
