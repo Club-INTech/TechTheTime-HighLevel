@@ -86,16 +86,27 @@ void Script::drop_replic(double, double, int){
 }
 
 void Script::angleABS(double angle, double, int){
-    angle = -RobotMotion::angle+angle;
+    double angle_ = angle;
+    angle = fabs(RobotMotion::angle-angle);
     MotionStatusCodes status;
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
     if(angle>M_PI){
-        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*M_PI-angle);
-        status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        if(RobotMotion::angle > angle_) {
+            auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, 2*M_PI-angle);    
+            status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        } else {
+            auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, 2*M_PI-angle);
+            status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        }
     }
     else{
-        auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
-        status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        if(RobotMotion::angle > angle_) {
+            auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, angle);    
+            status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        } else {
+            auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, angle);
+            status = static_cast<MotionStatusCodes>(res_angle.get()->motion_status);
+        }
     } 
 
     // Define the order to reinsert
