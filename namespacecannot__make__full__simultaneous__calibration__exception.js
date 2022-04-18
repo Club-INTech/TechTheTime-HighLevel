@@ -1,4 +1,0 @@
-var namespacecannot__make__full__simultaneous__calibration__exception =
-[
-    [ "CannotMakeFullSimultaneousCalibrationException", "classcannot__make__full__simultaneous__calibration__exception_1_1CannotMakeFullSimultaneousCalibrationException.html", "classcannot__make__full__simultaneous__calibration__exception_1_1CannotMakeFullSimultaneousCalibrationException" ]
-];

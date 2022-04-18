@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['main_0',['main',['../test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;test.cpp'],['../group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;manager.cpp'],['../group__microcontroller__proxy.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;microcontroller_proxy.cpp']]],
-  ['motion_5fcallback_1',['motion_callback',['../classMotionSubscriber.html#aaa7307896d6095a72def5e2816fd129a',1,'MotionSubscriber']]],
-  ['motionpublisher_2',['MotionPublisher',['../classMotionPublisher.html#aa46397cb4bcc6b5d1f4d784766564cf7',1,'MotionPublisher']]],
-  ['motionsubscriber_3',['MotionSubscriber',['../classMotionSubscriber.html#a8a6ce387c86a006e39b0187f2d1ec464',1,'MotionSubscriber']]],
-  ['movebackward_4',['moveBackward',['../namespaceorder.html#a25aeef8c8f5715c8fbd275e9937a453e',1,'order']]],
-  ['moveforward_5',['moveForward',['../namespaceorder.html#a59dcf967ee801fde401cf55116a2b49c',1,'order']]],
-  ['moveleft_6',['moveLeft',['../namespaceorder.html#aac4bcbfa17105059389c38d53c332acf',1,'order']]],
-  ['moveright_7',['moveRight',['../namespaceorder.html#adabdbb47805e946b0b39a7049d47e135',1,'order']]]
+  ['sample_0',['sample',['../classJoystick.html#aeb5d3a0a6f7414ce5f5b90231c978e71',1,'Joystick']]],
+  ['script_1',['Script',['../classScript.html#af505b3d0e0f6e188b90cc30a5d274750',1,'Script']]],
+  ['send_2',['send',['../classClientT.html#a74053bfad9432823dc2837ac44a7fd82',1,'ClientT']]],
+  ['set_5fshared_3',['set_shared',['../classClientT.html#afd6904ba0c61b02fd3832b85f300f559',1,'ClientT']]],
+  ['set_5fvalues_4',['set_values',['../structstruct__wrapper.html#a080d23af0f72713e51d2207cf144a70d',1,'struct_wrapper']]],
+  ['struct_5fwrapper_5',['struct_wrapper',['../structstruct__wrapper.html#ab29cf9801670fe813284b6e78de1afd2',1,'struct_wrapper']]]
 ];

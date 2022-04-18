@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystick_0',['joystick',['../classControllerSetup.html#a2b4f419e391ba5bd0b180aa0b2597944',1,'ControllerSetup']]]
+  ['number_0',['number',['../classJoystickEvent.html#aa6787fc6eb732987040b1f378489db54',1,'JoystickEvent']]]
 ];

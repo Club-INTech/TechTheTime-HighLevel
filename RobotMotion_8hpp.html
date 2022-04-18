@@ -84,12 +84,13 @@ $(document).ready(function(){initNavTree('RobotMotion_8hpp.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">RobotMotion.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cmath&gt;</code><br />
+<div class="textblock"><code>#include &lt;const_shared/MotionConst.hpp&gt;</code><br />
+<code>#include &lt;action_msg_srv_shared/order_codes.hpp&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 </div>
 <p><a href="RobotMotion_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -97,83 +98,7 @@ $(document).ready(function(){initNavTree('RobotMotion_8hpp.html',''); initResiza
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobotMotion.html">RobotMotion</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ae09f070897ccb54bb6234fe9f6bb7c71"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RobotMotion_8hpp.html#ae09f070897ccb54bb6234fe9f6bb7c71">TICKS_PER_TURN</a> = 1024</td></tr>
-<tr class="separator:ae09f070897ccb54bb6234fe9f6bb7c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76d83f8c6742bc0ee04d67a1c50b8c50"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RobotMotion_8hpp.html#a76d83f8c6742bc0ee04d67a1c50b8c50">TICKS_TO_MM</a> = <a class="el" href="RobotMotion_8hpp.html#a1bc02ff409d846e3376e9994a85dbd01">WHEEL_RADIUS_MM</a> / <a class="el" href="RobotMotion_8hpp.html#ae09f070897ccb54bb6234fe9f6bb7c71">TICKS_PER_TURN</a></td></tr>
-<tr class="separator:a76d83f8c6742bc0ee04d67a1c50b8c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bc02ff409d846e3376e9994a85dbd01"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RobotMotion_8hpp.html#a1bc02ff409d846e3376e9994a85dbd01">WHEEL_RADIUS_MM</a> = 60.0</td></tr>
-<tr class="separator:a1bc02ff409d846e3376e9994a85dbd01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ae09f070897ccb54bb6234fe9f6bb7c71" name="ae09f070897ccb54bb6234fe9f6bb7c71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae09f070897ccb54bb6234fe9f6bb7c71">&#9670;&nbsp;</a></span>TICKS_PER_TURN</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr double TICKS_PER_TURN = 1024</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a76d83f8c6742bc0ee04d67a1c50b8c50" name="a76d83f8c6742bc0ee04d67a1c50b8c50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76d83f8c6742bc0ee04d67a1c50b8c50">&#9670;&nbsp;</a></span>TICKS_TO_MM</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr double TICKS_TO_MM = <a class="el" href="RobotMotion_8hpp.html#a1bc02ff409d846e3376e9994a85dbd01">WHEEL_RADIUS_MM</a> / <a class="el" href="RobotMotion_8hpp.html#ae09f070897ccb54bb6234fe9f6bb7c71">TICKS_PER_TURN</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1bc02ff409d846e3376e9994a85dbd01" name="a1bc02ff409d846e3376e9994a85dbd01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1bc02ff409d846e3376e9994a85dbd01">&#9670;&nbsp;</a></span>WHEEL_RADIUS_MM</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr double WHEEL_RADIUS_MM = 60.0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

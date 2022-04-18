@@ -40,8 +40,7 @@ var NAVTREE =
       [ "Package Functions", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
+        [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -61,9 +60,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -72,8 +68,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ActionClient_8hpp.html",
-"functions.html"
+"ActionClient_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

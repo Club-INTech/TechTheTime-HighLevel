@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['image_2esrv_0',['Image.srv',['../Image_8srv.html',1,'']]],
-  ['image_5ftransforms_1',['image_transforms',['../namespaceimage__transforms.html',1,'']]],
-  ['image_5ftransforms_2epy_2',['image_transforms.py',['../image__transforms_8py.html',1,'']]],
-  ['input_5fmodes_5fbits_3',['input_modes_bits',['../namespacescom.html#a081eebc10fe4c5edc2d28bca33e4dbf5',1,'scom']]],
-  ['install_5frequires_4',['install_requires',['../namespacesetup.html#a047d4e9f7b152e767f7bd459218fe1fd',1,'setup']]],
-  ['isaxis_5',['isAxis',['../classJoystickEvent.html#a98f2162093d17944bbd7eef8aa787113',1,'JoystickEvent']]],
-  ['isbutton_6',['isButton',['../classJoystickEvent.html#a9c99e66d3b83e70bcdf30aba49779941',1,'JoystickEvent']]],
-  ['isfound_7',['isFound',['../classJoystick.html#a6d5953230037a9624d9ddcb0885b8fdb',1,'Joystick']]],
-  ['isinitialstate_8',['isInitialState',['../classJoystickEvent.html#a495da192a4ebc482535b99cbccd26c1c',1,'JoystickEvent']]]
+  ['main_0',['main',['../microcontroller__proxy_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;microcontroller_proxy.cpp'],['../test_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;test.cpp'],['../group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;manager.cpp']]],
+  ['manager_20node_2e_1',['Manager node.',['../group__manager.html',1,'']]],
+  ['manager_2ecpp_2',['manager.cpp',['../manager_8cpp.html',1,'']]],
+  ['max_5faxes_5fvalue_3',['MAX_AXES_VALUE',['../classJoystickEvent.html#abd23a8a7d4f29dbab679590540c5d16f',1,'JoystickEvent']]],
+  ['microcontroller_5fproxy_2ecpp_4',['microcontroller_proxy.cpp',['../microcontroller__proxy_8cpp.html',1,'']]],
+  ['min_5faxes_5fvalue_5',['MIN_AXES_VALUE',['../classJoystickEvent.html#acbfc7fb1cb1203bd4b1352c460ba9c0d',1,'JoystickEvent']]],
+  ['motion_5fcallback_6',['motion_callback',['../classMotionSubscriber.html#aaa7307896d6095a72def5e2816fd129a',1,'MotionSubscriber']]],
+  ['motionsubscriber_7',['MotionSubscriber',['../classMotionSubscriber.html',1,'MotionSubscriber'],['../classMotionSubscriber.html#a8a6ce387c86a006e39b0187f2d1ec464',1,'MotionSubscriber::MotionSubscriber()']]],
+  ['motionsubscriber_2ecpp_8',['MotionSubscriber.cpp',['../MotionSubscriber_8cpp.html',1,'']]],
+  ['motionsubscriber_2ehpp_9',['MotionSubscriber.hpp',['../MotionSubscriber_8hpp.html',1,'']]],
+  ['move_10',['move',['../classScript.html#a071f17e9cd436fe8d55fad6cd4ba2146',1,'Script']]],
+  ['moveabs_11',['moveABS',['../classScript.html#a3fbffe90ac339c8b068a97dd2cd6bd88',1,'Script']]]
 ];

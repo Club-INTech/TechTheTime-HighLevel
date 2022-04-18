@@ -96,7 +96,7 @@ manager </li>
 <li>
 robot_vision </li>
 <li>
-<a class="el" href="namespacemotion__control.html">motion_control</a> </li>
+motion_control </li>
 <li>
 urg_node </li>
 </ul>
@@ -105,18 +105,18 @@ urg_node </li>
 <h2><a class="anchor" id="intro1"></a>
 microcontroller_proxy</h2>
 <p >microcontroller_proxy node is used to ineteract with microcontroller. It treats orders coming from other nodes and then transforms them and sends them to the microcontroller. In the case of motion orders, it provides a feedback from the microcontroller.</p>
-<p >Link to the <a class="el" href="group__microcontroller__proxy.html">Microcontroller node.</a></p>
+<p >Link to the microcontroller_proxy</p>
 <h2><a class="anchor" id="intro2"></a>
 manager</h2>
-<p >manager node is responsible for the orders distribution and robot's position tracking. It sends data to the <a class="el" href="namespacemotion__control.html">motion_control</a> node and requests robot_vision and microcontroller_proxy nodes to execute some orders. It takes the user action script as input.</p>
+<p >manager node is responsible for the orders distribution and robot's position tracking. It sends data to the motion_control node and requests robot_vision and microcontroller_proxy nodes to execute some orders. It takes the user action script as input.</p>
 <p >Link to the <a class="el" href="group__manager.html">Manager node.</a></p>
 <h2><a class="anchor" id="intro3"></a>
 robot_vision</h2>
 <p >robot_vision is responsible for image processing, distance measuring and aruco tag scanning. It receives requests from manager.</p>
 <h2><a class="anchor" id="motion_control"></a>
 motion_control</h2>
-<p ><a class="el" href="namespacemotion__control.html">motion_control</a> is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.</p>
-<p >Link to the <a class="el" href="motion__control_8py.html">motion_control.py</a></p>
+<p >motion_control is responsible for area scanning, path finding and sending basic orders to the microcontroller_proxy node.</p>
+<p >Link to the motion_control.py</p>
 <h2><a class="anchor" id="urg_node"></a>
 urg_node</h2>
 <p >urg_node is a default ROS2 node, which publishes the points data of lidar.</p>

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['isaxis_0',['isAxis',['../classJoystickEvent.html#a98f2162093d17944bbd7eef8aa787113',1,'JoystickEvent']]],
-  ['isbutton_1',['isButton',['../classJoystickEvent.html#a9c99e66d3b83e70bcdf30aba49779941',1,'JoystickEvent']]],
-  ['isfound_2',['isFound',['../classJoystick.html#a6d5953230037a9624d9ddcb0885b8fdb',1,'Joystick']]],
-  ['isinitialstate_3',['isInitialState',['../classJoystickEvent.html#a495da192a4ebc482535b99cbccd26c1c',1,'JoystickEvent']]]
+  ['openpath_0',['openPath',['../classJoystick.html#adbea3b545228ffd7793003242faea9f9',1,'Joystick']]],
+  ['operator_3c_3c_1',['operator&lt;&lt;',['../joystick_8cpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp'],['../joystick_8hpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp']]]
 ];

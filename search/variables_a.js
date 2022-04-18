@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['name_0',['name',['../namespacesetup.html#ab74e6bf80237ddc4109968cedc58c151',1,'setup']]],
-  ['number_1',['number',['../classJoystickEvent.html#aa6787fc6eb732987040b1f378489db54',1,'JoystickEvent']]]
+  ['time_0',['time',['../classJoystickEvent.html#a83e57ce9bd59cfa0995c2e2c8589c274',1,'JoystickEvent']]],
+  ['type_1',['type',['../classJoystickEvent.html#aa5044999f3339d2ba3b1bf22fa6cfe95',1,'JoystickEvent']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['eyes_0',['Eyes',['../classeyes_1_1Eyes.html',1,'eyes']]],
-  ['eyesexception_1',['EyesException',['../classeyes__exception_1_1EyesException.html',1,'eyes_exception']]]
+  ['joystick_0',['Joystick',['../classJoystick.html',1,'']]],
+  ['joystickevent_1',['JoystickEvent',['../classJoystickEvent.html',1,'']]]
 ];
