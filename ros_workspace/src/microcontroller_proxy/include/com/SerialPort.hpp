@@ -4,7 +4,6 @@
 #include <cstdio>
 #include <string>
 
-#include <fcntl.h> 
 #include <errno.h> 
 #include <termios.h> 
 #include <unistd.h>
@@ -18,6 +17,10 @@
 #include <rpc/def.hpp>
 #include <rpc/master.hpp>
 #include <k2o/dispatcher.hpp>
+
+#include <chrono>
+#include <thread>
+#include <const_shared/CommunicationConst.hpp>
 
 /**
  * @ingroup microcontroller_proxy
@@ -36,14 +39,18 @@
 namespace scom {
 
     /**
-     * scom::stuffing_byte is used to indicate a new order transmission  
+     * scom::stuffing_byte separates data to distinguish data bytes and header bytes.
+     * A header is composed of 3 0xff bytes: "0xff 0xff 0xff".
+     * If two 0xff bytes occur in data, we must separate them from the third to prevent header repeating,
+     * for example: "... 0xff 0xff 0x00 0xff ..."
     */ 
-    extern uint8_t stuffing_byte;
-    // extern k2o::dispatcher dispatcher;
+    extern uint8_t stuffing_byte; 
 
     /**
      * @ingroup microcontroller_proxy
-     * scom::BlockingModes are used to determine which read mode will be used in serial communication
+     * scom::BlockingModes are used to determine which read mode will be used in serial communication.
+     * It can only be used in non-canonical mode(don't use it if you open serial with O_NDELAY, O_NON_BLOCK, or
+     * if you use fcntl)
     */ 
     enum class BlockingModes {
         /**
@@ -63,27 +70,6 @@ namespace scom {
         */ 
         TIMEOUT_WITH_FIXED_BYTES
     };
-
-    /**
-     * Contains the bits that are used to configure serial communication control modes 
-     * (PARENB, CSTOPB, CRTSCTS, CLOCAL, CREAD) 
-    */ 
-    extern unsigned int control_mode_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication local modes 
-     * (ICANON, ECHO, ECHOE, ECHONL, ISIG) 
-    */ 
-    extern unsigned int local_modes_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication input modes 
-     * (IXON, IXOFF, IXANY, IGNBRK, BRKINT, PARMRK, ISTRIP, INLCR, IGNCR, ICRNL) 
-    */ 
-    extern unsigned int input_modes_bits[];
-    /**
-     * Contains the bits that are used to configure serial communication output modes 
-     * (OPOST, ONLCR) 
-    */ 
-    extern unsigned int output_modes_bits[];
 
 
     /**
@@ -118,32 +104,6 @@ namespace scom {
         void open_serial();
         
         /**
-         * Sets scom::SerialPort::serial_port_config to the scom::SerialPort::serial_port.
-         * See <a target="_blank" href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcsetattr-set-attributes-terminal">tcsetattr</a> for more information
-        */ 
-        void set_config();
-
-        /**
-         * Gets current serial config(your environment config) and assigns it to the scom::SerialPort::serial_port.
-         * See <a target="_blank" href="https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-tcgetattr-get-attributes-terminal">tcgetattr</a> for more information
-        */ 
-        void get_config();
-
-
-        /**
-         * Sets input communication speed.
-         * @param baud_rate an input speed in bauds 
-        */
-        void set_input_speed(speed_t baud_rate);
-
-        /**
-         * Sets output communication speed.
-         * @param baud_rate an output speed in bauds
-        */ 
-        void set_output_speed(speed_t baud_rate);
-
-
-        /**
          * Sets scom::BlockingModes for scom::SerialPort::serial_port_config.
          * It also takes an initializer_list of arguments and checks its length.
          * You can provide from 0 to 2 arguments (timeout and bytes number to wait).
@@ -152,40 +112,6 @@ namespace scom {
          * @param args an initializer list of arguments <b>for a particular blocking mode</b>
         */ 
         void define_blocking_mode(BlockingModes mode, std::initializer_list<int> args);
-
-
-        /**
-         * Configures control modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param bits_per_byte a number of data bits transmitted per byte.
-         * @param control_bits_state an initializer list of bool, where control_bits_state[i]
-         * indicates whether scom::control_mode_bits[i] must be set at 1 or 0. 
-        */ 
-        void configure_control_modes(tcflag_t bits_per_byte, std::initializer_list<bool> control_bits_state);
-
-        /**
-         * Configures local modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param local_bits_state an initializer list of bool, where local_bits_state[i]
-         * indicates whether scom::local_mode_bits[i] must be set at 1 or 0. 
-        */ 
-        void configure_local_modes(std::initializer_list<bool> local_bits_state);
-
-        /**
-         * Configures input modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param input_bits_state an initializer list of bool, where input_bits_state[i]
-         * indicates whether scom::input_mode_bits[i] must be set at 1 or 0. 
-        */
-        void configure_input_modes(std::initializer_list<bool> input_bits_state);
-
-        /**
-         * Configures output modes for scom::SerialPort::serial_port_config.
-         * 
-         * @param output_bits_state an initializer list of bool, where output_bits_state[i]
-         * indicates whether scom::output_mode_bits[i] must be set at 1 or 0. 
-        */
-        void configure_output_modes(std::initializer_list<bool> output_bits_state);
 
         /**
          * Writes a byte to serial
@@ -213,7 +139,6 @@ namespace scom {
         */ 
         void read_word(uint8_t* word, int size);
 
-
         /**
          * Closes serial port
          */ 
@@ -226,27 +151,36 @@ namespace scom {
         void set_exclusive_access();
 
         /**
+         * Flushes the input system buffer.
+         * Mainly used to avoid the data collision as multiple threads or processes use the same port.
+         */
+        void flush();
+
+        /**
          * Opens serial, gets config, then sets a default config to serial port.
          * The default config is the following:
          * <ul>
          * <li>115200 bauds for input an output speed</li>
-         * <li>TIMEOUT blocking mode with 1s timeout</li>
+         * <li>TIMEOUT blocking mode with 0.5s timeout</li>
          * <li>8 bits per byte</li>
          * <li>control modes: {false, false, false, true, true}</li>
          * <li>local modes: {false, false, false, false, false}</li>
          * <li>input modes: {false, false, false, false, false, false, false, false, false, false}</li>
          * <li>output modes: {false, false}</li>
          * </ul>
+         * 
+         * It operates in non-blocking mode, non-canonical mode and return data byte per byte as they are
+         * available.
         */ 
         void set_default_config();
 
         /**
-         * A generic to call a function(an order) on the target device. It gets a key, based on the 
-         * provided functor type, from a master keyring.
+         * A generic rpc function to call another function(an order) on the target device. 
+         * It gets a key, based on the provided functor, from a master keyring.
          * 
          * For more information on keyring, see <a target="_blank" href="https://github.com/StarQTius/Key-To-Order">Key-To-Order</a>
          * 
-         * @tparam Ftor functor type 
+         * @tparam Ftor rpc functor(a function we want to call on remote device) 
          * @tparam Args arguments type needed to call remote function on target device
          * 
          * @param args arguments to call remote function
@@ -256,49 +190,94 @@ namespace scom {
             auto key = rpc::master::keyring.get<Ftor>();
             this->com_start_frame_transmission(rpc::Frame_Type::REQUEST);
             key(std::forward<Args>(args)...) >> [&](upd::byte_t byte){this->com_write_byte(byte);};
+            std::this_thread::sleep_for(SERIAL_COM_DELAY);
+        }
+
+        /**
+         * A generic rpc function that receives a feedback after Ftor call on remote device.
+         * It gets a key, based on the provided functor, from a master keyring.
+         * 
+         * For more information on keyring, see <a target="_blank" href="https://github.com/StarQTius/Key-To-Order">Key-To-Order</a>
+         * 
+         * @tparam Ftor rpc functor(a function we want to call on remote device)
+         * @return data of deduced type
+         */
+        template<auto& Ftor>
+        auto receive_feedback() {
+            this->new_response = true;
+            auto key = rpc::master::keyring.get<Ftor>();
+            std::this_thread::sleep_for(READ_FEEDBACK_DELAY);
+            return key << [&]() {return this->com_read_byte();};
         }
 
     private:
         /**
-         * Serial port id.
-         * The default value is -1, because the port has not been opened
+         * Serial port id(descriptor).
+         * The default value is -1, because the port has not been opened.
         */ 
         int serial_port = -1;
 
         /**
-         * Port name (example: /dev/ttyACM0)
-         * The default value is nullptr as scom::SerialPort is not initialized
+         * Port name (example: /dev/ttyACM0).
+         * The default value is nullptr as scom::SerialPort is not initialized.
         */ 
         const char* port_name = nullptr;
 
         /**
-         * termios struct used to configure serial port
-        */ 
-        struct termios serial_port_config;
-
-        /**
-         * A write counter used to distinguish frame header and a beggining of data transmission. 
-         * Indicates the end of header and initiates a scom::stuffing_byte transmission.
+         * A write counter used to distinguish frame header bytes and data bytes in writing. 
+         * Initiates a stuffing byte transmission.
+         * Take a look at scom::stuffing_byte for explanation.
         */ 
         size_t write_stuff_counter;
 
         /**
+         * A read counter used to distinguish frame header bytes and data bytes in reading.
+         * Indicates whether the next byte is stuffing or a data byte.
+         * Take a look at scom::stuffing_byte for explanation.
+         */
+        size_t read_stuff_counter;
+
+        /**
+         * Triggers to true as new response must be read.
+         * Needed to know whether a frame header is expected or not.
+         */
+        bool new_response;
+
+        /**
          * Writes a byte to the serial port and takes care of scom::SerialPort::write_stuff_counter
          * and separation of header and data.
+         * 
+         * Passed in key of <a target="_blank" href="https://github.com/StarQTius/Key-To-Order">Key-To-Order</a> 
+         * as output method.
          * 
          * @param byte a byte to send.
         */ 
         void com_write_byte(upd::byte_t byte);
 
         /**
-         * Sends a sequence of bytes that determine the frame type(message type).
+         * Sends a sequence of header bytes that determine the frame type(message type).
          * To know more about frame types you may refer to the 
          * <a target="_blank" href="https://github.com/Club-INTech/TechTheTime-Shared/blob/master/rpc/def.hpp">TechTheTime-Shared</a>.
+         * 
+         * For example: 0x00 0xff 0xff 0xff 0x01 for response.
+         *               ^    ^    ^    ^    ^
+         *               |    |    |    |    |
+         *          stuffing     header   frame_type
          * 
          * @param frame_type a type of the frame(of the message)
         */ 
         void com_start_frame_transmission(rpc::Frame_Type frame_type);
-    };
+
+        /**
+         * Read a byte from the serial port accordng to the defined protocol.
+         * The header is read and ignored.
+         * Takes care of stuffing bytes.
+         * 
+         * @return upd::byte_t a byte that has been read 
+         */
+        upd::byte_t com_read_byte();
+
+    }; 
 
 }
 

@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <functional>
 #include <cstdint>
+#include <stdexcept>
 
 /**
  * OrderBinder is used by ActionService in order to execute callback attached to an order code.
@@ -50,6 +51,7 @@ struct OrderBinder {
      * @param res A response that must be composed and sended back
     */ 
     void execute_order(int64_t order_code, Treq req, Tres res) {
+        if(orders.find(order_code) == orders.end()) throw std::runtime_error("Trying to access a order with unknown code");
         (orders.find(order_code)->second)(req, res);
     }
 };

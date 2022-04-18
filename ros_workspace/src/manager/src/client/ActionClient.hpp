@@ -12,9 +12,9 @@
 #include "struct_wrapper.hpp"
 #include <stdexcept>
 #include <iostream>
-#include "order_codes.hpp"
+#include <action_msg_srv_shared/order_codes.hpp>
 
-class ActionClient : public ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, int64_t, int64_t, int64_t> {
+class ActionClient : public ClientT<action_msg_srv::srv::Order, action_msg_srv::srv::Order::Request, int64_t, double, int64_t, double> {
 public:
     ActionClient() : ClientT("action") {};
 };

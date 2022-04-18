@@ -44,7 +44,7 @@ echo "Do you want proceed to the essentials installation (ros2-foxy, rosdep, col
 
 read answer
 
-if [ "${answer,,}" = "y" ] || [ -z $answer ]; then
+if [ "${answer}" = "y" ] || [ -z $answer ]; then
     ./install-ros.sh
     if [ $? -ne 0 ]; then
         echo "Failed to install"
@@ -59,7 +59,7 @@ echo "Do you want to install all dependecies with rosdep (rosdep must be install
 
 read answer
 
-if [ "${answer,,}" = "y" ] || [ -z $answer ]; then
+if [ "${answer}" = "y" ] || [ -z $answer ]; then
     rosdep install --from-paths src --ignore-src -r -y
     echo "===== Finished ====="
 fi

@@ -1,6 +1,6 @@
 int64 order_code
-int64 distance
+float64 distance
 int64 id
-int64 angle
+float64 angle
 ---
 int64 motion_status

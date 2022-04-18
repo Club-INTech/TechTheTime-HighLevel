@@ -3,13 +3,14 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "action_msg_srv/srv/order.hpp"
-#include "order_binder.hpp"
+#include <action_msg_srv_shared/order_binder.hpp>
 
 #include <memory>
 #include <string>
+#include <mutex>
 
-#include "../serial/SerialPort.hpp"
-#include "../publisher/MotionPublisher.hpp"
+#include <com/SerialPort.hpp>
+#include <ros/pub_sub/MotionPublisher.hpp>
 
 /** @defgroup microcontroller_proxy Microcontroller node.
  * @{
@@ -80,7 +81,8 @@ public:
      * 
      * All order codes are defined there order_codes.hpp.
     */ 
-    ActionService(const std::string& service_name);
+    ActionService(const std::string& service_name, std::shared_ptr<scom::SerialPort> serial_port,
+        std::shared_ptr<MotionPublisher> motion_publisher);
 
     /**
      * 
@@ -121,6 +123,12 @@ private:
      * A shared pointer to the MotionPublisher used to publish microcontroller feedback while moving. 
     */ 
     std::shared_ptr<MotionPublisher> motion_publisher;
+
+    int64_t spin_while_moving();
+
+    void execute_order(const shared_request_T req, shared_response_T res);
+
+    void check_motion_status(bool&);
     
 };
 
