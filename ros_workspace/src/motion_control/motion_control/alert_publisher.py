@@ -12,10 +12,12 @@ class AlertPublisher(Node):
         self.__alert = False
     
     def alert(self):
+        print("Alert")
         self.__alert = True
         self.__publish_msg()
 
     def stop_alert(self):
+        print("Stop alert")
         self.__alert = False
         self.__publish_msg()
 

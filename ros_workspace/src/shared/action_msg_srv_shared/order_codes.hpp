@@ -19,6 +19,8 @@ enum OrderCodes {
     //Relache la pompe d'index id
     RELEASE_PUMP,
     MOVE_SERVO,
+    MESURE,
+    CHECK_JUMPER,   
     NONE
 };
 

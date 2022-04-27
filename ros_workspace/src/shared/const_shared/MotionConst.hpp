@@ -43,6 +43,18 @@ constexpr double RADIANS_TO_TICKS = 1 / TICKS_TO_RADIANS;
 constexpr double TICKS_TO_RADIANS_HALF_BASE = 2 * TICKS_TO_RADIANS;
 constexpr double RADIANS_TO_TICKS_HALF_BASE = 1 / TICKS_TO_RADIANS_HALF_BASE;
 
-constexpr double BEGIN_X_2A = 250.0;
-constexpr double BEGIN_Y_2A = 850.0;
-constexpr double BEGIN_ANGLE_2A = 0;
+constexpr double START_X_2A_YELLOW = 257.0;
+constexpr double START_Y_2A_YELLOW = 915.0;
+constexpr double START_ANGLE_2A_YELLOW = 0.0;
+
+constexpr double START_X_2A_PURPLE = 2590.0;
+constexpr double START_Y_2A_PURPLE = 75.0;
+constexpr double START_ANGLE_2A_PURPLE = M_PI;
+
+constexpr double START_X_1A_YELLOW = 570.0;
+constexpr double START_Y_1A_YELLOW = 579.0;
+constexpr double START_ANGLE_1A_YELLOW = 0;
+
+constexpr double START_X_1A_PURPLE = 2820.0;
+constexpr double START_Y_1A_PURPLE = 750;
+constexpr double START_ANGLE_1A_PURPLE= M_PI;

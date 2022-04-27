@@ -1,6 +1,8 @@
 from rclpy.node import Node
 
 from sensor_msgs.msg import LaserScan
+from motion_control.sensor_data import *
+from motion_control.alert_publisher import AlertPublisher
 
 import math
 
@@ -12,17 +14,25 @@ class PointsSubscriber(Node):
             LaserScan,
             "/scan",
             self.listener_callback,
-            10)
+            10
+            )
         self.subscription  # prevent unused variable warning
-        self.object_in_game_area = []
+        self.alert_pub = AlertPublisher()
 
     def listener_callback(self, msg):
+        print("Callback")
         obj_groupes = self.__segmentation_groupe_point(msg)
-        self.object_in_game_area = self.__discrimination(msg, obj_groupes)
+        SensorData.object_in_game_area = self.__discrimination(msg, obj_groupes)
         self.get_logger().info('==== Begin =====')
-        for k in range(len(self.object_in_game_area)):
-            self.get_logger().info('I see : x = %d et y = %d' % (self.object_in_game_area[k][0], self.object_in_game_area[k][1]))
+        for k in range(len(SensorData.object_in_game_area)):
+            self.get_logger().info('I see : x = %d et y = %d' % (SensorData.object_in_game_area[k][0], SensorData.object_in_game_area[k][1]))
         self.get_logger().info('==== END =====')
+        for obj in SensorData.object_in_game_area:
+            print((SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2)
+            if (SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2 <= 62500:
+                self.alert_pub.alert()
+            else:
+                self.alert_pub.stop_alert()
 
 
     def __segmentation_groupe_point(self, msg):
@@ -51,9 +61,9 @@ class PointsSubscriber(Node):
         return rpz_groupe
 
     def __discrimination(self, msg, obj_groupes):
-        x_robot = 400 #RobotMotion.x
-        y_robot = 1000 #RobotMotion.y
-        angle_robot = 0 #RobotMotion.angle
+        x_robot = SensorData.pos_x
+        y_robot = SensorData.pos_y
+        angle_robot = SensorData.pos_angle
         rpz_groupe = self.__representant(obj_groupes)
 
         object_in_game_area = []

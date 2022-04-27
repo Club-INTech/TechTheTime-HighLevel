@@ -6,9 +6,11 @@
 #include <thread>
 #include "action_msg_srv/srv/order.hpp"
 #include <stdexcept>
-#include "robot_motion/RobotMotion.hpp"
+#include "robot_status/RobotStatus.hpp"
 #include "dev/order_reader.hpp"
 #include <tuple>
+#include <csignal>
+#include "yaml-cpp/yaml.h"
 #include "script/script.hpp"
 
 /*! \mainpage 
@@ -86,10 +88,70 @@
 // Main page and manager.cpp documentation separator
 // ======================================================================================================================
 
-double RobotMotion::x = BEGIN_X_2A;
-double RobotMotion::y = BEGIN_Y_2A;
-double RobotMotion::angle_ = BEGIN_ANGLE_2A;
-double RobotMotion::angle = BEGIN_ANGLE_2A;
+
+double RobotStatus::x = 0;
+double RobotStatus::y = 0;
+double RobotStatus::angle_ = 0;
+double RobotStatus::angle = 0;
+Team RobotStatus::team = Team::NONE;
+Robot RobotStatus::robot = Robot::NONE;
+
+void terminate(int code) {
+    rclcpp::shutdown();
+    exit(code);
+}
+
+template<typename T>
+T process_element(YAML::Node* config, const char* elem) {
+    if(!(*config)[elem]) {
+        std::cout << "Parameter " << elem << " is required" << std::endl;
+        terminate(1);
+    } else {
+        return (*config)[elem].as<T>();
+    } 
+}
+
+void init(YAML::Node* config) {
+    RobotStatus::team = (process_element<std::string>(config, "team").compare("yellow")) ? Team::PURPLE : Team::YELLOW;
+    RobotStatus::robot = (process_element<std::string>(config, "robot").compare("master")) ? Robot::SLAVE : Robot::MASTER;
+
+    if(RobotStatus::team == Team::YELLOW) {
+        
+        if(RobotStatus::robot == Robot::MASTER) {
+
+            RobotStatus::x = START_X_1A_YELLOW;
+            RobotStatus::y = START_Y_1A_YELLOW;
+            RobotStatus::angle_ = START_ANGLE_1A_YELLOW;
+            RobotStatus::angle = START_ANGLE_1A_YELLOW;
+
+        } else if(RobotStatus::robot == Robot::SLAVE) {
+
+            RobotStatus::x = START_X_2A_YELLOW;
+            RobotStatus::y = START_Y_2A_YELLOW;
+            RobotStatus::angle_ = START_ANGLE_2A_YELLOW;
+            RobotStatus::angle = START_ANGLE_2A_YELLOW;
+
+        }
+
+    } else if(RobotStatus::team == Team::PURPLE) {
+
+        if(RobotStatus::robot == Robot::MASTER) {
+
+            RobotStatus::x = START_X_1A_PURPLE;
+            RobotStatus::y = START_Y_1A_PURPLE;
+            RobotStatus::angle_ = START_ANGLE_1A_PURPLE;
+            RobotStatus::angle = START_ANGLE_1A_PURPLE;
+
+        } else if(RobotStatus::robot == Robot::SLAVE) {
+            
+            RobotStatus::x = START_X_2A_PURPLE;
+            RobotStatus::y = START_Y_2A_PURPLE;
+            RobotStatus::angle_ = START_ANGLE_2A_PURPLE;
+            RobotStatus::angle = START_ANGLE_2A_PURPLE;
+
+        }
+    }
+}
 
 /**
  * 
@@ -107,7 +169,17 @@ double RobotMotion::angle = BEGIN_ANGLE_2A;
 
 int main(int argc, char** argv) {
 
+    std::signal(SIGINT, terminate);
+
     rclcpp::init(argc, argv);
+
+    if(argc < 2) {
+        std::cout << "Please provide a full path to your config file. Example: $PWD/config.yaml" << std::endl;
+        terminate(1);
+    }
+
+    std::string filename(argv[1]);
+    YAML::Node config = YAML::LoadFile(filename);
     
     Script script = Script();
 
@@ -116,49 +188,14 @@ int main(int argc, char** argv) {
     });
 
     std::thread client_thread([&script, argc, &argv](){
-        if(argc == 2 && strcmp(argv[1], "free") == 0) {
-            auto commClient = std::make_shared<ActionClient>();
-            std::string expression = "";
-            while(1) {
-                try {
-                    std::getline(std::cin, expression);
-                    auto order = order_reader::get_order_as_tuple(expression);
-                    auto res = commClient->send((int64_t) std::get<0>(order),
-                                                            std::get<1>(order),
-                                                            std::get<2>(order),
-                                                            std::get<3>(order) 
-                    );
 
-                    MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
-                    if(status == MotionStatusCodes::COMPLETE) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
-                    } else if(status == MotionStatusCodes::NOT_COMPLETE){
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
-                    } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
-                    }
+            script.pushOrder(std::bind(&Script::angleABS, script, M_PI/4,0,0));
 
-                } catch(const std::runtime_error& e) {
-                    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
-                }         
-            }
-            commClient->send((int64_t) OrderCodes::START_ROTATE_LEFT, 0, 0, M_PI / 2);
-        } else {
-            std::function<void()> orderONE = std::bind(&Script::move, script, 1000,1000,0);
-            std::function<void()> orderTWO = std::bind(&Script::move, script, 1500,700,0);
-            std::function<void()> orderFIVE = std::bind(&Script::angleABS, script, M_PI/2 ,0,0);
-            std::function<void()> orderTHREE = std::bind(&Script::moveABS, script, 700,0.0,0);
-            std::function<void()> orderFOUR = std::bind(&Script::move, script, 1000,1000,0);
-
-            script.pushOrder(orderONE);
-            script.pushOrder(orderTWO);
-            script.pushOrder(orderFIVE);
-            script.pushOrder(orderTHREE);
-            script.pushOrder(orderFOUR);
-
+            script.wait_for_jumper();
             script.run();
-        }
     });
+
+
     subscriber_thread.join();
     client_thread.join();
 

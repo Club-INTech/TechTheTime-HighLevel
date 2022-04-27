@@ -11,7 +11,28 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
 endif()
 
-add_compile_options(-Wall -Wextra -Wpedantic)
+add_compile_options(-Wall)
+
+include(FetchContent)
+message("Fetching yaml-cpp")
+FetchContent_Declare(
+  yaml-cpp
+  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+  GIT_SHALLOW ON
+  GIT_TAG yaml-cpp-0.6.3
+)
+
+FetchContent_GetProperties(yaml-cpp)
+if(NOT yaml-cpp_POPULATED)
+	message(STATUS "Populating yaml-cpp...")
+	FetchContent_Populate(yaml-cpp)
+	# Add here options for yaml-cpp building
+	set(YAML_CPP_BUILD_TESTS OFF CACHE BOOL "disable yaml tests")
+	add_subdirectory(${yaml-cpp_SOURCE_DIR} ${yaml-cpp_BINARY_DIR})
+	message(STATUS "Done.")
+endif()
+
+include_directories(BEFORE SYSTEM ${yaml-cpp_SOURCE_DIR} ${yaml-cpp_BINARY_DIR}/include)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -34,6 +55,8 @@ add_executable(${PROJECT_NAME}
   src/dev/order_reader.cpp
   src/script/script.cpp
 )
+
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
 
 ament_target_dependencies(manager
   rclcpp 

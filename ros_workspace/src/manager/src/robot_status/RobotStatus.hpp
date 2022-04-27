@@ -4,15 +4,30 @@
 #include <action_msg_srv_shared/order_codes.hpp>
 #include <iostream>
 
-class RobotMotion {
+enum class Team {
+    YELLOW,
+    PURPLE,
+    NONE
+};
+
+enum class Robot {
+    MASTER,
+    SLAVE,
+    NONE
+};
+
+class RobotStatus {
 public:
 
-    RobotMotion() = delete;
+    RobotStatus() = delete;
 
     static double x;
     static double y;
     static double angle_;
     static double angle;
+    static Team team;
+    static Robot robot;
+
 
     static void atomic_move(int64_t left_ticks, int64_t right_ticks) {
         double dbeta = 0; 
