@@ -23,7 +23,7 @@ source install/setup.bash
 
 # sleep 2
 
-(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $PWD/config.yaml &>/dev/null) &
+(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $PWD/config.yaml) &
 
 sleep 5
 

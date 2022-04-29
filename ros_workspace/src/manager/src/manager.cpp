@@ -181,6 +181,8 @@ int main(int argc, char** argv) {
     std::string filename(argv[1]);
     YAML::Node config = YAML::LoadFile(filename);
 
+    init(&config);
+
     std::thread subscriber_thread([](){
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
