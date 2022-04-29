@@ -45,7 +45,7 @@ constexpr double RADIANS_TO_TICKS_HALF_BASE = 1 / TICKS_TO_RADIANS_HALF_BASE;
 
 constexpr double START_X_2A_YELLOW = 257.0;
 constexpr double START_Y_2A_YELLOW = 915.0;
-constexpr double START_ANGLE_2A_YELLOW = 0.0;
+constexpr double START_ANGLE_2A_YELLOW = M_PI/2;
 
 constexpr double START_X_2A_PURPLE = 2590.0;
 constexpr double START_Y_2A_PURPLE = 75.0;
