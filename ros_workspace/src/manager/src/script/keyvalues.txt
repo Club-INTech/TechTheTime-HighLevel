@@ -1,8 +1,394 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@GaetanBecker
+Club-INTech /
+TechTheTime-HighLevel
+Public
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+
+    Insights
+
+TechTheTime-HighLevel/ros_workspace/src/manager/src/script/keyvalues.txt
+@GaetanBecker
+GaetanBecker Script manager
+Latest commit abf5de5 8 days ago
+History
+1 contributor
+394 lines (315 sloc) 8.52 KB
 ========== This documents regroups all the key value of match to determine the strategie ==========
 
 Distances are in mm and angles in radian
 
-===== TEAM YELLOW =====
+========== TEAM YELLOW ==========
+
+=> Methode for obj <=
+
+
+For the distrib horizontal hidden camp :
+
+    RIGHT (for the robot) : PALET RIGHT WITH RIGHT ARM
+    - Need to go : (450,1550)
+    - Move with absolute angle : 3pi/4
+    - Move forward : 165
+    - take ...
+    - Move backward : 165 
+
+    LEFT (for the robot) : PALET LEFT WITH LEFT ARM
+    - Need to go : (500,1550)
+    - Move with absolute angle : 3pi/4
+    - Move forward : 165
+    - take ...
+    - Move backward : 165
+
+For the distrib horizontal side camp : WITH MIDDLE ARM
+
+    - Need to go : (300,300)
+    - Move with absolute angle : pi
+    - Move forward : 180
+    - take ...
+    - Move backward : 180
+
+For the distrib vertical side camp :
+
+    BLUE : MIDDLE ARM
+    - Need to go : (400,1250)
+    - Move with absolute angle : pi
+    - Move forward : 110
+    - take ...
+    - Move backward : 110
+
+    GREEN : RIGHT ARM
+    - Need to go : (400,1365)
+    - Move with absolute angle : pi
+    - Move forward : 110
+    - take ...
+    - Move backward : 110 
+
+    RED : LEFT ARM
+    - Need to go : (400,1140)
+    - Move with absolute angle : pi
+    - Move forward : 110
+    - take ...
+    - Move backward : 110 
+
+For the distrib ground :
+
+    All of palets :
+    - Need to go : (580,675)
+    - Vérification des XL tous en position 0 (sur le robot)
+    - Move with absolute angle : 0
+    - Move forward : 150
+    - take ground middle palet
+    - Reverse middle palet
+    - Move forward : 70
+    - take ground side palet
+    - reverse side palet
+
+Drop palet on gallery : sorted in the ARM ==> middle arm = green, left = blue, and right = red
+
+    Drop All : 
+    - Need to go : (810,350)
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+    - Move with a angle : pi
+    - Move forward : 150
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+    - Move with a angle : 0
+    - Move forward : 300
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+
+Drop and Take : Statuette
+
+    - Move : (421.43,1704)
+    - Face : 3pi/4
+    - Forward : 170-HAFL_LENGHT_2A 
+    - Take Statuette
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Face : 7pi/4
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Drop replic
+    - Forward : 170-HAFL_LENGHT_2A
+
+
+========== TEAM VIOLET ========== 
+
+=> Methode for obj <= 
+
+
+For the distrib horizontal hidden camp : 
+
+    RIGHT (for the robot) :               
+    - Need to go : (2550,1550) 
+    - Move with absolute angle : pi/4 
+    - Move forward : 165 
+    - take ... 
+    - Move backward : 165  
+
+    LEFT (for the robot) :           
+    - Need to go : (2500,1550) 
+    - Move with absolute angle : pi/4 
+    - Move forward : 165 
+    - take ... 
+    - Move backward : 165 
+
+For the distrib horizontal side camp :   
+
+    - Need to go : (2700,300) 
+    - Move with absolute angle : 0 
+    - Move forward : 180 
+    - take ... 
+    - Move backward : 180 
+
+For the distrib vertical side camp : 
+
+    BLUE : 
+    - Need to go : (2600,1140) 
+    - Move with absolute angle : 0 
+    - Move forward : 110 
+    - take ... 
+    - Move backward : 110 
+
+    GREEN : 
+    - Need to go : (2600,1250) 
+    - Move with absolute angle : 0 
+    - Move forward : 110 
+    - take ... 
+    - Move backward : 110  
+
+    RED : 
+    - Need to go : (2600,1365) 
+    - Move with absolute angle : 0 
+    - Move forward : 110 
+    - take ... 
+    - Move backward : 110
+
+For the distrib ground :
+
+    All of palets :
+    - Need to go : (2420,675)
+    - Vérification des XL tous en position 0 (sur le robot)
+    - Move with absolute angle : pi
+    - Move forward : 150
+    - take ground middle palet
+    - Reverse middle palet
+    - Move forward : 70
+    - take ground side palet
+    - reverse side palet
+
+Drop palet on gallery : sorted in the ARM ==> middle arm = green, right = blue  and left = red
+
+    Drop All : 
+    - Need to go : (2190,350)
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+    - Move with a angle : 0
+    - Move forward : 150
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+    - Move with a angle : pi
+    - Move forward : 300
+    - Move with a angle : 3pi/2
+    - Drop palet gallery
+
+
+
+
+SCRIPT YELLOW COUPE OFF :
+
+ROBOT 2A :
+
+    - Start : (0/400,800/1000) angle pi/2
+    - Move : (421.43,1704)
+    - Face : 3pi/4
+    - Forward : 170-HAFL_LENGHT_2A 
+    - Take Statuette
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Face : 7pi/4
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Drop replic
+    - Forward : 170-HAFL_LENGHT_2A
+
+    - Move : (150,150)
+    - Face : 3pi/2
+    - Forward : 150
+    - Drop
+    - Forward : -150
+
+    - Move : (1425,1850)
+    - Face : 0
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+
+    - Face 3pi/2
+    - Down poussette
+    - Move : End
+
+
+ROBOT 1A :
+
+    - Start : (0/400,400/700) angle 0
+    - Move : (580,675)
+    - Face : 0
+    - Forward : 150
+    - Take ground middle palet
+    - Reverse middle palet
+    - Forward : 70
+    - Take ground side palet
+    - Teverse side palet
+
+    - Move : (810,350)
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : pi
+    - Forward : 150
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : 0
+    - Forward : 300
+    - Face : 3pi/2
+    - Drop palet gallery
+
+    - Move : (400,1250)
+    - Face : pi
+    - Forward : 110
+    - Take BLUE (MIDDLE)
+    - Forward : -110
+    - Move : (400,1365)
+    - Face : pi
+    - Forward : 110
+    - Take GREEN (RIGHT)
+    - Forward : -110 
+    - Move : (400,1140)
+    - Angle : pi
+    - Forward : 110
+    - Take RED (LEFT)
+    - Forward : -110 
+
+    - Move : (570,350)
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : 0
+    - Forward : 330
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : 0
+    - Forward : 60
+    - Face : 3pi/2
+    - Drop palet gallery
+
+    - Move : Start
+
+============================ SCRIPT PURPLE COUPE OFF : ===============================================
+
+ROBOT 2A :
+
+    - Start : (2600/3000,800/1000) angle pi/2              
+    - Move : (2578.57,1704)  
+    - Face : pi/4
+    - Forward : 170-HAFL_LENGHT_2A 
+    - Take Statuette
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Face : 5pi/4
+    - Forward : - (170-HAFL_LENGHT_2A) 
+    - Drop replic
+    - Forward : 170-HAFL_LENGHT_2A
+
+    - Move : (2700,300)
+    ...
+
+    - Move : (2375,1850)  
+    - Face : pi
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+    - Forward : 200
+    - Mesure 
+
+    - Face 3pi/2
+    - Down poussette
+    - Move : End
+
+
+ROBOT 1A :
+
+    - Start : (2600/3000,400/700) angle pi    
+    - Move : (2420,675)
+    - Face : pi
+    - Forward : 150
+    - Take ground middle palet
+    - Reverse middle palet
+    - Forward : 70
+    - Take ground side palet
+    - Reverse side palet
+
+    - Move : (2190,350)   
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : 0
+    - Forward : 150
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : pi
+    - Forward : 300
+    - Face : 3pi/2
+    - Drop palet gallery
+
+    - Move : (2600,1140)   
+    - Face : 0
+    - Forward : 110
+    - Take BLUE (RIGHT)
+    - Forward : -110
+    - Move : (2600,1250)   
+    - Face : 0
+    - Forward : 110
+    - Take GREEN (MIDDLE)
+    - Forward : -110 
+    - Move : (2600,1365)  
+    - Angle : 0
+    - Forward : 110
+    - Take RED (LEFT)
+    - Forward : -110 
+
+    - Move : (2190,350)   
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : 0
+    - Forward : 150
+    - Face : 3pi/2
+    - Drop palet gallery
+    - Face : pi
+    - Forward : 300
+    - Face : 3pi/2
+    - Drop palet gallery
+
+    
+
+    - Move : Start
+
 
 
 The key point are point (x,y) to reach before to do the rotateABS adequate et the moveABS adequate
@@ -33,3 +419,20 @@ Key distance ABS :
     - To take green : 77
     - To tale red : 60
 
+ 
+
+    © 2022 GitHub, Inc.
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
+Loading complete
