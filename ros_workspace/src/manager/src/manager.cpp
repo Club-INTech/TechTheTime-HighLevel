@@ -180,15 +180,14 @@ int main(int argc, char** argv) {
 
     std::string filename(argv[1]);
     YAML::Node config = YAML::LoadFile(filename);
-    
-    Script script = Script();
 
     std::thread subscriber_thread([](){
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
 
-    std::thread client_thread([&script, argc, &argv](){
+    std::thread client_thread([](){
 
+            Script script = Script();
             script.pushOrder(std::bind(&Script::angleABS, script, M_PI/4,0,0));
 
             script.wait_for_jumper();
