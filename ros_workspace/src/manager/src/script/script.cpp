@@ -14,11 +14,14 @@
 // By Gaétan Becker (the doc), jtm tim 30%
 // Numerotation of XL : FACED VIEW
 // ON FLOOR
-// 2nd FLOOR : 1 2 3 
-// 1st FLOOR : 6 5 4
+// 2nd FLOOR : 17 15 13
+// 1st FLOOR : 11 9 7
 // ON ARM :
-// 2nd RAW : 7 8 9
-// 1st RAW : 12 11 10 
+// 2nd RAW : 16 14 12
+// 1st RAW : 10 8 6
+// Numerotation of Pump : FACED VIEW 
+// 2nd FLOOR : 5 4 3
+// 1st FLOOR : 2 1 0
 
 Script::Script() {
     this->commClient = std::make_shared<ActionClient>();
