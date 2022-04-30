@@ -188,11 +188,13 @@ int main(int argc, char** argv) {
     std::thread client_thread([](){
 
             Script script = Script();
-            script.pushOrder(std::bind(&Script::angleABS, script, M_PI/4,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 600,0,0));
-            script.pushOrder(std::bind(&Script::move, script, 1150,675,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, M_PI,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 1000,0,0));
+            // script.pushOrder(std::bind(&Script::angleABS, script, M_PI/4,0,0));
+            // script.pushOrder(std::bind(&Script::moveABS, script, 600,0,0));
+            // script.pushOrder(std::bind(&Script::move, script, 1150,675,0));
+            // script.pushOrder(std::bind(&Script::angleABS, script, M_PI,0,0));
+            // script.pushOrder(std::bind(&Script::moveABS, script, 1000,0,0));
+
+            script.parse_script("script.bot");
 
             script.wait_for_jumper();
             script.run();
