@@ -190,31 +190,8 @@ int main(int argc, char** argv) {
     std::thread client_thread([](){
 
             Script script = Script();
-            script.pushOrder(std::bind(&Script::move, script, 421.43,1704,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, 3*M_PI/4,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 170-HALF_LENGTH_SLAVE ,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, -(170-HALF_LENGTH_SLAVE) ,0,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, 7*M_PI/4,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, -(170-HALF_LENGTH_SLAVE) ,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 170-HALF_LENGTH_SLAVE ,0,0));
 
-            script.pushOrder(std::bind(&Script::move, script, 400,500,0));
-            script.pushOrder(std::bind(&Script::move, script, 150,150,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, 3*M_PI/2,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 150,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, -150,0,0));
-
-            script.pushOrder(std::bind(&Script::move, script, 1425,1850,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, M_PI,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 200,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 200,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 200,0,0));
-            script.pushOrder(std::bind(&Script::moveABS, script, 200,0,0));
-
-            script.pushOrder(std::bind(&Script::angleABS, script, 3*M_PI/2,0,0));
-
-            script.pushOrder(std::bind(&Script::move, script, 915.0,257.0,0));
-            script.pushOrder(std::bind(&Script::angleABS, script, M_PI/2,0,0));
+            script.parse_script("script.bot");
 
             script.wait_for_jumper();
             script.run();

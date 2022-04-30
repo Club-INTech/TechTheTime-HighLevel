@@ -9,7 +9,11 @@
 #include "rclcpp/rclcpp.hpp"
 #include "../robot_status/RobotStatus.hpp"
 #include <cmath>
+#include <variant>
 #include <functional>
+#include <vector>
+#include <sstream>
+#include <utility>
 
 // By Gaétan Becker (the doc), jtm tim 30%
 // Numerotation of XL : FACED VIEW
@@ -28,12 +32,84 @@ Script::Script() {
     this->commClient->set_shared(this->commClient);
     this->commClient->wait_for_connection();
 
-    // this->orders.insert("wait_for_jumper", [&](){ wait_for_jumper(); });
+    this->orders.insert({"move", std::function([&](double x, double y){ move(x, y); })});
+    this->orders.insert({"moveABS", std::function([&](double d, int adjustment){ moveABS(d, adjustment); })});
+    this->orders.insert({"angleABS", std::function([&](double alpha, int adjustment){ angleABS(alpha, adjustment); })});
 
-    // this->orders.insert("move", [&](double x, double y){ move(x, y); });
-    // this->orders.insert("moveABS", [&](double d, int adjustment){ moveABS(x, adjustment); });
-    // this->orders.insert("angleABS", [&](double alpha, int adjustment){ angleABS(alpha, adjustment); });
+    this->orders.insert({"take_statue", std::function([&](){ take_statue(); })});
+    this->orders.insert({"drop_replic", std::function([&](){ drop_replic(); })});
 
+    this->orders.insert({"reverse_palet", std::function([&](int id){ reverse_palet(id); })});
+    this->orders.insert({"mesure", std::function([&](){ mesure(); })});
+    this->orders.insert({"knock_over", std::function([&](){ knock_over(); })});
+
+    this->orders.insert({"down_servos", std::function([&](){ down_servos(); })});
+    this->orders.insert({"up_servos", std::function([&](){ up_servos(); })});
+
+    this->orders.insert({"take_palet_vertical", std::function([&](int id){ take_palet_vertical(id); })});
+    this->orders.insert({"take_palet_horizontal", std::function([&](int id){ take_palet_horizontal(id); })});
+    this->orders.insert({"take_palet_ground", std::function([&](int id){ take_palet_ground(id); })});
+
+    this->orders.insert({"drop_palet_gallery", std::function([&](int id){ drop_palet_gallery(id); })});
+    this->orders.insert({"drop_palet_ground", std::function([&](int id){ drop_palet_ground(id); })});
+
+}
+
+void Script::parse_script(const char* script_file) {
+    std::ifstream script(script_file);
+    std::string unparsed_order;
+    while(std::getline(script, unparsed_order)) {
+        std::vector<std::string> elems{};
+        int sep_index = 0;
+        for(int i = 0; i < unparsed_order.size(); i++) {
+            if(unparsed_order.at(i) == ' ') {
+                elems.push_back(unparsed_order.substr(sep_index, i - sep_index));
+                sep_index = i + 1;
+            }
+        }
+        elems.push_back(unparsed_order.substr(sep_index, unparsed_order.size() - sep_index));
+        auto order = this->orders.find(elems.at(0));
+        if(order == this->orders.end()) {
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: order does not exist");
+            return;    
+        }
+
+        if(std::holds_alternative<void_profile_T>(order->second)) {
+            if(elems.size() != 1) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                return;                  
+            }
+            this->pushOrder(std::get<void_profile_T>(order->second));
+        } 
+        
+        else if(std::holds_alternative<move_profile_T>(order->second)) {
+            if(elems.size() != 3) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                return;                  
+            }
+            this->pushOrder(std::bind(std::get<move_profile_T>(order->second), std::stod(elems.at(1)), std::stod(elems.at(2))));
+        } 
+        
+        else if(std::holds_alternative<actuator_profile_T>(order->second)) {
+            if(elems.size() != 3) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                return;                  
+            }
+            double command = std::stod(elems.at(1));
+            if(elems.at(0) == "angleABS") {
+                command = (command / 180) * M_PI;
+            }
+            this->pushOrder(std::bind(std::get<actuator_profile_T>(order->second), command, std::stoi(elems.at(2))));
+        } 
+        
+        else if(std::holds_alternative<id_profile_T>(order->second)) {
+            if(elems.size() != 2) {
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                return;                  
+            }
+            this->pushOrder(std::bind(std::get<id_profile_T>(order->second), std::stoi(elems.at(1))));
+        }
+    }
 }
 
 bool Script::treat_response(MotionStatusCodes status, std::function<void()> OrderToReinsert, bool reinsert = true) {
@@ -77,14 +153,14 @@ void Script::run(){
 
 // ================================== Actions orders ============================================================
 
-void Script::take_palet_vertical(double, double, int id) { // id = 7 or 9 or 11
+void Script::take_palet_vertical(int id) { // id = 7 or 9 or 11
     double DBL = -M_PI/12;
     double DBP = M_PI/6;
     int id_pump = 0;
-    if(id = 11){
+    if(id == 11){
         id_pump = 2;
     }
-    else if(id = 9){
+    else if(id == 9){
         id_pump = 1;
     }
     else{
@@ -102,14 +178,14 @@ void Script::take_palet_vertical(double, double, int id) { // id = 7 or 9 or 11
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
 }
 
-void Script::take_palet_horizontal(double, double, int id) { // id = 7 or 9 or 11
+void Script::take_palet_horizontal(int id) { // id = 7 or 9 or 11
     double DBL = -M_PI/2;
     double DBP = 0;
     int id_pump = 0;
-    if(id = 11){
+    if(id == 11){
         id_pump = 2;
     }
-    else if(id = 9){
+    else if(id == 9){
         id_pump = 1;
     }
     else{
@@ -127,14 +203,14 @@ void Script::take_palet_horizontal(double, double, int id) { // id = 7 or 9 or 1
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
 }
 
-void Script::take_palet_ground(double,double,int id) { // id = 7 or 9 or 11
+void Script::take_palet_ground(int id) { // id = 7 or 9 or 11
     double DBL = -M_PI/3;
     double DBP = M_PI/6;
     int id_pump = 0;
-    if(id = 11){
+    if(id == 11){
         id_pump = 2;
     }
-    else if(id = 9){
+    else if(id == 9){
         id_pump = 1;
     }
     else{
@@ -152,14 +228,14 @@ void Script::take_palet_ground(double,double,int id) { // id = 7 or 9 or 11
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
 }
 
-void Script::drop_palet_ground(double,double,int id) { // id = 7 or 9 or 11
+void Script::drop_palet_ground(int id) { // id = 7 or 9 or 11
     double DBL = -M_PI/3;
     double DBP = M_PI/6;
     int id_pump = 0;
-    if(id = 11){
+    if(id == 11){
         id_pump = 2;
     }
-    else if(id = 9){
+    else if(id == 9){
         id_pump = 1;
     }
     else{
@@ -177,14 +253,14 @@ void Script::drop_palet_ground(double,double,int id) { // id = 7 or 9 or 11
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
 }
 
-void Script::drop_palet_gallery(double,double,int id){ // id = 4 or 5 or 6
+void Script::drop_palet_gallery(int id){ // id = 4 or 5 or 6
     double DBP = -M_PI/6;
     double DBL = -M_PI/6;
     int id_pump = 0;
-    if(id = 17){
+    if(id == 17){
         id_pump = 2;
     }
-    else if(id = 15){
+    else if(id == 15){
         id_pump = 1;
     }
     else{
@@ -197,14 +273,14 @@ void Script::drop_palet_gallery(double,double,int id){ // id = 4 or 5 or 6
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, 0);
     res_move_arm_floor.get();
-    this->moveABS(130,0,0);
+    this->moveABS(130,0);
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, id_pump, 0);
     res_move_arm_floor.get();
-    this->moveABS(-130,0,0);
+    this->moveABS(-130,0);
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Palet Gallery with arm %d =====", &id);
 }
 
-void Script::reverse_palet(double, double, int id) { // id = 7 or 9 or 11
+void Script::reverse_palet(int id) { // id = 7 or 9 or 11
     // DBP = Dynamixel Low Near (for the robot)
     // DHL = Dynamixel High Far
     
@@ -272,7 +348,7 @@ void Script::reverse_palet(double, double, int id) { // id = 7 or 9 or 11
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Reverse of all palet arm %d =====", &id);
 }
 
-void Script::take_statue(double, double, int){
+void Script::take_statue(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
 
@@ -286,7 +362,7 @@ void Script::take_statue(double, double, int){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
 }
 
-void Script::drop_replic(double, double, int){
+void Script::drop_replic(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
 
@@ -300,7 +376,7 @@ void Script::drop_replic(double, double, int){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
 }
 
-void Script::knock_over(double,double,int){
+void Script::knock_over(){
     
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Knock over =====");
 
@@ -314,7 +390,7 @@ void Script::knock_over(double,double,int){
 }
 
 
-void Script::mesure(double, double, int){
+void Script::mesure(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Read Resistor =====");
     
@@ -325,10 +401,10 @@ void Script::mesure(double, double, int){
     auto value = res.get()->motion_status;
     
     if(RobotStatus::team == Team::YELLOW &&  800 <= value  && value <= 2000){
-        this->knock_over(0,0,0);
+        this->knock_over();
     }
     else if(RobotStatus::team == Team::PURPLE && value <= 700){
-        this->knock_over(0,0,0);
+        this->knock_over();
     }
 
     res = commClient->send((int64_t) OrderCodes::MOVE_SERVO, 0, 2, 0);
@@ -337,7 +413,7 @@ void Script::mesure(double, double, int){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Read Resistor =====");
 }
 
-void Script::down_servos(double,double,int){
+void Script::down_servos(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Beging of the order - Down Servos =====");
 
@@ -348,7 +424,7 @@ void Script::down_servos(double,double,int){
 
 }
 
-void Script::up_servos(double,double,int){
+void Script::up_servos(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Beging of the order - Down Servos =====");
 
@@ -359,7 +435,7 @@ void Script::up_servos(double,double,int){
 
 }
 
-void Script::angleABS(double angle, double, int){
+void Script::angleABS(double angle, int readjustment){
     double angle_ = angle;
     angle = fabs(RobotStatus::angle-angle);
     MotionStatusCodes status;
@@ -384,25 +460,25 @@ void Script::angleABS(double angle, double, int){
     } 
 
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle,0.0,0);
+    std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle, 0);
     this->treat_response(status, orderToReinsert);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
-void Script::moveABS(double distance_rel, double, int){
+void Script::moveABS(double distance_rel, int adjustment){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
 
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&Script::moveABS, this, distance_rel,0.0,0);
+    std::function<void()> orderToReinsert = std::bind(&Script::moveABS, this, distance_rel, 0);
     this->treat_response(status, orderToReinsert);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
 }
 
-void Script::move(double aim_x,double aim_y,int) {
+void Script::move(double aim_x, double aim_y) {
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Move =====");
     double curr_x = RobotStatus::x;
@@ -448,7 +524,7 @@ void Script::move(double aim_x,double aim_y,int) {
     }
 
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&Script::move, this, aim_x,aim_y,0);
+    std::function<void()> orderToReinsert = std::bind(&Script::move, this, aim_x,aim_y);
     bool execption = this->treat_response(status_angle, orderToReinsert);
 
     if (execption){
