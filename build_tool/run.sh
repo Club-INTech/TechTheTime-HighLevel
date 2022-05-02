@@ -9,7 +9,7 @@ sudo interceptty -o /dev/null -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dum
 
 sleep 2
 
-echo "Run microcontroller_proxy"
+echo "Starting microcontroller_proxy"
 
 cd ../ros_workspace
 
@@ -27,6 +27,8 @@ source install/setup.bash
 
 sleep 5
 
-(cd src/manager/src && ros2 run manager manager $PWD/config.yaml &>/dev/null) &
+echo "Starting manager"
+
+(cd src/manager/src && ros2 run manager manager $PWD/config.yaml &>/dev/null $PWD/user_script/$1.bot) &
 
 sleep 600

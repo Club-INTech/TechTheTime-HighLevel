@@ -173,8 +173,8 @@ int main(int argc, char** argv) {
 
     rclcpp::init(argc, argv);
 
-    if(argc < 2) {
-        std::cout << "Please provide a full path to your config file. Example: $PWD/config.yaml" << std::endl;
+    if(argc < 3) {
+        std::cout << "Please provide a full path to your config file and your script. Example: $PWD/config.yaml" << std::endl;
         terminate(1);
     }
 
@@ -191,7 +191,7 @@ int main(int argc, char** argv) {
 
             Script script = Script();
 
-            script.parse_script("script.bot");
+            script.parse_script(argv[2]);
 
             script.wait_for_jumper();
             script.run();
