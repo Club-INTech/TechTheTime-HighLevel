@@ -1,14 +1,14 @@
 move 421.43 1704
 angleABS 135.0 0
-moveABS 95.0 0
+moveABS 95.0 1
 moveABS -95.0 0
 angleABS 315.0 0
-moveABS 95.0 0
+moveABS 95.0 1
 moveABS -95.0 0
 move 400.0 500.0
 move 150.0 150.0
 angleABS 270.0 0
-moveABS 150.0 0
+moveABS 150.0 1
 moveABS -150.0 0
 move 1425.0 1850.0
 angleABS 180.0 0

@@ -473,7 +473,7 @@ void Script::moveABS(double distance_rel, int adjustment){
 
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::moveABS, this, distance_rel, 0);
-    bool insertion = (adjustment == 0) ? false : true; 
+    bool insertion = (adjustment == 1) ? false : true; 
     this->treat_response(status, orderToReinsert, insertion);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
