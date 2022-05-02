@@ -187,7 +187,7 @@ int main(int argc, char** argv) {
         rclcpp::spin(std::make_shared<MotionSubscriber>());
     });
 
-    std::thread client_thread([](){
+    std::thread client_thread([&argv](){
 
             Script script = Script();
 
