@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['value_0',['value',['../structstruct__wrapper.html#a4d88c6ae7af27460c485617321522b11',1,'struct_wrapper::value()'],['../classJoystickEvent.html#a96e2c7878a59414fb461fac716124f6d',1,'JoystickEvent::value()']]]
+  ['team_0',['team',['../classRobotStatus.html#a750397d5e85eed518efad48740819f69',1,'RobotStatus']]],
+  ['time_1',['time',['../classJoystickEvent.html#a83e57ce9bd59cfa0995c2e2c8589c274',1,'JoystickEvent']]],
+  ['type_2',['type',['../classJoystickEvent.html#aa5044999f3339d2ba3b1bf22fa6cfe95',1,'JoystickEvent']]]
 ];

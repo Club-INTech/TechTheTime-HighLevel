@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['take_5fdistrib_5fvertical_0',['take_distrib_vertical',['../classScript.html#af15eb2a8164723e5425da908038e9975',1,'Script']]],
-  ['take_5fstatue_1',['take_statue',['../classScript.html#a0de5946c38a2406dcdd6d1b07b7ce47e',1,'Script']]],
-  ['terminate_2',['terminate',['../microcontroller__proxy_8cpp.html#a2268e63d576045fa8844d69a0abc630a',1,'microcontroller_proxy.cpp']]],
-  ['test_3',['test',['../test_8cpp.html#a210d020f4db2565be85ad0717bb746cd',1,'test.cpp']]],
-  ['testa_4',['testA',['../test_8cpp.html#a3d179826400730dcd43558bfd309ef4c',1,'test.cpp']]],
-  ['treat_5fresponse_5',['treat_response',['../classScript.html#a5b55fb2172edab4f68f3792d79e8e7cc',1,'Script']]]
+  ['sample_0',['sample',['../classJoystick.html#aeb5d3a0a6f7414ce5f5b90231c978e71',1,'Joystick']]],
+  ['script_1',['Script',['../classScript.html#af505b3d0e0f6e188b90cc30a5d274750',1,'Script']]],
+  ['send_2',['send',['../classClientT.html#a74053bfad9432823dc2837ac44a7fd82',1,'ClientT']]],
+  ['set_5fshared_3',['set_shared',['../classClientT.html#afd6904ba0c61b02fd3832b85f300f559',1,'ClientT']]],
+  ['set_5fvalues_4',['set_values',['../structstruct__wrapper.html#a080d23af0f72713e51d2207cf144a70d',1,'struct_wrapper']]],
+  ['struct_5fwrapper_5',['struct_wrapper',['../structstruct__wrapper.html#ab29cf9801670fe813284b6e78de1afd2',1,'struct_wrapper']]]
 ];

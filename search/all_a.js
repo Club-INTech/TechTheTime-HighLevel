@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['openpath_0',['openPath',['../classJoystick.html#adbea3b545228ffd7793003242faea9f9',1,'Joystick']]],
-  ['operator_3c_3c_1',['operator&lt;&lt;',['../classJoystickEvent.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'JoystickEvent::operator&lt;&lt;()'],['../joystick_8cpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp'],['../joystick_8hpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp']]],
-  ['order_5freader_2',['order_reader',['../namespaceorder__reader.html',1,'']]],
-  ['order_5freader_2ecpp_3',['order_reader.cpp',['../order__reader_8cpp.html',1,'']]],
-  ['order_5freader_2ehpp_4',['order_reader.hpp',['../order__reader_8hpp.html',1,'']]]
+  ['none_0',['NONE',['../RobotStatus_8hpp.html#a9c13bb5b1d69698f9b47900990eaa598ab50339a10e1de285ac99d4c3990b8693',1,'NONE():&#160;RobotStatus.hpp'],['../RobotStatus_8hpp.html#a872195414018a69d89f500508aceef65ab50339a10e1de285ac99d4c3990b8693',1,'NONE():&#160;RobotStatus.hpp']]],
+  ['number_1',['number',['../classJoystickEvent.html#aa6787fc6eb732987040b1f378489db54',1,'JoystickEvent']]]
 ];

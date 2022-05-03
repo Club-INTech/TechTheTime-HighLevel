@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('classScript.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classScript-members.html">List of all members</a>  </div>
@@ -93,30 +94,63 @@ $(document).ready(function(){initNavTree('classScript.html',''); initResizable()
 
 <p><code>#include &lt;<a class="el" href="script_8hpp_source.html">script.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af9788c42cf831ae77316b1c972663512"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#af9788c42cf831ae77316b1c972663512">actuator_profile_T</a> = std::function&lt; void(double, int)&gt;</td></tr>
+<tr class="separator:af9788c42cf831ae77316b1c972663512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3c9dc542d4c146334d55a0c5c2c826"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#abb3c9dc542d4c146334d55a0c5c2c826">id_profile_T</a> = std::function&lt; void(int)&gt;</td></tr>
+<tr class="separator:abb3c9dc542d4c146334d55a0c5c2c826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba041ad14d902c64d94f18ce94e388d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#acba041ad14d902c64d94f18ce94e388d">move_profile_T</a> = std::function&lt; void(double, double)&gt;</td></tr>
+<tr class="separator:acba041ad14d902c64d94f18ce94e388d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d03161f13fdcfb7b621599cafb4a0c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a49d03161f13fdcfb7b621599cafb4a0c">order_profile_T</a> = std::variant&lt; <a class="el" href="classScript.html#ab1cc4373a15e2d2a2a7cc33660013001">void_profile_T</a>, <a class="el" href="classScript.html#acba041ad14d902c64d94f18ce94e388d">move_profile_T</a>, <a class="el" href="classScript.html#af9788c42cf831ae77316b1c972663512">actuator_profile_T</a>, <a class="el" href="classScript.html#abb3c9dc542d4c146334d55a0c5c2c826">id_profile_T</a> &gt;</td></tr>
+<tr class="separator:a49d03161f13fdcfb7b621599cafb4a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1cc4373a15e2d2a2a7cc33660013001"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ab1cc4373a15e2d2a2a7cc33660013001">void_profile_T</a> = std::function&lt; void()&gt;</td></tr>
+<tr class="separator:ab1cc4373a15e2d2a2a7cc33660013001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a52089537b21112b3ffcfa75cf26c78bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a52089537b21112b3ffcfa75cf26c78bd">angleABS</a> (double, double, int)</td></tr>
-<tr class="separator:a52089537b21112b3ffcfa75cf26c78bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07da0b76124c27db9dbd9c5b5a2b6780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a07da0b76124c27db9dbd9c5b5a2b6780">drop_replic</a> (double, double, int)</td></tr>
-<tr class="separator:a07da0b76124c27db9dbd9c5b5a2b6780"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a071f17e9cd436fe8d55fad6cd4ba2146"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a071f17e9cd436fe8d55fad6cd4ba2146">move</a> (double, double, int)</td></tr>
-<tr class="separator:a071f17e9cd436fe8d55fad6cd4ba2146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fbffe90ac339c8b068a97dd2cd6bd88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a3fbffe90ac339c8b068a97dd2cd6bd88">moveABS</a> (double, double, int)</td></tr>
-<tr class="separator:a3fbffe90ac339c8b068a97dd2cd6bd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35c6e5c1d20280fd5165be87bf6e306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ad35c6e5c1d20280fd5165be87bf6e306">angleABS</a> (double, int)</td></tr>
+<tr class="separator:ad35c6e5c1d20280fd5165be87bf6e306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c1d2b774296fdd7cac53d77caef4b3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a3c1d2b774296fdd7cac53d77caef4b3b">down_servos</a> ()</td></tr>
+<tr class="separator:a3c1d2b774296fdd7cac53d77caef4b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c4f9f7fe7b744554d4718c3865e44b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a52c4f9f7fe7b744554d4718c3865e44b">drop_palet_gallery</a> (int)</td></tr>
+<tr class="separator:a52c4f9f7fe7b744554d4718c3865e44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95e8d75ce23fdc248e0c2d7c31e2906c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a95e8d75ce23fdc248e0c2d7c31e2906c">drop_palet_ground</a> (int)</td></tr>
+<tr class="separator:a95e8d75ce23fdc248e0c2d7c31e2906c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ed9d8540e7aebc19d17a8077de5bd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a87ed9d8540e7aebc19d17a8077de5bd2">drop_replic</a> ()</td></tr>
+<tr class="separator:a87ed9d8540e7aebc19d17a8077de5bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65068eb84081a0c3c7ac3137cc391455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a65068eb84081a0c3c7ac3137cc391455">knock_over</a> ()</td></tr>
+<tr class="separator:a65068eb84081a0c3c7ac3137cc391455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ad077825d1778432990003cd57e7093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a7ad077825d1778432990003cd57e7093">mesure</a> ()</td></tr>
+<tr class="separator:a7ad077825d1778432990003cd57e7093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e857e989c3b5fa78661e9746856ff8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ab0e857e989c3b5fa78661e9746856ff8">move</a> (double, double)</td></tr>
+<tr class="separator:ab0e857e989c3b5fa78661e9746856ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e11310cc226ea3927c8bdae27eaad59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a0e11310cc226ea3927c8bdae27eaad59">moveABS</a> (double, int)</td></tr>
+<tr class="separator:a0e11310cc226ea3927c8bdae27eaad59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35f8d47baa7edab76f801eae4111653"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ad35f8d47baa7edab76f801eae4111653">parse_script</a> (const char *script_file)</td></tr>
+<tr class="separator:ad35f8d47baa7edab76f801eae4111653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cb8fd7fedc044de142df3f1b1e4bf0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a5cb8fd7fedc044de142df3f1b1e4bf0a">pushOrder</a> (std::function&lt; void()&gt;)</td></tr>
 <tr class="separator:a5cb8fd7fedc044de142df3f1b1e4bf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcfdeb01dd633b33e2f3ca5505fb4fea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#adcfdeb01dd633b33e2f3ca5505fb4fea">reverse_palet</a> (double, double, int)</td></tr>
-<tr class="separator:adcfdeb01dd633b33e2f3ca5505fb4fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38b2956229c8f89711fc85fe6335ce0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a38b2956229c8f89711fc85fe6335ce0c">reverse_palet</a> (int)</td></tr>
+<tr class="separator:a38b2956229c8f89711fc85fe6335ce0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13a43e6d814de94978c515cb084873b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a13a43e6d814de94978c515cb084873b1">run</a> ()</td></tr>
 <tr class="separator:a13a43e6d814de94978c515cb084873b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af505b3d0e0f6e188b90cc30a5d274750"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#af505b3d0e0f6e188b90cc30a5d274750">Script</a> ()</td></tr>
 <tr class="separator:af505b3d0e0f6e188b90cc30a5d274750"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af15eb2a8164723e5425da908038e9975"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#af15eb2a8164723e5425da908038e9975">take_distrib_vertical</a> (double, double, int)</td></tr>
-<tr class="separator:af15eb2a8164723e5425da908038e9975"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de5946c38a2406dcdd6d1b07b7ce47e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a0de5946c38a2406dcdd6d1b07b7ce47e">take_statue</a> (double, double, int)</td></tr>
-<tr class="separator:a0de5946c38a2406dcdd6d1b07b7ce47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b55fb2172edab4f68f3792d79e8e7cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a5b55fb2172edab4f68f3792d79e8e7cc">treat_response</a> (MotionStatusCodes status, double value, std::function&lt; void()&gt; OrderToReinsert, bool reinsert=true)</td></tr>
-<tr class="separator:a5b55fb2172edab4f68f3792d79e8e7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab073318be007f107edb7d26b000b2576"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ab073318be007f107edb7d26b000b2576">take_palet_ground</a> (int)</td></tr>
+<tr class="separator:ab073318be007f107edb7d26b000b2576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02bf1d41771772c266ae345f0541e7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a02bf1d41771772c266ae345f0541e7d3">take_palet_horizontal</a> (int)</td></tr>
+<tr class="separator:a02bf1d41771772c266ae345f0541e7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5330a1d2726727a068489c48693f965"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#af5330a1d2726727a068489c48693f965">take_palet_vertical</a> (int)</td></tr>
+<tr class="separator:af5330a1d2726727a068489c48693f965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae200a4392a0899c8f50f1befcc7d44fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#ae200a4392a0899c8f50f1befcc7d44fc">take_statue</a> ()</td></tr>
+<tr class="separator:ae200a4392a0899c8f50f1befcc7d44fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9eb466ee7f8d4497e69fc96b83c3d3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#aa9eb466ee7f8d4497e69fc96b83c3d3d">treat_response</a> (MotionStatusCodes status, std::function&lt; void()&gt; OrderToReinsert, bool reinsert)</td></tr>
+<tr class="separator:aa9eb466ee7f8d4497e69fc96b83c3d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae5b2588833b952ced6d4f6a64d5175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#afae5b2588833b952ced6d4f6a64d5175">up_servos</a> ()</td></tr>
+<tr class="separator:afae5b2588833b952ced6d4f6a64d5175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa39f5b6b385a30da0b9b804e5cb055ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#aa39f5b6b385a30da0b9b804e5cb055ba">wait_for_jumper</a> ()</td></tr>
+<tr class="separator:aa39f5b6b385a30da0b9b804e5cb055ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -124,7 +158,80 @@ Private Attributes</h2></td></tr>
 <tr class="separator:afa29a940a9600e72efb58bc6144d4e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c9afe6d6d606b2fe115d9e5d6c8b72b"><td class="memItemLeft" align="right" valign="top">std::deque&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a2c9afe6d6d606b2fe115d9e5d6c8b72b">deque_order</a></td></tr>
 <tr class="separator:a2c9afe6d6d606b2fe115d9e5d6c8b72b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a169f1366592b89fdba0c89e659a41129"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, <a class="el" href="classScript.html#a49d03161f13fdcfb7b621599cafb4a0c">order_profile_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScript.html#a169f1366592b89fdba0c89e659a41129">orders</a> {}</td></tr>
+<tr class="separator:a169f1366592b89fdba0c89e659a41129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="af9788c42cf831ae77316b1c972663512" name="af9788c42cf831ae77316b1c972663512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9788c42cf831ae77316b1c972663512">&#9670;&nbsp;</a></span>actuator_profile_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classScript.html#af9788c42cf831ae77316b1c972663512">actuator_profile_T</a> =  std::function&lt;void(double, int)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb3c9dc542d4c146334d55a0c5c2c826" name="abb3c9dc542d4c146334d55a0c5c2c826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb3c9dc542d4c146334d55a0c5c2c826">&#9670;&nbsp;</a></span>id_profile_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classScript.html#abb3c9dc542d4c146334d55a0c5c2c826">id_profile_T</a> =  std::function&lt;void(int)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acba041ad14d902c64d94f18ce94e388d" name="acba041ad14d902c64d94f18ce94e388d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba041ad14d902c64d94f18ce94e388d">&#9670;&nbsp;</a></span>move_profile_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classScript.html#acba041ad14d902c64d94f18ce94e388d">move_profile_T</a> =  std::function&lt;void(double, double)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49d03161f13fdcfb7b621599cafb4a0c" name="a49d03161f13fdcfb7b621599cafb4a0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d03161f13fdcfb7b621599cafb4a0c">&#9670;&nbsp;</a></span>order_profile_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classScript.html#a49d03161f13fdcfb7b621599cafb4a0c">order_profile_T</a> =  std::variant&lt; <a class="el" href="classScript.html#ab1cc4373a15e2d2a2a7cc33660013001">void_profile_T</a>, <a class="el" href="classScript.html#acba041ad14d902c64d94f18ce94e388d">move_profile_T</a>, <a class="el" href="classScript.html#af9788c42cf831ae77316b1c972663512">actuator_profile_T</a>, <a class="el" href="classScript.html#abb3c9dc542d4c146334d55a0c5c2c826">id_profile_T</a> &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1cc4373a15e2d2a2a7cc33660013001" name="ab1cc4373a15e2d2a2a7cc33660013001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1cc4373a15e2d2a2a7cc33660013001">&#9670;&nbsp;</a></span>void_profile_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classScript.html#ab1cc4373a15e2d2a2a7cc33660013001">void_profile_T</a> =  std::function&lt;void()&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af505b3d0e0f6e188b90cc30a5d274750" name="af505b3d0e0f6e188b90cc30a5d274750"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af505b3d0e0f6e188b90cc30a5d274750">&#9670;&nbsp;</a></span>Script()</h2>
@@ -144,8 +251,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a52089537b21112b3ffcfa75cf26c78bd" name="a52089537b21112b3ffcfa75cf26c78bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52089537b21112b3ffcfa75cf26c78bd">&#9670;&nbsp;</a></span>angleABS()</h2>
+<a id="ad35c6e5c1d20280fd5165be87bf6e306" name="ad35c6e5c1d20280fd5165be87bf6e306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35c6e5c1d20280fd5165be87bf6e306">&#9670;&nbsp;</a></span>angleABS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,14 +266,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>readjustment</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -178,8 +279,61 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a07da0b76124c27db9dbd9c5b5a2b6780" name="a07da0b76124c27db9dbd9c5b5a2b6780"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07da0b76124c27db9dbd9c5b5a2b6780">&#9670;&nbsp;</a></span>drop_replic()</h2>
+<a id="a3c1d2b774296fdd7cac53d77caef4b3b" name="a3c1d2b774296fdd7cac53d77caef4b3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c1d2b774296fdd7cac53d77caef4b3b">&#9670;&nbsp;</a></span>down_servos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void down_servos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52c4f9f7fe7b744554d4718c3865e44b" name="a52c4f9f7fe7b744554d4718c3865e44b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52c4f9f7fe7b744554d4718c3865e44b">&#9670;&nbsp;</a></span>drop_palet_gallery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void drop_palet_gallery </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95e8d75ce23fdc248e0c2d7c31e2906c" name="a95e8d75ce23fdc248e0c2d7c31e2906c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95e8d75ce23fdc248e0c2d7c31e2906c">&#9670;&nbsp;</a></span>drop_palet_ground()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void drop_palet_ground </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a87ed9d8540e7aebc19d17a8077de5bd2" name="a87ed9d8540e7aebc19d17a8077de5bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ed9d8540e7aebc19d17a8077de5bd2">&#9670;&nbsp;</a></span>drop_replic()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,33 +341,50 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void drop_replic </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a071f17e9cd436fe8d55fad6cd4ba2146" name="a071f17e9cd436fe8d55fad6cd4ba2146"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a071f17e9cd436fe8d55fad6cd4ba2146">&#9670;&nbsp;</a></span>move()</h2>
+<a id="a65068eb84081a0c3c7ac3137cc391455" name="a65068eb84081a0c3c7ac3137cc391455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65068eb84081a0c3c7ac3137cc391455">&#9670;&nbsp;</a></span>knock_over()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void knock_over </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ad077825d1778432990003cd57e7093" name="a7ad077825d1778432990003cd57e7093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ad077825d1778432990003cd57e7093">&#9670;&nbsp;</a></span>mesure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mesure </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab0e857e989c3b5fa78661e9746856ff8" name="ab0e857e989c3b5fa78661e9746856ff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e857e989c3b5fa78661e9746856ff8">&#9670;&nbsp;</a></span>move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,13 +399,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>aim_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>aim_y</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -246,8 +411,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3fbffe90ac339c8b068a97dd2cd6bd88" name="a3fbffe90ac339c8b068a97dd2cd6bd88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fbffe90ac339c8b068a97dd2cd6bd88">&#9670;&nbsp;</a></span>moveABS()</h2>
+<a id="a0e11310cc226ea3927c8bdae27eaad59" name="a0e11310cc226ea3927c8bdae27eaad59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e11310cc226ea3927c8bdae27eaad59">&#9670;&nbsp;</a></span>moveABS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,19 +426,31 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>adjustment</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad35f8d47baa7edab76f801eae4111653" name="ad35f8d47baa7edab76f801eae4111653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35f8d47baa7edab76f801eae4111653">&#9670;&nbsp;</a></span>parse_script()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parse_script </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>script_file</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -298,8 +475,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adcfdeb01dd633b33e2f3ca5505fb4fea" name="adcfdeb01dd633b33e2f3ca5505fb4fea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcfdeb01dd633b33e2f3ca5505fb4fea">&#9670;&nbsp;</a></span>reverse_palet()</h2>
+<a id="a38b2956229c8f89711fc85fe6335ce0c" name="a38b2956229c8f89711fc85fe6335ce0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b2956229c8f89711fc85fe6335ce0c">&#9670;&nbsp;</a></span>reverse_palet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -307,25 +484,9 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void reverse_palet </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -349,42 +510,62 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af15eb2a8164723e5425da908038e9975" name="af15eb2a8164723e5425da908038e9975"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af15eb2a8164723e5425da908038e9975">&#9670;&nbsp;</a></span>take_distrib_vertical()</h2>
+<a id="ab073318be007f107edb7d26b000b2576" name="ab073318be007f107edb7d26b000b2576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab073318be007f107edb7d26b000b2576">&#9670;&nbsp;</a></span>take_palet_ground()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void take_distrib_vertical </td>
+          <td class="memname">void take_palet_ground </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0de5946c38a2406dcdd6d1b07b7ce47e" name="a0de5946c38a2406dcdd6d1b07b7ce47e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0de5946c38a2406dcdd6d1b07b7ce47e">&#9670;&nbsp;</a></span>take_statue()</h2>
+<a id="a02bf1d41771772c266ae345f0541e7d3" name="a02bf1d41771772c266ae345f0541e7d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02bf1d41771772c266ae345f0541e7d3">&#9670;&nbsp;</a></span>take_palet_horizontal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void take_palet_horizontal </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5330a1d2726727a068489c48693f965" name="af5330a1d2726727a068489c48693f965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5330a1d2726727a068489c48693f965">&#9670;&nbsp;</a></span>take_palet_vertical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void take_palet_vertical </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae200a4392a0899c8f50f1befcc7d44fc" name="ae200a4392a0899c8f50f1befcc7d44fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae200a4392a0899c8f50f1befcc7d44fc">&#9670;&nbsp;</a></span>take_statue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,33 +573,16 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void take_statue </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a5b55fb2172edab4f68f3792d79e8e7cc" name="a5b55fb2172edab4f68f3792d79e8e7cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b55fb2172edab4f68f3792d79e8e7cc">&#9670;&nbsp;</a></span>treat_response()</h2>
+<a id="aa9eb466ee7f8d4497e69fc96b83c3d3d" name="aa9eb466ee7f8d4497e69fc96b83c3d3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9eb466ee7f8d4497e69fc96b83c3d3d">&#9670;&nbsp;</a></span>treat_response()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -428,12 +592,6 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">MotionStatusCodes&#160;</td>
           <td class="paramname"><em>status</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -451,6 +609,40 @@ Private Attributes</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afae5b2588833b952ced6d4f6a64d5175" name="afae5b2588833b952ced6d4f6a64d5175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae5b2588833b952ced6d4f6a64d5175">&#9670;&nbsp;</a></span>up_servos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void up_servos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa39f5b6b385a30da0b9b804e5cb055ba" name="aa39f5b6b385a30da0b9b804e5cb055ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39f5b6b385a30da0b9b804e5cb055ba">&#9670;&nbsp;</a></span>wait_for_jumper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wait_for_jumper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -491,6 +683,28 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::deque&lt;std::function&lt;void()&gt; &gt; deque_order</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a169f1366592b89fdba0c89e659a41129" name="a169f1366592b89fdba0c89e659a41129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a169f1366592b89fdba0c89e659a41129">&#9670;&nbsp;</a></span>orders</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;std::string, <a class="el" href="classScript.html#a49d03161f13fdcfb7b621599cafb4a0c">order_profile_T</a>&gt; orders {}</td>
         </tr>
       </table>
   </td>

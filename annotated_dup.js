@@ -7,7 +7,7 @@ var annotated_dup =
     [ "Joystick", "classJoystick.html", "classJoystick" ],
     [ "JoystickEvent", "classJoystickEvent.html", "classJoystickEvent" ],
     [ "MotionSubscriber", "classMotionSubscriber.html", "classMotionSubscriber" ],
-    [ "RobotMotion", "classRobotMotion.html", "classRobotMotion" ],
+    [ "RobotStatus", "classRobotStatus.html", "classRobotStatus" ],
     [ "Script", "classScript.html", "classScript" ],
     [ "struct_wrapper", "structstruct__wrapper.html", "structstruct__wrapper" ]
 ];

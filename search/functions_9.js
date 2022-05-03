@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['process_5felement_0',['process_element',['../microcontroller__proxy_8cpp.html#ad42387c5defd69473c595bd373c07fc1',1,'microcontroller_proxy.cpp']]],
-  ['pushorder_1',['pushOrder',['../classScript.html#a5cb8fd7fedc044de142df3f1b1e4bf0a',1,'Script']]]
+  ['openpath_0',['openPath',['../classJoystick.html#adbea3b545228ffd7793003242faea9f9',1,'Joystick']]],
+  ['operator_3c_3c_1',['operator&lt;&lt;',['../joystick_8cpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp'],['../joystick_8hpp.html#a174c96ca1fe4126bc983b9c718cbf40c',1,'operator&lt;&lt;(std::ostream &amp;os, const JoystickEvent &amp;e):&#160;joystick.cpp']]]
 ];

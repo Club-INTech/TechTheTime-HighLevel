@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7ejoystick_0',['~Joystick',['../classJoystick.html#ad5e3280070017e95ca844b042fed177a',1,'Joystick']]]
+  ['x_0',['x',['../classRobotStatus.html#af88b946fb90d5f08b5fb740c70e98c10',1,'RobotStatus']]]
 ];

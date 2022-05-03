@@ -11,7 +11,7 @@ var hierarchy =
       [ "ClientT< T, Treq, Rs >", "classClientT.html", null ],
       [ "MotionSubscriber", "classMotionSubscriber.html", null ]
     ] ],
-    [ "RobotMotion", "classRobotMotion.html", null ],
+    [ "RobotStatus", "classRobotStatus.html", null ],
     [ "Script", "classScript.html", null ],
     [ "struct_wrapper< T, Ts >", "structstruct__wrapper.html", null ],
     [ "struct_wrapper< action_msg_srv::srv::Order::Request, Rs... >", "structstruct__wrapper.html", null ],

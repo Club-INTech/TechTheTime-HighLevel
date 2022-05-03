@@ -96,17 +96,91 @@ $(document).ready(function(){initNavTree('manager_8cpp.html',''); initResizable(
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &quot;action_msg_srv/srv/order.hpp&quot;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
-<code>#include &quot;<a class="el" href="RobotMotion_8hpp_source.html">robot_motion/RobotMotion.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RobotStatus_8hpp_source.html">robot_status/RobotStatus.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="order__reader_8hpp_source.html">dev/order_reader.hpp</a>&quot;</code><br />
 <code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;csignal&gt;</code><br />
+<code>#include &quot;yaml-cpp/yaml.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="script_8hpp_source.html">script/script.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ad2e5a604d27966513ff07e7fcac93867"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="manager_8cpp.html#ad2e5a604d27966513ff07e7fcac93867">init</a> (YAML::Node *config)</td></tr>
+<tr class="separator:ad2e5a604d27966513ff07e7fcac93867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="memdesc:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="manager_8cpp.html">manager.cpp</a> is an entry point of the manager node.  <a href="group__manager.html#ga3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad42387c5defd69473c595bd373c07fc1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad42387c5defd69473c595bd373c07fc1"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="manager_8cpp.html#ad42387c5defd69473c595bd373c07fc1">process_element</a> (YAML::Node *config, const char *elem)</td></tr>
+<tr class="separator:ad42387c5defd69473c595bd373c07fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2268e63d576045fa8844d69a0abc630a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="manager_8cpp.html#a2268e63d576045fa8844d69a0abc630a">terminate</a> (int code)</td></tr>
+<tr class="separator:a2268e63d576045fa8844d69a0abc630a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ad2e5a604d27966513ff07e7fcac93867" name="ad2e5a604d27966513ff07e7fcac93867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e5a604d27966513ff07e7fcac93867">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init </td>
+          <td>(</td>
+          <td class="paramtype">YAML::Node *&#160;</td>
+          <td class="paramname"><em>config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad42387c5defd69473c595bd373c07fc1" name="ad42387c5defd69473c595bd373c07fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad42387c5defd69473c595bd373c07fc1">&#9670;&nbsp;</a></span>process_element()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T process_element </td>
+          <td>(</td>
+          <td class="paramtype">YAML::Node *&#160;</td>
+          <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>elem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2268e63d576045fa8844d69a0abc630a" name="a2268e63d576045fa8844d69a0abc630a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2268e63d576045fa8844d69a0abc630a">&#9670;&nbsp;</a></span>terminate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void terminate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
