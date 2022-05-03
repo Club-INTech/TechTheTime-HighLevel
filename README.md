@@ -6,27 +6,34 @@ The high level of the robot for the Erobot2022 session.
 
 # Requirements
 
-- ros:foxy.
+- ros:foxy
+- rosdep
 - gcc/g++ (the default installation is sufficient)
 - cmake
 - colcon (follow [this tutorial](https://docs.ros.org/en/foxy/Tutorials/Colcon-Tutorial.html#install-colcon))
 - python3.7+
 - rosdep
 
-# Install
+# Install and init
 
-You can install all dependencies manually or you can use bash script in **build_tool** directory.
+You can install all dependencies manually or you can use scripts in **build_tool/utils** directory.
 
 After clonning the repo do:
 
 ```bash
-    $ cd build_tool
+    $ cd build_tool/utils
+    $ sudo chmod u+x install-ros.sh
+    $ sudo ./install-ros.sh
+```
+You must initialize the submodules and install dependencies with **rosdep**. You can make either by hand or using the script.
+
+Run the following command to initialize HL:
+
+```bash
+    $ cd build_tool/utils
     $ sudo chmod u+x init-hl.sh
     $ sudo ./init-hl.sh
 ```
-
-The choose the appropriate options. You can either build from source and run the nodes manually or use 
-a docker-compose.
 
 # Build and launch
 
@@ -37,7 +44,7 @@ a docker-compose.
 Run the next command to build 
 ```bash
     $ cd build_tool
-    $ ./build-hl.sh [-hv] [-p <nodes_name>]
+    $ ./build-hl.sh [-hvr] [-p <nodes_name>]
 ```
 
 ***Note:*** Use **-h** options for help.
@@ -68,25 +75,6 @@ $ source install/setup.bash
 
 ***Note:*** You must build an interface and source its installation before you build the node which uses this interface.
 
-### Docker
-
-You can build an image manually or by running docker-compose, which will also run the HL.
-
-***Note:*** Be careful and delete all build, install and log directories after manual build. If not you risk to use cmake cache, which uses absolute path incompatible with container's one.
-
-You can build image manually by running:
-
-```bash
-    $ sudo docker build .
-```
-
-Run the following if you want to delete this image: 
-
-```bash
-    $ sudo docker rmi techthetime-highlevel --force
-    $ sudo docker system prune 
-```
-
 ## Launch
 
 ### By hand
@@ -94,26 +82,21 @@ Run the following if you want to delete this image:
 Every time open a new terminal and source **ros_workspace/install/setup.bash**. You can now launch nodes with the following command:
 
 ```bash
-$ ros2 run <node> <executable>
+    $ ros2 run <node> <executable>
 ```
 
-### Docker
+### With the script.
 
-You have two ways of running HL with docker.
-The simplest way is to build and run all at the same time:
+Use the run script:
 
 ```bash
-    $ sudo docker-compose up
+    $ cd build_tool
+    $ sudo ./run.sh <mode> <script>
 ```
 
-If you have built an image manually and you are familiar with docker, you can run a container an execute your own 
-commands like this:
+There is 2 modes: **basic** and **full**. There is no path-finding in the basic mode.
 
-```bash
-    $ sudo docker run techthetime-highlevel [COMMAND] [ARG...]
-```
-
-You can read about this command and docker [there](https://docs.docker.com/engine/reference/commandline/run/)
+You can write your own scripts and put it in **script** folder. Just use the name of your script as an argument. Check out the example scripts for the syntax(available orders basically.)
 
 # Documentation
 
