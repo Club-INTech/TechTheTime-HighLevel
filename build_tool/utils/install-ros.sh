@@ -14,6 +14,7 @@ sudo apt update && sudo apt install locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
+locale
 
 # Getting gpg keys and adding ros2 repositories
 
@@ -24,21 +25,9 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 
 # installing ros2:foxy
 
-echo "Please choose dev or release installation. Release installation does not contain GUI(adapted for raspi) [D/r]? : "
+sudo apt update
 
-while [ true ] 
-do
-read answer
-if [ "${answer,,}" = "d" ] || [ -z $answer ]; then
-    sudo apt install ros-foxy-desktop
-    break
-elif [ "${answer,,}" = "r" ]; then
-    sudo apt install ros-foxy-ros-base
-    break
-else
-    echo "Please choose one of two options  "
-fi
-done
+sudo apt install ros-foxy-desktop
 
 echo "========== Installation finished ==========  "
 echo "Do you want to update your bashrc to use ros2 [Y/n]? :  "

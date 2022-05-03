@@ -1,7 +1,30 @@
 #! /bin/bash
 
 trap "kill 0" SIGINT
-# trap 'kill $(jobs -p | xargs)' SIGINT SIGHUP SIGTERM EXIT
+
+if [ $# -ne 2 ]; then
+    echo "You must provide 2 arguments: mode and script."
+    echo "Possible values:"
+    echo "mode=(basic full)"
+    echo "script=<name_of_your_script_in_script_folder>"
+    exit 1
+fi
+
+mode=$1
+config_folder=$PWD/config
+script_folder=$PWD/script
+script=$2
+
+if [[ "$mode" != "basic" ]] && [[ "$mode" != "full" ]]; then
+    echo "Mode $mode does not exist"
+    echo "Authorized modes are basic and full"
+    exit 1
+fi
+
+if [[ ! -f "$script_folder/$script.bot" ]]; then
+    echo "Script $script does not exist"
+    exit 1
+fi
 
 echo "Starting interceptty"
 
@@ -9,26 +32,30 @@ sudo interceptty -o /dev/null -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dum
 
 sleep 2
 
+cd ../ros_workspace
+
 echo "Starting microcontroller_proxy"
 
-cd ../ros_workspace
 
 source install/setup.bash
 
-# (ros2 run urg_node urg_node_driver --ros-args --params-file ./install/urg_node/share/urg_node/launch/urg_node_ethernet.yaml) &
+(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $config_folder/microcontroller_proxy.yaml &>/dev/null) &
 
-# sleep 2
+sleep 3
 
-# (ros2 run motion_control motion_control) &
+if [[ "$mode" == "full" ]]; then
 
-# sleep 2
+    echo "Starting urg_node"
+    (ros2 run urg_node urg_node_driver --ros-args --params-file ./install/urg_node/share/urg_node/launch/urg_node_ethernet.yaml) &
+    sleep 3
 
-(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $PWD/config.yaml &>/dev/null) &
-
-sleep 5
+    echo "Starting motion_control"
+    (ros2 run motion_control motion_control) &
+    sleep 3
+fi
 
 echo "Starting manager"
 
-(cd src/manager/src && ros2 run manager manager $PWD/config.yaml &>/dev/null $PWD/user_script/$1.bot) &
+(cd src/manager/src && ros2 run manager manager $config_folder/manager.yaml $script_folder/$script.bot &>/dev/null) &
 
 sleep 600
