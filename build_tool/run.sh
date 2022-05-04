@@ -15,6 +15,22 @@ config_folder=$PWD/config
 script_folder=$PWD/script
 script=$2
 
+v_flag='false' # verbose flag
+
+while getopts 'v' flag; do
+  case "${flag}" in
+    v) v_flag='true' ;;
+    *) echo "The only available flag is verbose [-v]"
+       exit 1 ;;
+  esac
+done
+
+ostream=/dev/null
+
+if [ $v_flag = 'true' ]; then
+    ostream=1
+fi
+
 if [[ "$mode" != "basic" ]] && [[ "$mode" != "full" ]]; then
     echo "Mode $mode does not exist"
     echo "Authorized modes are basic and full"
@@ -39,7 +55,7 @@ echo "Starting microcontroller_proxy"
 
 source install/setup.bash
 
-(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $config_folder/microcontroller_proxy.yaml &>/dev/null) &
+(cd src/microcontroller_proxy/src && ros2 run microcontroller_proxy microcontroller_proxy $config_folder/microcontroller_proxy.yaml >&$ostream) &
 
 sleep 3
 
@@ -56,6 +72,6 @@ fi
 
 echo "Starting manager"
 
-(cd src/manager/src && ros2 run manager manager $config_folder/manager.yaml $script_folder/$script.bot &>/dev/null) &
+(cd src/manager/src && ros2 run manager manager $config_folder/manager.yaml $script_folder/$script.bot >&$ostream) &
 
 sleep 600
