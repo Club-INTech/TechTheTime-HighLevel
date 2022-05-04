@@ -103,6 +103,14 @@ ActionService::ActionService(
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
+                order_binder.bind_order(OrderCodes::MESURE, [&](shared_request_T req, shared_response_T res) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Resistance measuring\n");
+                        this->microcontroller_gateway->call_remote_function<giveRes>());
+                        std::this_thread::sleep_for(MEASURE_WAITING_PERIOD);
+                        auto res = this->microcontroller_gateway->receive_feedback<giveRes>();
+                        res->motion_status = (int64_t) res; 
+                });
+
 }
 
 

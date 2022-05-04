@@ -16,4 +16,6 @@ constexpr std::chrono::milliseconds WAITING_PERIOD = 100ms;
 constexpr std::chrono::milliseconds ARM_WAITING_PERIOD = 1000ms;
 constexpr std::chrono::milliseconds PUMP_WAITING_PERIOD = 1000ms;
 
+constexpr std::chrono::milliseconds MEASURE_WAITING_PERIOD = 2000ms;
+
 constexpr int64_t TIMEOUT  = 10000;
