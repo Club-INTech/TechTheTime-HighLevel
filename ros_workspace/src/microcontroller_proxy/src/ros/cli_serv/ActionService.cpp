@@ -96,6 +96,13 @@ ActionService::ActionService(
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
+                order_binder.bind_order(OrderCodes::MOVE_SERVO, [&](shared_request_T req, shared_response_T res) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving servo\n");
+                        this->microcontroller_gateway->call_remote_function<Misc_Set_Servo>(static_cast<uint8_t>(req->id), static_cast<uint16_t>(65535 * req->angle / M_PI));
+                        std::this_thread::sleep_for(ARM_WAITING_PERIOD);
+                        res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
+                });
+
 }
 
 
