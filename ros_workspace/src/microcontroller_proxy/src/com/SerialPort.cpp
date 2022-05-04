@@ -78,7 +78,7 @@ void SerialPort::define_blocking_mode(BlockingModes mode, std::initializer_list<
 
 void SerialPort::write_byte(uint8_t* byte) {
     if(write(this->serial_port, byte, 1) == -1) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Write byte failure.");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[serial port] : Write byte failure.");
         rclcpp::shutdown();
         exit(1);
     }
@@ -86,7 +86,7 @@ void SerialPort::write_byte(uint8_t* byte) {
 
 void SerialPort::write_word(uint8_t* word, int size) {
     if(write(this->serial_port, word, size) == -1) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Write word failure.");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[serial port] : Write word failure.");
         rclcpp::shutdown();
         exit(1);
     }
@@ -94,7 +94,7 @@ void SerialPort::write_word(uint8_t* word, int size) {
 
 void SerialPort::read_byte(uint8_t* byte) {
     if(read(this->serial_port, byte, 1) == -1) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read byte failure.");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[serial port] : Read byte failure.");
         rclcpp::shutdown();
         exit(1);
     }
@@ -102,7 +102,7 @@ void SerialPort::read_byte(uint8_t* byte) {
 
 void SerialPort::read_word(uint8_t* word, int size) {
     if(read(this->serial_port, word, size) == -1) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Read word failure. %s", std::strerror(errno));
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[serial port] : Read word failure. %s", std::strerror(errno));
         rclcpp::shutdown();
         exit(1);
     }

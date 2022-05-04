@@ -33,7 +33,7 @@ ActionService::ActionService(
                 this->microcontroller_gateway = serial_port;
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving for the distance: %lf\n",req->distance);
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Moving for the distance: %lf\n",req->distance);
                         if(req->distance < 0) {
                                 this->microcontroller_gateway->call_remote_function<Motion_Set_Backward_Translation_Setpoint, Shared_Tick>((int32_t) (-MM_TO_TICKS * req->distance));        
                                 this->motion_publisher->set_motion_goal((int32_t) (MM_TO_TICKS * req->distance), (int32_t) (MM_TO_TICKS * req->distance));                
@@ -44,38 +44,38 @@ ActionService::ActionService(
                 });
 
                 order_binder.bind_order(OrderCodes::START_ROTATE_LEFT, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Turning anticlockwise for angle: %lf\n",req->angle);
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Turning anticlockwise for angle: %lf\n",req->angle);
                         this->microcontroller_gateway->call_remote_function<Motion_Set_Counterclockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
                         this->motion_publisher->set_motion_goal((int32_t) (-RADIANS_TO_TICKS_HALF_BASE * req->angle), (int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
                 });
 
                 order_binder.bind_order(OrderCodes::START_ROTATE_RIGHT, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Turning clockwise for angle: %lf\n",req->angle);
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Turning clockwise for angle: %lf\n",req->angle);
                         this->microcontroller_gateway->call_remote_function<Motion_Set_Clockwise_Rotation_Setpoint, Shared_Tick>((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle));
                         this->motion_publisher->set_motion_goal((int32_t) (RADIANS_TO_TICKS_HALF_BASE * req->angle), (int32_t) (-RADIANS_TO_TICKS_HALF_BASE * req->angle));
                 });
 
                 order_binder.bind_order(OrderCodes::CHECK_JUMPER, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Checking jumper\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Checking jumper\n");
                         while(1) {
                                 this->microcontroller_gateway->call_remote_function<isJumperOn>();
                                 auto value = this->microcontroller_gateway->receive_feedback<isJumperOn>();
                                 if(value) break;
                                 std::this_thread::sleep_for(WAITING_PERIOD);
-                                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Waiting jumper\n");
+                                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting jumper\n");
                         }
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
                 order_binder.bind_order(OrderCodes::MOVE_ARM, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving arm\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Moving arm\n");
                         this->microcontroller_gateway->call_remote_function<DXL_Position_Angle>(static_cast<uint8_t>(req->id), static_cast<uint32_t>(180 * req->angle / M_PI));
                         std::this_thread::sleep_for(ARM_WAITING_PERIOD);
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
                 order_binder.bind_order(OrderCodes::ACTIVATE_PUMP, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Activating pump\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Activating pump\n");
                         this->microcontroller_gateway->call_remote_function<Misc_Set_Valve>(static_cast<uint8_t>(req->id), 0);
                         uint8_t buf[5];
                         this->microcontroller_gateway->read_word(buf, 5);
@@ -86,7 +86,7 @@ ActionService::ActionService(
                 });
 
                 order_binder.bind_order(OrderCodes::RELEASE_PUMP, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Releasing pump\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Releasing pump\n");
                         this->microcontroller_gateway->call_remote_function<Misc_Set_Pump>(static_cast<uint8_t>(req->id), 0);
                         uint8_t buf[5];
                         this->microcontroller_gateway->read_word(buf, 5);
@@ -97,14 +97,14 @@ ActionService::ActionService(
                 });
 
                 order_binder.bind_order(OrderCodes::MOVE_SERVO, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Moving servo\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Moving servo\n");
                         this->microcontroller_gateway->call_remote_function<Misc_Set_Servo>(static_cast<uint8_t>(req->id), static_cast<uint16_t>(65535 * req->angle / M_PI));
                         std::this_thread::sleep_for(ARM_WAITING_PERIOD);
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
                 order_binder.bind_order(OrderCodes::MESURE, [&](shared_request_T req, shared_response_T res) {
-                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Resistance measuring\n");
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Resistance measuring\n");
                         this->microcontroller_gateway->call_remote_function<giveRes>());
                         std::this_thread::sleep_for(MEASURE_WAITING_PERIOD);
                         auto res = this->microcontroller_gateway->receive_feedback<giveRes>();
@@ -115,7 +115,6 @@ ActionService::ActionService(
 
 
 void ActionService::execute_order(const shared_request_T req, shared_response_T res) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Order begin");
         if(req->order_code <= 7) {
                 this->order_binder.execute_order(req->order_code, req, res);
                 uint8_t buf[5];
@@ -124,7 +123,6 @@ void ActionService::execute_order(const shared_request_T req, shared_response_T 
         } else {
                 this->order_binder.execute_order(req->order_code, req, res);
         }
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Order end");
 }
 
 
@@ -137,7 +135,6 @@ void ActionService::treat_orders(const shared_request_T req, shared_response_T r
                         motion_mutex::sync_call<&ActionService::execute_order>(true, false, false, this, req, res);
                 }
 
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending back response: [%d]", res->motion_status);
         } catch(const std::runtime_error& e) {
                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
         }
@@ -148,7 +145,7 @@ int64_t ActionService::spin_while_moving() {
         while(1) {
                 motion_mutex::sync_call<&ActionService::check_motion_status>(false, true, false, this, status);
                 if(!status) return (int64_t) this->motion_publisher->get_motion_status();
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Waiting");
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting for movement");
                 std::this_thread::sleep_for(WAITING_PERIOD);
         }
 }
