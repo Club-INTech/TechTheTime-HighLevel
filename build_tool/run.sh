@@ -36,8 +36,8 @@ while getopts 'hvm:s:' flag; do
     h) h_flag='true';;
     v) v_flag='true' ;;
     m) mode=${OPTARG} ;;
-    s) script=${OPTARG} ;
-    *) echo "The only available flag is verbose [-v]"
+    s) script=${OPTARG} ;;
+    *) print_help
        exit 1 ;;
   esac
 done
