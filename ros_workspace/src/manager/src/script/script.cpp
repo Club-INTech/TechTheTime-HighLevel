@@ -33,7 +33,7 @@ Script::Script() {
     this->commClient->wait_for_connection();
 
     this->orders.insert({"move", std::function([&](double x, double y){ move(x, y); })});
-    this->orders.insert({"moveABS", std::function([&](double d, int adjustment){ moveABS(d, adjustment); })});
+    this->orders.insert({"moveABS", std::function([&](double d, int recalage){ moveABS(d, recalage); })});
     this->orders.insert({"angleABS", std::function([&](double alpha, int adjustment){ angleABS(alpha, adjustment); })});
 
     this->orders.insert({"take_statue", std::function([&](){ take_statue(); })});
@@ -352,11 +352,11 @@ void Script::take_statue(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
 
-    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     res.get();
     res = commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, 13, 0);
     res.get();
-    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 13, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
@@ -366,11 +366,11 @@ void Script::drop_replic(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
 
-    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 14, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
     res.get();
     res = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 14, 0);
     res.get();
-    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 14, M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
+    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
@@ -466,15 +466,60 @@ void Script::angleABS(double angle, int readjustment){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
-void Script::moveABS(double distance_rel, int adjustment){
+void Script::moveABS(double distance_rel, int recalage){ // recalage = 1 for x and recalage = 2 for y
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
 
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::moveABS, this, distance_rel, 0);
-    bool insertion = (adjustment == 1) ? false : true; 
-    this->treat_response(status, orderToReinsert, insertion);
+    this->treat_response(status, orderToReinsert);
+
+    if(RobotStatus::robot == Robot::SLAVE){
+        if(recalage ==1){
+            if(RobotStatus::x <= 500){
+                RobotStatus::x = HALF_LENGTH_SLAVE;
+                RobotStatus::angle = M_PI;
+            }
+            else{
+                RobotStatus::x = 3000-HALF_LENGTH_SLAVE;
+                RobotStatus::angle = 0;
+            }
+        }
+        else if(recalage == 2){
+            if(RobotStatus::y <= 500){
+                RobotStatus::y = HALF_LENGTH_SLAVE;
+                RobotStatus::angle = 3*M_PI/2;
+            }
+            else{
+                RobotStatus::y = 2000-HALF_LENGTH_SLAVE;
+                RobotStatus::angle = M_PI/2;
+            }
+        }
+    }
+    else{
+        if(recalage == 1){
+            if(RobotStatus::x <= 500){
+                RobotStatus::x = HALF_LENGTH_MASTER;
+                RobotStatus::angle = M_PI;
+            }
+            else{
+                RobotStatus::x = 3000-HALF_LENGTH_MASTER;
+                RobotStatus::angle = 0;
+            }
+        }
+        else if(recalage == 2){
+            if(RobotStatus::y <= 500){
+                RobotStatus::y = HALF_LENGTH_MASTER;
+                RobotStatus::angle = 3*M_PI/2;
+            }
+            else{
+                RobotStatus::y = 2000-HALF_LENGTH_MASTER;
+                RobotStatus::angle = M_PI/2;
+            }
+        }
+    }
+
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
 }
