@@ -2,30 +2,52 @@
 
 trap "kill 0" SIGINT
 
-if [ $# -lt 2 ]; then
-    echo "You must provide 2 arguments: mode and script."
-    echo "Possible values:"
-    echo "mode=(basic full)"
-    echo "script=<name_of_your_script_in_script_folder>"
-    exit 1
-fi
-
-mode=$1
 config_folder=$PWD/config
 script_folder=$PWD/script
-script=$2
 
+h_flag='false'
 v_flag='false' # verbose flag
 
-while getopts 'v' flag; do
+mode='full'
+script='qualification'
+
+print_help () {
+    echo ""
+    echo "Usage: ./run.sh [options] [-m [full|basic]] [-s <script_name>]"
+    echo ""
+    echo "options are:"
+    echo ""
+    echo "-h for help"
+    echo "-v for verbose. If you use -v all logs of all nodes will be showed"
+    echo ""
+
+    echo "You can provide a mode (basic or full) with -m. In basic mode there is only script execution."
+    echo "In full mode there is script and path-finding. It is useful for matches of the robotics cup."
+
+    echo "Use -s to provide a script that will be executed"
+
+    echo ""
+    echo "${green}Good luck!${reset}"
+    echo ""
+}
+
+while getopts 'hvm:s:' flag; do
   case "${flag}" in
+    h) h_flag='true';;
     v) v_flag='true' ;;
+    m) mode=${OPTARG} ;;
+    s) script=${OPTARG}
     *) echo "The only available flag is verbose [-v]"
        exit 1 ;;
   esac
 done
 
 ostream=/dev/null
+
+if [ $h_flag = 'true' ]; then
+    print_help
+    exit 0
+fi
 
 if [ $v_flag = 'true' ]; then
     ostream=1
