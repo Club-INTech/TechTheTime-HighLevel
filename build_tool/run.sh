@@ -2,7 +2,7 @@
 
 trap "kill 0" SIGINT
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     echo "You must provide 2 arguments: mode and script."
     echo "Possible values:"
     echo "mode=(basic full)"
@@ -44,7 +44,7 @@ fi
 
 echo "Starting interceptty"
 
-sudo interceptty -o /dev/null -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dummy &
+sudo interceptty -o $ostream -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dummy &
 
 sleep 2
 
