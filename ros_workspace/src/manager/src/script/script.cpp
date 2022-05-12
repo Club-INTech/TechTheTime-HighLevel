@@ -273,10 +273,10 @@ void Script::drop_palet_gallery(int id){ // id = 4 or 5 or 6
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, 0);
     res_move_arm_floor.get();
-    this->moveABS(130,0);
+    this->moveREL(130,0);
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, id_pump, 0);
     res_move_arm_floor.get();
-    this->moveABS(-130,0);
+    this->moveREL(-130,0);
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Palet Gallery with arm %d =====", &id);
 }
 
@@ -481,7 +481,7 @@ void Script::moveREL(double distance_rel, int recalage){ // recalage = 1 for x a
 
     // Define the order to reinsert
 
-    d = sqrt((begin_x - end_x)*(begin_x-end_x) + (begin_y-end_y)*(begin_y-end_y));
+    double d = sqrt((begin_x - end_x)*(begin_x-end_x) + (begin_y-end_y)*(begin_y-end_y));
 
     std::function<void()> orderToReinsert = std::bind(&Script::moveREL, this, distance_rel - d, 0);
 
