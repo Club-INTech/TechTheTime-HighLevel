@@ -30,7 +30,7 @@ class Script{
 
         void wait_for_jumper();
         void move(double, double);
-        void moveABS(double, int);
+        void moveREL(double, int);
         void angleABS(double, int);
 
         void take_statue();
