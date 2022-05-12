@@ -33,7 +33,7 @@ Script::Script() {
     this->commClient->wait_for_connection();
 
     this->orders.insert({"move", std::function([&](double x, double y){ move(x, y); })});
-    this->orders.insert({"moveABS", std::function([&](double d, int recalage){ moveABS(d, recalage); })});
+    this->orders.insert({"moveREL", std::function([&](double d, int recalage){ moveREL(d, recalage); })});
     this->orders.insert({"angleABS", std::function([&](double alpha, int adjustment){ angleABS(alpha, adjustment); })});
 
     this->orders.insert({"take_statue", std::function([&](){ take_statue(); })});
@@ -461,19 +461,33 @@ void Script::angleABS(double angle, int readjustment){
 
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle, 0);
-    this->treat_response(status, orderToReinsert);
+    if(readjustment == 0) {
+        this->treat_response(status, orderToReinsert);
+    }
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
 }
 
-void Script::moveABS(double distance_rel, int recalage){ // recalage = 1 for x and recalage = 2 for y
+void Script::moveREL(double distance_rel, int recalage){ // recalage = 1 for x and recalage = 2 for y
+    double begin_x = RobotStatus::x;
+    double begin_y = RobotStatus::y;
+
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
 
+    double end_x = RobotStatus::x;
+    double end_y = RobotStatus::y;
+
     // Define the order to reinsert
-    std::function<void()> orderToReinsert = std::bind(&Script::moveABS, this, distance_rel, 0);
-    this->treat_response(status, orderToReinsert);
+
+    d = sqrt((begin_x - end_x)*(begin_x-end_x) + (begin_y-end_y)*(begin_y-end_y));
+
+    std::function<void()> orderToReinsert = std::bind(&Script::moveREL, this, distance_rel - d, 0);
+
+    if(recalage == 0) {
+        this->treat_response(status, orderToReinsert);
+    }
 
     if(RobotStatus::robot == Robot::SLAVE){
         if(recalage ==1){
