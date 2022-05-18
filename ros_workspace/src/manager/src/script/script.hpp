@@ -34,6 +34,7 @@ class Script{
         void angleABS(double, int);
 
         void take_statue();
+        void drop_statue();
         void drop_replic();
 
         void reverse_palet(int);

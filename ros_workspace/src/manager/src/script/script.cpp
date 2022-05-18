@@ -37,6 +37,7 @@ Script::Script() {
     this->orders.insert({"angleABS", std::function([&](double alpha, int adjustment){ angleABS(alpha, adjustment); })});
 
     this->orders.insert({"take_statue", std::function([&](){ take_statue(); })});
+    this->orders.insert({"drop_statue", std::function([&](){ drop_statue(); })});
     this->orders.insert({"drop_replic", std::function([&](){ drop_replic(); })});
 
     this->orders.insert({"reverse_palet", std::function([&](int id){ reverse_palet(id); })});
@@ -352,11 +353,25 @@ void Script::take_statue(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
 
-    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 110 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
-    res = commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, 13, 0);
+    res = commClient->send((int64_t) OrderCodes::ACTIVATE_PUMP, 0, 1, 0);
     res.get();
-    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 20 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
+    res.get();
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
+}
+
+void Script::drop_statue(){
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
+
+    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 110 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
+    res.get();
+    res = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 1, 0);
+    res.get();
+    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 20 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
@@ -366,11 +381,11 @@ void Script::drop_replic(){
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
 
-    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, -M_PI*(1/2+1/3)); // 0rad of the arm is set at the vertical of the robot
+    auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, 100 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
-    res = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 14, 0);
+    res = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, 0, 0);
     res.get();
-    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, M_PI*(1+1/3)); // 0rad of the arm is set at the vertical of the robot
+    res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, 10 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
