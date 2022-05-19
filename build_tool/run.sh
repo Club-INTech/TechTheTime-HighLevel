@@ -84,11 +84,11 @@ sleep 3
 if [[ "$mode" == "full" ]]; then
 
     echo "Starting urg_node"
-    (ros2 run urg_node urg_node_driver --ros-args --params-file ./install/urg_node/share/urg_node/launch/urg_node_ethernet.yaml) &
+    (ros2 run urg_node urg_node_driver --ros-args --params-file ./install/urg_node/share/urg_node/launch/urg_node_ethernet.yaml &>$ostream) &
     sleep 3
 
     echo "Starting motion_control"
-    (ros2 run motion_control motion_control) &
+    (ros2 run motion_control motion_control &>$ostream) &
     sleep 3
 fi
 
