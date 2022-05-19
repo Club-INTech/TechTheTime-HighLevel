@@ -31,8 +31,8 @@ class PointsSubscriber(Node):
             print((SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2)
             if (SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2 <= 62500:
                 self.alert_pub.alert()
-            else:
-                self.alert_pub.stop_alert()
+                return
+        self.alert_pub.stop_alert()
 
 
     def __segmentation_groupe_point(self, msg):
