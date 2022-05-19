@@ -18,8 +18,7 @@ public:
     using shared_message_T = typename std::shared_ptr<std_msgs::msg::Bool>;
 
 private:
-    bool alert;
-    void check_alert();
+    void check_alert(const shared_message_T msg);
     void alert_callback(const shared_message_T msg);
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr subscriber_;
 };

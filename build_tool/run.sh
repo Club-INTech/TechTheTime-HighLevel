@@ -66,7 +66,7 @@ fi
 
 echo "Starting interceptty"
 
-sudo interceptty -o $ostream -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dummy &
+sudo interceptty -o /dev/null -s "ispeed 115200 ospeed 115200" /dev/ttyACM0 /dummy &
 
 sleep 2
 
