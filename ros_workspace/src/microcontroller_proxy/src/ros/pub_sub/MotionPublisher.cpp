@@ -76,6 +76,7 @@ void MotionPublisher::update_status() {
     if(motion_mutex::alert_mutex.alert_status == AlertStatus::ALERT) {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Alert");
         this->stop_motion();
+        motion_mutex::alert_mutex.alert_status = AlertStatus::PROCESSING;
     }
 
     auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(

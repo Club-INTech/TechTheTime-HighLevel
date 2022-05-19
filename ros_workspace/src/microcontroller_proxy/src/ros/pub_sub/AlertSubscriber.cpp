@@ -18,11 +18,7 @@ void AlertSubscriber::alert_callback(const shared_message_T msg) {
 
 void AlertSubscriber::check_alert() {
     if(alert) {
-        if(motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED) {
-            motion_mutex::alert_mutex.alert_status = AlertStatus::ALERT;
-        } else {
-            motion_mutex::alert_mutex.alert_status = AlertStatus::PROCESSING;
-        }
+        motion_mutex::alert_mutex.alert_status = AlertStatus::ALERT;
     } else {
         motion_mutex::alert_mutex.alert_status = AlertStatus::CLOSED;
     }

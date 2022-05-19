@@ -10,16 +10,21 @@ class AlertPublisher(Node):
         super().__init__('alert_publisher')
         self.publisher_ = self.create_publisher(Bool, 'alert', 10)
         self.__alert = False
+        self.__prev_alert = False
     
     def alert(self):
         print("Alert")
+        self.__prev_alert = self.__alert
         self.__alert = True
-        self.__publish_msg()
+        if not self.__prev_alert:
+            self.__publish_msg()
 
     def stop_alert(self):
         print("Stop alert")
+        self.__prev_alert = self.__alert
         self.__alert = False
-        self.__publish_msg()
+        if self.__prev_alert:
+            self.__publish_msg()
 
     def __publish_msg(self):
         msg = Bool()
