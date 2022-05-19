@@ -11,8 +11,8 @@ class SensorData():
     
     pos_x = BEGIN_X_2A
     pos_y = BEGIN_Y_2A
-    pos_angle_ = 0
-    pos_angle = 0
+    pos_angle_ = BEGIN_ANGLE_2A
+    pos_angle = BEGIN_ANGLE_2A
 
     object_in_game_area = []
 
