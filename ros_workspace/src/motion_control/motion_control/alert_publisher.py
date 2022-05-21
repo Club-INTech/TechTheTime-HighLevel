@@ -13,14 +13,12 @@ class AlertPublisher(Node):
         self.__prev_alert = False
     
     def alert(self):
-        print("Alert")
         self.__prev_alert = self.__alert
         self.__alert = True
         if not self.__prev_alert:
             self.__publish_msg()
 
     def stop_alert(self):
-        print("Stop alert")
         self.__prev_alert = self.__alert
         self.__alert = False
         if self.__prev_alert:

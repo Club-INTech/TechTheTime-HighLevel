@@ -1,0 +1,4 @@
+team: "yellow"
+robot: "slave"
+delay: 5000000
+precision: 250

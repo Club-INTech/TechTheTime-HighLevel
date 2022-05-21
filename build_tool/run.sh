@@ -88,7 +88,7 @@ if [[ "$mode" == "full" ]]; then
     sleep 3
 
     echo "Starting motion_control"
-    (ros2 run motion_control motion_control) &
+    (ros2 run motion_control motion_control $config_folder/motion_control.yaml) &
     sleep 3
 fi
 

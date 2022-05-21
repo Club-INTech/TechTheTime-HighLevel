@@ -5,10 +5,11 @@ from motion_control.sensor_data import *
 from motion_control.alert_publisher import AlertPublisher
 
 import math
+import time
 
 class PointsSubscriber(Node):
 
-    def __init__(self):
+    def __init__(self, delay, precision):
         super().__init__('points_subscriber')
         self.subscription = self.create_subscription(
             LaserScan,
@@ -17,19 +18,21 @@ class PointsSubscriber(Node):
             10
             )
         self.subscription  # prevent unused variable warning
+        self.prev_t = time.time_ns()
         self.alert_pub = AlertPublisher()
+        self.delay = delay
+        self.precision = precision
 
     def listener_callback(self, msg):
-        print("Callback")
+        if time.time_ns() - self.prev_t <= self.delay:
+            return
+        self.prev_t = time.time_ns()
         obj_groupes = self.__segmentation_groupe_point(msg)
         SensorData.object_in_game_area = self.__discrimination(msg, obj_groupes)
-        self.get_logger().info('==== Begin =====')
         for k in range(len(SensorData.object_in_game_area)):
-            self.get_logger().info('I see : x = %d et y = %d' % (SensorData.object_in_game_area[k][0], SensorData.object_in_game_area[k][1]))
-        self.get_logger().info('==== END =====')
+            self.get_logger().info('[motion_control] I see : x = %d et y = %d' % (SensorData.object_in_game_area[k][0], SensorData.object_in_game_area[k][1]))
         for obj in SensorData.object_in_game_area:
-            print((SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2)
-            if (SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2 <= 62500:
+            if (SensorData.pos_x - obj[0])**2 + (SensorData.pos_y - obj[1]) ** 2 <= self.precision**2:
                 self.alert_pub.alert()
                 return
         self.alert_pub.stop_alert()
