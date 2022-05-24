@@ -35,6 +35,8 @@ ActionService::ActionService(
                 this->motion_publisher = motion_publisher;
                 this->microcontroller_gateway = serial_port;
 
+                this->start_reception = false;
+
                 double RADIANS_TO_TICKS_HALF_BASE = (robot == "master" ? RADIANS_TO_TICKS_HALF_BASE_MASTER : RADIANS_TO_TICKS_HALF_BASE_SLAVE);
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
@@ -70,12 +72,13 @@ ActionService::ActionService(
                                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting jumper\n");
                         }
                         init_timer();
+                        this->start_reception = true;
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
                 order_binder.bind_order(OrderCodes::MOVE_ARM, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Moving arm\n");
-                        this->microcontroller_gateway->call_remote_function<DXL_Position_Angle>(static_cast<uint8_t>(req->id), static_cast<uint32_t>(180 * req->angle / M_PI));
+                        this->microcontroller_gateway->call_remote_function<DXL_Position_Angle>(static_cast<uint8_t>(req->id), static_cast<int32_t>(180 * req->angle / M_PI));
                         std::this_thread::sleep_for(ARM_WAITING_PERIOD);
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
@@ -134,7 +137,7 @@ void ActionService::execute_order(const shared_request_T req, shared_response_T 
 
 void ActionService::treat_orders(const shared_request_T req, shared_response_T res) {
 
-        if(elapsed_time() >= MATCH_TIME) {
+        if(elapsed_time() >= MATCH_TIME && this->start_reception) {
                 while(1) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Finished match");
                 }
