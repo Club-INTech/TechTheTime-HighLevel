@@ -97,6 +97,7 @@ add_executable(
   src/ros/cli_serv/ActionService.cpp 
   src/ros/pub_sub/MotionPublisher.cpp
   src/ros/pub_sub/AlertSubscriber.cpp
+  src/timer/global_timer.cpp
   src/microcontroller_proxy.cpp
 )
 

@@ -13,6 +13,8 @@
 #include <const_shared/MotionConst.hpp>
 #include <const_shared/CommunicationConst.hpp>
 
+#include <timer/global_timer.h>
+
 using namespace scom;
 using namespace std::chrono_literals;
 
@@ -64,6 +66,7 @@ ActionService::ActionService(
                                 std::this_thread::sleep_for(WAITING_PERIOD);
                                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting jumper\n");
                         }
+                        init_timer();
                         res->motion_status = (int64_t) MotionStatusCodes::COMPLETE; 
                 });
 
@@ -127,6 +130,13 @@ void ActionService::execute_order(const shared_request_T req, shared_response_T 
 
 
 void ActionService::treat_orders(const shared_request_T req, shared_response_T res) {
+
+        if(elapsed_time() >= MATCH_TIME) {
+                while(1) {
+                        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Finished match");
+                }
+        }
+
         try {   
                 if(req->order_code <= 3) {
                         motion_mutex::sync_call<&ActionService::execute_order>(true, false, false, this, req, res);
@@ -136,7 +146,7 @@ void ActionService::treat_orders(const shared_request_T req, shared_response_T r
                 }
 
         } catch(const std::runtime_error& e) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s", e.what());
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : %s", e.what());
         }
 }
 

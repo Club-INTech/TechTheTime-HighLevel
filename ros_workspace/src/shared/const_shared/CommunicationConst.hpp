@@ -19,3 +19,5 @@ constexpr std::chrono::milliseconds PUMP_WAITING_PERIOD = 1000ms;
 constexpr std::chrono::milliseconds MEASURE_WAITING_PERIOD = 2000ms;
 
 constexpr int64_t TIMEOUT  = 10000;
+
+constexpr unsigned long MATCH_TIME = 95;
