@@ -74,7 +74,8 @@ int main(int argc, char** argv) {
         process_element<std::string>(&config, "alert_topic")
     );
     auto actionService = std::make_shared<ActionService>(
-        process_element<std::string>(&config, "action_topic"), 
+        process_element<std::string>(&config, "action_topic"),
+        process_element<std::string>(&config, "robot"), 
         serial_port, 
         motionPublisher
     );

@@ -41,6 +41,7 @@ public:
             dbeta = (robot == Robot::MASTER ? TICKS_TO_RADIANS_MASTER : TICKS_TO_RADIANS_SLAVE) * (left_ticks - right_ticks);
         } else if(left_ticks < 0 && right_ticks >= 0) {
             double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * (robot == Robot::MASTER ? TICKS_TO_RADIANS_HALF_BASE_MASTER : TICKS_TO_RADIANS_HALF_BASE_SLAVE);
+            angle_ -= alpha;
             dbeta = -(robot == Robot::MASTER ? TICKS_TO_RADIANS_MASTER : TICKS_TO_RADIANS_SLAVE) * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         } else if(left_ticks >= 0 && right_ticks < 0) {
             double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * (robot == Robot::MASTER ? TICKS_TO_RADIANS_HALF_BASE_MASTER : TICKS_TO_RADIANS_HALF_BASE_SLAVE);

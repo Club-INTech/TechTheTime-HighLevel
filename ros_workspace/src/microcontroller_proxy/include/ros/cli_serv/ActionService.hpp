@@ -81,7 +81,7 @@ public:
      * 
      * All order codes are defined there order_codes.hpp.
     */ 
-    ActionService(const std::string& service_name, std::shared_ptr<scom::SerialPort> serial_port,
+    ActionService(const std::string& service_name, const std::string& robot, std::shared_ptr<scom::SerialPort> serial_port,
         std::shared_ptr<MotionPublisher> motion_publisher);
 
     /**

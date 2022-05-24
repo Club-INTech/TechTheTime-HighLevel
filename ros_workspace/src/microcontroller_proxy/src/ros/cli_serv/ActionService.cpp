@@ -20,6 +20,7 @@ using namespace std::chrono_literals;
 
 ActionService::ActionService(
         const std::string& service_name, 
+        const std::string& robot,
         std::shared_ptr<scom::SerialPort> serial_port,
         std::shared_ptr<MotionPublisher> motion_publisher) : 
         Node(service_name), 
@@ -33,6 +34,8 @@ ActionService::ActionService(
 
                 this->motion_publisher = motion_publisher;
                 this->microcontroller_gateway = serial_port;
+
+                double RADIANS_TO_TICKS_HALF_BASE = (robot == "master" ? RADIANS_TO_TICKS_HALF_BASE_MASTER : RADIANS_TO_TICKS_HALF_BASE_SLAVE);
 
                 order_binder.bind_order(OrderCodes::MOVE, [&](shared_request_T req, shared_response_T res) {
                         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Moving for the distance: %lf\n",req->distance);
