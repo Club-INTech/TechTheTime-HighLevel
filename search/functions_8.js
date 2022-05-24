@@ -5,5 +5,5 @@ var searchData=
   ['motion_5fcallback_2',['motion_callback',['../classMotionSubscriber.html#aaa7307896d6095a72def5e2816fd129a',1,'MotionSubscriber']]],
   ['motionsubscriber_3',['MotionSubscriber',['../classMotionSubscriber.html#a8a6ce387c86a006e39b0187f2d1ec464',1,'MotionSubscriber']]],
   ['move_4',['move',['../classScript.html#ab0e857e989c3b5fa78661e9746856ff8',1,'Script']]],
-  ['moveabs_5',['moveABS',['../classScript.html#a0e11310cc226ea3927c8bdae27eaad59',1,'Script']]]
+  ['moverel_5',['moveREL',['../classScript.html#a42f6b1cbead4df7e6b0bc9241bcb3be6',1,'Script']]]
 ];

@@ -14,5 +14,5 @@ var searchData=
   ['motionsubscriber_2ehpp_11',['MotionSubscriber.hpp',['../MotionSubscriber_8hpp.html',1,'']]],
   ['move_12',['move',['../classScript.html#ab0e857e989c3b5fa78661e9746856ff8',1,'Script']]],
   ['move_5fprofile_5ft_13',['move_profile_T',['../classScript.html#acba041ad14d902c64d94f18ce94e388d',1,'Script']]],
-  ['moveabs_14',['moveABS',['../classScript.html#a0e11310cc226ea3927c8bdae27eaad59',1,'Script']]]
+  ['moverel_14',['moveREL',['../classScript.html#a42f6b1cbead4df7e6b0bc9241bcb3be6',1,'Script']]]
 ];

@@ -36,8 +36,8 @@ var NAVTREE =
     [ "The example of functionning of the manager <-> microcontroller_proxy communication.", "index.html#sequence_diagram", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Packages", "namespaces.html", [
-      [ "Packages", "namespaces.html", "namespaces_dup" ],
-      [ "Package Functions", "namespacemembers.html", [
+      [ "Package List", "namespaces.html", "namespaces_dup" ],
+      [ "Package Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ]
