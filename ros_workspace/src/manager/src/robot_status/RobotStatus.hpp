@@ -38,18 +38,17 @@ public:
             double dl = c_ticks * TICKS_TO_MM;
             x += (dl * cos_angle);
             y += (dl * sin_angle);
-            dbeta = TICKS_TO_RADIANS * (left_ticks - right_ticks);
+            dbeta = (robot == Robot::MASTER ? TICKS_TO_RADIANS_MASTER : TICKS_TO_RADIANS_SLAVE) * (left_ticks - right_ticks);
         } else if(left_ticks < 0 && right_ticks >= 0) {
-            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
-            angle_ -= alpha;
-            dbeta = -TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * (robot == Robot::MASTER ? TICKS_TO_RADIANS_HALF_BASE_MASTER : TICKS_TO_RADIANS_HALF_BASE_SLAVE);
+            dbeta = -(robot == Robot::MASTER ? TICKS_TO_RADIANS_MASTER : TICKS_TO_RADIANS_SLAVE) * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         } else if(left_ticks >= 0 && right_ticks < 0) {
-            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * TICKS_TO_RADIANS_HALF_BASE;
+            double alpha = MIN(ABS(left_ticks), ABS(right_ticks)) * (robot == Robot::MASTER ? TICKS_TO_RADIANS_HALF_BASE_MASTER : TICKS_TO_RADIANS_HALF_BASE_SLAVE);
             angle_ += alpha;
-            dbeta = TICKS_TO_RADIANS * ABS(ABS(left_ticks) - ABS(right_ticks)); 
+            dbeta = (robot == Robot::MASTER ? TICKS_TO_RADIANS_MASTER : TICKS_TO_RADIANS_SLAVE) * ABS(ABS(left_ticks) - ABS(right_ticks)); 
         }
         angle_ += dbeta;
-        double dr = dbeta * (WHEEL_DISTANCE / 2);
+        double dr = dbeta * (robot == Robot::MASTER ? WHEEL_DISTANCE_MASTER / 2 : WHEEL_DISTANCE_SLAVE / 2);
         x += dr * (1 - dbeta * dbeta / 2);
         y += dr * dbeta;
         double theta = ABS(angle_) - 2 * M_PI * ((int) (ABS(angle_) / (2 * M_PI)));

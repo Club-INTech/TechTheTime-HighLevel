@@ -15,6 +15,9 @@ class MotionSubscriber(Node):
         )
         self.subscription
 
+        SensorData.team = team
+        SensorData.robot = robot
+
         if team == "yellow":
             if robot == "master":
                 SensorData.pos_x = START_X_1A_YELLOW
