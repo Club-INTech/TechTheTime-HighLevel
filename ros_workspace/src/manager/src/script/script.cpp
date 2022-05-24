@@ -71,13 +71,13 @@ void Script::parse_script(const char* script_file) {
         elems.push_back(unparsed_order.substr(sep_index, unparsed_order.size() - sep_index));
         auto order = this->orders.find(elems.at(0));
         if(order == this->orders.end()) {
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: order does not exist");
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[parser] : Can't parse: order does not exist");
             return;    
         }
 
         if(std::holds_alternative<void_profile_T>(order->second)) {
             if(elems.size() != 1) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[parser] : Can't parse: incorrcet number of arguments for %s", elems.at(0));
                 return;                  
             }
             this->pushOrder(std::get<void_profile_T>(order->second));
@@ -85,7 +85,7 @@ void Script::parse_script(const char* script_file) {
         
         else if(std::holds_alternative<move_profile_T>(order->second)) {
             if(elems.size() != 3) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[parser] : Can't parse: incorrcet number of arguments for %s", elems.at(0));
                 return;                  
             }
             this->pushOrder(std::bind(std::get<move_profile_T>(order->second), std::stod(elems.at(1)), std::stod(elems.at(2))));
@@ -93,7 +93,7 @@ void Script::parse_script(const char* script_file) {
         
         else if(std::holds_alternative<actuator_profile_T>(order->second)) {
             if(elems.size() != 3) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[parser] : Can't parse: incorrcet number of arguments for %s", elems.at(0));
                 return;                  
             }
             double command = std::stod(elems.at(1));
@@ -105,7 +105,7 @@ void Script::parse_script(const char* script_file) {
         
         else if(std::holds_alternative<id_profile_T>(order->second)) {
             if(elems.size() != 2) {
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Can't parse: incorrcet number of arguments for %s", elems.at(0));
+                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[parser] : Can't parse: incorrcet number of arguments for %s", elems.at(0));
                 return;                  
             }
             this->pushOrder(std::bind(std::get<id_profile_T>(order->second), std::stoi(elems.at(1))));
@@ -115,19 +115,19 @@ void Script::parse_script(const char* script_file) {
 
 bool Script::treat_response(MotionStatusCodes status, std::function<void()> OrderToReinsert, bool reinsert = true) {
     if(status == MotionStatusCodes::COMPLETE) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Result: finished");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : Result: finished");
         return true;
     } else if(status == MotionStatusCodes::NOT_COMPLETE){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion was not complete");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : Motion was not complete");
         if (reinsert){
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Reinsert the order");
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : Reinsert the order");
             this->deque_order.push_front(OrderToReinsert);
             return false;       
         }
     } else if(status == MotionStatusCodes::MOTION_TIMEOUT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Motion has been timed out");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : Motion has been timed out");
         if (reinsert){
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Reinsert the order");
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : Reinsert the order");
             this->deque_order.push_front(OrderToReinsert);
             return false;
         }
@@ -167,7 +167,7 @@ void Script::take_palet_vertical(int id) { // id = 7 or 9 or 11
     else{
         id_pump = 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take palet horizontal with arm %d =====", id);
     auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id-1, DBL);
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, DBP);
@@ -176,7 +176,7 @@ void Script::take_palet_vertical(int id) { // id = 7 or 9 or 11
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, 0);
     res_move_arm_floor.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take palet horizontal with arm %d =====", id);
 }
 
 void Script::take_palet_horizontal(int id) { // id = 7 or 9 or 11
@@ -192,7 +192,7 @@ void Script::take_palet_horizontal(int id) { // id = 7 or 9 or 11
     else{
         id_pump = 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take palet horizontal with arm %i =====", id);
     auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id-1, DBL);
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, DBP);
@@ -201,7 +201,7 @@ void Script::take_palet_horizontal(int id) { // id = 7 or 9 or 11
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, -M_PI/12);
     res_move_arm_floor.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take palet horizontal with arm %d =====", id);
 }
 
 void Script::take_palet_ground(int id) { // id = 7 or 9 or 11
@@ -217,7 +217,7 @@ void Script::take_palet_ground(int id) { // id = 7 or 9 or 11
     else{
         id_pump = 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take palet horizontal with arm %d =====", id);
     auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id-1, DBL);
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, DBP);
@@ -226,7 +226,7 @@ void Script::take_palet_ground(int id) { // id = 7 or 9 or 11
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, 0);
     res_move_arm_floor.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take palet horizontal with arm %d =====", id);
 }
 
 void Script::drop_palet_ground(int id) { // id = 7 or 9 or 11
@@ -242,7 +242,7 @@ void Script::drop_palet_ground(int id) { // id = 7 or 9 or 11
     else{
         id_pump = 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take palet horizontal with arm %d =====", id);
     auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id-1, DBL);
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, DBP);
@@ -251,7 +251,7 @@ void Script::drop_palet_ground(int id) { // id = 7 or 9 or 11
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, -M_PI/12);
     res_move_arm_floor.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take palet horizontal with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take palet horizontal with arm %d =====", id);
 }
 
 void Script::drop_palet_gallery(int id){ // id = 4 or 5 or 6
@@ -267,7 +267,7 @@ void Script::drop_palet_gallery(int id){ // id = 4 or 5 or 6
     else{
         id_pump = 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Palet Gallery with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Drop Palet Gallery with arm %d =====", id);
     auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id, DBP);
     res_move_arm_floor.get();
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, id-1, DBL);
@@ -278,21 +278,21 @@ void Script::drop_palet_gallery(int id){ // id = 4 or 5 or 6
     res_move_arm_floor = commClient->send((int64_t) OrderCodes::RELEASE_PUMP, 0, id_pump, 0);
     res_move_arm_floor.get();
     this->moveREL(-130,0);
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Palet Gallery with arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Drop Palet Gallery with arm %d =====", id);
 }
 
 void Script::reverse_palet(int id) { // id = 7 or 9 or 11
     // DBP = Dynamixel Low Near (for the robot)
     // DHL = Dynamixel High Far
     
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Reverse of all palet arm %d =====", id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Reverse of all palet arm %d =====", id);
     double DBP = M_PI/12;
     double DBL = 5*M_PI/12;
     double DHL = -5*M_PI/12;
     double DHP = -M_PI/12;
 
     if(id==7){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "=> Side arm Right <=");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : => Side arm Right <=");
 
         auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 7, DBP);
         res_move_arm_floor.get();
@@ -308,7 +308,7 @@ void Script::reverse_palet(int id) { // id = 7 or 9 or 11
         res_pompe_activ.get();
     }
     else if (id == 11){
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "=> Side arm Left <=");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : => Side arm Left <=");
 
         auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 11, DBP);
         res_move_arm_floor.get();
@@ -326,7 +326,7 @@ void Script::reverse_palet(int id) { // id = 7 or 9 or 11
     else{
         double DHP_M = -M_PI/6;
         double DHL_M = M_PI/3;
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "=> Middle arm <=");
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : => Middle arm <=");
 
         auto res_move_arm_floor = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 9, DBP);
         res_move_arm_floor.get();
@@ -346,12 +346,12 @@ void Script::reverse_palet(int id) { // id = 7 or 9 or 11
         res_pompe_activ.get();
     }
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Reverse of all palet arm %d =====", &id);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] :  ===== End of the order - Reverse of all palet arm %d =====", &id);
 }
 
 void Script::take_statue(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take Statue =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 110 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
@@ -360,12 +360,12 @@ void Script::take_statue(){
     res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 20 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take Statue =====");
 }
 
 void Script::drop_statue(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Take Statue =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Take Statue =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 110 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
@@ -374,12 +374,12 @@ void Script::drop_statue(){
     res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 4, 20 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Take Statue =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Take Statue =====");
 }
 
 void Script::drop_replic(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Drop Replic =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Drop Replic =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, 100 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
@@ -388,26 +388,26 @@ void Script::drop_replic(){
     res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 5, 10 * M_PI / 180); // 0rad of the arm is set at the vertical of the robot
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Drop Relic =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Drop Relic =====");
 }
 
 void Script::knock_over(){
     
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Knock over =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Knock over =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 15, -M_PI/2); // 0rad of the arm is set at the vertical of the robot
     res.get();
     res = commClient->send((int64_t) OrderCodes::MOVE_ARM, 0, 15, 0);
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Knock over =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Knock over =====");
 
 }
 
 
 void Script::mesure(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begining of the order - Read Resistor =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begining of the order - Read Resistor =====");
     
     auto res = commClient->send((int64_t) OrderCodes::MOVE_SERVO, 0, 2, M_PI/2);
     res.get();
@@ -425,28 +425,28 @@ void Script::mesure(){
     res = commClient->send((int64_t) OrderCodes::MOVE_SERVO, 0, 2, 0);
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Read Resistor =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Read Resistor =====");
 }
 
 void Script::down_servos(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Beging of the order - Down Servos =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Beging of the order - Down Servos =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_SERVO, 0, 1, 3*M_PI/4);
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Down Servos =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Down Servos =====");
 
 }
 
 void Script::up_servos(){
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Beging of the order - Down Servos =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Beging of the order - Down Servos =====");
 
     auto res = commClient->send((int64_t) OrderCodes::MOVE_SERVO, 0, 1, 0);
     res.get();
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Down Servos =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Down Servos =====");
 
 }
 
@@ -454,7 +454,7 @@ void Script::angleABS(double angle, int readjustment){
     double angle_ = angle;
     angle = fabs(RobotStatus::angle-angle);
     MotionStatusCodes status;
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Angle ABS =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begin of the order - Angle ABS =====");
     if(angle>M_PI){
         if(RobotStatus::angle > angle_) {
             auto res_angle = commClient->send((int64_t) OrderCodes::START_ROTATE_RIGHT, 0, 0, 2*M_PI-angle);    
@@ -477,17 +477,21 @@ void Script::angleABS(double angle, int readjustment){
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle, 0);
     if(readjustment == 0) {
-        this->treat_response(status, orderToReinsert);
+        if(this->treat_response(status, orderToReinsert)) {
+            if(fabs(RobotStatus::angle - angle) >= ROTATION_PRECISION) {
+                this->treat_response(MotionStatusCodes::NOT_COMPLETE, orderToReinsert);
+            }
+        }
     }
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Angle ABS =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Angle ABS =====");
 }
 
 void Script::moveREL(double distance_rel, int recalage){ // recalage = 1 for x and recalage = 2 for y
     double begin_x = RobotStatus::x;
     double begin_y = RobotStatus::y;
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Distance ABS =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begin of the order - Distance ABS =====");
     auto res = commClient->send((int64_t) OrderCodes::MOVE, distance_rel, 0, 0);
     MotionStatusCodes status = static_cast<MotionStatusCodes>(res.get()->motion_status);
 
@@ -550,12 +554,12 @@ void Script::moveREL(double distance_rel, int recalage){ // recalage = 1 for x a
     }
 
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Distance ABS =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Distance ABS =====");
 }
 
 void Script::move(double aim_x, double aim_y) {
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== Begin of the order - Move =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== Begin of the order - Move =====");
     double curr_x = RobotStatus::x;
     double curr_y = RobotStatus::y;
     double curr_angle = RobotStatus::angle;
@@ -605,8 +609,12 @@ void Script::move(double aim_x, double aim_y) {
     if (execption){
         auto res_move = commClient->send((int64_t) OrderCodes::MOVE, distance, 0, 0);
         MotionStatusCodes status_move = static_cast<MotionStatusCodes>(res_move.get()->motion_status);
-        this->treat_response(status_move, orderToReinsert);
+        if(this->treat_response(status_move, orderToReinsert)) {
+            if((aim_x - RobotStatus::x)*(aim_x - RobotStatus::x) + (aim_y - RobotStatus::y)*(aim_y - RobotStatus::y) >= MOVE_PRECISION) {
+                this->treat_response(MotionStatusCodes::NOT_COMPLETE, orderToReinsert);
+            }
+        }
     }
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "===== End of the order - Move =====");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[script] : ===== End of the order - Move =====");
 }   

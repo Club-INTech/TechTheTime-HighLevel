@@ -58,3 +58,6 @@ constexpr double START_ANGLE_1A_YELLOW = 0;
 constexpr double START_X_1A_PURPLE = 2820.0;
 constexpr double START_Y_1A_PURPLE = 750;
 constexpr double START_ANGLE_1A_PURPLE= M_PI;
+
+constexpr double MOVE_PRECISION = 900.0;
+constexpr double ROTATION_PRECISION = 5.0 * M_PI / 180.0;

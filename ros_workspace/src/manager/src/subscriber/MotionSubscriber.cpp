@@ -14,7 +14,5 @@ MotionSubscriber::MotionSubscriber() : Node("motion_subscriber") {
 }
 
 void MotionSubscriber::motion_callback(const motion_msg_srv::msg::Motion::SharedPtr msg) const {
-    RobotStatus::atomic_move(msg->left_ticks, msg->right_ticks);
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Actual position is x: %lf, y: %lf, angle: %lf", 
-        RobotStatus::x, RobotStatus::y, RobotStatus::angle);    
+    RobotStatus::atomic_move(msg->left_ticks, msg->right_ticks); 
 }
