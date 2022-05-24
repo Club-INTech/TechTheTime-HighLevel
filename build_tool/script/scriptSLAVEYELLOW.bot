@@ -12,3 +12,6 @@ move 200.0 200.0
 angleABS 270.0 0
 moveREL 55.0 2
 drop_statue
+moveREL 55.0 2
+move 2800 200.0
+move 2600 500.0

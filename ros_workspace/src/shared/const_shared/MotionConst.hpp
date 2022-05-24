@@ -53,9 +53,9 @@ constexpr double START_X_2A_YELLOW = 257.0;
 constexpr double START_Y_2A_YELLOW = 915.0;
 constexpr double START_ANGLE_2A_YELLOW = M_PI/2;
 
-constexpr double START_X_2A_PURPLE = 2590.0;
-constexpr double START_Y_2A_PURPLE = 75.0;
-constexpr double START_ANGLE_2A_PURPLE = M_PI;
+constexpr double START_X_2A_PURPLE = 2743;
+constexpr double START_Y_2A_PURPLE = 915.0;
+constexpr double START_ANGLE_2A_PURPLE = M_PI/2;
 
 constexpr double START_X_1A_YELLOW = 570.0;
 constexpr double START_Y_1A_YELLOW = 579.0;
