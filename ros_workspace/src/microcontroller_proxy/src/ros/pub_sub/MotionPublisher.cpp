@@ -100,7 +100,7 @@ void MotionPublisher::update_status() {
             RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Robot stopped");
             
             if(abs(this->left_ticks - this->expected_left_ticks) >= TICKS_INCERTITUDE || 
-                (this->right_ticks - this->expected_right_ticks) >= TICKS_INCERTITUDE) {
+                abs(this->right_ticks - this->expected_right_ticks) >= TICKS_INCERTITUDE) {
                 this->motion_status = MotionStatusCodes::NOT_COMPLETE;
             } else {
                 this->motion_status = MotionStatusCodes::COMPLETE;
