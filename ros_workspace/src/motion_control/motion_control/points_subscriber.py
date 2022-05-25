@@ -28,7 +28,7 @@ class PointsSubscriber(Node):
             time.sleep(0.02)
             return
         self.prev_t = time.time_ns()
-        for i in len(msg.ranges):
+        for i in range(len(msg.ranges)):
             print(f'{msg.ranges[i]}, {self.precision}')
             if 0.07 <= msg.ranges[i] <= self.precision:
                 self.alert_pub.alert()
