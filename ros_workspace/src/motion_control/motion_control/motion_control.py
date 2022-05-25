@@ -5,7 +5,7 @@ import sys
 import yaml
 from motion_control.motion_subscriber import MotionSubscriber
 from motion_control.points_subscriber import PointsSubscriber
-from ros_workspace.src.motion_control.motion_control.const import DEFAULT_SCAN_PROCESSING_DELAY_NS, DEFAULT_STOP_PRESICION_MM
+from motion_control.const import DEFAULT_SCAN_PROCESSING_DELAY_NS, DEFAULT_STOP_PRECISION_MM
 
 
 def main(args=None):
