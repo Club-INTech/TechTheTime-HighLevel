@@ -500,7 +500,7 @@ void Script::moveREL(double distance_rel, int recalage){ // recalage = 1 for x a
 
     // Define the order to reinsert
 
-    double d = sqrt((begin_x - end_x)*(begin_x-end_x) + (begin_y-end_y)*(begin_y-end_y));
+    double d = SIGN(distance_rel) * sqrt((begin_x - end_x)*(begin_x-end_x) + (begin_y-end_y)*(begin_y-end_y));
 
     std::function<void()> orderToReinsert = std::bind(&Script::moveREL, this, distance_rel - d, 0);
 
