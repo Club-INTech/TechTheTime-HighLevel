@@ -24,7 +24,10 @@ class PointsSubscriber(Node):
         self.precision = precision
 
     def listener_callback(self, msg):
+        self.get_logger().info('t : %d' % time.time_ns() - self.prev_t)
+        self.get_logger().info('delay : %d' % self.delay)
         if time.time_ns() - self.prev_t <= self.delay:
+            self.get_logger().info('t : %d', time.time_ns() - self.prev_t)
             return
         self.prev_t = time.time_ns()
         obj_groupes = self.__segmentation_groupe_point(msg)
