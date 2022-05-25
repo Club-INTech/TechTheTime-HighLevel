@@ -25,7 +25,7 @@ class PointsSubscriber(Node):
 
     def listener_callback(self, msg):
         if time.time_ns() - self.prev_t <= self.delay:
-            print(time.time_ns() - self.prev_t)
+            time.sleep(0.02)
             return
         self.prev_t = time.time_ns()
         obj_groupes = self.__segmentation_groupe_point(msg)
