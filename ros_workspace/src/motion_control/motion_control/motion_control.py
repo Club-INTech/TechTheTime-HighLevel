@@ -21,14 +21,14 @@ def main(args=None):
     if len(sys.argv) >= 2:
         with open(sys.argv[1], 'r') as config:
             data = yaml.safe_load(config)
-            if not data.team is None:
-                team = data.team
-            if not data.robot is None:
-                robot = data.robot
-            if not data.delay is None:
-                delay = data.delay
-            if not data.precision is None:
-                precision = data.precision
+            if not data["team"] is None:
+                team = data["team"]
+            if not data["robot"] is None:
+                robot = data["robot"]
+            if not data["delay"] is None:
+                delay = data["delay"]
+            if not data["precision"] is None:
+                precision = data["precision"]
 
 
     rclpy.init(args=args)
