@@ -477,7 +477,7 @@ void Script::angleABS(double angle, int readjustment){
     // Define the order to reinsert
     std::function<void()> orderToReinsert = std::bind(&Script::angleABS, this, angle, 0);
     if(readjustment == 0) {
-        /*if(*/this->treat_response(status, orderToReinsert)) //{
+        /*if(*/this->treat_response(status, orderToReinsert); //{
             // if(fabs(RobotStatus::angle - angle) >= ROTATION_PRECISION) {
             //     this->treat_response(MotionStatusCodes::NOT_COMPLETE, orderToReinsert);
             // }
