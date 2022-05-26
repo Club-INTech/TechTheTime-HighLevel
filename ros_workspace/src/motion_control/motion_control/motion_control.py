@@ -42,11 +42,8 @@ def main(args=None):
     motion_subscriber = MotionSubscriber(team, robot)
     points_subscriber = PointsSubscriber(delay, precision, threshold)
 
-    motion_thread = threading.Thread(target=runner, args=(motion_subscriber,))
-    points_thread = threading.Thread(target=runner, args=(points_subscriber,))
-
-    motion_thread.start()
-    points_thread.start()
+    motion_thread = threading.Thread(target=(lambda: rclpy.spin(motion_subscriber))).start()
+    points_thread = threading.Thread(target=(lambda: rclpy.spin(points_subscriber))).start()
 
     motion_thread.join()
     points_thread.join()
