@@ -26,7 +26,7 @@ class PointsSubscriber(Node):
 
     def listener_callback(self, msg):
         if time.time_ns() - self.prev_t <= self.delay:
-            time.sleep(0.02)
+            time.sleep(0.1)
             return
         self.prev_t = time.time_ns()
         print(len(msg.intensities))
