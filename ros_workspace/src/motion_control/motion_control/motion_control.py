@@ -42,8 +42,8 @@ def main(args=None):
     motion_subscriber = MotionSubscriber(team, robot)
     points_subscriber = PointsSubscriber(delay, precision, threshold)
 
-    motion_thread = threading.Thread(target=runner, args=(motion_subscriber))
-    points_thread = threading.Thread(target=runner, args=(points_subscriber))
+    motion_thread = threading.Thread(target=runner, args=(motion_subscriber,))
+    points_thread = threading.Thread(target=runner, args=(points_subscriber,))
 
     motion_thread.start()
     points_thread.start()
