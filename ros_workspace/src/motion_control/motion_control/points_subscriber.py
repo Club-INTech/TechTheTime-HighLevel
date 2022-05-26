@@ -35,8 +35,10 @@ class PointsSubscriber(Node):
             print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities[i]}')
             if 0.07 <= msg.ranges[i] <= self.precision and msg.intensities[i] >= self.threshold:
                 self.alert_pub.alert()
+                print("=================================")
                 return
         self.alert_pub.stop_alert()
+        print("=====================================")
     #     obj_groupes = self.__segmentation_groupe_point(msg)
     #     SensorData.object_in_game_area = self.__discrimination(msg, obj_groupes)
     #     for k in range(len(SensorData.object_in_game_area)):
