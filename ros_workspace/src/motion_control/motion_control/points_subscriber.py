@@ -29,6 +29,8 @@ class PointsSubscriber(Node):
             time.sleep(0.02)
             return
         self.prev_t = time.time_ns()
+        print(len(msg.intensities))
+        print(len(msg.ranges))
         for i in range(len(msg.ranges)):
             print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities[i]}')
             if 0.07 <= msg.ranges[i] <= self.precision and msg.intensities[i] >= self.threshold:
