@@ -30,7 +30,7 @@ class PointsSubscriber(Node):
             return
         self.prev_t = time.time_ns()
         for i in range(len(msg.ranges)):
-            print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities}')
+            print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities[i]}')
             if 0.07 <= msg.ranges[i] <= self.precision and msg.intensities[i] >= self.threshold:
                 self.alert_pub.alert()
                 return
