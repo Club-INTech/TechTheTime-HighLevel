@@ -37,7 +37,7 @@ class PointsSubscriber(Node):
                 angle_lidar_point = msg.angle_min+msg.angle_increment*i
                 angleAim_repRobot = SensorData.pos_angle - angle_lidar_point
 
-                R = int(1000*msg.ranges[i]) + 1
+                R = int(1000*msg.ranges[i]) + 50
 
                 x_prime = R*math.cos(angleAim_repRobot)
                 y_prime = R*math.sin(angleAim_repRobot)
