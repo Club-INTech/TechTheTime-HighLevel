@@ -9,7 +9,7 @@ import time
 
 class PointsSubscriber(Node):
 
-    def __init__(self, delay, precision):
+    def __init__(self, delay, precision, threshold):
         super().__init__('points_subscriber')
         self.subscription = self.create_subscription(
             LaserScan,
@@ -22,18 +22,23 @@ class PointsSubscriber(Node):
         self.alert_pub = AlertPublisher()
         self.delay = delay
         self.precision = precision
+        self.threshold = threshold
 
     def listener_callback(self, msg):
         if time.time_ns() - self.prev_t <= self.delay:
             time.sleep(0.02)
             return
         self.prev_t = time.time_ns()
+        print(len(msg.intensities))
+        print(len(msg.ranges))
         for i in range(len(msg.ranges)):
-            print(f'{msg.ranges[i]}, {self.precision}')
-            if 0.07 <= msg.ranges[i] <= self.precision:
+            print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities[i]}')
+            if 0.07 <= msg.ranges[i] <= self.precision and msg.intensities[i] >= self.threshold:
                 self.alert_pub.alert()
+                print("=================================")
                 return
         self.alert_pub.stop_alert()
+        print("=====================================")
     #     obj_groupes = self.__segmentation_groupe_point(msg)
     #     SensorData.object_in_game_area = self.__discrimination(msg, obj_groupes)
     #     for k in range(len(SensorData.object_in_game_area)):
