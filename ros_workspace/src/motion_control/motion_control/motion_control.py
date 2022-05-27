@@ -39,12 +39,12 @@ def main(args=None):
     points_subscriber = PointsSubscriber(delay, precision, threshold)
 
     def motion_runner():
-        executor = rclpy.executors.Executor()
+        executor = rclpy.executors.SingleThreadedExecutor()
         executor.add_node(motion_subscriber)
         executor.spin()
 
     def points_runner():
-        executor = rclpy.executors.Executor()
+        executor = rclpy.executors.SingleThreadedExecutor()
         executor.add_node(points_subscriber)
         executor.spin()
 
