@@ -68,7 +68,7 @@ ActionService::ActionService(
                                 this->microcontroller_gateway->call_remote_function<isJumperOn>();
                                 auto value = this->microcontroller_gateway->receive_feedback<isJumperOn>();
                                 if(value) break;
-                                std::this_thread::sleep_for(WAITING_PERIOD);
+                                std::this_thread::sleep_for(JUMPER_WAITING);
                                 RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting jumper %d\n", value);
                         }
                         init_timer();
