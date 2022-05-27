@@ -13,7 +13,7 @@ constexpr std::chrono::milliseconds READ_FEEDBACK_DELAY = 0ms;
 
 constexpr std::chrono::milliseconds WAITING_PERIOD = 100ms;
 
-constexpr std::chrono::milliseconds JUMPER_WAITING = 1000ms;
+constexpr std::chrono::milliseconds JUMPER_WAITING = 20ms;
 
 constexpr std::chrono::milliseconds ARM_WAITING_PERIOD = 1000ms;
 constexpr std::chrono::milliseconds PUMP_WAITING_PERIOD = 1000ms;
