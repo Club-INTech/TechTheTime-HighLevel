@@ -8,10 +8,6 @@ from motion_control.points_subscriber import PointsSubscriber
 from motion_control.const import DEFAULT_SCAN_PROCESSING_DELAY_NS, DEFAULT_STOP_PRECISION_MM
 import threading
 
-def runner(node):
-    rclpy.spin(node)
-
-
 def main(args=None):
 
     team = "yellow"
@@ -42,8 +38,19 @@ def main(args=None):
     motion_subscriber = MotionSubscriber(team, robot)
     points_subscriber = PointsSubscriber(delay, precision, threshold)
 
-    motion_thread = threading.Thread(target=(lambda: rclpy.spin(motion_subscriber)))
-    points_thread = threading.Thread(target=(lambda: rclpy.spin(points_subscriber)))
+    def motion_runner():
+        executor = rclpy.executors.Executor()
+        executor.add_node(motion_subscriber)
+        executor.spin()
+
+    def points_runner():
+        executor = rclpy.executors.Executor()
+        executor.add_node(points_subscriber)
+        executor.spin()
+
+    motion_thread = threading.Thread(target=(motion_runner))
+    points_thread = threading.Thread(target=(points_runner))
+
 
     motion_thread.start()
     points_thread.start()
