@@ -1,5 +1,5 @@
 team: "yellow"
 robot: "slave"
-delay: 1000000000
-precision: 0.3
-threshold: 20
+delay: 200000000
+precision: 0.35
+threshold: 100
