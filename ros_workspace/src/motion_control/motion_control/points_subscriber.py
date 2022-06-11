@@ -29,10 +29,7 @@ class PointsSubscriber(Node):
             time.sleep(0.1)
             return
         self.prev_t = time.time_ns()
-        print(len(msg.intensities))
-        print(len(msg.ranges))
         for i in range(len(msg.ranges)):
-            print(f'd : {msg.ranges[i]}, {self.precision}, i: {msg.intensities[i]}')
             if 0.07 <= msg.ranges[i] <= self.precision and msg.intensities[i] >= self.threshold:
                 angle_lidar_point = msg.angle_min+msg.angle_increment*i
                 angleAim_repRobot = SensorData.pos_angle - angle_lidar_point
@@ -47,8 +44,6 @@ class PointsSubscriber(Node):
 
                 if(0 <= x_aim <= 3000 and 0 <= y_aim <=2000):
                     self.alert_pub.alert()
-                    print("=================================")
                     return
 
         self.alert_pub.stop_alert()
-        print("=====================================")

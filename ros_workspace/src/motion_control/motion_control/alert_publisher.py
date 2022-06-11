@@ -28,4 +28,3 @@ class AlertPublisher(Node):
         msg = Bool()
         msg.data = self.__alert
         self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: ' +  str(msg.data))

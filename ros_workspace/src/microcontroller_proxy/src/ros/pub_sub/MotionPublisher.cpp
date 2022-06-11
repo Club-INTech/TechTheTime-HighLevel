@@ -74,7 +74,6 @@ void MotionPublisher::stop_motion() {
 
 void MotionPublisher::update_status() {
     if(motion_mutex::alert_mutex.alert_status == AlertStatus::ALERT) {
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Alert");
         this->stop_motion();
         motion_mutex::alert_mutex.alert_status = AlertStatus::PROCESSING;
     }
@@ -86,8 +85,6 @@ void MotionPublisher::update_status() {
         motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED && 
         this->motion_status == MOVING && 
         interval.count() >= TIMEOUT) {
-
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Timed out %d\n", interval.count());
             this->motion_status = MotionStatusCodes::MOTION_TIMEOUT;
             this->stop_motion();
     }
@@ -96,8 +93,6 @@ void MotionPublisher::update_status() {
         motion_mutex::alert_mutex.alert_status == AlertStatus::CLOSED &&  
         abs(this->left_ticks - this->previous_left_ticks) <= MOTION_CRITERIA &&
         abs(this->right_ticks - this->previous_right_ticks) <= MOTION_CRITERIA) {
-
-            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Robot stopped");
             
             if(abs(this->left_ticks - this->expected_left_ticks) >= TICKS_INCERTITUDE || 
                 abs(this->right_ticks - this->expected_right_ticks) >= TICKS_INCERTITUDE) {
@@ -106,8 +101,6 @@ void MotionPublisher::update_status() {
                 this->motion_status = MotionStatusCodes::COMPLETE;
             }
         } else this->motion_status = MotionStatusCodes::MOVING;
-
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Status %d", this->motion_status);
 }
 
 void MotionPublisher::follow_motion() {
@@ -143,8 +136,6 @@ void MotionPublisher::follow_motion() {
         msg.left_ticks = this->left_ticks_mult * (this->left_ticks - this->previous_left_ticks);
         msg.right_ticks = this->right_ticks_mult * (this->right_ticks - this->previous_right_ticks);
         this->publisher_->publish(msg);
-        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Publishing ticks: %d %d\n", 
-        msg.left_ticks, msg.right_ticks);
     }
 
     motion_mutex::sync_call<&MotionPublisher::update_status>(false, true, true, this);

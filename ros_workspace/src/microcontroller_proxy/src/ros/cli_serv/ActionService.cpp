@@ -161,7 +161,6 @@ int64_t ActionService::spin_while_moving() {
         while(1) {
                 motion_mutex::sync_call<&ActionService::check_motion_status>(false, true, false, this, status);
                 if(!status) return (int64_t) this->motion_publisher->get_motion_status();
-                RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "[microcontroller_proxy] : Waiting for movement");
                 std::this_thread::sleep_for(WAITING_PERIOD);
         }
 }
