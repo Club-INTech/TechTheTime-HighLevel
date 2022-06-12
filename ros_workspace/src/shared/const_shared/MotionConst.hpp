@@ -10,7 +10,7 @@
  * Acceptable tolerancy in ticks(both for left wheel and right wheel). If 
  * <b>|expected_ticks - ticks| < TICKS_INCERTITUDE</b> then robot is considered to be close enough to its goal.
 */
-constexpr int TICKS_INCERTITUDE = 100;
+constexpr int TICKS_INCERTITUDE = 400;
 
 /**
  * Stop condition tolerancy. If <b>|ticks-previous_ticks| < MOTION_CRITERIA</b> then robot considered
@@ -65,5 +65,5 @@ constexpr double START_X_1A_PURPLE = 2820.0;
 constexpr double START_Y_1A_PURPLE = 750;
 constexpr double START_ANGLE_1A_PURPLE= M_PI;
 
-constexpr double MOVE_PRECISION = 900.0;
-constexpr double ROTATION_PRECISION = 5.0 * M_PI / 180.0;
+constexpr double MOVE_PRECISION = 1600.0;
+constexpr double ROTATION_PRECISION = 10.0 * M_PI / 180.0;
