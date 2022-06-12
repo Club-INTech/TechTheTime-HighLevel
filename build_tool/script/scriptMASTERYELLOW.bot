@@ -1,0 +1,6 @@
+moveREL 200.0 5
+move 659.0 678.0
+moveREL 97.0 5
+take_palet_horizontal 7
+take_palet_horizontal 9
+take_palet_horizontal 11
