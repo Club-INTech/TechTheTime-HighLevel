@@ -193,6 +193,8 @@ int main(int argc, char** argv) {
 
             script.parse_script(argv[2]);
 
+            std::cout << RobotStatus::x << " " << RobotStatus::y << " " << RobotStatus::angle << std::endl;
+
             script.wait_for_jumper();
             script.run();
     });
