@@ -51,6 +51,6 @@ class PointsSubscriber(Node):
 
         self.alert_pub.stop_alert()
 
-        url = self.host + "pos?x=" + SensorData.pos_x + "&y=" + SensorData.pos_y + "&angle=" + SensorData.pos_angle + "&alert=" + self.alert_pub.get_alert() 
+        url = self.host + "pos?x=" + str(SensorData.pos_x) + "&y=" + str(SensorData.pos_y) + "&angle=" + str(SensorData.pos_angle) + "&alert=" + str(self.alert_pub.get_alert()) 
 
         requests.post(url)
