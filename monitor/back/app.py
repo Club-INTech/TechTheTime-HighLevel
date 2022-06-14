@@ -16,7 +16,7 @@ angle = 0.0
 speed = 0.0
 order = "move"
 status = "moving"
-alert = "false"
+alert = False
 
 t = time.time()
 prev_t = time.time()

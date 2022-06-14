@@ -3,16 +3,14 @@ var seconds = 0;
 
 function getNewSeries() {
     seconds++;
-    document.querySelector("#time").innerHTML = Math.ceil(seconds / 60) + ":" + (seconds % 60); 
+    document.querySelector("#time").innerHTML = (Math.ceil(seconds / 60)-1) + ":" + (seconds % 60); 
     axios.get("http://localhost:5000/data")
     .then(function (response) {
     // handle success
-        document.querySelector("#x").innerHTML = "x:" + response.data["x"];
-        document.querySelector("#y").innerHTML = "y:" + response.data["y"];
-        document.querySelector("#angle").innerHTML = "angle:" + response.data["angle"];
-        document.querySelector("#speed").innerHTML = "speed:" + response.data["speed"] + "mm/s";
-        document.querySelector("#order").innerHTML = "order:" + response.data["order"];
-        document.querySelector("#status").innerHTML = "status:" + response.data["status"];
+        document.querySelector("#x").innerHTML = "x: " + response.data["x"];
+        document.querySelector("#y").innerHTML = "y: " + response.data["y"];
+        document.querySelector("#angle").innerHTML = "angle: " + response.data["angle"];
+        document.querySelector("#speed").innerHTML = "speed: " + response.data["speed"] + " mm/s";
         if(response.data["alert"]) {
             a.push(a[a.length-1] + 1);
         } else {
