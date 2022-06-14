@@ -1,0 +1,54 @@
+.vflex {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.hflex {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+.half {
+    width: 50%;
+}
+
+body {
+    background-color: #000000;
+}   
+
+div#motion-control {
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+div.param {
+    width: 100%;
+    background-color: #7f5a83;
+    background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+    border-radius: 20px;
+    text-align: center;
+    margin: 2% 1%;
+}
+
+div.param h1 {
+    color: white;
+}
+
+#motion-control h1 {
+    color: black;
+}
+
+#timer {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
+}
+
+#timer h1 {
+    color: white;
+    font-size: 100px;
+}

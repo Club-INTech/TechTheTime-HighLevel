@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Robot Monitoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.skypack.dev/three"></script>
+  </head>
+  <body>
+    <div id="root" class="vflex">
+        <div class="hflex half left-screen">
+          <div id="robot">
+          </div>
+          <div id="motion-control" class="hflex">
+              <h1>Alert frequency chart</h1>
+              <div id="alert">
+              </div>
+          </div>
+        </div>
+        <div id="status" class="hflex half rigth-screen">
+          <div>
+          <div class="vflex">
+            <div class="param"><h1 id="x">x: 0</h1></div>
+            <div class="param"><h1 id="y">y: 0</h1></div>
+          </div>
+          <div class="vflex">
+            <div class="param"><h1 id="angle">angle: 0</h1></div>
+            <div class="param"><h1 id="robot">robot: slave</h1></div>
+          </div>
+          <div class="vflex">
+            <div class="param"><h1 id="team">team: yellow</h1></div>
+            <div class="param"><h1 id="speed">speed: 0mm/s</h1></div>
+          </div>
+          <div class="vflex">
+            <div class="param"><h1 id="order">order: jumper</h1></div>
+            <div class="param"><h1 id="status">status: stopped</h1></div>
+          </div>
+          </div>
+          <div id="timer">
+              <h1 id="time">00:00<h1>
+          </div>
+        </div>
+    </div>
+    <script type="module" src="./robot.js"></script>
+    <script src="./chart.js"></script>
+  </body>
+</html>
