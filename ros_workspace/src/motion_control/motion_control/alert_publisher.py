@@ -28,3 +28,6 @@ class AlertPublisher(Node):
         msg = Bool()
         msg.data = self.__alert
         self.publisher_.publish(msg)
+
+    def get_alert(self):
+        return (self.__alert and (self.__alert != self.__prev_alert))

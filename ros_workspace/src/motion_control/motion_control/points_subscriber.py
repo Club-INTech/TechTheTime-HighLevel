@@ -7,9 +7,11 @@ from motion_control.alert_publisher import AlertPublisher
 import math
 import time
 
+import requests
+
 class PointsSubscriber(Node):
 
-    def __init__(self, delay, precision, threshold):
+    def __init__(self, delay, precision, threshold, host):
         super().__init__('points_subscriber')
         self.subscription = self.create_subscription(
             LaserScan,
@@ -23,6 +25,7 @@ class PointsSubscriber(Node):
         self.delay = delay
         self.precision = precision
         self.threshold = threshold
+        self.host = host
 
     def listener_callback(self, msg):
         if time.time_ns() - self.prev_t <= self.delay:
@@ -47,3 +50,7 @@ class PointsSubscriber(Node):
                     return
 
         self.alert_pub.stop_alert()
+
+        url = self.host + "pos?x=" + SensorData.pos_x + "&y=" + SensorData.pos_y + "&angle=" + SensorData.pos_angle + "&alert=" + self.alert_pub.get_alert() 
+
+        requests.post(url)

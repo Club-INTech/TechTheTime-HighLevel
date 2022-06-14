@@ -18,6 +18,8 @@ def main(args=None):
 
     threshold = 50
 
+    host="http://localhost:5000/"
+
     if len(sys.argv) >= 2:
         with open(sys.argv[1], 'r') as config:
             data = yaml.safe_load(config)
@@ -31,12 +33,14 @@ def main(args=None):
                 precision = data["precision"]
             if not data["threshold"] is None:
                 threshold = data["threshold"]
+            if not data["host"] is None:
+                host = data["host"]
 
 
     rclpy.init(args=args)
 
     motion_subscriber = MotionSubscriber(team, robot)
-    points_subscriber = PointsSubscriber(delay, precision, threshold)
+    points_subscriber = PointsSubscriber(delay, precision, threshold, host)
 
     def motion_runner():
         executor = rclpy.executors.SingleThreadedExecutor()
