@@ -1,5 +1,6 @@
 team: "yellow"
-robot: "master"
+robot: "slave"
 delay: 200000000
-precision: 0.35
+precision: 0.45
 threshold: 100
+host: "192.168.1.63:5000/"

@@ -1,25 +1,17 @@
-move 421.43 1704
+move 421.43 1698.0
 angleABS 135.0 0
-moveREL 160 5
+moveREL 70.0 0
 take_statue
-moveREL -160.0 5
-angleABS 315.0 0
-moveREL -160.0 5
+moveREL -70.0 0
+angleABS 312.0 0
+moveREL -70.0 0
 drop_replic
-moveREL 160.0 5
+moveREL 70.0 5
 move 400.0 500.0
-move 200.0 200.0
+move 180.0 180.0
 angleABS 270.0 0
 moveREL 170.0 2
 drop_statue
-moveREL -170.0 0
-move 200. 200.0
+moveREL -200.0 0
 move 400.0 500.0
-move 500.0 1500.0
-move 1200.0 1150.0
-move 1200.0 675.0
-moveREL 1000.0 0
-moveREL -170.0 0
-move 421.43 1704
-move 257.0 915.0
-angleABS 90.0 0
+move 500.0 1000.0
