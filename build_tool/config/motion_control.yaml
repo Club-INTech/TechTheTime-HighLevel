@@ -3,4 +3,4 @@ robot: "slave"
 delay: 200000000
 precision: 0.45
 threshold: 100
-host: "192.168.1.63:5000/"
+host: "http://192.168.112.189:5000/"
